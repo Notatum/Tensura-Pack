@@ -1,13 +1,13 @@
 name = "TPA"
-filename = "tpa-neoforge-1.21-2.0.0.jar"
+filename = "tpa-neoforge-1.21.1-2.1.0.jar"
 side = "both"
 
 [download]
 hash-format = "sha1"
-hash = "b2b225643ed4b75fe41825a2678342d46da7b182"
+hash = "9e1c4a0ae167693e29636926d1522207b2badf56"
 mode = "metadata:curseforge"
 
 [update]
 [update.curseforge]
-file-id = 7868626
+file-id = 8813485
 project-id = 939167
