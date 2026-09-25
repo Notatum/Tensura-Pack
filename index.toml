@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
-hash = "29f246767492577ead5f101d66b858c047d75381801971a41c7d0ee9bd598e67"
+hash = "b5ea4af5cc6fb336620427e18ad0298b48d390717618e40b088ecf0606a3aa3b"
 
 [[files]]
 file = "config/Veinminer/blocks.json"
@@ -42,27 +42,27 @@ hash = "2d70ecdbf24b7e5e3ab6f19715dcb37d956931e0b65e7026b4d5524e002c46e4"
 
 [[files]]
 file = "config/ancient_artifacts/effect/beast_aura.toml"
-hash = "73398b01e8e37f1511efcbfa7131f767cbf283a27cb7cf684811b06ce0b6a063"
+hash = "f51d63a43eb75ac0d4508daecab7fdf5bb110ef46c46775aaba880ec07b0a96b"
 
 [[files]]
 file = "config/ancient_artifacts/effect/commanders_controlled_rage.toml"
-hash = "9bf68687e215d25865d861c05d275eacfada5179a1806997d6080c7c0eb6bd59"
+hash = "687604fd7d0146d9c4dc7b3c3940a41b86fbca84af7f2559f8d24e1f950e5aa4"
 
 [[files]]
 file = "config/ancient_artifacts/effect/current_mastery.toml"
-hash = "9edd40c745f064fb0cd1217e8a32cc29ba45f7448ab272da742f41981caab3d6"
+hash = "e1cca24b264fe91faba08a8569314f99d0271ce411cb4263b4426e15a3bf6376"
 
 [[files]]
 file = "config/ancient_artifacts/effect/demonic_awareness.toml"
-hash = "a27d7e4e13d2703d27ae9e6554deacbea3928eefff7e1d05f5eca455f163c179"
+hash = "ca4aa3b56979792ce6e611651d4560c04160d79a92d9019dc8e82348afcea790"
 
 [[files]]
 file = "config/ancient_artifacts/effect/flow_of_mastery.toml"
-hash = "0b04526418b32ee54d0bc00b33d0cf4a944a73c829ff57a15fbc81b3a403b02e"
+hash = "2509e4774802baec3e130df705feda99aad195b85b65ff35d0b8ac5c160a0f87"
 
 [[files]]
 file = "config/ancient_artifacts/effect/hell_flare_amplification.toml"
-hash = "c06c0d251d2b2ac427e9e89830ca5f0d8cb4e29479987347271730b887b1dcb1"
+hash = "8044197f0dc09585b318dd3dd71e9cfe9019a3e829a4790f1d6aa517a5090e0c"
 
 [[files]]
 file = "config/ancient_artifacts/effect/kings_awakening.toml"
@@ -70,67 +70,67 @@ hash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 [[files]]
 file = "config/ancient_artifacts/effect/magic_bullet_acceleration.toml"
-hash = "12b7a1e489aa06ca89db6e8650c112f3ba1f2e6c445bfbe1e0ab406f004f4a25"
+hash = "f1805eafcd2f143524dc02a33872d6ebc41dd9ab5c74409f69c198c2b49e5a29"
 
 [[files]]
 file = "config/ancient_artifacts/effect/magicule_efficiency.toml"
-hash = "23a6d85b5231f14acae29475f08f4afa7990d1c1a8b2eb43dd9fad5fc1adaae7"
+hash = "fb0e0084e4cab2b47732664bd13a4177eba13813676501086e0f6e06f1e0d38b"
 
 [[files]]
 file = "config/ancient_artifacts/effect/ogres_wrath.toml"
-hash = "ab6648b6fa71b9ffdd8eff47035a9228381ba49f8a8a5a9f503bb44bd08932eb"
+hash = "48335401f2f18272053bc47f3fa4c3e4123aa8743b3ba82441b676f08f9aaef9"
 
 [[files]]
 file = "config/ancient_artifacts/effect/prediction_evasion.toml"
-hash = "c4432ee35ce792cc80f253895fb2dad51fcd9ed45f2de1c8f217b3b5695d49f7"
+hash = "3011bf58e45ccdcd10fcbe1903a3cdec652546adeeaa90554634ae6551e8ac68"
 
 [[files]]
 file = "config/ancient_artifacts/effect/quick_movement.toml"
-hash = "bd5e9d35551dac78ca95abc662257fa5db909e5920a81e1644f8afc62a555a34"
+hash = "cd67a73f15f409b268951205a62e06a56a71e7820cb3a821c2aff35e1dd2b3f3"
 
 [[files]]
 file = "config/ancient_artifacts/effect/rapid_incantation.toml"
-hash = "11e3db53ce4c3dbe8caf28d92a88f33a2e66c1d8709e350614e4ea9681efd6b7"
+hash = "0facd1589f434b5c0a5c1b81b6a9a53fde8ce0f8a4333b636175580b7884f4e5"
 
 [[files]]
 file = "config/ancient_artifacts/effect/rising_inferno.toml"
-hash = "b028a51dcabe6ab970dd8a7bd5b2e1148138fa9af04ef4b7fb74710e62fd4f07"
+hash = "e5447caf0bb990c89fab136bd17a2a68e86be08e1d0ed0c2a07ef01bdb328c8a"
 
 [[files]]
 file = "config/ancient_artifacts/effect/sovereign_wind.toml"
-hash = "b411a8e28778da77921d7ae28172329b286c7347d150c3fccdf21d32b4a035b2"
+hash = "65071e75497bf96d4c82368042c6accaeab6b5cfd7bc359660065fe06c4edccb"
 
 [[files]]
 file = "config/ancient_artifacts/effect/unyielding_stance1.toml"
-hash = "57688c13408048b9ddd114bcf607f818dc47c01cee2d812511ba1bd64572febb"
+hash = "9b3369328925625f3cba5049293a57a5890a798c11be16443cd0fd2ff232b62e"
 
 [[files]]
 file = "config/ancient_artifacts/effect/unyielding_stance2.toml"
-hash = "3fbfc68e2acd039bc796aab0e64e09548121b15735e3cf16e57e07e257f29f40"
+hash = "071c64419d005fdd6257e54aaf189f36bd5d24aede94da5d49c5d7220b99749b"
 
 [[files]]
 file = "config/ancient_artifacts/effect/windborne_movement.toml"
-hash = "180ff8a3f40a7b39fb9d65cb83c30fe5f850f70efd49b703cc2196813d9c47a0"
+hash = "abd345fa1b63ed5dd8263a2b2d50849fa4eee59e21343200cbb4f7cc2d1518fb"
 
 [[files]]
 file = "config/ancient_artifacts/loot/artifacts/artifact.toml"
-hash = "f6bbb1dd3fa409194e496f9ebeae39d3cce5aac9414a98af6e8ba261a1e1a215"
+hash = "684344646db2384c1d7c6ba38df990860f29d09e766be8c9908a9b8d8614c660"
 
 [[files]]
 file = "config/ancient_artifacts/main_config.toml"
-hash = "701229168cccd2332ba868aecc7cd2a07edee395976a61f13abfe678b228d656"
+hash = "bb19ed64b3dbf5ee7454570269e9770fb5b83d273c4ad1e177405b380b76aa58"
 
 [[files]]
 file = "config/betterdungeons-neoforge-1_21.toml"
-hash = "b03069c030f940550b4436d2f7c3dab582efa2fcc32b221ac30dbcb0617eab7f"
+hash = "3bedf4e1c213bf204faf5f56bdd22f2fa7b045cbcb3da2d6285a4bdb116aeb37"
 
 [[files]]
 file = "config/bettermineshafts-neoforge-1_21.toml"
-hash = "37ee9275b9680c2d07d395cf41769c456c9b93adbf85ddf6514ee601977fa099"
+hash = "ee344cb26d156e67baa987f193fb44947fa6b3869b80aa16ef2b257370dc1ff1"
 
 [[files]]
 file = "config/betterstrongholds-neoforge-1_21.toml"
-hash = "3f2ae4edfb2c45137f14dc6a1a4f02958735b9831c0762d19d9e57fe4ff72346"
+hash = "63cade80c76b9162a27950027c3728e3ce3d1fddb18512a6937821ce308d37c7"
 
 [[files]]
 file = "config/betterstrongholds/README.txt"
@@ -158,39 +158,39 @@ hash = "89a9e8ca3be505dbf6d91ee5d287f79ba5c93699a074da4bcf3b7ad9303c5f9d"
 
 [[files]]
 file = "config/carryon-client.toml"
-hash = "865a366143df5f4d92941058c823ea48deb8445f6444b45e870331b16a444f0f"
+hash = "c3cbcb17ade590daf230373d51457732bc8d9dd1039f7947b6bf564e38df1d9c"
 
 [[files]]
 file = "config/carryon-common.toml"
-hash = "61413d3baf24cd7106e2be4c2f62b0ede74258051daf0ed2a157ad7b3a73d1aa"
+hash = "8e367f5171aabc7337f94a1b70045bad620ef99ce28c6d42708806af561ad249"
 
 [[files]]
 file = "config/chunkreloader-common.toml"
-hash = "1a13c9261be705a43314acd7c0059de4795c724e5079559e0cea74a8e5446cba"
+hash = "2d1511337fea404106187bb82df977b26f9d1059657729787b438ff03278ee15"
 
 [[files]]
 file = "config/curios-client.toml"
-hash = "8af475d222d452c40b548db89c8956f3e4d1e2aaf729464e3065f029936b3e0d"
+hash = "f1e31eed2ff11e1c6eda6517dc8b24dabd5b752ba1f8a3503c5ce750af1fc7b4"
 
 [[files]]
 file = "config/curios-common.toml"
-hash = "9f00a6b9904cf63a36c0c72f8346642962d538aaa78b59943b9de60dda82e6d0"
+hash = "16c71790deac2bbdea0099e39cdf8eb47b3dd7ef6337b69ba9fce793a1bf9674"
 
 [[files]]
 file = "config/curios-server.toml"
-hash = "1a3bee95a96f082b8e97cccbce30c1efe1352b616c78e06d5884fd4475668add"
+hash = "3c34cf9f7918c6a9ec15b14a87aa4570a751c1688f8ac01cb2e9acfb9392a734"
 
 [[files]]
 file = "config/ep-dungeon-server-1.toml.bak"
-hash = "1668d85decb223b8d7270d5ea670120c8680951b38073f6dbc57d552c83f4598"
+hash = "a1fca8907e1a05475b218289243f1d44dc55a59d5b9c3a03a9f4587e0e2df5d4"
 
 [[files]]
 file = "config/ep-dungeon-server-2.toml.bak"
-hash = "4c16ae3bdc6e1aba87fe50f4ce5730fea4978b6713ad802812e92d2b624d1c36"
+hash = "44db3e1cb62c54ba514e40faa2598e52752b4ac05aa4e24232a3abadda6ecba7"
 
 [[files]]
 file = "config/ep-dungeon-server.toml"
-hash = "695f6c334ac66fd0677c6c72a5e342424a31a29db2cc8e8d4f6c546a500a5714"
+hash = "db18e6c47da69fff16af4182820aabb2d55037dab5a19b216bc117be7f429057"
 
 [[files]]
 file = "config/euphoria_patcher/.data.json"
@@ -198,27 +198,27 @@ hash = "0f11da3dde188a867848bfa81dfacdcfd923b95009a2a148d4dc77df2f29477c"
 
 [[files]]
 file = "config/euphoria_patcher/settings.toml"
-hash = "2ad932ede279816c417bd5d889edef99f4c54bfe2f30a2ef2065490546470eab"
+hash = "0f101706907bbb0451b478e2ed7e39b5e5497ffebd497620e6cc6cc279e3b8a5"
 
 [[files]]
 file = "config/fabric/indigo-renderer.properties"
-hash = "6defe89c5b090e237a6a987dc6988c6a21362f8b022539d9966705b8784ecc2d"
+hash = "23c7ab46fb53e83e188ed7e568a6a2919c7e37e42a24b978fccb05316c0fbeb5"
 
 [[files]]
 file = "config/fml.toml"
-hash = "8ba2510b804c1d4b0f1a71139731997b3b063ee7e5c4cb21dbc9c29222cbbe3b"
+hash = "29af1d3110dd9d9a7759747df01b02a925fe55c90550498c683a4163dcd04cbf"
 
 [[files]]
 file = "config/forgeconfigapiport.toml"
-hash = "40dbe5b348f89b8ded62bcdfe32807ffc3e78fa8e0f81607a739580019fe5450"
+hash = "647ad92f7bdc5e0ccef37d6e7386b08f2a19715b77742202f2f9048fb14e0dec"
 
 [[files]]
 file = "config/greatsage-client.toml"
-hash = "431386499a5147d03fa61e9c29a26d446776e6d61936244e41aa9415f8e6c576"
+hash = "10e2bf2bae2eb8838fe26827f9805f4f8946ea42a97f8816d5bd8b9e7fbad054"
 
 [[files]]
 file = "config/greatsage-common.toml"
-hash = "fe782e6d508f4b3c0a1f01a2ddd5833a59f0043be4f9cd7f4ea176bf8ea15cef"
+hash = "9db45793ede275aa316fe698fe32740bd4175b0edb4ba60fc4c06257e49d4826"
 
 [[files]]
 file = "config/immediatelyfast.json"
@@ -226,7 +226,7 @@ hash = "a6c9d147a51c9e432c5c74c00285cfc5ba8b6fa4a0c6686051a7168b158d0d7a"
 
 [[files]]
 file = "config/installedByCompInstaller.txt"
-hash = "efe9d612288e82620e637445e3cf529bd9405b1ccaade4c4f8ed3aeac242b453"
+hash = "1877ff965915f6ee3ae99a08bad7ab3ae4da0b5afbe0037a98af1e172811fe90"
 
 [[files]]
 file = "config/iris-excluded.json"
@@ -234,11 +234,11 @@ hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
 [[files]]
 file = "config/iris.properties"
-hash = "a46687accf8d8020be630dee7a5e67b15953f8a87aac261ce8096c4f026dda13"
+hash = "f32febb3cbebd659a324bb601f6e160409ae2a5c1f1050045eab316bbbb095cb"
 
 [[files]]
 file = "config/jei-server.toml"
-hash = "702acd04d99445bce659d04fcc488e1a98c8a803983c31ae262b0f3a47fdc8d3"
+hash = "57d741871716e29b3a318b625e740d590598f001c362b6a4a95e3ee628c5cbc3"
 
 [[files]]
 file = "config/jei/blacklist.json"
@@ -246,31 +246,31 @@ hash = "b4174dc6e985aa90be5002c14e94b956d8d586683c44b7b6710c44d08fb13648"
 
 [[files]]
 file = "config/jei/ingredient-list-mod-sort-order.ini"
-hash = "d4122c34960d6cfc793c613241ff86422f8588f2717da57b7026ab42ac03bd2d"
+hash = "40dce9d29265304a9d5ad0afa1bdb29aa6735aa8acf071c6261ac97eaccce93c"
 
 [[files]]
 file = "config/jei/ingredient-list-type-sort-order.ini"
-hash = "9be9f5ca14028eda8df857922eea736a3d1e76a85661ba90edae2682eeb0b502"
+hash = "41529c0995233ba5dce62005e656f740f3bbd61f5cc625a296b0a6fc6b64702b"
 
 [[files]]
 file = "config/jei/jei-client.ini"
-hash = "c0c599a9a261ed4200efa60fc469db86ba02e89b6d8528f889c96f54e50ae7e0"
+hash = "1cc46d779f83dd4cb73ba790f60c2dcd9c59b598c57f130755aed7bca7aba459"
 
 [[files]]
 file = "config/jei/jei-colors.ini"
-hash = "755f199a3868224bdccb2a8ffd8f1a4eb2d96140757f444ba31f8d677a66034f"
+hash = "e4bc0c5fce5a7536bce14c94b30e30482e65d63792b29db0ad59d4fa9eb4d1a5"
 
 [[files]]
 file = "config/jei/jei-debug.ini"
-hash = "8bb0722d480964720a1500654493b5be225c74f7ff3f94e8658e39db5ab098ad"
+hash = "5de3969a31149d8974d96bfebb8a1c160d6d5e93fd54fed8e95f6d8ea48427c3"
 
 [[files]]
 file = "config/jei/jei-mod-id-format.ini"
-hash = "64eadca7fa07c15de7fd549c4cc4782bf8678d8a49d1626b0805e337d604ccb7"
+hash = "055bf6becf47277e5e41aefb2e0f38443e86784571cd74c03a2a4f930cbedd7e"
 
 [[files]]
 file = "config/jei/recipe-category-sort-order.ini"
-hash = "398cffd58cf8829a2223799935eef46dcadc7abc4ebf6f7bfd48c85ca67d5fe4"
+hash = "fb2624d37700eec20a0301d17f35671e66612f3bf634c04476310fdfa44e29ea"
 
 [[files]]
 file = "config/jei/world/server/A Minecraft Server (LAN connection)/bookmarks.json"
@@ -290,7 +290,7 @@ hash = "dfb47da700edb54a6a4fc19806e67bc2730e6437989e5d210dfcd945fa2289f8"
 
 [[files]]
 file = "config/lambdynlights.toml"
-hash = "fd52b13fd14a8b4359d5c74fb2c1f99eec7bb2d3eeeb460fbef4d8e636c11a26"
+hash = "2de31c082c5862ffc2439c4e24fde240bd192aa96e5fe132f635cb542502a00c"
 
 [[files]]
 file = "config/lithium.properties"
@@ -298,107 +298,107 @@ hash = "6cf6f83720071fd1657c8e79b357caf68d40f410ae123e5f922483eb1d1d25be"
 
 [[files]]
 file = "config/moonlight-client.toml"
-hash = "dce19661acd04241ac6d04fd2baa02c5a59cf1672c52ec07cfeeccd9a4e7ea62"
+hash = "71966bc6f963b429b0c5fd4529bd07951256934313a023f7a3478f85fff79b5d"
 
 [[files]]
 file = "config/moonlight-common.toml"
-hash = "a6d5e783dc1469e925d4cf62f17a94ee2dff4ff025d9ed9e61b129581019cdf3"
+hash = "ce17e22174f8d796e792c87dbe7c2cff8360686edfb59080adf905e26df144ea"
 
 [[files]]
 file = "config/mysticism/ability/magic/spiritual_config.toml"
-hash = "c5b500c238d25112a02b7dd22aa6d085aa1e6796a261c1d0acfd99237a28dfe2"
+hash = "e34dec3ffd0f13c20e54bc5e928d6d64681158de36d78b715e9d26a3a1262052"
 
 [[files]]
 file = "config/mysticism/ability/skill/extra_config.toml"
-hash = "b6be91f13f6ed75499d5134f5f82a4af1717e3a78d3128105c62d0a4a587a613"
+hash = "2a415ccb60f15af4e144cb9624f3c9b86d839b6c82f1be0e0f1b08ddbcd8bbe8"
 
 [[files]]
 file = "config/mysticism/ability/skill/intrinsic_config.toml"
-hash = "881e6954ceab069baba7e2ca627b2f3a08acf251fdb2d6eb078f36cf2308c0ae"
+hash = "5fa57d30d77cf67597666608c04f06c9cb51900791db29044927057d0ca00a97"
 
 [[files]]
 file = "config/mysticism/ability/skill/unique_config.toml"
-hash = "a84c71feda3b4e983cdaa2d698e6ffd556f0246f0df9f66e06c4a692e35753f6"
+hash = "e2ac5a1d40175eda7210bc8635d6418ac240f45e6e161b75e36bb77555c60996"
 
 [[files]]
 file = "config/mysticism/effect/effects.toml"
-hash = "6ce8279a1d60870a17ebc3d7e53b66f9d8e1b4f609a4634de25d10e2b92bb9a0"
+hash = "71e9377e7969a2da9e75c68c401c2f04b2a247337a6952aead2b703d82432fc7"
 
 [[files]]
 file = "config/mysticism/entity/spawn_rate_config.toml"
-hash = "8bc583d89972fc261ab0201112180847ac29bcee62b523c36c2782bec8c63811"
+hash = "7b56050ae55f724de3984b8fda9215ef243e0cb08b911ec1869e97ce22c53b9d"
 
 [[files]]
 file = "config/mysticism/general.toml"
-hash = "94c25526813669acfb6a6171fb301105e64e6e239f7184f813d4fc16bb7006be"
+hash = "926c1bd9a940f49d9acc971daa2efc674868bc3d20a4addc2c6d8981c45e9f2a"
 
 [[files]]
 file = "config/mysticism/race/angel_config.toml"
-hash = "3ffa79f69ea66a018a77bdee9c7fe8adc5b01040bde8a9c944d9b55d0bb6b2c8"
+hash = "76b3623c947aafef87b73c20ffe19934faad80c592cc0f75b6250674aa7beddb"
 
 [[files]]
 file = "config/mysticism/race/daemon_doll_config.toml"
-hash = "b53110ca68a677e723d89017c7520366821d11728c1ff4b72cbec498e0b82cc9"
+hash = "671f7278826f00d040e7e686c21624564a47cc52c4bad175ef8c38d1fba483e2"
 
 [[files]]
 file = "config/mysticism/race/direwolf/direwolf_config.toml"
-hash = "14a8f4be6cea70a2d9833cdb808465c85ee5fa32c8398e5731027aa2cefa1ee4"
+hash = "acb035f3302aaa8c5fe9e56991c2085a00e618ac115a22f2ff9bfde0eabd94e8"
 
 [[files]]
 file = "config/mysticism/race/direwolf/special_direwolf_config.toml"
-hash = "645e8c853b5721eabb302bb827ed5606d5691b48eec9854363ede9a873e65587"
+hash = "4c2d0371ba6d1b8963fe5565a51630c801423cf4465effb6480c75661bdfd5de"
 
 [[files]]
 file = "config/mysticism/race/dragonoid_config.toml"
-hash = "5b49fc666f3bec3022bdca3ce31ff0c053f791fcfa740ef4407d0e6da5367016"
+hash = "660f8a3f7d29e5ede67b83e4133f09ccc2457855eae7eaf3d887e8237106c314"
 
 [[files]]
 file = "config/mysticism/race/elemental_config.toml"
-hash = "71b040c92217035a27e3730caf7ca4c4d242d0369a1a319ec5cc42355382e2c5"
+hash = "d28f6218e8cb8d0288c37b6b36fe71359a14c9439bd26e725d7e0d846474ce53"
 
 [[files]]
 file = "config/mysticism/race/forgotten_config.toml"
-hash = "ce900eb69d2baae615bbf1aef9b48fc8789b2b644c2eed12fe88fcfdc286071b"
+hash = "b9bab06692f6f497053d193650d0a3a9a06b6a7c32a8e35feb6260ddb07ea2a5"
 
 [[files]]
 file = "config/mysticism/race/insect/ant_config.toml"
-hash = "4d2c899b046b633265269b3d82fd168d35a2a4ec99fcac317032b70e5e26e064"
+hash = "58bb22391b46207bca18970690337eaabad599d12d56144a612f89fbdc4f5247"
 
 [[files]]
 file = "config/mysticism/race/insect/beetle_config.toml"
-hash = "738616e7e421c6a4c064b2ab247083d4ab6718ea30e55f6010a490188d981b1b"
+hash = "a2b0e1e1b112c8bc2727a679765f14f4966b28493c08a7e58b8d78508af056ae"
 
 [[files]]
 file = "config/mysticism/race/insect/centipede_config.toml"
-hash = "1e9398614e81b6975fd944e793c4d81b2cbe2b9754af3aadd6caca8d8b070d6b"
+hash = "fc0d36c66f000da8766a9fd8846a4ece8fb82622a07cb7d4ef53a472e4508628"
 
 [[files]]
 file = "config/mysticism/race/insect/mantis_config.toml"
-hash = "5d066ca49c0f66c8b442c5243eaafd8b6b0a6903ac44676f9071eb0d22d91ca1"
+hash = "23b0b734e8dddf0e75162ee01a460698c1349aac483e6ed2fc9f8bc33790beb4"
 
 [[files]]
 file = "config/mysticism/race/insect/scorpion_config.toml"
-hash = "d12cedcbca1266d47ced0033204bc4e71764555229200174c2d2cef66d7f522a"
+hash = "68951ad249b4cfceb62c2a89961432bee79ed7726ade54f1d630252e499c2670"
 
 [[files]]
 file = "config/mysticism/race/insect/wasp_config.toml"
-hash = "c407f6d50bd4a32071dba56f376f1b2331c5e15efac9674d6cce5b7ae38aabb1"
+hash = "ed9269b2522c7e46d0a53e7cf379885d3f164cb605370b75ef7b5fd1511eb46e"
 
 [[files]]
 file = "config/mysticism/race/phantom_config.toml"
-hash = "ca265ab6e49009879bc997fe0b676463dd7fe06153611cdb0bd2d94c6d8affd2"
+hash = "61622487eef593b2f268d5593bde68a01571a6ddad9c3853b0eca7cf07f3c69d"
 
 [[files]]
 file = "config/mysticism/race/restricted_human_config.toml"
-hash = "076b4e21ae236f575bea4075edf7f57b6dff07d44d867fd48cafae5db527eec1"
+hash = "5574c90e56b7697034325b46da8b6d198c62b2db579a1e6f398f6babd33abb1e"
 
 [[files]]
 file = "config/mysticism/race/sculk_config.toml"
-hash = "1efa8f8809973a67b680ec4f4806f542c9d92c294354edb918f3a986ea228d03"
+hash = "4c250a75bb124a9915f498de8f6ae9115165982dc248f39f371f72ece7c6259e"
 
 [[files]]
 file = "config/mysticism/race/wyrm_config.toml"
-hash = "b2856fbbe0ea86714f942068e6e1d34a17d242a36bc6eee4ff23b9c5dab64c39"
+hash = "d5261feb26360d06003f81d1f80f22e522bb34493d73486697f8a21fae70ecfe"
 
 [[files]]
 file = "config/neat-client.json5"
@@ -406,27 +406,27 @@ hash = "939c5e20488e4c485af7a15f7069d3dd8fbe09d107a05eb0618ffe1cba0d5f06"
 
 [[files]]
 file = "config/neat-client.toml"
-hash = "a73711cab1ff37ba55bd969ddc33af59b1bb56626ec5200de5d52c97409ec5b8"
+hash = "e5a6f1869c0e6ecbaa2a4a62fd2347c299301a73e6c435c8f31d58c680aa4985"
 
 [[files]]
 file = "config/neoforge-client.toml"
-hash = "d58d93e2c429410d0abf25507d1679f732e1023b03bb52414348efcf5cf3ddb0"
+hash = "a5f0eb38f8daf8574f7672a8393a0ab5c668d6ec6e7ae43fc8669e928786929d"
 
 [[files]]
 file = "config/neoforge-common.toml"
-hash = "fe878a2717a145cd890621eac5b3be1e1fd656f7ff9abc6e8d53f670d37474c4"
+hash = "e6f7578cf8c11ade0a47e36bf3863fc96f84cdf4bb679c0fceabb1e8a2f42399"
 
 [[files]]
 file = "config/neoforge-server.toml"
-hash = "b1e3b38d612295f8d9dfa0fbdb538a992b7a1a3b7a766c491b4e9fdf3823396f"
+hash = "0f1415d7fef6d7f6194275501d500b633dd3310aea40d64128edd1b096372f60"
 
 [[files]]
 file = "config/openpartiesandclaims-server.toml"
-hash = "41a4fc67ee0ec07e4c4aad86f4786e42012787dc6fc8a92768e6d44dd84a4c22"
+hash = "457f01baaf00779cec4f3125f0bfdae95ac79488127595d2040d1da0f97ec98a"
 
 [[files]]
 file = "config/rrls.toml"
-hash = "50aa30a1d8c6d5c07552b639a63169d7dc34936d84bd8b97af80e0083e851b9d"
+hash = "88d9f88c8e370f113122770512c67e704a16c4ceed4f70755495c9ce5072cc92"
 
 [[files]]
 file = "config/skinlayers.json"
@@ -446,215 +446,215 @@ hash = "ef3242a314c4311b64b88ce016acea790d42a35f7c81f0a02934841e64efcda1"
 
 [[files]]
 file = "config/sophisticatedbackpacks-common.toml"
-hash = "390cb983090cdc5ba9013c0551fcde8ecf579040f970e33de5ecfc500841cb7f"
+hash = "ce60ba4ebdbb1ba959f3ee6be206f84f2221b8dc436140c92cda412ef33f10e6"
 
 [[files]]
 file = "config/sophisticatedbackpacks-server.toml"
-hash = "e3d9c353683cfb99ae9d5995f6c75644af29f8d0efc0a36bf5e8620a9c4eafe3"
+hash = "746ac0bb7fb0980008d3c1395ba0f222b05cb5b6fc3419f70ffbe8ba960a4375"
 
 [[files]]
 file = "config/sophisticatedcore-client.toml"
-hash = "12f65a872b73c931b0a192d7e95c7d89f7ef7f1fd33f3ee7ff6bbda12fb8845f"
+hash = "467c9ffc84322873121a2e109258245030ec4d0608b7181a739681ce685a63c9"
 
 [[files]]
 file = "config/sophisticatedcore-common.toml"
-hash = "460fb3553eaea2b813f22092dce026c93b03d710f08473686a46ded24a2d04b7"
+hash = "7818c2d3c9d5d8148f5c23d160b3b62bca877f0303c3bc381f190d6fb2a7c5cf"
 
 [[files]]
 file = "config/sophisticatedstorage-client.toml"
-hash = "45923fce3aebf26b0932687f1f06048fca5f716a865e98edf6066f5f2e99ec30"
+hash = "dc326609de87d4077076e3769f248ac290ad0a4b289666ce37ba1aeea59bfa08"
 
 [[files]]
 file = "config/sophisticatedstorage-common.toml"
-hash = "0c721ecf8a9a6fba8402b7ce73bf8580acdd078e9ac9c3b37c42245ca6d8c4b0"
+hash = "598a20e3ee0ab0a5914e6cfe3f963bf5a58a29218b30ae3af4f91449b8e93181"
 
 [[files]]
 file = "config/sophisticatedstorage-server.toml"
-hash = "647d26bf797f4854164016c55d4c088120b6d3d4aea0ce3d4866b540358f2cd4"
+hash = "644f3451a2e94253bb53750fba9572db392d4448aae1105ebe4bae93d445b8b3"
 
 [[files]]
 file = "config/supplementaries-client.toml"
-hash = "05e5e95a563d78317ca78b55038a308db39f1148bf41de2cb3e1c79664ee8492"
+hash = "e1a94a638e52b0f143c9bf456351de09a050a234cfcd29783461f0b81fa6d51c"
 
 [[files]]
 file = "config/supplementaries-common.toml"
-hash = "83562d50ce6acf551f31d6abe76cd8c5e7054aada4fea76b9fc718df56efbf2a"
+hash = "2711d86ed8a8e483f435d172427347ccebce7f41d1d4ff01e9dc0833e6b3e4a0"
 
 [[files]]
 file = "config/tensura/ability/ability_config.toml"
-hash = "6f891b12f1f25ad96cea1a95c9f9f277d95b19c2463d96b8eb20595a055124a2"
+hash = "67666ed687cae83d987a0c11e0239971573c7b67881b4ea2d2377e4c1bbf983e"
 
 [[files]]
 file = "config/tensura/ability/battlewill_config.toml"
-hash = "896d666c4fb6a4aa4c0417bc36bd2ce9838e785eec9d639927f6555bdb83d10a"
+hash = "1f2968fe5f09d260236b7b9b583ae0ef9de6dbb50416760f2f0c0aee33e8980a"
 
 [[files]]
 file = "config/tensura/ability/magic/aspectual_config.toml"
-hash = "f3630d12ebf3b18cee49fb012efe98c2e0729259d830e9f6fe9f9708c76bcedb"
+hash = "dd0396a72036071f6deb0e5503062447a465d8ed640947c5b041b46c57d7b49d"
 
 [[files]]
 file = "config/tensura/ability/magic/spiritual_config.toml"
-hash = "48cf3a50491a278c80e09500ecf21207ac2b4ea724d32325a675701cbc7ff09e"
+hash = "b185ae4870353879869405c012f0c7e53635f87e1b163d1d3052450bec2dce2f"
 
 [[files]]
 file = "config/tensura/ability/magic/summoning_config.toml"
-hash = "4ca9d4fcdc6da3a896281c36c0b9d9ccc45df5d42ca0572e11ab3f6b36699e65"
+hash = "40e8f2eb6975ca1f8542bdd439630cea0fb47df76ed91b9160a7739667995a24"
 
 [[files]]
 file = "config/tensura/ability/magic_config.toml"
-hash = "1c20259f2c70e0e335c2d8baded7a4e584c9b326c7fc8aecb3f56fcca8d58ea4"
+hash = "3f274b0c2355b6a6f49e29873dce3d386149613db1a0a003e1eef4c96e0c7d4a"
 
 [[files]]
 file = "config/tensura/ability/skill/common_config.toml"
-hash = "97fc005d594b3347975f0928e42419814b5b5aaa4c723a647895f65cc152f8f3"
+hash = "f85e4206cf570cb6ef60189b8c32f545084388faa63366eb282201c49a88e222"
 
 [[files]]
 file = "config/tensura/ability/skill/extra_config.toml"
-hash = "851c19b504e39b5555d1f4e41391035e38cc1bc01bea498c4bfb7441fa7cb12c"
+hash = "02db775786ce3445d9f7f93d6c391c981ac33e30b154e5b9f6b465e367acac8b"
 
 [[files]]
 file = "config/tensura/ability/skill/intrinsic_config.toml"
-hash = "73abb380dbdcdfb3c46045c47a876631b363ed38d2bcdc983401fe2336faccc0"
+hash = "11ef632a7b3600551ce161175cd6562615ed700cb271e8245c98b2b37499493f"
 
 [[files]]
 file = "config/tensura/ability/skill/resistance_config.toml"
-hash = "e1928a69aa2917a90b181079c3511b887df33b0bf92865e39bdb9b457309b8ac"
+hash = "aaa92307b8b264b713f332aafddb4337e78fd567f28fa168e7cd4bdb3f36be06"
 
 [[files]]
 file = "config/tensura/ability/skill/unique_config.toml"
-hash = "ea151a59aa494e8e86845800ff258636626ec16391f1b20e7114c66b9d43dd78"
+hash = "8bc6c9ffd77428b154b083ff1dc6c264f84523a02132f0d0e41fe948174ed1b2"
 
 [[files]]
 file = "config/tensura/ability/skill_config.toml"
-hash = "617f81b2e6c9bdb4b5c5fee0da91f4020c98f90a074a63caf32d6cbcef1fac57"
+hash = "f6c77f5ab0c5f284cfce266f23f2dc7a83198fe2c3898a6c09e33e6388748b06"
 
 [[files]]
 file = "config/tensura/area_magicule_config.toml"
-hash = "aaa64999911b874ee0a2d488f61771f9db3b6fa908c595c274af46cf59b77160"
+hash = "88adeb4d34d6ec4a52cf22bcc7ea25828aabcc31529fe66d8fdbf0009b76ad75"
 
 [[files]]
 file = "config/tensura/block_config.toml"
-hash = "12ee47d24b6ed3187c6a2283785466ce4fe7c69185c968f9fdcbc3b216621f67"
+hash = "a65d32febe3ee2406d1cf9d9eba3bbc531fce1b916c749d1a02493ceacf6e7ca"
 
 [[files]]
 file = "config/tensura/client/hud_config.toml"
-hash = "baddd2a94096e47b275c0d5aec69605319169ad7570c17f4d38d2cef63a04d7d"
+hash = "461b469fce38896d02e68f327d80a2507c58d2d91218b75ea12e55b9ac08a299"
 
 [[files]]
 file = "config/tensura/client/menu_config.toml"
-hash = "22a45e42a2bc0f8f2f90f341f2b2dee744004152ae5bbf791975afe2624397a0"
+hash = "0de19da89d50203ed69abaa54d4bd46727faf00b7e349a878de754646ddb4351"
 
 [[files]]
 file = "config/tensura/client/misc_config.toml"
-hash = "d1c195ee001afd8a80c669f9d35788494980d3a1f67ca10ea89df2bd3d0dfe29"
+hash = "e95d3a3824d564239395382a8552a66aba5f605fdea3dbf25b10ced427d35cc2"
 
 [[files]]
 file = "config/tensura/enchantment_config.toml"
-hash = "c4899fe75fc285948e622846192bdc1673fd13d8ffe20cba4405de4437d4e0f0"
+hash = "09a167920ef7e07e989b8b986f3f51006cf850c4e1f61d1a8cc18ba9db60eb92"
 
 [[files]]
 file = "config/tensura/energy_config.toml"
-hash = "245094f7348062df7913155eac5e0534bb17a55b97b575e64ee51daf1e0fc70a"
+hash = "afcc9ed3f88e450e53d53d969be5fbf565f68d638014ac7efdee03d438c31750"
 
 [[files]]
 file = "config/tensura/entity/attribute_config.toml"
-hash = "b861886040dd953ac0a93c1456b75f1c30f9264a6e6aae7e210f30bf5f83d31b"
+hash = "254588b68c2b94a2d6842b2dc41f31146f968867f9949051ffb8b68553d38b41"
 
 [[files]]
 file = "config/tensura/entity/daemon_config.toml"
-hash = "cf2a6369d1197576ea6734b0a714abae4723ec16c4ffc420016ec331a1b3097b"
+hash = "da7f155978896140b138df8699f061b26a0d8f2603754c9c956edd95d0356fc8"
 
 [[files]]
 file = "config/tensura/entity/effect_config.toml"
-hash = "a0d12d1ef097ef6be82854ff9fd9884ba46b09a2b8a788e97971c5bda013d0d4"
+hash = "4512084c8fdd32501c125a6bb6f23f1fb71b4b1452341683a8d6811f0ed76cd4"
 
 [[files]]
 file = "config/tensura/entity/entity_config.toml"
-hash = "3b60e96a92a1dadf85b8ad06dd760e36b31f7b7c05279518914646439af0a61d"
+hash = "29d731bcf4da7a952017301730027b7df0f3d8d064431cc3ea915a8e508a482f"
 
 [[files]]
 file = "config/tensura/entity/player_config.toml"
-hash = "5e60a88ed63045a87846a427122beec03a3b8be0b80a73b786a4f903bb55761c"
+hash = "8d21b7c8e22da292614d822a9c0cdb6cc8e6e29fae2ba3083c319908e90bfe03"
 
 [[files]]
 file = "config/tensura/entity/projectile_config.toml"
-hash = "d9f8e841fc4f75ce4e9dbd8dae57bca6a07b405861eacc61a0f71a0bb1c97dea"
+hash = "d0f81d8e3d804476e1a148b0ea9877aceba29da8a8c3c7cd507d6917cf1da5e0"
 
 [[files]]
 file = "config/tensura/entity/spawn_rate_config.toml"
-hash = "8e831d058142b5ca31083a21e34c491ec2bb089e8b39143ae811ae713bcb2845"
+hash = "460a02e7f9d059f513a36cbd32e8a2ca417eec89cd6a05aa20342b0d9d0aedf6"
 
 [[files]]
 file = "config/tensura/opac_config.toml"
-hash = "26ea34dff1550049aa087a6f468516113e867d8b379eb27ec2e195fda6c269e9"
+hash = "93e0da3f4e9bbfb8e1a521cd0d25d440558da0ff632dccfb6152c2fb4dab17ba"
 
 [[files]]
 file = "config/tensura/race/beastfolk_config.toml"
-hash = "455bcfc4f71479c27997aa124e841b3304d5ed6193a12fe065b1e34c32f1d05a"
+hash = "335602c3ce33db2f2c8a408c537195b156453c42ce39f2e50ab5daa09d718e44"
 
 [[files]]
 file = "config/tensura/race/daemon_config.toml"
-hash = "6f3aa3f44d3559be7d9e62b34358114ac544c2a2709f1eb584ae6acf558353e9"
+hash = "cd44a50002a2b684334cf52d0e88083f80fedfd8b919c52c81a837d89366b077"
 
 [[files]]
 file = "config/tensura/race/dwarf_config.toml"
-hash = "8b1b602d8d6609e5d4ad567a1f435fd0de6ed6b8aeb969745263e758ff9143ba"
+hash = "18551ac2c49b9c484cbf380329bec51f495de94567d02f83eedda02e123ccace"
 
 [[files]]
 file = "config/tensura/race/elf_config.toml"
-hash = "a645a908cdd2988530f2769bf51033b02e11d689f94e5ad0abe82c679ba6a10a"
+hash = "48fe88abc764725511b1c7cfe827089030daea03d6d6213e7cfa5cbeb657c195"
 
 [[files]]
 file = "config/tensura/race/giant_config.toml"
-hash = "f41916e3153a6d8cad3c69d35d8a9b4dc0bea925f53a00dc1a2149fbfb03d28a"
+hash = "70b35c7a02604afadd3f697935cf20c465cf8deb5632285fd24433ab222c6a9d"
 
 [[files]]
 file = "config/tensura/race/goblin_config.toml"
-hash = "85f065afe0243cc023356b24766bf226e7e28ee9abb3424451ceca2302eb6b00"
+hash = "59e811b4da904e440d03ebfc54a079792b0626459ab8e8c88393d53c68d8bab9"
 
 [[files]]
 file = "config/tensura/race/harpy_config.toml"
-hash = "7f7c2f3ca4b3fdd7d8a86b7d89af961d91c6e343f488a0fa4bf7b0b9f97d9a80"
+hash = "bc99136fd6bab094c11b0f0a67cbb1db19054c916a6efa352e03f301f6fa5ca9"
 
 [[files]]
 file = "config/tensura/race/human_config.toml"
-hash = "8ca803b8573173eedb8ac1b850691ede25a899caf0aaded87df50afb64c07885"
+hash = "cd1e2832ad739b4e4157856db15a2f8b6f8dd75298c5684a5910b4a634dfb3e0"
 
 [[files]]
 file = "config/tensura/race/lizardman_config.toml"
-hash = "50bf280e53ac1c5d177c6ce6e3c32ea4e2330e91a3c6ce0d060cff0a60172535"
+hash = "489fe1997f415ab863e212da621b6e2260a9bd2f105df497114a507cdaa4aeab"
 
 [[files]]
 file = "config/tensura/race/merfolk_config.toml"
-hash = "24705eb02f87629dc0ef9fa201bf668b6c7783a330e437de17972fb17181c1cc"
+hash = "1f6a5464984c3f4a7918d0b03dbb4d79bf38401154af8cce5f0edcda7a800053"
 
 [[files]]
 file = "config/tensura/race/ogre_config.toml"
-hash = "1b5ee4c7fa8f7e59fc42ee057826430df9c5033cd74f35d33ab0fddee523b14e"
+hash = "d9d529a66c69608eb6473ada0121752d01601c3d63b225e35d7425b3dc8057cf"
 
 [[files]]
 file = "config/tensura/race/orc_config.toml"
-hash = "ae5a19a6d5f6f14f7338b95942acc890ac81ddc7fc1a9dffae335d98be27670a"
+hash = "17d3b0e207ddbcdaea46cba4122c69a1b7735d92bba7cc078aa1761cf06d5586"
 
 [[files]]
 file = "config/tensura/race/race_config.toml"
-hash = "8eb34bcb0f98509dc1df981fe1ac0e34e2789b74681cec42197c301aec69c099"
+hash = "800df38b0d72302eedab1520a04e543ddb11e1ac2d84e15c0147f9e349df5a6c"
 
 [[files]]
 file = "config/tensura/race/slime_config.toml"
-hash = "f53ad77851cb4415982b417571fd8e8644224150250120a956a230af994f3332"
+hash = "6714609c589123ecb2fd93b0009bdab0e5f048a1c78527aa16984493e67f387b"
 
 [[files]]
 file = "config/tensura/race/vampire_config.toml"
-hash = "dcc590c8a2754282c75c16bb9f6c649e0f8190874dd0db03f2d188a62c358499"
+hash = "2cdddc545dc2d779db020703e5506fc21c1bae6b2d3abdcc36fff1d5ceb3bf29"
 
 [[files]]
 file = "config/tensura/race/wight_config.toml"
-hash = "e64aafd2ac50e1cfa0d710762b3875fe8fe169612ffcf6b343803f36e2e901ab"
+hash = "ab50a4ab5d500ed584122b22af9d9258c8fd61e889cdaa3671a5bdc7ecfced41"
 
 [[files]]
 file = "config/tensura/reincarnation_config.toml"
-hash = "2a29f2003d7faeea29b8c97ad7c733728b31503431b1bdcdaeabbe465a6e468d"
+hash = "5f55973d6f46f9535d6614f03394e614a5c311490dbe080c87980fe9b8269b31"
 
 [[files]]
 file = "config/tensuravoice.json"
@@ -662,7 +662,7 @@ hash = "940012e65e83fe541135d4866d509111c87e472b3969b7b4296f8f8e2176a513"
 
 [[files]]
 file = "config/terrablender.toml"
-hash = "cff6a9a0d415b19b9852844c0ad5bb2b1cfdb9fce12e729e7228a6521fc95927"
+hash = "499d188162ddcf7fcf450cdcdc96bd41ac582501ecad5ed4a74dd9ed6b01990a"
 
 [[files]]
 file = "config/transition.json"
@@ -670,15 +670,15 @@ hash = "60420a41571a4658b91babfa2b47d6fefb7c1766eeea969f51ff98ab34c2431c"
 
 [[files]]
 file = "config/travelersbackpack-client.toml"
-hash = "cd1bd3af16d2f93b16db571d21b5db5d2ac0a7e4637f2c5068dbf184c672838d"
+hash = "fd7807f52c510b23400054405742da63537a03996bc341cef986ddfb51c78a8a"
 
 [[files]]
 file = "config/travelersbackpack-common.toml"
-hash = "37ce5a56214bb9ca267ea3a4bdeee69da309afbbd6f74866efdd6e987a709ce3"
+hash = "961a398de15c5db5ce71a268f00d50d1a668b64bd09797501ce157b649362e82"
 
 [[files]]
 file = "config/travelersbackpack-server.toml"
-hash = "94aa302bfc04ef679bb344db8f84787d27c8c92354cef6de15e5939c69836c03"
+hash = "b04f605cc1ae4ddd9524ce5a42a72452f1e96f351ecdefdfba0cd5962ed18c9e"
 
 [[files]]
 file = "config/trender.json"
@@ -690,7 +690,7 @@ hash = "05701881c858cfc4544a5aac51479784bf5b57bfa758e47d82af4c0f4264096a"
 
 [[files]]
 file = "config/waystones-common.toml"
-hash = "c4c69dc43cb3de4a611db638646a25f3f885dd338bc69b5e342ebc4354e021d0"
+hash = "99c1de6197facab54513d397d27a6c7b24838f848931051737829316483f399d"
 
 [[files]]
 file = "config/waystones-common.toml.bak1"
@@ -758,7 +758,7 @@ hash = "d438aea41ca41e93697e059f523686935c0add482f6abe96b532bbf10c6ed80a"
 
 [[files]]
 file = "config/xaerohud.txt"
-hash = "b090e4050ce88fa5678bf4e671283fa3c813bbd328b9258112eb9ad45847a482"
+hash = "26d7fe683ee8304cce8123e578ee77271795f9001a462287de4d4fac2c3fa7d0"
 
 [[files]]
 file = "config/xaeropatreon.txt"
