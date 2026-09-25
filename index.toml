@@ -778,8 +778,8 @@ hash = "b3b67f83faf9dcc4985b7a13fa8affb71062461d271f80cc0958652df9f3126b"
 metafile = true
 
 [[files]]
-file = "mods/Beelzebuth-neoforge-1.21.1-1.3.1-Mysticism-2.2-compatible.jar"
-hash = "713ac2a0ded6da3589f574af926217e66aef61b8085421e0ac078545f9866bfb"
+file = "mods/Beelzebuth-neoforge-1.21.1-1.3.2-Instant-Skill-Theft.jar"
+hash = "09df4c6dbce1de73f9ae59a29c188bd489362b7a135a3c22cc573af83dcd1344"
 
 [[files]]
 file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
