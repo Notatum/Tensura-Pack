@@ -1,0 +1,17 @@
+[general]
+	#Enable auto reload per world. Format: "world:true" or "world:false". Use "true"/"false" for all worlds.
+	enableAutoReload = "overworld:false"
+	#Area where chunks are NOT tracked for stale detection. Format: [world:]x1,z1,x2,z2 (block coordinates, optional world prefix). Default: ~3125x3125 chunks around spawn.
+	nonRecordArea = "overworld:-50000,-50000,50000,50000"
+	#Stale days per world. Format: "world:14". Use "14" for all worlds.
+	staleDays = "overworld:14"
+	#Protected area where chunks will NOT be regenerated. Format: [world:]x1,z1,x2,z2 (block coordinates, optional world prefix).
+	protectArea = "overworld:-50000,-50000,50000,50000"
+	#Interval in seconds between auto-reload checks (0 = every server tick)
+	# Default: 3600
+	# Range: 0 ~ 86400
+	autoReloadInterval = 3600
+	#Number of chunks to process per tick during reload (default: 50)
+	# Default: 50
+	# Range: 1 ~ 1000
+	batchSize = 50

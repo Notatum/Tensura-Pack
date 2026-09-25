@@ -1,0 +1,10 @@
+[
+  {"version":1},
+  {"ingredient":{"id":"tensura:charybdis_core"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"minecraft:birch_log"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"tensura:magic_ore_shard"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"tensura:marionette_heart"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"tensura:pure_magisteel_ingot"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"echochest:echo_chest"},"type":"item_stack","bookmarkType":"INGREDIENT"},
+  {"ingredient":{"id":"sophisticatedstorage:netherite_chest","components":"{\"sophisticatedstorage:wood_type\":\"spruce\"}"},"type":"item_stack","bookmarkType":"INGREDIENT"}
+]

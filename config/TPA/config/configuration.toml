@@ -1,0 +1,18 @@
+#Cooldown for the tpa and back commands. In seconds.
+# Default: 30.0
+# Range: 1.0 ~ 1.7976931348623157E308
+cooldown = 30.0
+#Time that needs to pass between accepting a teleport request or using /back and teleporting. In seconds.
+# Default: 5.0
+# Range: 1.0 ~ 60.0
+teleportTime = 5.0
+#Time that needs to pass before a teleport request expires. In minutes.
+# Default: 5
+# Range: 1 ~ 9223372036854775807
+expiryTime = 5
+#Whether /back should be enabled or not.
+backEnabled = true
+#Maximum history of back locations that can be teleported to.
+# Default: 5
+# Range: 1 ~ 16
+maxBackLocations = 5

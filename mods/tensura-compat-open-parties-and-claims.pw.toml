@@ -1,0 +1,13 @@
+name = "Tensura Compat: Open Parties and Claims"
+filename = "tensura_opac-neoforge-2.0.0.0.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "f2bda45eeea3db1f939399641129d55a4e53ede5"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 7856372
+project-id = 1140218

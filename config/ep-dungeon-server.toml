@@ -1,0 +1,48 @@
+#EP Dungeon: ajustes propios. No modifica las reglas globales de Tensura.
+[farming]
+	#Segundos entre refuerzos, solo con jugadores presentes.
+	# Default: 8
+	# Range: 2 ~ 600
+	spawnIntervalSeconds = 8
+	#Enemigos nuevos por refuerzo y sala.
+	# Default: 12
+	# Range: 1 ~ 64
+	mobsPerWave = 12
+	#Maximo de enemigos vivos por sala.
+	# Default: 48
+	# Range: 1 ~ 160
+	maxAlivePerArena = 48
+	#Maximo total de enemigos de la dungeon cargados.
+	# Default: 120
+	# Range: 1 ~ 320
+	maxAliveTotal = 120
+	#Multiplica el EP base de los 5 niveles: 5k, 15k, 37.5k, 75k, 150k.
+	# Default: 1.0
+	# Range: 0.01 ~ 100.0
+	epMultiplier = 1.0
+	# Default: 1.0
+	# Range: 0.05 ~ 100.0
+	healthMultiplier = 1.0
+	# Default: 1.0
+	# Range: 0.05 ~ 100.0
+	damageMultiplier = 1.0
+	#Probabilidad de elite: EP x4, vida x2.5, dano x1.5.
+	# Default: 0.12
+	# Range: 0.0 ~ 1.0
+	eliteChance = 0.12
+	#Un campeon cada N apariciones por sala: EP x10, vida x5, dano x2. 0 desactiva.
+	# Default: 60
+	# Range: 0 ~ 10000
+	championEverySpawns = 60
+	#IDs de mobs de Tensura; deben ser entidades Mob hostiles o capaces de combatir.
+	entityPool = ["tensura:orc", "tensura:lizardman", "tensura:direwolf", "tensura:giant_bear", "tensura:black_spider", "tensura:blade_tiger", "tensura:knight_spider", "tensura:armorsaurus"]
+
+[performance]
+	#Bloques colocados por tick al construir una sala por primera vez.
+	# Default: 1000
+	# Range: 100 ~ 5000
+	blocksPerTick = 1000
+	#Pausa solo los nuevos refuerzos si el servidor supera este promedio de milisegundos por tick. Reanuda por debajo del 90%. 0 desactiva la pausa.
+	# Default: 50.0
+	# Range: 0.0 ~ 1000.0
+	maxSpawnMspt = 50.0

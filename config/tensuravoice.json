@@ -1,0 +1,30 @@
+{
+  "enableAnimations": true,
+  "enableVoice": true,
+  "groupSkillThreshold": 5,
+  "skillBlacklist": [
+    "Battlewill",
+    "Air Flight",
+    "Aura Shield",
+    "Aura Slash",
+    "Aura Sword",
+    "Dark Eight Palms",
+    "Death March Dance",
+    "Diamond Path",
+    "Earthshatter Kick",
+    "Eight Petals Flash",
+    "Elephant Stampede",
+    "Five Petals Thrust",
+    "Formhide",
+    "Haze",
+    "Heavy Slash",
+    "Instant-move",
+    "Magic Bullet",
+    "Maximum Magic Bullet",
+    "Ogre Flame",
+    "Ogre-sword Cannon",
+    "Ogre-sword Guillotine",
+    "Roaring Lion Punch",
+    "Violent Break"
+  ]
+}

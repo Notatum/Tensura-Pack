@@ -1,0 +1,13 @@
+name = "Echo Chest"
+filename = "EchoChest-v21.1.1-1.21.1-NeoForge.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "e9b762553129ad981316ab5e1b45ede4c3229edd"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 6406106
+project-id = 857972

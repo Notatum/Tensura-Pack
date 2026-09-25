@@ -1,0 +1,13 @@
+name = "Tensura: Ancient Artifacts"
+filename = "AncientArtifacts-neoforge-1.0.3.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "ddb14a598ecb4cf1baf47cc3f1007f5147741f4b"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8585634
+project-id = 1603667
