@@ -871,6 +871,10 @@ file = "mods/elitetensura-1.0.2.1-V2-ES-sin-Beelzebuth.jar"
 hash = "ccebd5e870a2f2bcee38199818efa0c5fedd0a0772553ee350a4b41d13570a28"
 
 [[files]]
+file = "mods/elitetensura-1.0.2.1-V4-ES-sin-Beelzebuth-sin-Overlay.jar"
+hash = "a75d28ddbfceb7366f761cbef17770ff2c2cf81fab4064bab9b46ddaeec12093"
+
+[[files]]
 file = "mods/entityculling.pw.toml"
 hash = "30d6875d934c57d5827f29f35ca77efc72a21df361ad3d578b93e7e137a39654"
 metafile = true
