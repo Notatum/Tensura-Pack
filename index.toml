@@ -790,6 +790,10 @@ file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.24.jar"
 hash = "4046ef6ab0cc61a8d5d70735e9d2f86e88f527c8d80708b3c023bb8f691712c3"
 
 [[files]]
+file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.25.jar"
+hash = "6f36b92ac3f5227c587904af29718083fe93fb7dd57832df4117b2f14b840817"
+
+[[files]]
 file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "ba5c6c80c97478eeaf3eabb2c872be150cd884a3aa97c689828bb91e38e5b16c"
 
