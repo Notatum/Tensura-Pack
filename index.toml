@@ -1051,6 +1051,10 @@ hash = "5f4320402f1de7597d8e3a31bea626678e62d17664f0813ac16b10b9e9aacac8"
 metafile = true
 
 [[files]]
+file = "mods/tensura_trepu-1.0.0.2.jar"
+hash = "2323b01f5ff7862dfd452719bcc5026493f72ad8d0bd76b5c452e07025e0bd04"
+
+[[files]]
 file = "mods/tensuraepscaling.pw.toml"
 hash = "659f33df722080ac5933d5fec1cd53f798539c4baf23c323507df61014d978f6"
 metafile = true
