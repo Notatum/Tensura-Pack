@@ -13,19 +13,13 @@ set "LAUNCHER=%BASE%\LL.exe"
 set "UPDATER_DIR=%LOCALAPPDATA%\TensuraUpdater"
 set "UPDATER=%UPDATER_DIR%\packwiz-installer-bootstrap.jar"
 set "STAGE=%UPDATER_DIR%\staging"
-set "HASH_FILE=%UPDATER_DIR%\pack.sha256"
-set "REMOTE_PACK=%UPDATER_DIR%\remote-pack.toml"
+set "STATE_FILE=%UPDATER_DIR%\pack.commit"
 
-rem Cache local para archivos CurseForge que requieren descarga manual.
-set "MANUAL_CACHE=%UPDATER_DIR%\manual-cache"
-set "CRAFTSPEED_NAME=Craftspeed 1.7.5 (1.16+).jar"
-set "CRAFTSPEED_CACHE=%MANUAL_CACHE%\%CRAFTSPEED_NAME%"
-set "CRAFTSPEED_SHA1=d06fa65818c35603ad9610262ee2a06e29bc1c33"
-
-rem Usamos RAW de GitHub en vez de GitHub Pages.
-rem Asi los archivos locales del pack (config, jars propios, etc.)
-rem se resuelven directamente desde el repositorio.
-set "PACKURL=https://raw.githubusercontent.com/Notatum/Tensura-Pack/main/pack.toml"
+rem IMPORTANTE:
+rem No usamos /main/ directamente porque raw.githubusercontent.com puede servir
+rem una copia cacheada durante unos minutos. Primero obtenemos el SHA exacto
+rem del ultimo commit y fijamos TODO el pack a ese commit.
+set "GITHUB_API=https://api.github.com/repos/Notatum/Tensura-Pack/commits/main"
 
 set "BOOTSTRAP_URL=https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar"
 
@@ -109,13 +103,9 @@ echo   %JAVA_EXE%
 echo.
 
 rem ============================================================
-rem PREPARAR CARPETA DEL ACTUALIZADOR Y CACHE MANUAL
+rem PREPARAR CARPETA DEL ACTUALIZADOR
 rem ============================================================
 if not exist "%UPDATER_DIR%\." mkdir "%UPDATER_DIR%" >nul 2>&1
-if not exist "%MANUAL_CACHE%\." mkdir "%MANUAL_CACHE%" >nul 2>&1
-
-rem Intenta conservar Craftspeed antes de cualquier reconstruccion.
-call :PrepareCraftspeedCache
 
 rem ============================================================
 rem DESCARGAR PACKWIZ INSTALLER SI FALTA
@@ -134,43 +124,50 @@ if not exist "%UPDATER%" (
 )
 
 rem ============================================================
-rem COMPROBAR SI EL PACK CAMBIO
+rem OBTENER EL COMMIT EXACTO DEL PACK
 rem ============================================================
 echo Comprobando version del pack...
-call :Download "%PACKURL%" "%REMOTE_PACK%"
-if errorlevel 1 (
+
+set "REMOTE_COMMIT="
+for /f "usebackq delims=" %%S in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='Stop'; $h=@{'User-Agent'='TensuraUpdater';'Cache-Control'='no-cache'}; (Invoke-RestMethod -UseBasicParsing -Headers $h -Uri '%GITHUB_API%').sha"`) do (
+    set "REMOTE_COMMIT=%%S"
+)
+
+if not defined REMOTE_COMMIT (
     echo.
-    echo [ERROR] No se pudo comprobar el pack en GitHub.
+    echo [ERROR] No se pudo obtener el ultimo commit de GitHub.
+    echo.
     pause
     exit /b 1
 )
 
-set "REMOTE_HASH="
-for /f "usebackq delims=" %%H in (`powershell -NoProfile -Command "(Get-FileHash -Algorithm SHA256 -LiteralPath '%REMOTE_PACK%').Hash.ToLower()"`) do (
-    set "REMOTE_HASH=%%H"
-)
+set "PACKURL=https://raw.githubusercontent.com/Notatum/Tensura-Pack/%REMOTE_COMMIT%/pack.toml"
 
-if not defined REMOTE_HASH (
-    echo [ERROR] No se pudo calcular el hash del pack.
-    pause
-    exit /b 1
-)
+echo Commit remoto:
+echo   %REMOTE_COMMIT%
 
-set "OLD_HASH="
-if exist "%HASH_FILE%" set /p OLD_HASH=<"%HASH_FILE%"
+set "OLD_COMMIT="
+if exist "%STATE_FILE%" set /p OLD_COMMIT=<"%STATE_FILE%"
 
-if /I not "%REMOTE_HASH%"=="%OLD_HASH%" (
+if /I not "%REMOTE_COMMIT%"=="%OLD_COMMIT%" (
     echo Se detecto una version nueva del pack.
     echo Reconstruyendo copia canonica desde cero...
-    if exist "%STAGE%\" rmdir /S /Q "%STAGE%"
+
+    if exist "%STAGE%\" (
+        rmdir /S /Q "%STAGE%"
+        if exist "%STAGE%\" (
+            echo.
+            echo [ERROR] No se pudo limpiar el staging:
+            echo   %STAGE%
+            echo Cerra Minecraft, TL Legacy y cualquier ventana de Packwiz.
+            echo.
+            pause
+            exit /b 1
+        )
+    )
 )
 
 if not exist "%STAGE%\." mkdir "%STAGE%" >nul 2>&1
-
-rem ============================================================
-rem RESTAURAR MODS MANUALES EN STAGING ANTES DE PACKWIZ
-rem ============================================================
-call :RestoreCraftspeedToStage
 
 rem ============================================================
 rem ACTUALIZAR COPIA CANONICA EN STAGING
@@ -190,18 +187,32 @@ if not "%PW_RESULT%"=="0" (
     echo No se modifico tu instalacion de Minecraft.
     echo Codigo de salida: %PW_RESULT%
     echo.
-    echo Si Craftspeed vuelve a pedir descarga manual, selecciona:
-    echo   %CRAFTSPEED_NAME%
-    echo Una vez que Packwiz termine correctamente, quedara cacheado.
-    echo.
     pause
     exit /b %PW_RESULT%
 )
 
-rem Si Packwiz obtuvo Craftspeed mediante seleccion manual, guardarlo.
-call :CacheCraftspeedFromStage
+> "%STATE_FILE%" echo %REMOTE_COMMIT%
 
-> "%HASH_FILE%" echo %REMOTE_HASH%
+rem ============================================================
+rem VERIFICACION DE PACKS DE VEHICULOS ACTUALES
+rem ============================================================
+if exist "%STAGE%\mods\SVMP3.7.3 1.16+.jar" (
+    echo [OK] SVMP descargado.
+) else (
+    echo [AVISO] SVMP no aparece en staging.
+)
+
+if exist "%STAGE%\mods\Trin Civil Pack-1.20.1-4.5.0.jar" (
+    echo [OK] Trin Civil Pack descargado.
+) else (
+    echo [AVISO] Trin Civil Pack no aparece en staging.
+)
+
+if exist "%STAGE%\mods\Trin Parts Pack-1.20.1-2.28.0.jar" (
+    echo [OK] Trin Part Pack descargado.
+) else (
+    echo [AVISO] Trin Part Pack no aparece en staging.
+)
 
 rem ============================================================
 rem SINCRONIZACION ESTRICTA
@@ -232,9 +243,6 @@ if errorlevel 1 goto :sync_error
 call :MirrorFolder "scripts"
 if errorlevel 1 goto :sync_error
 
-rem Refresca la cache tambien desde la instalacion final.
-call :PrepareCraftspeedCache
-
 echo.
 echo ============================================================
 echo        SINCRONIZACION COMPLETADA CORRECTAMENTE
@@ -247,102 +255,23 @@ rem ============================================================
 rem ABRIR SOLO EL LAUNCHER
 rem No intenta iniciar Minecraft automaticamente.
 rem ============================================================
-pushd "%BASE%"
-start "" "LL.exe"
-popd
-
-exit /b 0
-
-
-rem ============================================================
-rem FUNCIONES DE CACHE PARA CRAFTSPEED
-rem ============================================================
-
-:PrepareCraftspeedCache
-rem 1) Si ya existe cache valida, no hace nada.
-if exist "%CRAFTSPEED_CACHE%" (
-    call :ValidateCraftspeed "%CRAFTSPEED_CACHE%"
-    if not errorlevel 1 (
-        echo [OK] Cache de Craftspeed disponible.
-        exit /b 0
-    )
-    echo [AVISO] La cache de Craftspeed no coincide con el SHA-1 esperado. Se elimina.
-    del /q "%CRAFTSPEED_CACHE%" >nul 2>&1
+if not exist "%LAUNCHER%" (
+    echo [ERROR] No se encontro TL Legacy al intentar abrirlo:
+    echo   %LAUNCHER%
+    echo.
+    pause
+    exit /b 1
 )
 
-rem 2) Intenta recuperarlo desde la instalacion actual del juego.
-if exist "%GAME%\mods\%CRAFTSPEED_NAME%" (
-    call :ValidateCraftspeed "%GAME%\mods\%CRAFTSPEED_NAME%"
-    if not errorlevel 1 (
-        copy /Y "%GAME%\mods\%CRAFTSPEED_NAME%" "%CRAFTSPEED_CACHE%" >nul
-        echo [OK] Craftspeed guardado en cache desde la instalacion actual.
-        exit /b 0
-    )
-)
+start "" /D "%BASE%" "%LAUNCHER%"
 
-rem 3) Intenta recuperarlo desde Descargas.
-if exist "%USERPROFILE%\Downloads\%CRAFTSPEED_NAME%" (
-    call :ValidateCraftspeed "%USERPROFILE%\Downloads\%CRAFTSPEED_NAME%"
-    if not errorlevel 1 (
-        copy /Y "%USERPROFILE%\Downloads\%CRAFTSPEED_NAME%" "%CRAFTSPEED_CACHE%" >nul
-        echo [OK] Craftspeed guardado en cache desde Descargas.
-        exit /b 0
-    )
-)
-
-echo [INFO] Craftspeed aun no esta en la cache local.
-exit /b 0
-
-
-:RestoreCraftspeedToStage
-if not exist "%CRAFTSPEED_CACHE%" exit /b 0
-
-call :ValidateCraftspeed "%CRAFTSPEED_CACHE%"
 if errorlevel 1 (
-    echo [AVISO] Cache invalida de Craftspeed; no se usara.
-    del /q "%CRAFTSPEED_CACHE%" >nul 2>&1
-    exit /b 0
+    echo [AVISO] START no pudo abrir TL Legacy. Intentando con PowerShell...
+    powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+      "Start-Process -FilePath '%LAUNCHER%' -WorkingDirectory '%BASE%'"
 )
 
-if not exist "%STAGE%\mods\." mkdir "%STAGE%\mods" >nul 2>&1
-copy /Y "%CRAFTSPEED_CACHE%" "%STAGE%\mods\%CRAFTSPEED_NAME%" >nul
-
-if exist "%STAGE%\mods\%CRAFTSPEED_NAME%" (
-    echo [OK] Craftspeed restaurado en staging desde la cache.
-)
 exit /b 0
-
-
-:CacheCraftspeedFromStage
-if not exist "%STAGE%\mods\%CRAFTSPEED_NAME%" exit /b 0
-
-call :ValidateCraftspeed "%STAGE%\mods\%CRAFTSPEED_NAME%"
-if errorlevel 1 (
-    echo [AVISO] Craftspeed en staging no coincide con el archivo esperado; no se cachea.
-    exit /b 0
-)
-
-copy /Y "%STAGE%\mods\%CRAFTSPEED_NAME%" "%CRAFTSPEED_CACHE%" >nul
-echo [OK] Craftspeed quedo guardado permanentemente en la cache local.
-exit /b 0
-
-
-:ValidateCraftspeed
-set "CHECK_FILE=%~1"
-set "CHECK_HASH="
-
-if not exist "%CHECK_FILE%" exit /b 1
-
-for /f "usebackq delims=" %%H in (`powershell -NoProfile -Command "(Get-FileHash -Algorithm SHA1 -LiteralPath '%CHECK_FILE%').Hash.ToLower()"`) do (
-    set "CHECK_HASH=%%H"
-)
-
-if /I "!CHECK_HASH!"=="%CRAFTSPEED_SHA1%" (
-    exit /b 0
-)
-
-exit /b 1
-
 
 :Download
 set "DL_URL=%~1"
