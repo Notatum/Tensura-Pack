@@ -1,0 +1,13 @@
+name = "[Immersive Vehicles] R.A.G.E - Best supercars, buses and cars to drive!"
+filename = "R.A.G.E 3.0_beta2_1.16.5-26.1.jar"
+side = "both"
+
+[download]
+hash-format = "sha1"
+hash = "1d46b5e4837aa9bfdf5331f0069bd8f5534f66ec"
+mode = "metadata:curseforge"
+
+[update]
+[update.curseforge]
+file-id = 8639886
+project-id = 583103

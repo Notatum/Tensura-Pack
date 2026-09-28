@@ -790,6 +790,10 @@ file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.26.jar"
 hash = "8cd43391c8ea4795384dfee0838b999314424ed602839b602fe18ade4629618f"
 
 [[files]]
+file = "mods/InstaFarm V7.0.8.mcaddon"
+hash = "5338778c5d99a75735656ac924a365f8c5135fdc22ca5750541854fd33b3203d"
+
+[[files]]
 file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "ba5c6c80c97478eeaf3eabb2c872be150cd884a3aa97c689828bb91e38e5b16c"
 
@@ -921,6 +925,11 @@ hash = "fec42f4ea33169c1ea9c14f6b179325f974367eb7c7082dfffe9c483789a19f1"
 metafile = true
 
 [[files]]
+file = "mods/immersive-vehicles-blocky-rage.pw.toml"
+hash = "2824dc467b0b0931119e45ab2c617e4c5335b4f7bdd07856912c1fe724d7fc93"
+metafile = true
+
+[[files]]
 file = "mods/iris.pw.toml"
 hash = "db1c1e6382878b78e994dba1b9026935f8d1c5ca685c89d2437858e0a0dcab58"
 metafile = true
@@ -956,6 +965,11 @@ hash = "ea327466b8d3ebe83329de194d77790f7d68fe25e56f0bfeda319527636bb7cb"
 metafile = true
 
 [[files]]
+file = "mods/minecraft-transport-simulator.pw.toml"
+hash = "6bce72fcb1335577357919f9eab8f610b70af65a3571a625c37a02ee42141c56"
+metafile = true
+
+[[files]]
 file = "mods/modernfix.pw.toml"
 hash = "c84140c66f233909b392bd7253ca33c59903ffda51beff558d9a2a4a8c6bc269"
 metafile = true
@@ -963,6 +977,11 @@ metafile = true
 [[files]]
 file = "mods/moreculling.pw.toml"
 hash = "f32f944f62c4ea97b2d1f8582bb5f1a0adf7f62983b35f75288e27025365d7d0"
+metafile = true
+
+[[files]]
+file = "mods/mts-iv-official-automobile-pack.pw.toml"
+hash = "e5a079db01eb9602b9b5b3362dfa25edc5e4bdc60d8b5176895b5ed57b8e831e"
 metafile = true
 
 [[files]]
@@ -1072,6 +1091,11 @@ metafile = true
 [[files]]
 file = "mods/tr-ancient-artifacts.pw.toml"
 hash = "47af17938c0c30de33ffa706fd55dee0d272663e3941a2959f4666c8d20396e8"
+metafile = true
+
+[[files]]
+file = "mods/transport-simulator-official-vehicle-set.pw.toml"
+hash = "e1dea83477cdedb5de2012ed81e30962a8c21abbff45f57a3d2e5efb606b5245"
 metafile = true
 
 [[files]]
