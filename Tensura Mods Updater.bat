@@ -16,6 +16,12 @@ set "STAGE=%UPDATER_DIR%\staging"
 set "HASH_FILE=%UPDATER_DIR%\pack.sha256"
 set "REMOTE_PACK=%UPDATER_DIR%\remote-pack.toml"
 
+rem Cache local para archivos CurseForge que requieren descarga manual.
+set "MANUAL_CACHE=%UPDATER_DIR%\manual-cache"
+set "CRAFTSPEED_NAME=Craftspeed 1.7.5 (1.16+).jar"
+set "CRAFTSPEED_CACHE=%MANUAL_CACHE%\%CRAFTSPEED_NAME%"
+set "CRAFTSPEED_SHA1=d06fa65818c35603ad9610262ee2a06e29bc1c33"
+
 rem Usamos RAW de GitHub en vez de GitHub Pages.
 rem Asi los archivos locales del pack (config, jars propios, etc.)
 rem se resuelven directamente desde el repositorio.
@@ -103,9 +109,13 @@ echo   %JAVA_EXE%
 echo.
 
 rem ============================================================
-rem PREPARAR CARPETA DEL ACTUALIZADOR
+rem PREPARAR CARPETA DEL ACTUALIZADOR Y CACHE MANUAL
 rem ============================================================
 if not exist "%UPDATER_DIR%\." mkdir "%UPDATER_DIR%" >nul 2>&1
+if not exist "%MANUAL_CACHE%\." mkdir "%MANUAL_CACHE%" >nul 2>&1
+
+rem Intenta conservar Craftspeed antes de cualquier reconstruccion.
+call :PrepareCraftspeedCache
 
 rem ============================================================
 rem DESCARGAR PACKWIZ INSTALLER SI FALTA
@@ -158,6 +168,11 @@ if /I not "%REMOTE_HASH%"=="%OLD_HASH%" (
 if not exist "%STAGE%\." mkdir "%STAGE%" >nul 2>&1
 
 rem ============================================================
+rem RESTAURAR MODS MANUALES EN STAGING ANTES DE PACKWIZ
+rem ============================================================
+call :RestoreCraftspeedToStage
+
+rem ============================================================
 rem ACTUALIZAR COPIA CANONICA EN STAGING
 rem ============================================================
 echo.
@@ -175,9 +190,16 @@ if not "%PW_RESULT%"=="0" (
     echo No se modifico tu instalacion de Minecraft.
     echo Codigo de salida: %PW_RESULT%
     echo.
+    echo Si Craftspeed vuelve a pedir descarga manual, selecciona:
+    echo   %CRAFTSPEED_NAME%
+    echo Una vez que Packwiz termine correctamente, quedara cacheado.
+    echo.
     pause
     exit /b %PW_RESULT%
 )
+
+rem Si Packwiz obtuvo Craftspeed mediante seleccion manual, guardarlo.
+call :CacheCraftspeedFromStage
 
 > "%HASH_FILE%" echo %REMOTE_HASH%
 
@@ -210,6 +232,9 @@ if errorlevel 1 goto :sync_error
 call :MirrorFolder "scripts"
 if errorlevel 1 goto :sync_error
 
+rem Refresca la cache tambien desde la instalacion final.
+call :PrepareCraftspeedCache
+
 echo.
 echo ============================================================
 echo        SINCRONIZACION COMPLETADA CORRECTAMENTE
@@ -227,6 +252,97 @@ start "" "LL.exe"
 popd
 
 exit /b 0
+
+
+rem ============================================================
+rem FUNCIONES DE CACHE PARA CRAFTSPEED
+rem ============================================================
+
+:PrepareCraftspeedCache
+rem 1) Si ya existe cache valida, no hace nada.
+if exist "%CRAFTSPEED_CACHE%" (
+    call :ValidateCraftspeed "%CRAFTSPEED_CACHE%"
+    if not errorlevel 1 (
+        echo [OK] Cache de Craftspeed disponible.
+        exit /b 0
+    )
+    echo [AVISO] La cache de Craftspeed no coincide con el SHA-1 esperado. Se elimina.
+    del /q "%CRAFTSPEED_CACHE%" >nul 2>&1
+)
+
+rem 2) Intenta recuperarlo desde la instalacion actual del juego.
+if exist "%GAME%\mods\%CRAFTSPEED_NAME%" (
+    call :ValidateCraftspeed "%GAME%\mods\%CRAFTSPEED_NAME%"
+    if not errorlevel 1 (
+        copy /Y "%GAME%\mods\%CRAFTSPEED_NAME%" "%CRAFTSPEED_CACHE%" >nul
+        echo [OK] Craftspeed guardado en cache desde la instalacion actual.
+        exit /b 0
+    )
+)
+
+rem 3) Intenta recuperarlo desde Descargas.
+if exist "%USERPROFILE%\Downloads\%CRAFTSPEED_NAME%" (
+    call :ValidateCraftspeed "%USERPROFILE%\Downloads\%CRAFTSPEED_NAME%"
+    if not errorlevel 1 (
+        copy /Y "%USERPROFILE%\Downloads\%CRAFTSPEED_NAME%" "%CRAFTSPEED_CACHE%" >nul
+        echo [OK] Craftspeed guardado en cache desde Descargas.
+        exit /b 0
+    )
+)
+
+echo [INFO] Craftspeed aun no esta en la cache local.
+exit /b 0
+
+
+:RestoreCraftspeedToStage
+if not exist "%CRAFTSPEED_CACHE%" exit /b 0
+
+call :ValidateCraftspeed "%CRAFTSPEED_CACHE%"
+if errorlevel 1 (
+    echo [AVISO] Cache invalida de Craftspeed; no se usara.
+    del /q "%CRAFTSPEED_CACHE%" >nul 2>&1
+    exit /b 0
+)
+
+if not exist "%STAGE%\mods\." mkdir "%STAGE%\mods" >nul 2>&1
+copy /Y "%CRAFTSPEED_CACHE%" "%STAGE%\mods\%CRAFTSPEED_NAME%" >nul
+
+if exist "%STAGE%\mods\%CRAFTSPEED_NAME%" (
+    echo [OK] Craftspeed restaurado en staging desde la cache.
+)
+exit /b 0
+
+
+:CacheCraftspeedFromStage
+if not exist "%STAGE%\mods\%CRAFTSPEED_NAME%" exit /b 0
+
+call :ValidateCraftspeed "%STAGE%\mods\%CRAFTSPEED_NAME%"
+if errorlevel 1 (
+    echo [AVISO] Craftspeed en staging no coincide con el archivo esperado; no se cachea.
+    exit /b 0
+)
+
+copy /Y "%STAGE%\mods\%CRAFTSPEED_NAME%" "%CRAFTSPEED_CACHE%" >nul
+echo [OK] Craftspeed quedo guardado permanentemente en la cache local.
+exit /b 0
+
+
+:ValidateCraftspeed
+set "CHECK_FILE=%~1"
+set "CHECK_HASH="
+
+if not exist "%CHECK_FILE%" exit /b 1
+
+for /f "usebackq delims=" %%H in (`powershell -NoProfile -Command "(Get-FileHash -Algorithm SHA1 -LiteralPath '%CHECK_FILE%').Hash.ToLower()"`) do (
+    set "CHECK_HASH=%%H"
+)
+
+if /I "!CHECK_HASH!"=="%CRAFTSPEED_SHA1%" (
+    exit /b 0
+)
+
+exit /b 1
+
 
 :Download
 set "DL_URL=%~1"

@@ -66,6 +66,22 @@ if errorlevel 1 (
     exit /b 1
 )
 
+rem ============================================================
+rem PROTECCION CONTRA ARCHIVOS DE 100 MB O MAS
+rem GitHub rechaza archivos normales mayores a 100 MB.
+rem ============================================================
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$bad = @(); git diff --cached --name-only --diff-filter=ACMR | ForEach-Object { $p = $_; if (Test-Path -LiteralPath $p) { $f = Get-Item -LiteralPath $p; if ($f.Length -ge 100MB) { $bad += [PSCustomObject]@{Path=$p; MB=[math]::Round($f.Length/1MB,2)} } } }; if ($bad.Count -gt 0) { Write-Host ''; Write-Host '[ERROR] GitHub rechazaria estos archivos por superar 100 MB:' -ForegroundColor Red; $bad | ForEach-Object { Write-Host ('  ' + $_.Path + '  (' + $_.MB + ' MB)') -ForegroundColor Yellow }; exit 2 } else { exit 0 }"
+if errorlevel 1 (
+    echo.
+    echo No se creo ningun commit.
+    echo Si es un mod de CurseForge, dejalo administrado por su archivo .pw.toml
+    echo y NO subas el .jar directamente al repositorio.
+    echo.
+    pause
+    exit /b 1
+)
+
 rem Si no hay cambios preparados, no crea commits vacios.
 git diff --cached --quiet
 if not errorlevel 1 (
