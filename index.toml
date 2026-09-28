@@ -790,6 +790,10 @@ file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.26.jar"
 hash = "8cd43391c8ea4795384dfee0838b999314424ed602839b602fe18ade4629618f"
 
 [[files]]
+file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.27.jar"
+hash = "18bbc606454b0c0796afbc8f314507d43099f5b329176758af4335821b72e18c"
+
+[[files]]
 file = "mods/InstaFarm V7.0.8.mcaddon"
 hash = "5338778c5d99a75735656ac924a365f8c5135fdc22ca5750541854fd33b3203d"
 
