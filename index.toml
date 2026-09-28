@@ -935,13 +935,13 @@ hash = "189351ce185e8aa53da242e25ac22e95518a6c6ec20fc1f059f0a7c11f8c7dfe"
 metafile = true
 
 [[files]]
-file = "mods/iris.pw.toml"
-hash = "db1c1e6382878b78e994dba1b9026935f8d1c5ca685c89d2437858e0a0dcab58"
+file = "mods/immersive-vehicles.pw.toml"
+hash = "e54cb242884e03c1b2e5971fe010adedbf2e1ae5dc161cf428d82301c6b4b38f"
 metafile = true
 
 [[files]]
-file = "mods/iv-mts-sphase-vehicle-mashup-pack-svmp.pw.toml"
-hash = "92b16d4280141b7eeb09f92588b66e1b468b9ee087ece3e24974efa296e774a9"
+file = "mods/iris.pw.toml"
+hash = "db1c1e6382878b78e994dba1b9026935f8d1c5ca685c89d2437858e0a0dcab58"
 metafile = true
 
 [[files]]
@@ -1060,6 +1060,11 @@ hash = "24d2d04bd35de31d5f3a19579b4ee1596cab14e8a171bea5de7594a63a6bb9cd"
 metafile = true
 
 [[files]]
+file = "mods/svmp.pw.toml"
+hash = "3205c5b47e5a5915ce4270f4d7ddc81671a1d3abec5d44addd8607b5dc5b2379"
+metafile = true
+
+[[files]]
 file = "mods/tensura-compat-open-parties-and-claims.pw.toml"
 hash = "e432495ad6708dba577f1fad252dc2760a0352ad1cb3c121353f310841f5b28d"
 metafile = true
@@ -1106,6 +1111,16 @@ metafile = true
 [[files]]
 file = "mods/transport-simulator-official-vehicle-set.pw.toml"
 hash = "e1dea83477cdedb5de2012ed81e30962a8c21abbff45f57a3d2e5efb606b5245"
+metafile = true
+
+[[files]]
+file = "mods/trin-civil-pack.pw.toml"
+hash = "f197d184b45c92242b5e2e973b15bd49c5380710bebf8c104923897bb4b1a98b"
+metafile = true
+
+[[files]]
+file = "mods/trin-part-pack.pw.toml"
+hash = "de9f1db34e5ecf19b0b4b1e0a6b8a11342bcc319fad616711ade3174f77b11f3"
 metafile = true
 
 [[files]]

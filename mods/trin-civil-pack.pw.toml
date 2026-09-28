@@ -1,0 +1,13 @@
+name = "Trin Civil Pack - Cars and Trucks for Immersive Vehicles"
+filename = "Trin Civil Pack-1.20.1-4.5.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/mKIWBS44/versions/VIkviytB/Trin%20Civil%20Pack-1.20.1-4.5.0.jar"
+hash-format = "sha512"
+hash = "de710d6d2c2c9423a4888f66521174c309551eb0a67be1f4952419182ed5937013778a030b4e1ce57e8d87e5ed597ece27aca3607e4f7e1f83f37937bb8bccf8"
+
+[update]
+[update.modrinth]
+mod-id = "mKIWBS44"
+version = "VIkviytB"

@@ -1,0 +1,13 @@
+name = "Trin Part Pack - custom parts for Immersive Vehicles"
+filename = "Trin Parts Pack-1.20.1-2.28.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/eLeWELrE/versions/xf3E0bZQ/Trin%20Parts%20Pack-1.20.1-2.28.0.jar"
+hash-format = "sha512"
+hash = "9fbceeaee15c9e46995b981c13eaaa3d0fdd1db31bc8d8362620b07e406a7e9ef1d74cfee50ab5c33d60007a3a82208b8766ab69c38c5ec9705f2db4b55f68ff"
+
+[update]
+[update.modrinth]
+mod-id = "eLeWELrE"
+version = "xf3E0bZQ"

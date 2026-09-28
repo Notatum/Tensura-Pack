@@ -1,0 +1,13 @@
+name = "[MTS/IV] Sphase Vehicle Mashup Pack (SVMP)"
+filename = "SVMP3.7.3 1.16+.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/JBfHPeZC/versions/LKA6xzYY/SVMP3.7.3%201.16%2B.jar"
+hash-format = "sha512"
+hash = "19a2623fbaa637b198b0bd187082894e0626ac98f2ae2173df2674403943ce1c452944a1af2844e8210e0462d2de9ff435b44452eeffcae9fec676774ed3488e"
+
+[update]
+[update.modrinth]
+mod-id = "JBfHPeZC"
+version = "LKA6xzYY"
