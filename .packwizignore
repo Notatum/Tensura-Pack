@@ -7,3 +7,4 @@ packwiz.exe
 *.log
 .nojekyll
 .gitignore
+/mods/Craftspeed*.jar
