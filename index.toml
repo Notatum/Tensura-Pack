@@ -930,8 +930,18 @@ hash = "2824dc467b0b0931119e45ab2c617e4c5335b4f7bdd07856912c1fe724d7fc93"
 metafile = true
 
 [[files]]
+file = "mods/immersive-vehicles-craftspeed.pw.toml"
+hash = "189351ce185e8aa53da242e25ac22e95518a6c6ec20fc1f059f0a7c11f8c7dfe"
+metafile = true
+
+[[files]]
 file = "mods/iris.pw.toml"
 hash = "db1c1e6382878b78e994dba1b9026935f8d1c5ca685c89d2437858e0a0dcab58"
+metafile = true
+
+[[files]]
+file = "mods/iv-mts-sphase-vehicle-mashup-pack-svmp.pw.toml"
+hash = "92b16d4280141b7eeb09f92588b66e1b468b9ee087ece3e24974efa296e774a9"
 metafile = true
 
 [[files]]
