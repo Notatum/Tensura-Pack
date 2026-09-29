@@ -790,12 +790,8 @@ file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
 hash = "c31283c8b5426e3341b43b85df253eae9bb795bd830e60b549cd189e6ded1f27"
 
 [[files]]
-file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.26.jar"
-hash = "8cd43391c8ea4795384dfee0838b999314424ed602839b602fe18ade4629618f"
-
-[[files]]
-file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.28.jar"
-hash = "37aa0009bf51cd23fd19c1ab3aa72d9fe7bcfc4dc84428c2d2cda74d7c570fc9"
+file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.29.jar"
+hash = "fb1b74757cc50e2d272aa7566f93f45cba465e0a6deec1d6443286504c7be5ae"
 
 [[files]]
 file = "mods/InstaFarm V7.0.8.mcaddon"
