@@ -778,8 +778,8 @@ hash = "b3b67f83faf9dcc4985b7a13fa8affb71062461d271f80cc0958652df9f3126b"
 metafile = true
 
 [[files]]
-file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.1.0.jar"
-hash = "18da186c141b9ac27f1e41304864c3dafc447d742d0408964727e6b44ff16461"
+file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.2.1.jar"
+hash = "7d97fd4cd70fb793a81c185aff0dd91ccc085c95a186bce52bf8ecad2fffb363"
 
 [[files]]
 file = "mods/Beelzebuth-neoforge-1.21.1-1.3.2-Instant-Skill-Theft.jar"
