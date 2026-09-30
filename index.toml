@@ -778,8 +778,8 @@ hash = "b3b67f83faf9dcc4985b7a13fa8affb71062461d271f80cc0958652df9f3126b"
 metafile = true
 
 [[files]]
-file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.0.jar"
-hash = "7cc95fff40fd614b8b068b06f136cda67549dbce4dd173786d087ade8d3b767a"
+file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.1.jar"
+hash = "f758ff8ccc7a11b2beb80d014d7655b0c82e515661ce35fc4dede7dbc262e160"
 
 [[files]]
 file = "mods/Beelzebuth-neoforge-1.21.1-1.3.2-Instant-Skill-Theft.jar"
@@ -806,8 +806,8 @@ file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "ba5c6c80c97478eeaf3eabb2c872be150cd884a3aa97c689828bb91e38e5b16c"
 
 [[files]]
-file = "mods/Tensura-Shared-Boss-Credit-1.0.2-REVISADO.jar"
-hash = "7c439545f80c78d14b9dd55ca16babdbb2bd10459c8036984469929e56dd37cd"
+file = "mods/Tensura-Shared-Boss-Credit-neoforge-1.21.1-1.0.3.jar"
+hash = "5502a7a685aa544f537a914b8a758af09b5d752f4bc39c00b52612ef0473bd4a"
 
 [[files]]
 file = "mods/Tensura-Toggle-All-neoforge-1.21.1-1.0.4.jar"
