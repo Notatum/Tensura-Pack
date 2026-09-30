@@ -778,8 +778,8 @@ hash = "b3b67f83faf9dcc4985b7a13fa8affb71062461d271f80cc0958652df9f3126b"
 metafile = true
 
 [[files]]
-file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.3.1.jar"
-hash = "ed89ddb193dee367596c55f52b080a616c53f9ea3a2d7cb06a8df57496f8a892"
+file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.3.2.jar"
+hash = "c1033b63d37273d0fb96477095fbef79812a239aad150b12f8906308382dc74b"
 
 [[files]]
 file = "mods/Beelzebuth-neoforge-1.21.1-1.3.2-Instant-Skill-Theft.jar"
@@ -913,8 +913,8 @@ hash = "4cf7eb494f48576e28895ee5f362878f95c6bad65372666106140fdae82d0c4c"
 metafile = true
 
 [[files]]
-file = "mods/greatsage-0.0.6.1-InterfazG-Todos.jar"
-hash = "b01c9b656d3b259b7ee84aca968f961f98082cf307bff93fc30b53bbf67cd140"
+file = "mods/greatsage-0.0.6.1.jar"
+hash = "1510de356f727173724b477c7fefeac02d032fe1473457c0d2ef2776156db839"
 
 [[files]]
 file = "mods/handcrafted.pw.toml"
