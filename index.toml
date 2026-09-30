@@ -794,16 +794,16 @@ file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.29.jar"
 hash = "fb1b74757cc50e2d272aa7566f93f45cba465e0a6deec1d6443286504c7be5ae"
 
 [[files]]
-file = "mods/InstaFarm V7.0.8.mcaddon"
-hash = "5338778c5d99a75735656ac924a365f8c5135fdc22ca5750541854fd33b3203d"
-
-[[files]]
 file = "mods/Nihon-Circuit-neoforge-1.21.1-1.0.0.jar"
 hash = "513252291346ac5827a3a63ac3a07f458e5d4e7ee97065ca63d9b20a95bbc8d1"
 
 [[files]]
 file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "ba5c6c80c97478eeaf3eabb2c872be150cd884a3aa97c689828bb91e38e5b16c"
+
+[[files]]
+file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.1.0.jar"
+hash = "fc7271d625554840b71ef7b04239d673810dbc9e43af2fc92808c294a3da14c1"
 
 [[files]]
 file = "mods/Tensura-Shared-Boss-Credit-neoforge-1.21.1-1.0.3.jar"
