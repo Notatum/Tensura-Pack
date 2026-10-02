@@ -1033,6 +1033,10 @@ hash = "fe7676aaa4477604116c00c3a4d17f49c48fa853fbfab08fe743b6496dc834e9"
 metafile = true
 
 [[files]]
+file = "mods/nightmareutils-0.1.2.jar"
+hash = "85e06fed2bfdf9f4ef51c6a473b88e1429b3f43d11092a55cbefc7d9da668ece"
+
+[[files]]
 file = "mods/open-parties-and-claims.pw.toml"
 hash = "365e4a170765f0db88454b1138652df66f51bd42b18b8eee1786ea48ed8b324e"
 metafile = true
