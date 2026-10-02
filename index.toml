@@ -1161,8 +1161,8 @@ file = "mods/trorigins-neoforge-2.0.5-ES-Completo.jar"
 hash = "216563b6f48b8d0ba411faae3272b7abdb76e52f9df55a19c58787e1c59cc508"
 
 [[files]]
-file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Completo.jar"
-hash = "a809b288b2542277daf47f03b82a35f5c6ae0fc399040028bc12a6977890f824"
+file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Completo-LoopFix.jar"
+hash = "8c1c7e41eb7eaddc61d0777318fa49b42f1445693e9ff06341ab7df65a083de8"
 
 [[files]]
 file = "mods/veinminer-mod.pw.toml"
