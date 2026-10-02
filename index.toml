@@ -826,6 +826,10 @@ file = "mods/TensuraSlimeBait-neoforge-1.21.1-1.4.0.jar"
 hash = "2f2bd55845cfecf113b8d94bd06538081a57b5d8d9203f1bc3166af5038e3532"
 
 [[files]]
+file = "mods/TextAnimator-1.21.1-NeoForge-3.2.3.jar"
+hash = "fee59166ca0328d3acf9548beaa123ca096cbebbe88c0a50251cfa86ac18d7b0"
+
+[[files]]
 file = "mods/VillagerDwarfFortress-neoforge-1.21.1-1.0.0.jar"
 hash = "c9c279f036ac76f582833f17599a0e85ae4a67dee11d6f06814b0de3566dbb5a"
 
