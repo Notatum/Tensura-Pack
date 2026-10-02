@@ -778,6 +778,10 @@ hash = "b3b67f83faf9dcc4985b7a13fa8affb71062461d271f80cc0958652df9f3126b"
 metafile = true
 
 [[files]]
+file = "mods/ApothicAttributes-1.21.1-2.11.0.jar"
+hash = "17c42bb6dd5c0d820fe090e1bb5959578cd5ab7b70caf98a2a59b319fcc7e1ba"
+
+[[files]]
 file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.5.jar"
 hash = "13898ad6e1e0c490d75fd54528c9dc269c8403cecd28a74f1e9234e69a0a44f8"
 
@@ -841,6 +845,14 @@ hash = "c9c279f036ac76f582833f17599a0e85ae4a67dee11d6f06814b0de3566dbb5a"
 file = "mods/architectury-api.pw.toml"
 hash = "657a01a86bbf8617e4726c77df08f708e43a3db12db74b837eebd8eb1d93faae"
 metafile = true
+
+[[files]]
+file = "mods/ars_elemental-1.21.1-0.7.10.3.jar"
+hash = "85dd29a711f2ae8b18ca33167e32136b3b1b608950f3dc5dd14f8d01aa20ec51"
+
+[[files]]
+file = "mods/ars_nouveau-1.21.1-5.13.2.jar"
+hash = "787b5e2ed6b0e5004285b27ab6c51f8b43edab6cb44c6eccf09452c4b3870dce"
 
 [[files]]
 file = "mods/ascension-2.1.2.jar"
@@ -983,6 +995,10 @@ hash = "51e129832b04acd57da470fc41725bad5e101b6a6b1d4901fd8ea7a92b14e13d"
 metafile = true
 
 [[files]]
+file = "mods/malum-1.21.1-1.8.2.jar"
+hash = "38f4fa53e8da9e3d67aa5f54f98fd7c83cb342f0463ce5c63a6864229c88efa8"
+
+[[files]]
 file = "mods/manascore.pw.toml"
 hash = "ea327466b8d3ebe83329de194d77790f7d68fe25e56f0bfeda319527636bb7cb"
 metafile = true
@@ -1028,9 +1044,8 @@ hash = "aa83553db30adc47f86010f6443340251323a62ee3f9415a0c4332cb6d502419"
 metafile = true
 
 [[files]]
-file = "mods/rrls.pw.toml"
-hash = "0be0eb155428ec345bc5bdc9696da555de1aecf3f9f9a392cf5fa78588c0e1a9"
-metafile = true
+file = "mods/sauce-1.21.1-0.0.50.jar"
+hash = "f8236afcf6fc56764d4b92a739787315134dbfd77f741ae3eef4bedb368a1731"
 
 [[files]]
 file = "mods/selene.pw.toml"
