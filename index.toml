@@ -806,6 +806,10 @@ file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.1.6.jar"
 hash = "16cf7bc7a336e2af3bcc646aa767fa11bf7d8809e40532b1b3e865c9ee927bb3"
 
 [[files]]
+file = "mods/Placebo-1.21.1-9.9.2.jar"
+hash = "1a844a5b081813b1edb82656329e54d38389ed470f6a6516a5887f5303d7daad"
+
+[[files]]
 file = "mods/Tensura-Shared-Boss-Credit-neoforge-1.21.1-1.0.3.jar"
 hash = "5502a7a685aa544f537a914b8a758af09b5d752f4bc39c00b52612ef0473bd4a"
 
