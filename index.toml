@@ -786,8 +786,8 @@ file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.5.jar"
 hash = "13898ad6e1e0c490d75fd54528c9dc269c8403cecd28a74f1e9234e69a0a44f8"
 
 [[files]]
-file = "mods/Beelzebuth-neoforge-1.21.1-1.3.5-PersistentStomach-Fixed.jar"
-hash = "926f853d6e9ddb0209a5e82b78faa3bb5436a7b08382e2f1cb4d96464d1090f5"
+file = "mods/Beelzebuth-neoforge-1.21.1-1.3.6-PersistentStomach-FastBlocks5x-PredatorFix.jar"
+hash = "5b5ed51eac0451b9c17bfe26feaf2e852971f395e5feb647d67077449dbc055b"
 
 [[files]]
 file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
@@ -855,8 +855,8 @@ file = "mods/ars_nouveau-1.21.1-5.13.2.jar"
 hash = "787b5e2ed6b0e5004285b27ab6c51f8b43edab6cb44c6eccf09452c4b3870dce"
 
 [[files]]
-file = "mods/ascension-2.1.2.jar"
-hash = "c0491167bf432fe23ad8bc452c44ee4e5a0763a0e1913736c8cf5ef0006d1f9a"
+file = "mods/ascension-2.1.2-ES-Completo.jar"
+hash = "806c3a488ca8708346a4d4a8a11d21d235d7e81216756904e6ece3d618d2550b"
 
 [[files]]
 file = "mods/badoptimizations.pw.toml"
@@ -1028,6 +1028,10 @@ hash = "e5a079db01eb9602b9b5b3362dfa25edc5e4bdc60d8b5176895b5ed57b8e831e"
 metafile = true
 
 [[files]]
+file = "mods/mysticism-neoforge-2.2.1-ES-Completo.jar"
+hash = "4088478c4fa4d4e026d54dfa5659cbca5c50759453f85700c0706bce7839e8b3"
+
+[[files]]
 file = "mods/neat.pw.toml"
 hash = "fe7676aaa4477604116c00c3a4d17f49c48fa853fbfab08fe743b6496dc834e9"
 metafile = true
@@ -1106,14 +1110,8 @@ hash = "e432495ad6708dba577f1fad252dc2760a0352ad1cb3c121353f310841f5b28d"
 metafile = true
 
 [[files]]
-file = "mods/tensura-mysticism.pw.toml"
-hash = "e9f50c313d9e2739177223cdda92f77f0eec97924473653742165b1a882b83b7"
-metafile = true
-
-[[files]]
-file = "mods/tensura-reincarnated.pw.toml"
-hash = "1bf0724244383ad661c0ac962007f8014dd1a78a1c948345d14514c39959d328"
-metafile = true
+file = "mods/tensura-neoforge-2.0.1.3-ES-Completo.jar"
+hash = "fdf7d9b41545ff795feb0b7736afbc8dbe3b87530db7ed9eda2f1b8d212e4092"
 
 [[files]]
 file = "mods/tensura-slots.pw.toml"
@@ -1155,16 +1153,16 @@ hash = "de9f1db34e5ecf19b0b4b1e0a6b8a11342bcc319fad616711ade3174f77b11f3"
 metafile = true
 
 [[files]]
-file = "mods/trnightmare-1.0.5.1-neoforge-1.21.1.jar"
-hash = "4a24c4f6e3b8200facd884c79c9e502ceba00c1f42ff58819ae88fca72f10aeb"
+file = "mods/trnightmare-1.0.5.1-neoforge-1.21.1-ES.jar"
+hash = "4a156711a035c20a76ee9a48ec270ace4724a90b78ec9df15d34053187087fc4"
 
 [[files]]
-file = "mods/trorigins-neoforge-2.0.5.jar"
-hash = "0eb8d2c57a782c6a88df3ffc2e6bc9f38f6569a0c5e1ab78d5f4a00f00e9fa3a"
+file = "mods/trorigins-neoforge-2.0.5-ES-Completo.jar"
+hash = "216563b6f48b8d0ba411faae3272b7abdb76e52f9df55a19c58787e1c59cc508"
 
 [[files]]
-file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1.jar"
-hash = "7dd4342d931daeec3befcc0cdfdf354bdc4b7b73171b124d7b0196d8e055fdee"
+file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Completo.jar"
+hash = "a809b288b2542277daf47f03b82a35f5c6ae0fc399040028bc12a6977890f824"
 
 [[files]]
 file = "mods/veinminer-mod.pw.toml"
