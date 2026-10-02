@@ -995,6 +995,10 @@ hash = "51e129832b04acd57da470fc41725bad5e101b6a6b1d4901fd8ea7a92b14e13d"
 metafile = true
 
 [[files]]
+file = "mods/lodestone-1.21.1-1.8.2.jar"
+hash = "cc961af6a77391628378c1c838e521415fa895062b13def493d27234ca527f3e"
+
+[[files]]
 file = "mods/malum-1.21.1-1.8.2.jar"
 hash = "38f4fa53e8da9e3d67aa5f54f98fd7c83cb342f0463ce5c63a6864229c88efa8"
 
