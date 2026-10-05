@@ -1028,8 +1028,8 @@ hash = "e5a079db01eb9602b9b5b3362dfa25edc5e4bdc60d8b5176895b5ed57b8e831e"
 metafile = true
 
 [[files]]
-file = "mods/mysticism-neoforge-2.2.1-ES-Corregido.jar"
-hash = "59151e25e071e837f0c48cfc4afbf1136a53a0eefa39d840f458ad6f12adceaf"
+file = "mods/mysticism-neoforge-2.2.1-ES-Corregido-FixRaceInit.jar"
+hash = "28836e81ff556c3f313289445609b7be0d731d94825d4699f77497710afd34db"
 
 [[files]]
 file = "mods/neat.pw.toml"
