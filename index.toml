@@ -806,8 +806,8 @@ file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "ba5c6c80c97478eeaf3eabb2c872be150cd884a3aa97c689828bb91e38e5b16c"
 
 [[files]]
-file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.1.6.jar"
-hash = "16cf7bc7a336e2af3bcc646aa767fa11bf7d8809e40532b1b3e865c9ee927bb3"
+file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.0.jar"
+hash = "fcb52395aa7627563fef3ba456d7b03ed1e633f10b1dbcbac69f0ceb6c697b4b"
 
 [[files]]
 file = "mods/Placebo-1.21.1-9.9.2.jar"
@@ -1161,8 +1161,8 @@ file = "mods/trorigins-neoforge-2.0.5-ES-Corregido.jar"
 hash = "debf1f5a1631ed7a0255b0e8c0b2994f6cabccad521dc1d38393f48e2dc6f3ec"
 
 [[files]]
-file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Corregido.jar"
-hash = "2cd333e0e8469aad4e10e79a0f8c0206b4f616a89ba6fbadaf2ec435aeefefd4"
+file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Corregido-FixLogin.jar"
+hash = "b21ba9516da1e00278c0233f49a3caf9ff133fcd26fd44d91a34c77186d6f215"
 
 [[files]]
 file = "mods/veinminer-mod.pw.toml"
