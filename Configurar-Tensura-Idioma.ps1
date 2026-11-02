@@ -48,13 +48,14 @@ if ((!$managed -or !$managed.Value) -and $caller.Count -eq 1 -and $urlVariable -
     $oldUpdater=$caller[0].ScriptName
     Copy-Item -LiteralPath $oldUpdater -Destination ($oldUpdater+'.previous') -Force
     Copy-Item -LiteralPath (Join-Path $engineRoot 'Bootstrap.ps1') -Destination $oldUpdater -Force
-    $legacySettings=Join-Path $env:APPDATA '.tlauncher\legacy\Minecraft\tl.properties'
-    $legacyGame=Join-Path $env:APPDATA '.tlauncher\legacy\Minecraft\game'
-    if (([IO.Path]::GetFullPath($GameDir).TrimEnd('\') -eq [IO.Path]::GetFullPath($legacyGame).TrimEnd('\')) -and (Test-Path -LiteralPath $legacySettings)) {
-        $settingsText=[IO.File]::ReadAllText($legacySettings)
-        $line='login.version='+$runtime.profile
-        if ($settingsText -match '(?m)^login.version=') { $settingsText=[regex]::Replace($settingsText,'(?m)^login.version=[^\r\n]*',$line) } else { $settingsText=$settingsText.TrimEnd()+"`n"+$line+"`n" }
-        [IO.File]::WriteAllText($legacySettings,$settingsText,[Text.UTF8Encoding]::new($false))
+    $oldNoLaunch=Get-Variable -Name NoLaunch -ErrorAction SilentlyContinue
+    $launchRequested=(!$oldNoLaunch -or !$oldNoLaunch.Value) -and $env:TENSURA_NO_LAUNCH -ne '1'
+    # The old script still has an LL.exe launch after this hook. Suppress that
+    # branch in the calling scope and route it through the new bootstrap.
+    Set-Variable -Name NoLaunch -Scope 1 -Value $true
+    if($launchRequested){
+        & (Join-Path $engineRoot 'Bootstrap.ps1') -GameDir $GameDir -CacheDir $cacheVariable.Value -PackUrl $sourceUrl.AbsoluteUri
+        if($LASTEXITCODE -ne 0){throw 'No se pudo iniciar el launcher independiente después de migrar.'}
     }
-    Write-Host '[Tensura] Actualizador anterior migrado al cliente administrado. El perfil correcto ya está instalado.'
+    Write-Host '[Tensura] Actualizador anterior migrado al launcher independiente.'
 }

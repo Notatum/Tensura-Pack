@@ -30,7 +30,23 @@ $shader=Join-Path $root ('shaderpacks\'+$policy.shaderPack)
 if (!(Test-Path -LiteralPath $shader) -or (Get-FileHash -LiteralPath $shader -Algorithm SHA256).Hash -ne $policy.shaderSha256) { throw 'El shader administrado no coincide con la publicación.' }
 $baseVersion=Join-Path $root ('versions\'+$policy.minecraft+'\'+$policy.minecraft+'.jar')
 $forgeRoot=Join-Path $root ('libraries\net\neoforged\neoforge\'+$policy.neoforge)
+$data=Get-Content -LiteralPath $Template -Raw -Encoding UTF8 | ConvertFrom-Json
+if ($data.jar -ne $policy.minecraft -or $data.id -ne $policy.profile) { throw 'El perfil publicado no coincide con la política.' }
+$generatedState=Join-Path $root ('versions\'+$policy.profile+'\.tensura-runtime.json')
+$stored=$null
+if(Test-Path -LiteralPath $generatedState){try{$stored=Get-Content -LiteralPath $generatedState -Raw -Encoding UTF8 | ConvertFrom-Json}catch{}}
 $ready=(Test-Path -LiteralPath $baseVersion) -and (Test-Path -LiteralPath (Join-Path $forgeRoot ('neoforge-'+$policy.neoforge+'-client.jar'))) -and (Test-Path -LiteralPath (Join-Path $forgeRoot ('neoforge-'+$policy.neoforge+'-universal.jar')))
+if($ready -and (Get-FileHash -LiteralPath $baseVersion -Algorithm SHA1).Hash -ne $data.downloads.client.sha1){$ready=$false}
+foreach($dependency in $data.libraries){
+    if($dependency.downloads.artifact.url -notmatch '^/libraries/'){continue}
+    $file=Join-Path $root $dependency.downloads.artifact.url.TrimStart('/').Replace('/','\')
+    $expected=$dependency.downloads.artifact.sha1
+    if($stored -and $dependency.name -like 'net.neoforged:neoforge:*:client'){
+        $record=$stored.PSObject.Properties[$dependency.name]
+        if($record -and $record.Value -match '^[a-f0-9]{40}$'){$expected=$record.Value}
+    }
+    if(!(Test-Path -LiteralPath $file) -or (Get-FileHash -LiteralPath $file -Algorithm SHA1).Hash -ne $expected){$ready=$false}
+}
 if (!$ready) {
     $profileFile=Join-Path $root 'launcher_profiles.json'
     if (!(Test-Path -LiteralPath $profileFile)) { [IO.File]::WriteAllText($profileFile,'{"profiles":{}}',[Text.UTF8Encoding]::new($false)) }
@@ -43,8 +59,6 @@ if (!$ready) {
     Write-Host "[Tensura] Instalando Minecraft $($policy.minecraft) y NeoForge $($policy.neoforge)."
     Install-Runtime $installer $root
 }
-$data=Get-Content -LiteralPath $Template -Raw -Encoding UTF8 | ConvertFrom-Json
-if ($data.jar -ne $policy.minecraft -or $data.id -ne $policy.profile) { throw 'El perfil publicado no coincide con la política.' }
 foreach ($dependency in $data.libraries) {
     if ($dependency.name -like ('net.neoforged:neoforge:'+$policy.neoforge+':*')) {
         $suffix=$dependency.name.Split(':')[-1]
@@ -58,6 +72,15 @@ $profileRoot=Join-Path $root ('versions\'+$policy.profile)
 if (!(Test-Path -LiteralPath $profileRoot)) { New-Item -ItemType Directory -Path $profileRoot -Force | Out-Null }
 $null=Assert-Child $profileRoot $root
 [IO.File]::WriteAllText((Join-Path $profileRoot ($policy.profile+'.json')),($data | ConvertTo-Json -Depth 60),[Text.UTF8Encoding]::new($false))
+$generatedHashes=@{}
+foreach($dependency in $data.libraries){
+    if($dependency.downloads.artifact.url -match '^/libraries/'){
+        $file=Join-Path $root $dependency.downloads.artifact.url.TrimStart('/').Replace('/','\')
+        if(!(Test-Path -LiteralPath $file)){throw "Falta una biblioteca generada: $($dependency.name)"}
+        $generatedHashes[$dependency.name]=(Get-FileHash -LiteralPath $file -Algorithm SHA1).Hash.ToLowerInvariant()
+    }
+}
+[IO.File]::WriteAllText($generatedState,($generatedHashes | ConvertTo-Json),[Text.UTF8Encoding]::new($false))
 $profileJar=Join-Path $profileRoot ($policy.profile+'.jar')
 if (!(Test-Path -LiteralPath $profileJar) -or (Get-FileHash -LiteralPath $profileJar).Hash -ne (Get-FileHash -LiteralPath $baseVersion).Hash) { Copy-Item -LiteralPath $baseVersion -Destination $profileJar -Force }
 Write-Host "[Tensura] Perfil administrado: $($policy.profile). Unbound obligatorio: $($policy.mandatoryShaders)."

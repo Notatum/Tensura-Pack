@@ -1,37 +1,38 @@
-# Cliente de Tensura
+# Cliente de Tensura — revisión 2026.11.02.3
 
-## Entrada administrada del juego — revisión 2026.11.02.2
+Descargá [TensuraLauncher-Portable.zip](https://github.com/Notatum/Tensura-Pack/raw/refs/heads/main/updater/launcher/TensuraLauncher-Portable.zip), extraelo en una carpeta propia y abrí **TensuraLauncher.exe**. Elegí tu nombre de jugador, asigná memoria y pulsá **JUGAR**. El launcher comprueba la publicación de GitHub, sincroniza el pack y abre Minecraft directamente con Java.
 
-Ejecuta **`Tensura Mods Updater - Incremental.bat`** con el juego y Legacy Launcher cerrados. Ahora actualiza también su propio motor, prepara Minecraft **1.21.1 / NeoForge 21.1.250** y arranca el perfil **`Tensura-1.21.1-NeoForge-21.1.250`** automáticamente. Los cambios publicados en `main` se aplican en la siguiente ejecución en cada PC.
+La plataforma es **Minecraft 1.21.1 / NeoForge 21.1.250 / Java 21**, con **87 mods de cliente**. Usá siempre el mismo nombre para conservar la identidad de tu personaje en el servidor offline. Esta versión usa un perfil local y no incluye inicio de sesión Microsoft.
 
-**Complementary Unbound es obligatorio en este cliente administrado.** Se distribuye `ComplementaryUnbound_r5.3.zip` y se mantiene seleccionado y activado mediante la política del pack y el complemento de cliente. La selección anterior apuntaba a un archivo r5.9 con Euphoria que no estaba instalado. La activación se restaura con cada actualización y se conserva al usar los controles de Iris durante el juego.
+## Instalación independiente
 
-Las copias anteriores del updater reciben automáticamente la migración al ejecutar una actualización normal. Para distribuir a otra PC conserva juntos los dos BAT y `Actualizar-Tensura-Cliente.ps1`. Usa `-NoLaunch` para actualizar sin abrir el juego. El procedimiento y las instrucciones para publicar futuros cambios están en [updater/client/LEEME.md](updater/client/LEEME.md).
+Los datos se guardan en **%LOCALAPPDATA%\TensuraLauncher**. El juego queda en su subcarpeta **game**; **Abrir carpeta** permite acceder a ella. Podés mover el EXE a otra carpeta sin perder estos datos.
 
-Para recibir novedades de GitHub, utiliza `Tensura Mods Updater - Incremental.bat` con el juego y el launcher cerrados. El actualizador obtiene el último commit y verifica los archivos del pack con Packwiz. La variante sin «Incremental» fuerza la validación del pack.
+En el primer uso se reutilizan, si existen, Java 21, bibliotecas, recursos y archivos personales de la instalación local de TLauncher. Se copian las partidas, capturas, opciones y lista de servidores. El origen se conserva y no se importan cuentas, contraseñas ni tokens. Los archivos necesarios que falten se descargan de sus proveedores y se comprueban con sus hashes. Después de la preparación, el juego utiliza su propio Java y sus propias carpetas; no ejecuta TLauncher. El mod de skins distribuido por el pack sigue disponible.
 
-Los dos BAT usan `Actualizar-Tensura-Cliente.ps1`, que debe permanecer a su lado. La carpeta predeterminada es `%APPDATA%\.tlauncher\legacy\Minecraft\game`. Para otra instalación, pasa la ruta como argumento:
+Requiere Windows 10/11 de 64 bits, PowerShell 5.1 y .NET Framework 4.8. No hace falta instalar Java, Git, Python ni herramientas de desarrollo. La primera preparación necesita conexión y puede tardar varios minutos.
 
-```bat
-"Tensura Mods Updater - Incremental.bat" -GameDir "C:\ruta\a\tu\juego"
-```
+## Actualizaciones y reparación
 
-El modo incremental comprueba Packwiz en cada ejecución y reemplaza las carpetas que cambiaron. La variante sin «Incremental» vuelve a sincronizar todas las carpetas distribuidas. Ambos modos descargan primero a una caché y guardan lo reemplazado en `.tensura-backups` dentro de la instalación. Si falla la aplicación, restauran los archivos anteriores. `repair` también fuerza la sincronización.
+- **JUGAR:** comprueba la publicación actual, actualiza y abre el juego.
+- **Actualizar:** prepara y verifica el cliente sin abrir Minecraft.
+- **Reparar:** fuerza la sincronización estricta de los mods y ajustes administrados, y comprueba bibliotecas, recursos y plataforma.
+- **Ver registro:** muestra el detalle de la preparación; los registros del juego también quedan en **logs** dentro de la carpeta de datos.
 
-Los SHA-256 de todos los JAR se comparan con el manifiesto de cliente del mismo commit publicado. Si un mod de la caché está alterado, se vuelve a descargar antes de aplicarlo. Una caché con mods ajenos al manifiesto se rechaza antes de cambiar la instalación.
+El EXE y el motor del launcher también reciben actualizaciones. Cada preparación usa una publicación concreta de GitHub para evitar mezclar versiones. Las descargas de motor, mods, shaders y recursos se verifican antes de usarse.
 
-La versión se obtiene de la referencia pública de Git de la rama `main`; no requiere tener Git instalado ni depende de la cuota de la API de GitHub. Se utiliza Packwiz Installer 0.5.14, la versión comprobada con este pack, descargada desde su publicación oficial.
+El pack administra las carpetas mods, config, defaultconfigs, resourcepacks, shaderpacks, kubejs y scripts. Conserva las partidas, capturas, servidores y opciones personales ajenas a la política. Los reemplazos del pack tienen respaldo en **game\.tensura-backups**. Los recursos y shaders personales adicionales se conservan.
 
-La actualización administra `mods`, `config`, `defaultconfigs`, `resourcepacks`, `shaderpacks`, `kubejs` y `scripts`. Los mods y las configuraciones se ajustan al pack publicado. Los paquetes de recursos y shaders personales se conservan; solo se sustituyen las versiones anteriores del paquete de español de Tensura. Las partidas, capturas y lista de servidores quedan fuera de las carpetas administradas. La selección de idioma conserva las demás preferencias de `options.txt`.
+**Complementary Unbound es obligatorio.** El cliente mantiene ComplementaryUnbound_r5.3.zip seleccionado y activado. También mantiene Español (Argentina) y el paquete de traducciones de Tensura. El complemento administrado aplica la política al cargar, guardar o cambiar Iris.
 
-Minecraft y TL Legacy deben estar cerrados. Al terminar, Legacy Launcher inicia el perfil administrado. Para comprobar la actualización sin abrirlo, añade `-NoLaunch`. También puedes indicar `-CacheDir "C:\otra\cache"`; la caché debe estar separada de la instalación.
+## Compatibilidad con los BAT anteriores
 
-## Entrada local anterior
+Los dos BAT y Actualizar-Tensura-Cliente.ps1 siguen funcionando juntos. En uso normal descargan el launcher independiente y le piden actualizar o reparar. Las versiones anteriores reciben la migración por el protocolo del updater.
 
-`Aplicar-Tensura-Local.bat` utiliza ahora el mismo updater administrado de GitHub. Requiere conexión para comprobar la publicación y evita reinstalar una copia antigua del pack. También admite `-GameDir` y `-NoLaunch`.
+Para mantenimiento técnico, **-NoLaunch** conserva el protocolo anterior: actualiza y verifica la carpeta indicada por **-GameDir**, sin abrir el launcher. En ese modo la ruta predeterminada sigue siendo la instalación antigua, por compatibilidad; indicá siempre la carpeta que quieras administrar:
 
-Las instalaciones administradas usan los mods y las configuraciones publicados. Guardan una copia en `.tensura-backups` y restauran los archivos reemplazados si falla la aplicación. Los ZIP antiguos de instalación local conservan la revisión con la que fueron creados; distribuye la entrada administrada actual para recibir los cambios siguientes.
+    "Tensura Mods Updater - Incremental.bat" -NoLaunch -GameDir "%LOCALAPPDATA%\TensuraLauncher\game" -CacheDir "%LOCALAPPDATA%\TensuraLauncher\cache\updater"
 
-Para las otras PC, distribuye los BAT y `Actualizar-Tensura-Cliente.ps1` juntos, o el ZIP de entrada administrada. No hace falta volver a copiar el paquete completo de mods para cada publicación.
+Los cambios hechos únicamente en una PC siguen siendo locales. Para que lleguen a las otras PC hay que publicarlos en **Notatum/Tensura-Pack**, rama **main**; se reciben al usar **JUGAR** o **Actualizar**. El procedimiento está en [updater/client/LEEME.md](updater/client/LEEME.md).
 
-Lee [GUIA-HABILIDADES.md](GUIA-HABILIDADES.md) para distinguir aprendizaje, maestría, EP y los puntos del árbol de Great Sage.
+Leé [GUIA-HABILIDADES.md](GUIA-HABILIDADES.md) para distinguir aprendizaje, maestría, EP y puntos del árbol de Great Sage.

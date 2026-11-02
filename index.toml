@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "Configurar-Tensura-Idioma.ps1"
-hash = "e41802b638d8d406da10025fad69033ad1dcbdbf338d0c231cb8f005e7a31b13"
+hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
@@ -10,11 +10,11 @@ hash = "d2388c081f3836c58b6b11a82d2dfc35d6d8be69586720884eb123616741fe88"
 
 [[files]]
 file = "README.md"
-hash = "13d3054912def2ea01335e2de3eee2eee5f0f85f01d89fc404c6315e9125c1d0"
+hash = "c252165f433ff137fa004cd24c16b68a77f09ae80618d64c9314cac450de3cce"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "0bb78ffc56de45f70c445b8340589a6357382c342695d44c76ad3467e489d837"
+hash = "871f9c2c3e6c80e8d6ba2e0be62d590ef31ceedee4f79372615de4d8c72150f5"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"

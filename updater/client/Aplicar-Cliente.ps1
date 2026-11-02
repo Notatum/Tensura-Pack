@@ -129,7 +129,7 @@ function Find-Java21 {
         $process=[Diagnostics.Process]::Start($info)
         try{$errorText=$process.StandardError.ReadToEnd();$outputText=$process.StandardOutput.ReadToEnd();$process.WaitForExit();if(($errorText+$outputText) -match 'version "21[.\"]'){return $candidate}}finally{$process.Dispose()}
     }
-    throw 'Se necesita Java 21. Instalá Java 21 o el runtime recomendado de Legacy Launcher y volvé a ejecutar el updater.'
+    throw 'Se necesita Java 21. TensuraLauncher.exe puede prepararlo automáticamente.'
 }
 try {
     if (!(Test-Path -LiteralPath $GameDir -PathType Container)) {
@@ -143,8 +143,15 @@ try {
     $cacheRoot = [IO.Path]::GetFullPath($CacheDir).TrimEnd('\')
     if ($cacheRoot -eq $gameRoot -or $cacheRoot.StartsWith($gameRoot+'\',[StringComparison]::OrdinalIgnoreCase) -or $gameRoot.StartsWith($cacheRoot+'\',[StringComparison]::OrdinalIgnoreCase)) { throw 'La caché y la instalación deben estar en carpetas separadas.' }
     foreach ($folder in $folders) { $null = Assert-Child (Join-Path $gameRoot $folder) $gameRoot }
-    $running = @(Get-CimInstance Win32_Process -Filter "Name='java.exe' OR Name='javaw.exe' OR Name='LL.exe'" | Where-Object { $_.Name -eq 'LL.exe' -or $_.CommandLine -and $_.CommandLine.IndexOf($gameRoot,[StringComparison]::OrdinalIgnoreCase) -ge 0 })
-    if ($running.Count) { throw 'Cerrá Minecraft y TL Legacy antes de actualizar esta instalación.' }
+    $legacyGame=Join-Path $env:APPDATA '.tlauncher\legacy\Minecraft\game'
+    $running = @(Get-CimInstance Win32_Process -Filter "Name='java.exe' OR Name='javaw.exe' OR Name='LL.exe'" | Where-Object { ($_.Name -eq 'LL.exe' -and $gameRoot -eq $legacyGame) -or $_.CommandLine -and $_.CommandLine.IndexOf($gameRoot,[StringComparison]::OrdinalIgnoreCase) -ge 0 })
+    $nativeSession=Join-Path (Split-Path -Parent $gameRoot) 'game-session.json'
+    if((Split-Path -Leaf $gameRoot) -eq 'game' -and (Test-Path -LiteralPath $nativeSession)){
+        $session=Get-Content -LiteralPath $nativeSession -Raw -Encoding UTF8 | ConvertFrom-Json
+        $active=Get-Process -Id $session.pid -ErrorAction SilentlyContinue
+        if($active -and $active.StartTime.ToUniversalTime().ToString('o') -eq $session.started){throw 'Cerrá Minecraft antes de actualizar esta instalación.'}
+    }
+    if ($running.Count) { throw 'Cerrá Minecraft antes de actualizar esta instalación.' }
     New-Item -ItemType Directory -Path $cacheRoot -Force | Out-Null
     $lock = [IO.File]::Open((Join-Path $cacheRoot 'updater.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
     $java = Find-Java21
@@ -250,20 +257,8 @@ try {
     $synchronizing = $false
     Write-Host "[Tensura] Cliente verificado. Mods: $($state.modCount). Carpetas actualizadas: $($changes.Count). Respaldo: $backup"
     if (!$NoLaunch -and $env:TENSURA_NO_LAUNCH -ne '1') {
-        $launcherHome=Join-Path $env:APPDATA '.tlauncher\legacy\Minecraft'
-        $launcherJar=Join-Path $launcherHome 'launcher\bootstrap.jar'
-        $launcherJava=Join-Path $launcherHome 'jre\x64\bin\java.exe'
-        if ((Test-Path -LiteralPath $launcherJar) -and (Test-Path -LiteralPath $launcherJava)) {
-            $settings=Join-Path $cacheRoot 'managed-launcher.properties'
-            $text=if(Test-Path -LiteralPath (Join-Path $launcherHome 'tl.properties')){[IO.File]::ReadAllText((Join-Path $launcherHome 'tl.properties'))}else{''}
-            $values=@{'login.version'=$managedPolicy.profile;'login.auto'='true';'minecraft.gamedir'=$gameRoot.Replace('\','\\').Replace(':','\:');'minecraft.gamedir.separate'='none'}
-            foreach($key in $values.Keys){$pattern='(?m)^'+[regex]::Escape($key)+'=[^\r\n]*';$line=$key+'='+$values[$key];if($text -match $pattern){$text=[regex]::Replace($text,$pattern,[Text.RegularExpressions.MatchEvaluator]{param($m)$line})}else{$text=$text.TrimEnd()+"`n"+$line+"`n"}}
-            [IO.File]::WriteAllText($settings,$text,[Text.UTF8Encoding]::new($false))
-            $arguments=@('-Xmx256m','-Dfile.encoding=UTF-8','-Djava.net.useSystemProxies=true','-Dtlauncher.systemCharset=UTF-8','--add-exports','java.desktop/sun.awt=javafx.swing','--add-exports','javafx.graphics/com.sun.javafx.application=ALL-UNNAMED','-Dloader.main=net.legacylauncher.bootstrap.Bootstrap','-classpath',$launcherJar,'org.springframework.boot.loader.PropertiesLauncher','--packageMode','windows','--targetJar','launcher/launcher.jar','--targetLibFolder','launcher/libraries','--','--settings',$settings)
-            $info=[Diagnostics.ProcessStartInfo]::new();$info.FileName=$launcherJava;$info.Arguments=(($arguments | ForEach-Object{'"'+$_+'"'}) -join ' ');$info.WorkingDirectory=$launcherHome;$info.UseShellExecute=$false;$info.CreateNoWindow=$true
-            [void][Diagnostics.Process]::Start($info)
-            Write-Host '[Tensura] Iniciando el perfil administrado con Unbound obligatorio.'
-        } else { Write-Host "[Tensura] Cliente listo. En tu launcher usá el perfil $($managedPolicy.profile)." }
+        & (Join-Path $PSScriptRoot 'Bootstrap.ps1') -Action $Action -Mode $Mode -GameDir $GameDir -CacheDir $CacheDir -PackUrl $PackUrl
+        if ($LASTEXITCODE -ne 0) { throw 'No se pudo abrir el launcher independiente.' }
     }
     exit 0
 } catch {

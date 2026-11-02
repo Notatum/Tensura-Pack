@@ -1,16 +1,16 @@
 # Tensura Pack
 
-Minecraft **1.21.1**, NeoForge **21.1.250** y Java **21**. Revisión **2026.11.02**.
+Minecraft **1.21.1**, NeoForge **21.1.250** y Java **21**. Revisión **2026.11.02.3**.
 
 ## Actualizar el cliente
 
-Usa `Tensura Mods Updater - Incremental.bat` con Minecraft y TL Legacy cerrados. Comprueba el último commit de GitHub y descarga el pack de ese commit. La caché conserva las descargas que ya coinciden con sus hashes. La variante `Tensura Mods Updater.bat` vuelve a validar el contenido del pack.
+Descargá [TensuraLauncher-Portable.zip](https://github.com/Notatum/Tensura-Pack/raw/refs/heads/main/updater/launcher/TensuraLauncher-Portable.zip), extraelo y abrí **TensuraLauncher.exe**. Elegí tu nombre y pulsá **JUGAR**. Comprueba la publicación de GitHub, prepara el pack y abre Minecraft directamente. **Actualizar** prepara el cliente; **Reparar** fuerza la sincronización y verifica los archivos.
 
-Los dos actualizadores apuntan a `%APPDATA%\.tlauncher\legacy\Minecraft\game`. Comprueba esa ruta si usas otro launcher. La sincronización del pack incluye mods, configuraciones y paquetes de recursos; conserva las partidas, capturas y opciones personales. Estos actualizadores sincronizan las carpetas del pack: utiliza una instalación dedicada a este servidor.
+El juego tiene su propia carpeta en `%LOCALAPPDATA%\TensuraLauncher\game` y su propio Java 21. La primera preparación puede copiar archivos y partidas de TLauncher; no copia cuentas ni tokens y conserva el origen. Los archivos que falten se descargan y verifican. El launcher, su motor y el pack se actualizan desde este repositorio.
 
-Se quitó la prioridad automática de `.tensura-client-mods`: una copia local antigua ya no impide recibir las novedades publicadas. El instalador `Aplicar-Tensura-Local.ps1` queda disponible para aplicar explícitamente un paquete sin conexión, con manifiesto SHA-256, respaldo y restauración ante un error. No sustituye la comprobación de GitHub.
+Los BAT anteriores siguen siendo compatibles y abren el launcher independiente para actualizar o reparar. `-NoLaunch` conserva la actualización técnica de una carpeta indicada por `-GameDir`. `Aplicar-Tensura-Local.ps1` utiliza el mismo updater remoto administrado. Las instrucciones completas están en [LEEME-CLIENTE.md](LEEME-CLIENTE.md).
 
-Los actualizadores de esta revisión seleccionan **Español (Argentina)** y activan `Tensura-Espanol-2026.11.02.zip`, conservando las demás opciones y paquetes seleccionados. El paquete completa también las interfaces de los otros mods. Si usas otro launcher, elige español y activa ese paquete de recursos manualmente. También incluye `es_es` y `es_mx`.
+El cliente selecciona **Español (Argentina)**, activa `Tensura-Espanol-2026.11.02.zip` y mantiene **Complementary Unbound obligatorio**. Conserva las demás preferencias personales. La distribución contiene **82 mods de servidor y 87 de cliente**. El servidor mantiene perfiles locales en modo offline; el launcher actual no incluye autenticación Microsoft.
 
 ## Entender el progreso
 

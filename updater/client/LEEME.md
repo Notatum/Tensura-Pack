@@ -1,6 +1,8 @@
 # Cliente administrado de Tensura
 
-El BAT de cliente es la entrada habitual del juego. `Actualizar-Tensura-Cliente.ps1` obtiene el commit de `main`, verifica `release.json`, descarga el motor de esa publicación y comprueba sus SHA-256. El motor sincroniza el pack con Packwiz, instala el runtime requerido cuando falta y prepara el perfil de Legacy Launcher. Al terminar inicia ese perfil automáticamente, usando los datos de cuenta locales del jugador.
+La entrada habitual es **TensuraLauncher.exe**, distribuido en [el ZIP portátil](../launcher/TensuraLauncher-Portable.zip). Abre Minecraft directamente con Java, usa una carpeta propia y un nombre local para el servidor offline. Los BAT anteriores descargan el EXE verificado y le solicitan actualizar o reparar. `Actualizar-Tensura-Cliente.ps1 -NoLaunch` sigue siendo el protocolo que utiliza el motor del launcher para sincronizar el pack.
+
+El launcher consulta el commit de `main`, comprueba `updater/launcher/release.json`, renueva su EXE si corresponde y descarga el motor de esa publicación con sus SHA-256. Después sincroniza el pack con Packwiz, prepara NeoForge, comprueba bibliotecas y recursos y genera los argumentos para Java. La instalación inicial copia archivos útiles de TLauncher si existen; las cuentas y tokens quedan fuera. Los datos propios se guardan en `%LOCALAPPDATA%\TensuraLauncher`.
 
 ## Configuración central
 
@@ -13,20 +15,20 @@ La política actual usa Minecraft 1.21.1, NeoForge 21.1.250 y `ComplementaryUnbo
 ## Publicar cambios para las otras PC
 
 1. Edita las configuraciones, los mods o los paquetes del repositorio. Las carpetas administradas son `mods`, `config`, `defaultconfigs`, `resourcepacks`, `shaderpacks`, `kubejs` y `scripts`.
-2. Si editas el motor, el bootstrap o el perfil, ejecuta `python updater/client/build-release.py` para renovar sus hashes. Los cambios de versión de Minecraft o NeoForge también requieren actualizar `release.json`, el instalador y la plantilla de perfil.
+2. Si editas el motor, el bootstrap o el perfil, ejecuta `python updater/client/build-release.py` para renovar sus hashes. Después ejecuta `python updater/launcher/build-launcher.py`, que compila el EXE, crea el ZIP portátil y actualiza el manifiesto del launcher y su referencia en el manifiesto de cliente. Este segundo paso también es obligatorio si cambias el código del launcher. Los cambios de versión de Minecraft o NeoForge requieren actualizar la política, `release.json`, el instalador y la plantilla de perfil.
 3. Si cambias mods, actualiza los manifiestos de cliente y servidor y comprueba la instalación con Packwiz. Los manifiestos SHA-256 deben describir todos los JAR que recibe cada lado.
 4. Ejecuta `packwiz refresh`, revisa y verifica el resultado, y publica el commit en `main`.
 
-La próxima ejecución del BAT en cada PC recibe esa publicación completa. También obtiene el motor actualizado y renueva su propio bootstrap. Un archivo editado únicamente en una PC queda local hasta que se publica en el repositorio.
+La próxima pulsación de **JUGAR** o **Actualizar** en cada PC recibe esa publicación completa. Los BAT reciben la misma migración. Un archivo editado únicamente en una PC queda local hasta que se publica en el repositorio. Las URLs de JAR propios deben apuntar a un commit inmutable o una publicación y corresponder al hash distribuido; no uses rutas relativas de descarga de Packwiz.
 
 ## Migración y uso
 
 Las copias anteriores de `Actualizar-Tensura-Cliente.ps1` se actualizan mediante `Configurar-Tensura-Idioma.ps1`, un paso que ya ejecutaba el protocolo anterior. La primera actualización instala el perfil y reemplaza el updater antiguo; las siguientes usan directamente el motor administrado. Los BAT y el PS1 deben permanecer juntos.
 
-El modo incremental también restaura la política cuando el pack publicado no cambió. `-NoLaunch` aplica y verifica todo sin abrir el juego. `-GameDir` permite otra carpeta y `-CacheDir` otra caché. Minecraft y el launcher deben estar cerrados antes de actualizar. Se utiliza Java 21 del sistema o del runtime incluido con Legacy Launcher.
+El modo incremental también restaura la política cuando el pack publicado no cambió. `-NoLaunch` aplica y verifica todo sin abrir el juego. `-GameDir` permite otra carpeta y `-CacheDir` otra caché; en ese protocolo la ruta predeterminada antigua se conserva por compatibilidad. Minecraft debe estar cerrado antes de actualizar. El launcher independiente instala y usa su propio Java 21; no requiere Java del sistema ni TLauncher después de la importación. Si no puede reutilizar uno existente, descarga Eclipse Temurin JRE 21.0.13+9 con SHA-256 fijado.
 
 Los respaldos quedan en `.tensura-backups` dentro del juego. Se conservan las partidas, capturas, lista de servidores y opciones ajenas a la política. La configuración del pack se sincroniza con el repositorio. Los recursos y shaders personales adicionales se conservan, aunque Iris mantiene seleccionado el shader obligatorio.
 
 ## Comprobaciones realizadas
 
-El updater pasó instalación, repetición sin reemplazos, modo estricto, restauración tras un fallo provocado, reparación de cachés de mods y shaders, instalación de perfil y migración desde la versión publicada anterior. Una prueba real dentro de un mundo aislado verificó que Unbound estaba renderizando y permanecía activo tras intentar desactivarlo o cambiarlo mediante Iris y su API.
+El updater pasó instalación, repetición sin reemplazos, modo estricto, restauración tras un fallo provocado, reparación de cachés de mods y shaders, instalación de perfil y migración desde la versión publicada anterior. Un arranque directo con Java en un mundo aislado verificó el renderizado real de Unbound y el bloqueo de cambios mediante Iris y su API. El complemento de verificación usado en esa prueba no se distribuye a los jugadores.

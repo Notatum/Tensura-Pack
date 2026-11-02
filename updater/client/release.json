@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.02.2",
+  "version": "2026.11.02.3",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",
@@ -8,17 +8,17 @@
     {
       "name": "Bootstrap.ps1",
       "path": "updater/client/Bootstrap.ps1",
-      "sha256": "566fb9d5c0cebbd0d9cc56166f65e911e2110b148b78175e09ac44fd9248655e"
+      "sha256": "78653e737645daae04902d70d79032ec7f11b0bdc26edcc3f63471723abb4595"
     },
     {
       "name": "Aplicar-Cliente.ps1",
       "path": "updater/client/Aplicar-Cliente.ps1",
-      "sha256": "d253d082c4747016a5c3bf810cd4bf08e8101b74ac42da16cc3943761ba38470"
+      "sha256": "f59a39289b20ddb20b7387729f25a91fb6b30436e3ca63b841131c03d9207dd7"
     },
     {
       "name": "Preparar-Runtime.ps1",
       "path": "updater/client/Preparar-Runtime.ps1",
-      "sha256": "ffe9024816453468d9a90f49b65922066c384867f4ea6bb0dc7e3da8404988d5"
+      "sha256": "bdef4ad259073c0ed19a84432484cd59ae80d9a456ba365a7400101df5c0db79"
     },
     {
       "name": "perfil-tensura.json",
@@ -29,5 +29,9 @@
   "installer": {
     "url": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.250/neoforge-21.1.250-installer.jar",
     "sha256": "0e47a91ba2139a8db4bf7627af081f7b5789b508bb039ee8dea1272b79693d60"
+  },
+  "standaloneLauncher": {
+    "path": "updater/launcher/TensuraLauncher.exe",
+    "sha256": "33bd14861743ffaa2c3e5674f5b15c3da8bb488c488c675f4dd1de60bfbaf53e"
   }
 }

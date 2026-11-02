@@ -1,0 +1,35 @@
+TENSURA LAUNCHER — Windows 10/11 de 64 bits
+
+Extraé el ZIP en una carpeta propia y abrí TensuraLauncher.exe.
+Escribí tu nombre de jugador y pulsá JUGAR. Usá siempre el mismo nombre
+para conservar la identidad de tu personaje en el servidor offline.
+
+JUGAR comprueba la publicación actual de Notatum/Tensura-Pack, sincroniza
+los mods y ajustes y abre Minecraft 1.21.1 con NeoForge 21.1.250 directamente.
+No abre TLauncher. El launcher y su motor también reciben actualizaciones.
+Necesitás conexión a Internet para comprobar y descargar la publicación.
+
+En el primer uso puede copiar Java 21, bibliotecas, recursos, opciones,
+servidores, capturas y partidas de la instalación local de TLauncher.
+Las cuentas, contraseñas y tokens no se importan. El origen se conserva.
+Si faltan Java o archivos del juego, descarga las copias verificadas
+de sus proveedores. La primera preparación puede tardar varios minutos.
+
+Datos propios: %LOCALAPPDATA%\TensuraLauncher
+Juego:         %LOCALAPPDATA%\TensuraLauncher\game
+Registros:     %LOCALAPPDATA%\TensuraLauncher\logs
+La opción ABRIR CARPETA muestra la nueva instalación del juego.
+
+ACTUALIZAR prepara todo sin abrir Minecraft.
+REPARAR fuerza la sincronización estricta de los mods administrados y
+comprueba bibliotecas, recursos, idioma y Unbound.
+
+El servidor usa perfiles locales en modo offline. Esta versión no incluye
+inicio de sesión Microsoft ni permite entrar a servidores que lo requieren.
+Los controles y preferencias personales se conservan. Los mods y ajustes
+administrados, el idioma español y Complementary Unbound son obligatorios.
+Los paquetes y archivos nuevos deben publicarse en el repositorio para que
+las demás PC los reciban al usar JUGAR o ACTUALIZAR.
+
+No hace falta instalar Java, Git, Python ni herramientas de desarrollo.
+Requiere PowerShell 5.1 y .NET Framework 4.8, incluidos en Windows 10/11.

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "version": "1.0.0",
+  "application": {
+    "path": "updater/launcher/TensuraLauncher.exe",
+    "sha256": "33bd14861743ffaa2c3e5674f5b15c3da8bb488c488c675f4dd1de60bfbaf53e"
+  },
+  "files": [
+    {
+      "name": "Launcher-Engine.ps1",
+      "path": "updater/launcher/Launcher-Engine.ps1",
+      "sha256": "891ca8e7b06a398e5722edb61ea361cdfba9d9dbfbf7866d57c0045c9e911939"
+    },
+    {
+      "name": "AssetStore.cs",
+      "path": "updater/launcher/AssetStore.cs",
+      "sha256": "9056af3201edbf5be38e9ee087d4b03d1152f4c999450e598d029cc55cea5fa1"
+    },
+    {
+      "name": "Apply-Launcher-Update.ps1",
+      "path": "updater/launcher/Apply-Launcher-Update.ps1",
+      "sha256": "222c354d87f4405501b5bcbb2529b61ba6dbd144ffa8316488a2e9fc68205a28"
+    },
+    {
+      "name": "Actualizar-Tensura-Cliente.ps1",
+      "path": "updater/client/Bootstrap.ps1",
+      "sha256": "78653e737645daae04902d70d79032ec7f11b0bdc26edcc3f63471723abb4595"
+    }
+  ],
+  "runtime": {
+    "version": "21.0.13+9",
+    "vendor": "Eclipse Temurin",
+    "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.13%2B9/OpenJDK21U-jre_x64_windows_hotspot_21.0.13_9.zip",
+    "sha256": "2332c0b4cff6bed722da3567c91d5e47568bcba863fa4945d0a8d6fc76158628"
+  }
+}

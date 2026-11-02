@@ -55,6 +55,26 @@ try {
         Copy-Item -LiteralPath $self -Destination ($self+'.previous') -Force
         Copy-Item -LiteralPath $newSelf -Destination $self -Force
     }
+    # The native launcher owns its Java/runtime and installs into its own game
+    # directory. -NoLaunch remains the noninteractive update protocol it uses.
+    if (!$NoLaunch -and $env:TENSURA_NO_LAUNCH -ne '1' -and $manifest.standaloneLauncher) {
+        $application=$manifest.standaloneLauncher
+        if ($application.path -ne 'updater/launcher/TensuraLauncher.exe' -or $application.sha256 -notmatch '^[a-f0-9]{64}$') { throw 'La publicación del launcher no es válida.' }
+        $appRoot=Join-Path $env:LOCALAPPDATA 'TensuraLauncher\app'
+        New-Item -ItemType Directory -Path $appRoot -Force | Out-Null
+        $executable=Join-Path $appRoot 'TensuraLauncher.exe'
+        if (!(Test-Path -LiteralPath $executable) -or (Get-FileHash -LiteralPath $executable -Algorithm SHA256).Hash -ne $application.sha256) {
+            $download=$executable+'.download'
+            Invoke-WebRequest -UseBasicParsing -Headers $headers -Uri ([uri]::new([uri]$PackUrl,$application.path)) -OutFile $download
+            if ((Get-FileHash -LiteralPath $download -Algorithm SHA256).Hash -ne $application.sha256) { throw 'El launcher descargado está alterado.' }
+            Copy-Item -LiteralPath $download -Destination $executable -Force
+            Remove-Item -LiteralPath $download -Force
+        }
+        $info=[Diagnostics.ProcessStartInfo]::new();$info.FileName=$executable;$info.Arguments=if($Mode -eq 'Strict' -or $Action -eq 'repair'){'--repair'}else{'--update'};$info.UseShellExecute=$false;$info.CreateNoWindow=$true
+        [void][Diagnostics.Process]::Start($info)
+        Write-Host '[Tensura] Abriendo el launcher independiente para actualizar el cliente.'
+        exit 0
+    }
     Write-Host "[Tensura] Motor administrado verificado: $release"
     $engineLock.Dispose();$engineLock=$null
     & (Join-Path $engine $manifest.entry) -Action $Action -Mode $Mode -GameDir $GameDir -CacheDir $CacheDir -PackUrl $PackUrl -ReleaseId $release -NoLaunch:$NoLaunch
