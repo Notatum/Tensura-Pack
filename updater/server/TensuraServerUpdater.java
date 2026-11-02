@@ -117,11 +117,14 @@ public final class TensuraServerUpdater {
                 Path staging = state.resolve("staging");
                 Files.createDirectories(staging);
                 URI pinnedPack = pinGitHubPack(options.pack());
+                Map<Path, String> published = publishedMods(pinnedPack);
+                checkModCache(staging.resolve("mods"), published, true);
                 System.out.println("[Tensura] Revisando Packwiz (modo servidor): " + pinnedPack);
                 List<String> install = List.of(javaExecutable(), "-jar", bootstrap.toString(),
                     "-g", "-s", "server", pinnedPack.toString());
                 int exit = new ProcessBuilder(install).directory(staging.toFile()).inheritIO().start().waitFor();
                 if (exit != 0) throw new IOException("Packwiz falló (código " + exit + "); mods/ no se modificó");
+                checkModCache(staging.resolve("mods"), published, false);
                 source = staging.resolve("mods");
             }
 
@@ -151,6 +154,42 @@ public final class TensuraServerUpdater {
         String executable = System.getProperty("os.name").toLowerCase(Locale.ROOT).contains("win")
             ? "java.exe" : "java";
         return Path.of(System.getProperty("java.home"), "bin", executable).toString();
+    }
+
+    private static Map<Path, String> publishedMods(URI pack) throws Exception {
+        URI url = pack.resolve("updater/manifests/mods-server.json");
+        HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(20)).build();
+        HttpRequest request = HttpRequest.newBuilder(url).timeout(Duration.ofSeconds(30))
+            .header("User-Agent", "Tensura-Server-Updater/1.2").GET().build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() != 200) throw new IOException("No se pudo comprobar el manifiesto de mods: HTTP " + response.statusCode());
+        if (!java.util.regex.Pattern.compile("\"side\"\\s*:\\s*\"server\"").matcher(response.body()).find())
+            throw new IOException("El manifiesto publicado no corresponde a servidor");
+        var entry = java.util.regex.Pattern.compile("\"file\"\\s*:\\s*\"([^\"\\\\/]+\\.jar)\"\\s*,\\s*\"sha256\"\\s*:\\s*\"([a-f0-9]{64})\"").matcher(response.body());
+        Map<Path, String> expected = new HashMap<>();
+        while (entry.find()) {
+            Path relative = Path.of(entry.group(1));
+            if (relative.isAbsolute() || relative.getNameCount() != 1 || expected.put(relative, entry.group(2)) != null)
+                throw new IOException("Nombre de mod inválido o repetido en el manifiesto");
+        }
+        if (expected.isEmpty()) throw new IOException("El manifiesto publicado no contiene mods válidos");
+        return expected;
+    }
+
+    private static void checkModCache(Path directory, Map<Path, String> expected, boolean repair) throws Exception {
+        for (var entry : expected.entrySet()) {
+            Path file = directory.resolve(entry.getKey()).normalize();
+            if (!file.startsWith(directory) || Files.isSymbolicLink(file)) throw new IOException("Ruta inválida en la caché: " + file);
+            if (Files.isRegularFile(file, LinkOption.NOFOLLOW_LINKS)) {
+                if (!java.util.HexFormat.of().formatHex(digest(file)).equals(entry.getValue())) {
+                    if (!repair) throw new IOException("El mod descargado no coincide con el manifiesto: " + entry.getKey());
+                    Files.delete(file);
+                    System.out.println("[Tensura] Se descargará otra vez el mod de caché alterado: " + entry.getKey());
+                }
+            } else if (!repair) throw new IOException("Falta el mod publicado: " + entry.getKey());
+        }
+        if (!repair && !filesByRelativePath(directory).keySet().equals(expected.keySet()))
+            throw new IOException("La caché contiene archivos de mods ajenos al manifiesto publicado");
     }
 
     private static URI pinGitHubPack(URI pack) throws Exception {

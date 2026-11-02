@@ -97,6 +97,25 @@ function Save-File([string]$Path) {
     }
     $touchedFiles.Add($Path)
 }
+function Check-ModCache([bool]$Repair) {
+    $modsRoot = Join-Path $stage 'mods'
+    foreach ($name in $expectedMods.Keys) {
+        $file = Assert-Child (Join-Path $modsRoot $name) $stage
+        if (Test-Path -LiteralPath $file -PathType Leaf) {
+            if ((Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash -ne $expectedMods[$name]) {
+                if (!$Repair) { throw "El mod descargado no coincide con el manifiesto publicado: $name" }
+                Remove-Item -LiteralPath $file -Force
+                Write-Host "[Tensura] Se descargará otra vez el mod de caché alterado: $name"
+            }
+        } elseif (!$Repair) { throw "Falta el mod publicado: $name" }
+    }
+    if (!$Repair) {
+        $actual = @(Get-ChildItem -LiteralPath $modsRoot -File -Recurse -Force)
+        if ($actual.Count -ne $expectedMods.Count -or @($actual | Where-Object { !$expectedMods.ContainsKey($_.Name) -or $_.DirectoryName -ne $modsRoot }).Count) {
+            throw 'La caché contiene archivos de mods ajenos al manifiesto publicado.'
+        }
+    }
+}
 try {
     if (!(Test-Path -LiteralPath $GameDir -PathType Container)) { throw "No existe la carpeta del juego: $GameDir" }
     $gameRoot = (Resolve-Path -LiteralPath $GameDir).Path.TrimEnd('\')
@@ -130,8 +149,18 @@ try {
     try { if (!$archive.GetEntry('META-INF/MANIFEST.MF')) { throw 'El instalador descargado no es un JAR válido.' } } finally { $archive.Dispose() }
     $stage = Join-Path $cacheRoot 'staging'
     New-Item -ItemType Directory -Path $stage -Force | Out-Null
+    $null = Assert-Child $stage $cacheRoot
+    $modManifest = Invoke-RestMethod -UseBasicParsing -Headers $headers -Uri ([uri]::new([uri]$PackUrl,'updater/manifests/mods-client.json'))
+    if ($modManifest.side -ne 'client' -or !$modManifest.mods.Count) { throw 'El manifiesto publicado de mods de cliente no es válido.' }
+    $expectedMods = @{}
+    foreach ($entry in $modManifest.mods) {
+        if ($entry.file -notmatch '^[^\\/]+\.jar$' -or $entry.sha256 -notmatch '^[a-f0-9]{64}$' -or $expectedMods.ContainsKey($entry.file)) { throw 'El manifiesto contiene un mod inválido o repetido.' }
+        $expectedMods[$entry.file] = $entry.sha256
+    }
+    Check-ModCache $true
     # Packwiz checks the cache every run and downloads only missing or changed files.
     Run-Java @('-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-jar',$bootstrap,'-g','-s','client',$PackUrl) $stage
+    Check-ModCache $false
     if (!(Test-Path -LiteralPath (Join-Path $stage 'Configurar-Tensura-Idioma.ps1'))) { throw 'El pack no incluye el configurador de idioma.' }
     if (@(Get-ChildItem -LiteralPath (Join-Path $stage 'mods') -File -Filter '*.jar').Count -eq 0) { throw 'El pack no entregó mods de cliente.' }
     $desired = @{}
