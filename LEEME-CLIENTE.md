@@ -12,6 +12,8 @@ El modo incremental comprueba Packwiz en cada ejecución y reemplaza las carpeta
 
 Los SHA-256 de todos los JAR se comparan con el manifiesto de cliente del mismo commit publicado. Si un mod de la caché está alterado, se vuelve a descargar antes de aplicarlo. Una caché con mods ajenos al manifiesto se rechaza antes de cambiar la instalación.
 
+La versión se obtiene de la referencia pública de Git de la rama `main`; no requiere tener Git instalado ni depende de la cuota de la API de GitHub. Se utiliza Packwiz Installer 0.5.14, la versión comprobada con este pack, descargada desde su publicación oficial.
+
 La actualización administra `mods`, `config`, `defaultconfigs`, `resourcepacks`, `shaderpacks`, `kubejs` y `scripts`. Los mods y las configuraciones se ajustan al pack publicado. Los paquetes de recursos y shaders personales se conservan; solo se sustituyen las versiones anteriores del paquete de español de Tensura. Las partidas, capturas y lista de servidores quedan fuera de las carpetas administradas. La selección de idioma conserva las demás preferencias de `options.txt`.
 
 Minecraft y TL Legacy deben estar cerrados. Al terminar, se abre el launcher habitual. Para comprobar la actualización sin abrirlo, añade `-NoLaunch`. También puedes indicar `-CacheDir "C:\otra\cache"`; la caché debe estar separada de la instalación.

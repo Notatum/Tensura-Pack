@@ -131,7 +131,10 @@ try {
     $java = (Get-Command java.exe -ErrorAction Stop).Source
     $headers = @{ 'User-Agent'='TensuraUpdater'; 'Cache-Control'='no-cache' }
     if (!$PackUrl) {
-        $release = (Invoke-RestMethod -UseBasicParsing -Headers $headers -Uri 'https://api.github.com/repos/Notatum/Tensura-Pack/commits/main').sha
+        $refs = Invoke-WebRequest -UseBasicParsing -Headers $headers -Uri 'https://github.com/Notatum/Tensura-Pack.git/info/refs?service=git-upload-pack'
+        $refText = if ($refs.Content -is [byte[]]) { [Text.Encoding]::ASCII.GetString($refs.Content) } else { [string]$refs.Content }
+        $main = [regex]::Match($refText,'([0-9a-f]{40}) refs/heads/main(?:\x00|\n)')
+        $release = $main.Groups[1].Value
         if ($release -notmatch '^[0-9a-f]{40}$') { throw 'GitHub no devolvió un commit válido.' }
         $PackUrl = "https://raw.githubusercontent.com/Notatum/Tensura-Pack/$release/pack.toml"
     } else {
@@ -150,6 +153,13 @@ try {
     $stage = Join-Path $cacheRoot 'staging'
     New-Item -ItemType Directory -Path $stage -Force | Out-Null
     $null = Assert-Child $stage $cacheRoot
+    $installer = Join-Path $stage 'packwiz-installer.jar'
+    if (!(Test-Path -LiteralPath $installer)) {
+        Invoke-WebRequest -UseBasicParsing -Uri 'https://github.com/packwiz/packwiz-installer/releases/download/v0.5.14/packwiz-installer.jar' -OutFile ($installer+'.download')
+        $jar = [IO.Compression.ZipFile]::OpenRead($installer+'.download')
+        try { if (!$jar.GetEntry('META-INF/MANIFEST.MF')) { throw 'El instalador de Packwiz no es un JAR válido.' } } finally { $jar.Dispose() }
+        Move-Item -LiteralPath ($installer+'.download') -Destination $installer
+    }
     $modManifest = Invoke-RestMethod -UseBasicParsing -Headers $headers -Uri ([uri]::new([uri]$PackUrl,'updater/manifests/mods-client.json'))
     if ($modManifest.side -ne 'client' -or !$modManifest.mods.Count) { throw 'El manifiesto publicado de mods de cliente no es válido.' }
     $expectedMods = @{}
@@ -159,7 +169,7 @@ try {
     }
     Check-ModCache $true
     # Packwiz checks the cache every run and downloads only missing or changed files.
-    Run-Java @('-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-jar',$bootstrap,'-g','-s','client',$PackUrl) $stage
+    Run-Java @('-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-jar',$bootstrap,'--bootstrap-no-update','-g','-s','client',$PackUrl) $stage
     Check-ModCache $false
     if (!(Test-Path -LiteralPath (Join-Path $stage 'Configurar-Tensura-Idioma.ps1'))) { throw 'El pack no incluye el configurador de idioma.' }
     if (@(Get-ChildItem -LiteralPath (Join-Path $stage 'mods') -File -Filter '*.jar').Count -eq 0) { throw 'El pack no entregó mods de cliente.' }

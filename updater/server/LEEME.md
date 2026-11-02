@@ -4,6 +4,8 @@ Requiere Java 21 y el servidor detenido. Coloca el JAR y los BAT en la raíz del
 
 Ejecuta `Actualizar-Tensura-Servidor.bat` para recibir la versión publicada en `Notatum/Tensura-Pack`, rama `main`. El actualizador consulta el commit y fija esa versión durante toda la descarga. No inicia el servidor por sí solo.
 
+El commit se obtiene de la referencia pública de Git, sin necesitar Git instalado ni consumir la cuota de la API de GitHub. Se utiliza Packwiz Installer 0.5.14 desde su publicación oficial, la versión comprobada con este pack.
+
 Para actualizar y después iniciar:
 
 ```bat

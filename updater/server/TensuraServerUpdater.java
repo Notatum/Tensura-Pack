@@ -116,12 +116,13 @@ public final class TensuraServerUpdater {
                 ensureBootstrap(bootstrap, options.bootstrap());
                 Path staging = state.resolve("staging");
                 Files.createDirectories(staging);
+                ensureBootstrap(staging.resolve("packwiz-installer.jar"), URI.create("https://github.com/packwiz/packwiz-installer/releases/download/v0.5.14/packwiz-installer.jar"));
                 URI pinnedPack = pinGitHubPack(options.pack());
                 Map<Path, String> published = publishedMods(pinnedPack);
                 checkModCache(staging.resolve("mods"), published, true);
                 System.out.println("[Tensura] Revisando Packwiz (modo servidor): " + pinnedPack);
                 List<String> install = List.of(javaExecutable(), "-jar", bootstrap.toString(),
-                    "-g", "-s", "server", pinnedPack.toString());
+                    "--bootstrap-no-update", "-g", "-s", "server", pinnedPack.toString());
                 int exit = new ProcessBuilder(install).directory(staging.toFile()).inheritIO().start().waitFor();
                 if (exit != 0) throw new IOException("Packwiz falló (código " + exit + "); mods/ no se modificó");
                 checkModCache(staging.resolve("mods"), published, false);
@@ -195,12 +196,12 @@ public final class TensuraServerUpdater {
     private static URI pinGitHubPack(URI pack) throws Exception {
         if (!pack.toString().equals(DEFAULT_PACK)) return pack;
         HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(20)).build();
-        HttpRequest request = HttpRequest.newBuilder(URI.create("https://api.github.com/repos/Notatum/Tensura-Pack/commits/main"))
+        HttpRequest request = HttpRequest.newBuilder(URI.create("https://github.com/Notatum/Tensura-Pack.git/info/refs?service=git-upload-pack"))
             .timeout(Duration.ofSeconds(30)).header("User-Agent", "Tensura-Server-Updater/1.1")
             .header("Cache-Control", "no-cache").GET().build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() != 200) throw new IOException("No se pudo comprobar la versión de GitHub: HTTP " + response.statusCode());
-        var match = java.util.regex.Pattern.compile("\"sha\"\\s*:\\s*\"([0-9a-f]{40})\"").matcher(response.body());
+        var match = java.util.regex.Pattern.compile("([0-9a-f]{40}) refs/heads/main(?:\\x00|\\n)").matcher(response.body());
         if (!match.find()) throw new IOException("GitHub no devolvió un identificador de versión válido");
         return URI.create(DEFAULT_PACK.replace("/main/", "/" + match.group(1) + "/"));
     }
