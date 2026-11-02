@@ -1,14 +1,2 @@
-*.toml text eol=lf
-*.toml.bak text eol=lf
-*.ini text eol=lf
-*.properties text eol=lf
-*.txt text eol=lf
-*.cfg text eol=lf
-*.json text eol=lf
-*.json5 text eol=lf
-*.jar binary
-*.zip binary
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
+# Packwiz hashes the exact bytes served from GitHub. Never convert line endings.
+* -text

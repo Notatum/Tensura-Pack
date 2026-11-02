@@ -1,0 +1,22 @@
+{
+  "messages.tpa.inCooldown": "¡Estás en tiempo de reutilización para otros %s!",
+  "messages.tpa.doubleRequest": "¡Ya has enviado una solicitud de teletransporte!",
+  "messages.tpa.selfRequest": "¡No puedes teletransportarte a ti mismo!",
+  "messages.tpa.requestsDisabled": "¡%s tiene las solicitudes de teletransporte deshabilitadas!",
+  "messages.tpa.senttpaRequest": "¡Has enviado a %s una solicitud de tpa!",
+  "messages.tpa.senttpahereRequest": "¡Has enviado a %s una solicitud tpahere!",
+  "messages.tpa.receivedtpaRequest": "Ha recibido una solicitud de tpa de %s",
+  "messages.tpa.receivedtpahereRequest": "Ha recibido una solicitud tpahere de %s",
+  "messages.tpa.noRequest": "¡No tienes una solicitud de teletransporte!",
+  "messages.tpa.senderOffline": "El jugador está desconectado.",
+  "messages.tpa.requestExpired": "¡La solicitud de teletransporte ha caducado!",
+  "messages.tpa.teleported": "¡Teletransportado!",
+  "messages.tpa.teleporting": "Teletransportándose en %ss...",
+  "messages.tpa.requestAccepted": "¡Aceptaste la solicitud de teletransporte!",
+  "messages.tpa.tpahereRequestAccepted": "¡Tu solicitud aquí fue aceptada!",
+  "messages.tpa.noBackLocation": "¡Sin ubicación trasera!",
+  "messages.tpa.backDisabled": "¡/back está deshabilitado en este servidor!",
+  "messages.tpa.requestsToggledtrue": "¡Las solicitudes de teletransporte ahora están habilitadas!",
+  "messages.tpa.requestsToggledfalse": "¡Las solicitudes de teletransporte ahora están deshabilitadas!",
+  "messages.tpa.requestCanceled": "¡Cancelaste tu solicitud de teletransporte!"
+}

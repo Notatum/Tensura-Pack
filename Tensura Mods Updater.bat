@@ -177,7 +177,7 @@ echo Descargando / validando el modpack...
 echo.
 
 pushd "%STAGE%" >nul
-"%JAVA_EXE%" -jar "%UPDATER%" "%PACKURL%"
+"%JAVA_EXE%" -jar "%UPDATER%" -g -s client "%PACKURL%"
 set "PW_RESULT=%ERRORLEVEL%"
 popd >nul
 
@@ -192,27 +192,6 @@ if not "%PW_RESULT%"=="0" (
 )
 
 > "%STATE_FILE%" echo %REMOTE_COMMIT%
-
-rem ============================================================
-rem VERIFICACION DE PACKS DE VEHICULOS ACTUALES
-rem ============================================================
-if exist "%STAGE%\mods\SVMP3.7.3 1.16+.jar" (
-    echo [OK] SVMP descargado.
-) else (
-    echo [AVISO] SVMP no aparece en staging.
-)
-
-if exist "%STAGE%\mods\Trin Civil Pack-1.20.1-4.5.0.jar" (
-    echo [OK] Trin Civil Pack descargado.
-) else (
-    echo [AVISO] Trin Civil Pack no aparece en staging.
-)
-
-if exist "%STAGE%\mods\Trin Parts Pack-1.20.1-2.28.0.jar" (
-    echo [OK] Trin Part Pack descargado.
-) else (
-    echo [AVISO] Trin Part Pack no aparece en staging.
-)
 
 rem ============================================================
 rem SINCRONIZACION ESTRICTA
@@ -241,6 +220,9 @@ call :MirrorFolder "kubejs"
 if errorlevel 1 goto :sync_error
 
 call :MirrorFolder "scripts"
+if errorlevel 1 goto :sync_error
+
+powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "%STAGE%\Configurar-Tensura-Idioma.ps1" -GameDir "%GAME%"
 if errorlevel 1 goto :sync_error
 
 echo.

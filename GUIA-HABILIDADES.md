@@ -1,0 +1,89 @@
+# Aprendizaje, maestría y progresión de habilidades
+
+Guía para este pack: Minecraft 1.21.1, NeoForge 21.1.250, Tensura 2.0.1.4 y el complemento Great Sage 0.0.7.1. Revisión del 2 de noviembre de 2026.
+
+## Qué significa cada progreso
+
+| Indicador | Qué representa | Cómo avanza |
+| --- | --- | --- |
+| Puntos de aprendizaje | Aprender una habilidad que todavía aparece en gris o aprender uno de sus modos. | Intenta usar la habilidad o el modo equipado. El requisito general de este servidor es 100 puntos. |
+| Maestría | Dominar una habilidad que ya aprendiste. Puede mejorar su efecto o habilitar modos. | Realiza las acciones que reconoce esa habilidad: activarla, acertar un ataque, mantenerla o disparar su efecto pasivo. |
+| XP y puntos del árbol de Great Sage | Mejoras del complemento: análisis, alcance, tareas simultáneas y otras ramas. | Descubre contenido y completa análisis. No es la maestría de la habilidad Gran Sabio. |
+| EP | Puntos de existencia del personaje, usados en requisitos de poder y evolución. | Es un sistema distinto del aprendizaje y de la maestría. |
+
+La experiencia verde de Minecraft tampoco sustituye ninguno de estos indicadores.
+
+## De una habilidad gris a una habilidad aprendida
+
+1. Abre el menú de habilidades y selecciona una habilidad que tengas disponible. Revisa sus requisitos y su costo de adquisición.
+2. Equípala en una ranura y usa la tecla asignada a esa ranura. Puedes consultar o cambiar las teclas en **Opciones → Controles**.
+3. Espera a que termine el tiempo de reutilización y vuelve a intentarlo. La barra muestra puntos de aprendizaje; llegar al requisito permite aprenderla.
+4. Si la habilidad tiene varios modos, comprueba cuál está seleccionado. Un modo puede necesitar su propio aprendizaje, maestría previa u otra condición.
+
+En esta configuración, la ganancia normal de aprendizaje es **1 punto base más una bonificación aleatoria de 0 a 4**. El tiempo de reutilización de aprendizaje general es de 10 segundos. La energía disponible, los estados alterados y los requisitos particulares también pueden impedir una activación. La configuración contempla penalizaciones de aprendizaje; no confundas un intento de aprendizaje con un análisis del complemento.
+
+Adquirir determinadas habilidades puede reducir la **reserva máxima de magículas**, además de los costos de energía de sus acciones. Mira el costo concreto: aprender una habilidad no siempre equivale a gastar únicamente la energía que luego se regenera.
+
+## Cómo subir la maestría
+
+Después de aprenderla, usa la habilidad de una forma que active su efecto. Pulsar una tecla mientras el movimiento está bloqueado, sin energía o fuera de alcance no garantiza progreso.
+
+La configuración general tiene una ganancia base de maestría de 1 y multiplicadores de 2 para impactos y muertes. Las acciones concretas que conceden puntos dependen de la habilidad; no significa que todos los ataques ni todas las activaciones den siempre la misma cantidad. Para habilidades que se mantienen pulsadas, el intervalo general es de **60 ticks, unos 3 segundos a 20 TPS**. Algunas pasivas conceden progreso cada **10 activaciones de su efecto**, no cada diez segundos.
+
+Umbrales configurados para las categorías siguientes:
+
+| Categoría | Maestría máxima habitual |
+| --- | ---: |
+| Intrínseca | 100 |
+| Extra | 500 |
+| Única | 1.000 |
+| Única de pecado | 1.500 |
+| Definitiva | 10.000 |
+
+Los complementos y algunas habilidades pueden fijar otros límites. La barra de la habilidad es la referencia para el caso concreto. Llegar a la maestría máxima no concede automáticamente su evolución: puede faltar EP, una raza, una habilidad previa, una condición o un evento.
+
+## Habilidades que aceleran el entrenamiento
+
+Los siguientes valores están comprobados en el código y en `config/tensura/ability/skill/unique_config.toml` de esta revisión:
+
+| Habilidad | Con su pasiva activada |
+| --- | --- |
+| Analista | Añade 2 a la ganancia de aprendizaje y 2 a la de maestría. |
+| Cocinero — Cook | Añade 4 a ambas ganancias. |
+| Gran Sabio | Añade 9 a ambas ganancias. |
+| Luchador — Fighter | Permite aprender al instante técnicas de voluntad de combate y magia; añade 2 a la ganancia de maestría. Tiene condiciones de uso y no concede todas las habilidades del juego. |
+
+Tener la habilidad en la lista no equivale a tener su pasiva activada. Las bonificaciones de atributos de Analista, Cocinero y Gran Sabio se suman mientras estén activadas. Por ejemplo, Gran Sabio convierte una ganancia base de maestría de 1 en 10, antes de otros modificadores; en aprendizaje sigue existiendo la bonificación aleatoria configurada.
+
+**El acceso universal al panel de análisis de este pack no te concede automáticamente la habilidad Gran Sabio ni su bonificación de +9.** Para obtener esa bonificación debes tener y activar la habilidad.
+
+## El árbol del complemento Great Sage
+
+El complemento tiene su propio nivel y sus propios puntos. Su código registra, antes de multiplicadores configurables, estas recompensas base:
+
+| Acción reconocida por el complemento | XP base del árbol |
+| --- | ---: |
+| Registrar una especie nueva | 25 |
+| Registrar una habilidad nueva | 10 |
+| Completar un análisis | 50 |
+| Evaluar un objeto nuevo | 1, 3, 8 o 20 según su rareza |
+
+Las especies, habilidades y objetos ya registrados no se vuelven a considerar descubrimientos nuevos. El árbol calcula sus umbrales según el contenido instalado; no uses una tabla de niveles de otro servidor como si fuera idéntica. Los puntos disponibles se calculan como **nivel del árbol × 8 menos puntos gastados**.
+
+Para el análisis, `analysisTicks = 1200` equivale a un minuto base a 20 TPS. Con un solo análisis, sin mejoras ni excepciones, los factores actuales dan estas duraciones orientativas: intrínseca o común, 2 minutos; extra, 3; única, 5; definitiva, 8. Una habilidad todavía latente aplica un factor de tiempo de 3 y un costo adicional de magículas del 75 %. El tiempo real depende del servidor y de las mejoras.
+
+- **Concentración** aumenta la capacidad total de análisis y permite completarlos más rápido.
+- **Hilos** permite más análisis simultáneos. Comparten esa capacidad: abrir más tareas no multiplica la velocidad total.
+- No puedes utilizar una habilidad mientras está siendo analizada.
+- Los rangos de análisis están habilitados para todos en esta revisión. Los nodos de rango no son necesarios para abrir ese acceso.
+- La probabilidad de fallo de análisis está fijada en **cero**. Por eso los nodos **Precisión** y **Segunda mirada** no aportan una ventaja con esta configuración. Eso no elimina el costo, los tiempos ni las demás restricciones del análisis.
+
+## Si una habilidad parece no subir
+
+Comprueba, en este orden: si la barra es de aprendizaje o maestría; si elegiste el modo correcto; si terminó la reutilización; si tienes energía; si la habilidad exige objetivo, alcance o impacto; si su pasiva está activada; y si alcanzaste ya el límite. Para una evolución que diga **Dominar X**, necesitas completar la maestría de X, no solo aprenderla ni subir el árbol.
+
+## Referencias y diferencias de este pack
+
+La mecánica general se contrastó con [Ability Usage, en la wiki de Tensura](https://tensura.wiki.gg/wiki/Mechanics/Ability_Usage) y [Great Sage, en la wiki](https://tensura.wiki.gg/wiki/Great_Sage). La consulta directa de la wiki devolvió HTTP 403; se pudo consultar su contenido indexado. Los números específicos de esta guía se comprobaron también en la configuración y en el código de los JAR instalados.
+
+La página de Gran Sabio describe la habilidad del mod base. El árbol, sus puntos, los hilos y la probabilidad de fallo de análisis configurada aquí pertenecen al complemento. Esta guía explica ambas cosas por separado para que sus requisitos no se mezclen.

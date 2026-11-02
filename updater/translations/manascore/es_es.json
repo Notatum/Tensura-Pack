@@ -1,0 +1,12 @@
+{
+  "manascore.attribute.critical_damage_multiplier": "Multiplicador de daño crítico",
+  "manascore.attribute.critical_attack_chance": "Probabilidad de ataque crítico",
+  "manascore.attribute.glide_speed_multiplier": "Multiplicador de velocidad de planeo",
+  "manascore.attribute.lava_speed_multiplier": "Multiplicador de velocidad de lava",
+  "manascore.attribute.swim_speed_multiplier": "Multiplicador de velocidad de natación",
+  "manascore.race.difficulty.easy": "fácil",
+  "manascore.race.difficulty.intermediate": "Intermedio",
+  "manascore.race.difficulty.hard": "duro",
+  "manascore.race.difficulty.extreme": "extremo",
+  "manascore.skill.learn_skill": "Se ha adquirido %s."
+}

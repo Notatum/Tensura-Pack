@@ -1,0 +1,8 @@
+{
+  "gui.tensura_trepu.evolution_requirements": "Requisitos de evolución",
+  "gui.tensura_trepu.evolution_requirements.wastelander_to_human.elixir": "Consumir elixir limpiador del cielo",
+  "gui.tensura_trepu.evolution_requirements.wastelander_to_human.mindscape": "Gana el desafío Dream Realm después de dormir por la noche.",
+  "gui.tensura_trepu.evolution_requirements.wastelander_to_human.manual": "Utilice el manual de rotura y reconstrucción",
+  "gui.tensura_trepu.evolution_requirements.angel_to_tengu": "Poseer un Okami",
+  "tooltip.tensura_trepu.gear_evolution_remaining": "Necesita %sEP para evolucionar a %s"
+}

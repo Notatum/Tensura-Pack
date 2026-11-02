@@ -1,6 +1,22 @@
 hash-format = "sha256"
 
 [[files]]
+file = "Configurar-Tensura-Idioma.ps1"
+hash = "07b6c30f2c70bd891ffb6b626aa8eec93c3f4be9031d07c0a0d7fe29082b598f"
+
+[[files]]
+file = "GUIA-HABILIDADES.md"
+hash = "d2388c081f3836c58b6b11a82d2dfc35d6d8be69586720884eb123616741fe88"
+
+[[files]]
+file = "README.md"
+hash = "13d3054912def2ea01335e2de3eee2eee5f0f85f01d89fc404c6315e9125c1d0"
+
+[[files]]
+file = "REVISION-2026-11-02.md"
+hash = "b179f530538d7b48a43a41800dfda4c330b6678d467c065ea8716e3061ab4c57"
+
+[[files]]
 file = "config/TPA/config/configuration.toml"
 hash = "b5ea4af5cc6fb336620427e18ad0298b48d390717618e40b088ecf0606a3aa3b"
 
@@ -218,7 +234,7 @@ hash = "10e2bf2bae2eb8838fe26827f9805f4f8946ea42a97f8816d5bd8b9e7fbad054"
 
 [[files]]
 file = "config/greatsage-common.toml"
-hash = "9db45793ede275aa316fe698fe32740bd4175b0edb4ba60fc4c06257e49d4826"
+hash = "fe782e6d508f4b3c0a1f01a2ddd5833a59f0043be4f9cd7f4ea176bf8ea15cef"
 
 [[files]]
 file = "config/immediatelyfast.json"
@@ -778,36 +794,36 @@ hash = "b3b67f83faf9dcc4985b7a13fa8affb71062461d271f80cc0958652df9f3126b"
 metafile = true
 
 [[files]]
+file = "mods/AncientArtifacts-neoforge-1.0.3.jar"
+hash = "a0d5336f6c198b92a4d1d0c1401123414f34fa543dbf43f8c374a788c5292c65"
+
+[[files]]
 file = "mods/ApothicAttributes-1.21.1-2.11.0.jar"
 hash = "17c42bb6dd5c0d820fe090e1bb5959578cd5ab7b70caf98a2a59b319fcc7e1ba"
 
 [[files]]
 file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.5.jar"
-hash = "13898ad6e1e0c490d75fd54528c9dc269c8403cecd28a74f1e9234e69a0a44f8"
+hash = "e3dc4973024527de192aee8838990c440ef9c2224c2df08d2b146f68f27c1f0b"
 
 [[files]]
 file = "mods/Beelzebuth-1.21.1-1.3.7-PersistentStomach-FastBlocks5x-MistFix-ES.jar"
-hash = "0b90cc55e432a4c1f47d3b640e1c6f93fce46b7751b065d5608073ed068c2ec3"
+hash = "28f47dac07d56ff0b3ba5153d628fcad7468d31168ef31c92ff539832f3653b8"
 
 [[files]]
 file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
-hash = "c31283c8b5426e3341b43b85df253eae9bb795bd830e60b549cd189e6ded1f27"
+hash = "bb3c49ab97903127d7ec1a4d0266b7c8fae02ac5c3f0ab86b17aadb612365a19"
 
 [[files]]
 file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.32.jar"
-hash = "afbab11999d446833715f322e53b55c6ad7dd83458288783984aabad235fd8e3"
-
-[[files]]
-file = "mods/Nihon-Circuit-neoforge-1.21.1-1.0.0.jar"
-hash = "513252291346ac5827a3a63ac3a07f458e5d4e7ee97065ca63d9b20a95bbc8d1"
+hash = "caaa4217ed21a52aee49cabbf3b2ecfe89b0a5a928b2dc3fd3fb48785fa832be"
 
 [[files]]
 file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
-hash = "ba5c6c80c97478eeaf3eabb2c872be150cd884a3aa97c689828bb91e38e5b16c"
+hash = "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
 
 [[files]]
 file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.0.jar"
-hash = "fcb52395aa7627563fef3ba456d7b03ed1e633f10b1dbcbac69f0ceb6c697b4b"
+hash = "f4fc77fd647c4cf36710444144411f4a3ce48f7791c20cfc7f835d0ecc726868"
 
 [[files]]
 file = "mods/Placebo-1.21.1-9.9.2.jar"
@@ -815,23 +831,23 @@ hash = "1a844a5b081813b1edb82656329e54d38389ed470f6a6516a5887f5303d7daad"
 
 [[files]]
 file = "mods/Tensura-Shared-Boss-Credit-neoforge-1.21.1-1.0.3.jar"
-hash = "5502a7a685aa544f537a914b8a758af09b5d752f4bc39c00b52612ef0473bd4a"
+hash = "13738be0976b230433dd76beac5d7d563d40d84dfe13c29772bc60cfc0f26f18"
 
 [[files]]
 file = "mods/Tensura-Toggle-All-neoforge-1.21.1-1.0.4.jar"
-hash = "31736879a0d763c37d632dea1a62561482d8b274d58a66f09d37a5f3dcec2614"
+hash = "f3aa450629ef115546518bda1ce2a9415a58bcc27b11d392a990d5598203a566"
 
 [[files]]
-file = "mods/TensuraEpScaling-neoforge-1.1.2-Dano-Corregido.jar"
-hash = "960d9d365e6f760c4e2c8542db8d9fa56c6609eab1b3cd7bce9dd8eb8a6270d3"
+file = "mods/TensuraEpScaling-neoforge-1.2.0.jar"
+hash = "217865b06e5df014c5f9627f58cc545418f918dcc08b84d039379a4ccc3de145"
 
 [[files]]
 file = "mods/TensuraPlainsSlimes-neoforge-1.21.1-1.1.3.jar"
-hash = "26a3d0049262cf5f46049aa8eef397f3658441ebbadc33b12c00d57d60913dd1"
+hash = "38a686ddf5f194cf2f6cf0447942555ff7e45d57d88714a611907cef5d3bc3f1"
 
 [[files]]
 file = "mods/TensuraSlimeBait-neoforge-1.21.1-1.4.0.jar"
-hash = "2f2bd55845cfecf113b8d94bd06538081a57b5d8d9203f1bc3166af5038e3532"
+hash = "7da662b94820ee3b0843a3015a0072b5722d64d9e2c55f2e852d1873ee44c59e"
 
 [[files]]
 file = "mods/TextAnimator-1.21.1-NeoForge-3.2.3.jar"
@@ -839,7 +855,7 @@ hash = "fee59166ca0328d3acf9548beaa123ca096cbebbe88c0a50251cfa86ac18d7b0"
 
 [[files]]
 file = "mods/VillagerDwarfFortress-neoforge-1.21.1-1.0.0.jar"
-hash = "c9c279f036ac76f582833f17599a0e85ae4a67dee11d6f06814b0de3566dbb5a"
+hash = "03511dca023ad6e5dde99b7520d65d5a1dd1e6c131025e8a2d169fac40635974"
 
 [[files]]
 file = "mods/architectury-api.pw.toml"
@@ -855,8 +871,8 @@ file = "mods/ars_nouveau-1.21.1-5.13.2.jar"
 hash = "787b5e2ed6b0e5004285b27ab6c51f8b43edab6cb44c6eccf09452c4b3870dce"
 
 [[files]]
-file = "mods/ascension-2.1.2-ES-Corregido.jar"
-hash = "d67d856b74072f9580b2cf8fbef696d4f9fec165acfcd3ca3a6b020e18682dd4"
+file = "mods/ascension-3.0.1.jar"
+hash = "38fa1bc33135678d78db02098dfc5aed8f0a5605df5ee1822d64a83488327457"
 
 [[files]]
 file = "mods/badoptimizations.pw.toml"
@@ -908,7 +924,7 @@ metafile = true
 
 [[files]]
 file = "mods/elitetensura-1.0.2.1-V4-ES-sin-Beelzebuth-sin-Overlay.jar"
-hash = "a75d28ddbfceb7366f761cbef17770ff2c2cf81fab4064bab9b46ddaeec12093"
+hash = "a34ca09ddc745273e941a6b8d51f6bb93430b41d0abeba7cd5e6c5fd6b01f61c"
 
 [[files]]
 file = "mods/ferrite-core.pw.toml"
@@ -941,8 +957,8 @@ hash = "4cf7eb494f48576e28895ee5f362878f95c6bad65372666106140fdae82d0c4c"
 metafile = true
 
 [[files]]
-file = "mods/greatsage-0.0.6.1-Analisis-Para-Todos.jar"
-hash = "afbe30aa124d1bb7828d53237909dc489a80a50b19e0912399e4e952c64966d2"
+file = "mods/greatsage-0.0.7.1.jar"
+hash = "ef48b12c2882bf62f158f85ca6d5b94d85718b7d1a50d7174d08252868cec5ca"
 
 [[files]]
 file = "mods/handcrafted.pw.toml"
@@ -952,16 +968,6 @@ metafile = true
 [[files]]
 file = "mods/immediatelyfast.pw.toml"
 hash = "fec42f4ea33169c1ea9c14f6b179325f974367eb7c7082dfffe9c483789a19f1"
-metafile = true
-
-[[files]]
-file = "mods/immersive-vehicles-blocky-rage.pw.toml"
-hash = "2824dc467b0b0931119e45ab2c617e4c5335b4f7bdd07856912c1fe724d7fc93"
-metafile = true
-
-[[files]]
-file = "mods/immersive-vehicles.pw.toml"
-hash = "e54cb242884e03c1b2e5971fe010adedbf2e1ae5dc161cf428d82301c6b4b38f"
 metafile = true
 
 [[files]]
@@ -1003,14 +1009,8 @@ file = "mods/malum-1.21.1-1.8.2.jar"
 hash = "38f4fa53e8da9e3d67aa5f54f98fd7c83cb342f0463ce5c63a6864229c88efa8"
 
 [[files]]
-file = "mods/manascore.pw.toml"
-hash = "ea327466b8d3ebe83329de194d77790f7d68fe25e56f0bfeda319527636bb7cb"
-metafile = true
-
-[[files]]
-file = "mods/minecraft-transport-simulator.pw.toml"
-hash = "6bce72fcb1335577357919f9eab8f610b70af65a3571a625c37a02ee42141c56"
-metafile = true
+file = "mods/manascore-neoforge-4.0.0.2.jar"
+hash = "722eb0b642418b5c3270b59a5b34c49884971d355fb6ee7d6528dd834aa7a347"
 
 [[files]]
 file = "mods/modernfix.pw.toml"
@@ -1023,13 +1023,8 @@ hash = "f32f944f62c4ea97b2d1f8582bb5f1a0adf7f62983b35f75288e27025365d7d0"
 metafile = true
 
 [[files]]
-file = "mods/mts-iv-official-automobile-pack.pw.toml"
-hash = "e5a079db01eb9602b9b5b3362dfa25edc5e4bdc60d8b5176895b5ed57b8e831e"
-metafile = true
-
-[[files]]
 file = "mods/mysticism-neoforge-2.2.1-ES-Corregido-FixRaceInit.jar"
-hash = "28836e81ff556c3f313289445609b7be0d731d94825d4699f77497710afd34db"
+hash = "4d75887f2f0a419f9892a42ab9a49c31116aef4de3f6fdee3edefb943613dcbe"
 
 [[files]]
 file = "mods/neat.pw.toml"
@@ -1037,8 +1032,8 @@ hash = "fe7676aaa4477604116c00c3a4d17f49c48fa853fbfab08fe743b6496dc834e9"
 metafile = true
 
 [[files]]
-file = "mods/nightmareutils-0.1.2-ES-Corregido.jar"
-hash = "740ef5c6cac2ab0507bba8c7551cca22de6e6ddc8b3960c92b01e1005ce05c74"
+file = "mods/nightmareutils-0.1.2.jar"
+hash = "f6930574e824909424aa950ea7b7042fa035d202c05610abde7f73a7ed020ec8"
 
 [[files]]
 file = "mods/open-parties-and-claims.pw.toml"
@@ -1076,7 +1071,7 @@ metafile = true
 
 [[files]]
 file = "mods/sodium.pw.toml"
-hash = "617ec6e9893d59905035a510fe336addd46a97b6fd28fad88b70713ebf8e69e3"
+hash = "3fc6fd4a464740bd6cfe89571517cfda837dbad69f0218ef1159b527b1be45d6"
 metafile = true
 
 [[files]]
@@ -1100,27 +1095,21 @@ hash = "24d2d04bd35de31d5f3a19579b4ee1596cab14e8a171bea5de7594a63a6bb9cd"
 metafile = true
 
 [[files]]
-file = "mods/svmp.pw.toml"
-hash = "3205c5b47e5a5915ce4270f4d7ddc81671a1d3abec5d44addd8607b5dc5b2379"
-metafile = true
-
-[[files]]
 file = "mods/tensura-compat-open-parties-and-claims.pw.toml"
 hash = "e432495ad6708dba577f1fad252dc2760a0352ad1cb3c121353f310841f5b28d"
 metafile = true
 
 [[files]]
-file = "mods/tensura-neoforge-2.0.1.3-ES-Corregido.jar"
-hash = "f54e75f069320da634e5c3470c8c8dff053572fda4c287e4fe4ef7ff6693d14b"
-
-[[files]]
-file = "mods/tensura-slots.pw.toml"
-hash = "5f4320402f1de7597d8e3a31bea626678e62d17664f0813ac16b10b9e9aacac8"
-metafile = true
+file = "mods/tensura-neoforge-2.0.1.4.jar"
+hash = "f8e59fa0be39677a8a4d23d050bb47dbbc083e7eefc284d85b752c5b2d4da769"
 
 [[files]]
 file = "mods/tensura_trepu-1.0.0.2.jar"
-hash = "2323b01f5ff7862dfd452719bcc5026493f72ad8d0bd76b5c452e07025e0bd04"
+hash = "66a42e8fd274f5fff5d6cb6d91ac3bffd60da28e9b952f43e98e48bab5765b6a"
+
+[[files]]
+file = "mods/tensuraslots-1.0.0.jar"
+hash = "c4981d36c47168aa5f54e1dde5c4125b6f7570c1cc766cebbfd5987c2f56a9b9"
 
 [[files]]
 file = "mods/terrablender-neoforge.pw.toml"
@@ -1128,41 +1117,20 @@ hash = "d77e4dc337b6090358c1ef01b0f99a8357e5279443e0e23e511de1be865c01c9"
 metafile = true
 
 [[files]]
-file = "mods/tpa.pw.toml"
-hash = "187aa7c39878ef756651002059fa11f6aa7b696c663d7f94b84d8a0ccbb969dd"
-metafile = true
+file = "mods/tpa-neoforge-1.21.1-2.1.0.jar"
+hash = "c9b5dde44743cb52ee3387c57f77ff69342e02bfbb6991bf256133c54fae923b"
 
 [[files]]
-file = "mods/tr-ancient-artifacts.pw.toml"
-hash = "47af17938c0c30de33ffa706fd55dee0d272663e3941a2959f4666c8d20396e8"
-metafile = true
+file = "mods/trnightmare-1.0.6.1-neoforge-1.21.1.jar"
+hash = "0fae9b6f563406a12c0f9bf7f05450be8395ab594a73a739b7cced99c5ffcf55"
 
 [[files]]
-file = "mods/transport-simulator-official-vehicle-set.pw.toml"
-hash = "e1dea83477cdedb5de2012ed81e30962a8c21abbff45f57a3d2e5efb606b5245"
-metafile = true
-
-[[files]]
-file = "mods/trin-civil-pack.pw.toml"
-hash = "f197d184b45c92242b5e2e973b15bd49c5380710bebf8c104923897bb4b1a98b"
-metafile = true
-
-[[files]]
-file = "mods/trin-part-pack.pw.toml"
-hash = "de9f1db34e5ecf19b0b4b1e0a6b8a11342bcc319fad616711ade3174f77b11f3"
-metafile = true
-
-[[files]]
-file = "mods/trnightmare-1.0.5.1-neoforge-1.21.1-ES-Corregido.jar"
-hash = "a1645d34f9b548506cd58ad65e5fa7f5e39319c967ecc6b254fc3fc37b427d2d"
-
-[[files]]
-file = "mods/trorigins-neoforge-2.0.5-ES-Corregido.jar"
-hash = "debf1f5a1631ed7a0255b0e8c0b2994f6cabccad521dc1d38393f48e2dc6f3ec"
+file = "mods/trorigins-neoforge-2.0.5-ES-Completo.jar"
+hash = "e11cc7b2f372f042cb9ba74b7c2926e6179953ab802fb40a8346fe92947ac06b"
 
 [[files]]
 file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Corregido-FixLogin.jar"
-hash = "b21ba9516da1e00278c0233f49a3caf9ff133fcd26fd44d91a34c77186d6f215"
+hash = "da3d07215d6fbd68afcf8d51408f7766b68c5f8929873f43587a22a6dc55b1a9"
 
 [[files]]
 file = "mods/veinminer-mod.pw.toml"
@@ -1213,6 +1181,10 @@ metafile = true
 file = "mods/yungs-extras-neoforge.pw.toml"
 hash = "cd321f6365bc3938e0671450aadcd40c8e03af5cb24d0a545fb07c890b4793ac"
 metafile = true
+
+[[files]]
+file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
+hash = "e04a60500d3ee3427f3192d8d6aa0f70d88f8535c4b6d5d421733ef30ab1756d"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"

@@ -1,0 +1,47 @@
+# Revisión técnica del 2 de noviembre de 2026
+
+## Plataforma y distribución
+
+Minecraft 1.21.1, NeoForge 21.1.250 y Java 21. Packwiz selecciona **82 JAR para servidor** y **86 para cliente**. Las tres diferencias respecto del conjunto anterior de 85 JAR de servidor son BadOptimizations, Iris y Skin Layers 3D, marcados para cliente; el cliente también recibe Sodium. Sodium quedó marcado `side = "client"`.
+
+Se conservan las actualizaciones a Tensura 2.0.1.4, Ascension 3.0.1, Great Sage 0.0.7.1, EP Scaling 1.2.0 y TR Nightmares 1.0.6.1, la retirada de vehículos y la corrección de evolución de insectos.
+
+## Compatibilidad corregida
+
+- **TPA 2.1.0:** sus dos manejadores recibían el evento base `ModConfigEvent`, incluido el de descarga. El de carga intentaba leer valores después de descargar la configuración. Ahora cada manejador recibe únicamente `Loading` o `Reloading`, según corresponde.
+- **EP Scaling 1.2.0:** el lector antiguo exigía `maxEP` en los datos de equipo. Tensura 2.0.1.4 declara ese campo opcional, con valor predeterminado 2.000.000. El adaptador usa el mismo valor cuando falta el campo y respeta los valores explícitos. Se conserva el arreglo anterior de atributos y daño de armas evolucionadas.
+- **Auto updater:** los modos habituales vuelven a comprobar GitHub y usan un commit fijo para toda la descarga. La instalación local deja de tener prioridad automática; se elige expresamente con `--local`.
+- **Instalador local del cliente:** valida SHA-256 antes de cambiar archivos, identifica los mods por sus declaraciones y no por los IDs de sus dependencias, conserva Sodium y otros complementos del cliente y restaura los archivos anteriores si falla la instalación.
+
+El código de los arreglos está en `updater/patches` y el del actualizador del servidor en `updater/server`. Los JAR afectados son derivados locales.
+
+## Español y progresión
+
+Se corrigieron **164 entradas de idioma**: requisitos de maestría, etiquetas, nombres y descripciones de entrenamiento. Entre los errores corregidos estaban «Maestro %s» por «Dominar %s», ataques de luz traducidos como ataques ligeros, números romanos traducidos como pronombres y la confusión entre maestría y puntos del árbol de Great Sage.
+
+La revisión automática de las 24.085 entradas de Tensura y sus complementos comprueba claves, parámetros de formato, códigos especiales, codificación y fragmentos de inglés conocidos. Las traducciones se incluyen en `es_es`, `es_ar` y `es_mx`, además del texto de reserva del servidor.
+
+La cobertura del paquete de recursos se amplió a **37.236 claves en 58 espacios de nombres**, incluyendo las interfaces y libros de otros mods. Se conservaron las traducciones existentes y se completaron las ausentes mediante traducción asistida, con revisión de los problemas detectados y de los textos de uso. No equivale a una corrección humana de cada frase. Los actualizadores de cliente activan el paquete de idioma sin restablecer las demás opciones ni quitar los otros paquetes de recursos.
+
+[GUIA-HABILIDADES.md](GUIA-HABILIDADES.md) explica aprendizaje, maestría, EP y el árbol por separado. Los valores se contrastaron con la configuración y el código de esta instalación. Se consultó el contenido indexado de la wiki de Tensura; el acceso directo devolvió HTTP 403. Las diferencias locales, como los rangos de análisis universales y la ausencia de fallos, están señaladas expresamente.
+
+## Verificación
+
+Las pruebas se ejecutan en carpetas de mantenimiento y con una copia del mundo:
+
+- Comprobación de dependencias obligatorias y rangos Maven, incluidas bibliotecas embebidas y las reglas de compatibilidad de FML 4.0.44.
+- Arranque y cierre del servidor dedicado con los 82 mods seleccionados para servidor.
+- Conservación de los arreglos de análisis y daño de armas evolucionadas.
+- Bonificaciones reales de aprendizaje y maestría de Analista, Cocinero y Gran Sabio.
+- Lectura de un equipo de Mysticism cuyo JSON omite `maxEP`.
+- 37 transiciones de evolución de insectos, comprobando conservación de progreso y habilidades.
+- Instalación completa mediante Packwiz por HTTP, para cliente y servidor, comparación de hashes y segunda ejecución sin cambios.
+- Conservación de mundo/configuraciones en el actualizador del servidor y pruebas de integridad, conservación y restauración del instalador local.
+
+La prueba de cliente cubre descarga, dependencias y archivos; no reemplaza una prueba visual de todas las pantallas dentro de Minecraft. El detector de idioma tampoco demuestra que cada frase sea perfecta: la revisión editorial se concentró en el progreso, los requisitos y los textos problemáticos detectados.
+
+Persisten avisos de recetas o integraciones opcionales que mencionan contenido ausente, y un aviso de recompensa antigua de Elite Tensura que referencia `tensura_neb:carrion_spawn_egg`. No impiden el arranque; no se incorporaron mods adicionales ni se sustituyeron recompensas de juego sin revisar su diseño.
+
+## Actualizaciones siguientes
+
+Después de modificar archivos del pack, ejecuta `packwiz refresh`, revisa el diff y publica el commit. El índice y los hashes se generan antes de subir. No publiques mundos, copias de seguridad ni la carpeta de caché `.tensura-client-mods`. Los actualizadores de jugadores consultan `Notatum/Tensura-Pack`, rama `main`.

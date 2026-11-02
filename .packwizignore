@@ -8,3 +8,8 @@ packwiz.exe
 .nojekyll
 .gitignore
 /mods/Craftspeed*.jar
+.tensura-client-mods/
+Aplicar-Tensura-Local.ps1
+LEEME-CLIENTE.md
+updater/
+.gitattributes

@@ -1,0 +1,5 @@
+{
+  "block.echochest.echo_chest": "Cofre de eco",
+  "block.echochest.echo_chest.description": "Recoge elementos y experiencia de mobs que caen cerca en un radio de 8 cuadras.",
+  "container.echo_chest": "Cofre de eco"
+}
