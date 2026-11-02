@@ -17,8 +17,8 @@
       "sha256": "9cc92f2c09533fc5482c60f993bd891c655a0e32b637037cdcb7c2b23adedeeb"
     },
     {
-      "file": "Arco-de-Beelzebuth-neoforge-1.21.1-1.4.5.jar",
-      "sha256": "e3dc4973024527de192aee8838990c440ef9c2224c2df08d2b146f68f27c1f0b"
+      "file": "Arco-de-Beelzebuth-neoforge-1.21.1-1.4.6.jar",
+      "sha256": "d60b1405341a151f3f8a2a8259fe3f06f98cde2721835ba13d406d38feabfd1d"
     },
     {
       "file": "ars_elemental-1.21.1-0.7.10.3.jar",
@@ -81,8 +81,8 @@
       "sha256": "a34ca09ddc745273e941a6b8d51f6bb93430b41d0abeba7cd5e6c5fd6b01f61c"
     },
     {
-      "file": "EP-Dungeon-neoforge-1.21.1-1.0.32.jar",
-      "sha256": "caaa4217ed21a52aee49cabbf3b2ecfe89b0a5a928b2dc3fd3fb48785fa832be"
+      "file": "EP-Dungeon-neoforge-1.21.1-1.0.33.jar",
+      "sha256": "07aeb627c9ffe7c505c2c8654fe9dc4ef1d2804f06fd72fd44811c0c0f23158c"
     },
     {
       "file": "ferritecore-7.0.3-neoforge.jar",
@@ -185,8 +185,8 @@
       "sha256": "87a207b5bc846bd72078d86824eae65360ce03c429bcc06e0760b94e6fdf7eca"
     },
     {
-      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.0.jar",
-      "sha256": "f4fc77fd647c4cf36710444144411f4a3ce48f7791c20cfc7f835d0ecc726868"
+      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.1.jar",
+      "sha256": "df5183981e1ee659595c811a9b54f062b0a35a29ae54dcd60af6d4f6eb9f91e4"
     },
     {
       "file": "Placebo-1.21.1-9.9.2.jar",
@@ -332,5 +332,6 @@
       "file": "YungsExtras-1.21.1-NeoForge-5.1.1.jar",
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
-  ]
+  ],
+  "release": "2026.11.02.1"
 }

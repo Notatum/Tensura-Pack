@@ -13,3 +13,5 @@ Aplicar-Tensura-Local.ps1
 LEEME-CLIENTE.md
 updater/
 .gitattributes
+Actualizar-Tensura-Cliente.ps1
+*.bak

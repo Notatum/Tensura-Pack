@@ -14,7 +14,7 @@ hash = "13d3054912def2ea01335e2de3eee2eee5f0f85f01d89fc404c6315e9125c1d0"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "f86757b7af87f16db677b8e01bdafc66accba58b45b6ae87d8121c1e4a1e0d6f"
+hash = "798ffaffcc7858da7af8d81ad1682721246f50f2fbd24c38db1d7c3ba755e8a4"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -197,16 +197,8 @@ file = "config/curios-server.toml"
 hash = "3c34cf9f7918c6a9ec15b14a87aa4570a751c1688f8ac01cb2e9acfb9392a734"
 
 [[files]]
-file = "config/ep-dungeon-server-1.toml.bak"
-hash = "a1fca8907e1a05475b218289243f1d44dc55a59d5b9c3a03a9f4587e0e2df5d4"
-
-[[files]]
-file = "config/ep-dungeon-server-2.toml.bak"
-hash = "44db3e1cb62c54ba514e40faa2598e52752b4ac05aa4e24232a3abadda6ecba7"
-
-[[files]]
 file = "config/ep-dungeon-server.toml"
-hash = "db18e6c47da69fff16af4182820aabb2d55037dab5a19b216bc117be7f429057"
+hash = "00b5aa1273aa368e23dc48037aa41687d1cef9b6174f92db807f2cec8ef4c726"
 
 [[files]]
 file = "config/euphoria_patcher/.data.json"
@@ -701,10 +693,6 @@ file = "config/trender.json"
 hash = "0a282f3623f7f9443a1d10b5768865f69e58b74e000dcfb4f40399626b7a6124"
 
 [[files]]
-file = "config/waystones-common-1.toml.bak"
-hash = "05701881c858cfc4544a5aac51479784bf5b57bfa758e47d82af4c0f4264096a"
-
-[[files]]
 file = "config/waystones-common.toml"
 hash = "99c1de6197facab54513d397d27a6c7b24838f848931051737829316483f399d"
 
@@ -802,8 +790,8 @@ file = "mods/ApothicAttributes-1.21.1-2.11.0.jar"
 hash = "17c42bb6dd5c0d820fe090e1bb5959578cd5ab7b70caf98a2a59b319fcc7e1ba"
 
 [[files]]
-file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.5.jar"
-hash = "e3dc4973024527de192aee8838990c440ef9c2224c2df08d2b146f68f27c1f0b"
+file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.6.jar"
+hash = "d60b1405341a151f3f8a2a8259fe3f06f98cde2721835ba13d406d38feabfd1d"
 
 [[files]]
 file = "mods/Beelzebuth-1.21.1-1.3.7-PersistentStomach-FastBlocks5x-MistFix-ES.jar"
@@ -814,16 +802,16 @@ file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
 hash = "bb3c49ab97903127d7ec1a4d0266b7c8fae02ac5c3f0ab86b17aadb612365a19"
 
 [[files]]
-file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.32.jar"
-hash = "caaa4217ed21a52aee49cabbf3b2ecfe89b0a5a928b2dc3fd3fb48785fa832be"
+file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.33.jar"
+hash = "07aeb627c9ffe7c505c2c8654fe9dc4ef1d2804f06fd72fd44811c0c0f23158c"
 
 [[files]]
 file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
 
 [[files]]
-file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.0.jar"
-hash = "f4fc77fd647c4cf36710444144411f4a3ce48f7791c20cfc7f835d0ecc726868"
+file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.1.jar"
+hash = "df5183981e1ee659595c811a9b54f062b0a35a29ae54dcd60af6d4f6eb9f91e4"
 
 [[files]]
 file = "mods/Placebo-1.21.1-9.9.2.jar"

@@ -1,0 +1,20 @@
+[
+  {
+    "previous": "EP-Dungeon-neoforge-1.21.1-1.0.32.jar",
+    "file": "EP-Dungeon-neoforge-1.21.1-1.0.33.jar",
+    "version": "1.0.33",
+    "sha256": "07aeb627c9ffe7c505c2c8654fe9dc4ef1d2804f06fd72fd44811c0c0f23158c"
+  },
+  {
+    "previous": "Arco-de-Beelzebuth-neoforge-1.21.1-1.4.5.jar",
+    "file": "Arco-de-Beelzebuth-neoforge-1.21.1-1.4.6.jar",
+    "version": "1.4.6",
+    "sha256": "d60b1405341a151f3f8a2a8259fe3f06f98cde2721835ba13d406d38feabfd1d"
+  },
+  {
+    "previous": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.0.jar",
+    "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.1.jar",
+    "version": "1.2.1",
+    "sha256": "df5183981e1ee659595c811a9b54f062b0a35a29ae54dcd60af6d4f6eb9f91e4"
+  }
+]

@@ -2,7 +2,17 @@
 
 Para recibir novedades de GitHub, utiliza `Tensura Mods Updater - Incremental.bat` con el juego y el launcher cerrados. El actualizador obtiene el último commit y verifica los archivos del pack con Packwiz. La variante sin «Incremental» fuerza la validación del pack.
 
-Los scripts usan `%APPDATA%\.tlauncher\legacy\Minecraft\game`. Si tu instalación está en otra ubicación, cambia `BASE`, `GAME` y `LAUNCHER` en el BAT antes de usarlo.
+Los dos BAT usan `Actualizar-Tensura-Cliente.ps1`, que debe permanecer a su lado. La carpeta predeterminada es `%APPDATA%\.tlauncher\legacy\Minecraft\game`. Para otra instalación, pasa la ruta como argumento:
+
+```bat
+"Tensura Mods Updater - Incremental.bat" -GameDir "C:\ruta\a\tu\juego"
+```
+
+El modo incremental comprueba Packwiz en cada ejecución y reemplaza las carpetas que cambiaron. La variante sin «Incremental» vuelve a sincronizar todas las carpetas distribuidas. Ambos modos descargan primero a una caché y guardan lo reemplazado en `.tensura-backups` dentro de la instalación. Si falla la aplicación, restauran los archivos anteriores. `repair` también fuerza la sincronización.
+
+La actualización administra `mods`, `config`, `defaultconfigs`, `resourcepacks`, `shaderpacks`, `kubejs` y `scripts`. Los mods y las configuraciones se ajustan al pack publicado. Los paquetes de recursos y shaders personales se conservan; solo se sustituyen las versiones anteriores del paquete de español de Tensura. Las partidas, capturas y lista de servidores quedan fuera de las carpetas administradas. La selección de idioma conserva las demás preferencias de `options.txt`.
+
+Minecraft y TL Legacy deben estar cerrados. Al terminar, se abre el launcher habitual. Para comprobar la actualización sin abrirlo, añade `-NoLaunch`. También puedes indicar `-CacheDir "C:\otra\cache"`; la caché debe estar separada de la instalación.
 
 ## Aplicar el paquete local sin conexión
 

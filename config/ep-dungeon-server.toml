@@ -1,22 +1,6 @@
-#EP Dungeon: ajustes propios. No modifica las reglas globales de Tensura.
+#Ajustes de EP Dungeon. El addon también excluye Charybdis del requisito global de reinicio.
 [farming]
-	#Segundos entre refuerzos, solo con jugadores presentes.
-	# Default: 8
-	# Range: 2 ~ 600
-	spawnIntervalSeconds = 8
-	#Enemigos nuevos por refuerzo y sala.
-	# Default: 12
-	# Range: 1 ~ 64
-	mobsPerWave = 12
-	#Maximo de enemigos vivos por sala.
-	# Default: 48
-	# Range: 1 ~ 160
-	maxAlivePerArena = 48
-	#Maximo total de enemigos de la dungeon cargados.
-	# Default: 120
-	# Range: 1 ~ 320
-	maxAliveTotal = 120
-	#Multiplica el EP base de los 5 niveles: 5k, 15k, 37.5k, 75k, 150k.
+	#Multiplica el EP nominal de los cinco pisos. El ajuste posterior x0.408 deja 2040, 6120, 15300, 30600 y 61200 EP para enemigos normales con multiplicador 1.
 	# Default: 1.0
 	# Range: 0.01 ~ 100.0
 	epMultiplier = 1.0
@@ -34,8 +18,18 @@
 	# Default: 60
 	# Range: 0 ~ 10000
 	championEverySpawns = 60
-	#IDs de mobs de Tensura; deben ser entidades Mob hostiles o capaces de combatir.
-	entityPool = ["tensura:orc", "tensura:lizardman", "tensura:direwolf", "tensura:giant_bear", "tensura:black_spider", "tensura:blade_tiger", "tensura:knight_spider", "tensura:armorsaurus"]
+	#IDs de mobs de Tensura; los de ataque sonico se excluyen incluso en configs anteriores.
+	entityPool = ["tensura:orc", "tensura:lizardman", "tensura:giant_bear", "tensura:black_spider", "tensura:knight_spider", "tensura:armorsaurus"]
+
+[population]
+	#Poblacion objetivo por piso ocupado. Reemplaza los limites ignorados de farming en 1.0.23.
+	# Default: 20
+	# Range: 1 ~ 160
+	targetPerFloor = 20
+	#Maximo total de enemigos propios cargados: 100 permite 20 en cada uno de los cinco pisos.
+	# Default: 100
+	# Range: 1 ~ 800
+	maxAliveTotal = 100
 
 [performance]
 	#Bloques colocados por tick al construir una sala por primera vez.
@@ -43,6 +37,12 @@
 	# Range: 100 ~ 5000
 	blocksPerTick = 1000
 	#Pausa solo los nuevos refuerzos si el servidor supera este promedio de milisegundos por tick. Reanuda por debajo del 90%. 0 desactiva la pausa.
-	# Default: 50.0
+	# Default: 0.0
 	# Range: 0.0 ~ 1000.0
-	maxSpawnMspt = 50.0
+	pauseRefillAboveMspt = 0.0
+
+[combat]
+	#Maximo de durabilidad que pierde cada pieza de armadura por golpe dentro de la dungeon. El dano al jugador no cambia. 0 desactiva el limite.
+	# Default: 2
+	# Range: 0 ~ 1000
+	maxArmorWearPerHit = 2
