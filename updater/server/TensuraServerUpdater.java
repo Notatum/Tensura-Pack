@@ -141,14 +141,45 @@ public final class TensuraServerUpdater {
             if (Files.isSymbolicLink(live)) throw new IOException("mods/ es un enlace simbólico; se canceló el cambio");
             if (sameContents(live, candidate)) {
                 deleteTree(candidate);
+                restoreOfficialGreatSageDefaults(server, state);
                 System.out.println("[Tensura] Los mods ya están actualizados.");
                 return;
             }
             swapWithBackup(live, candidate, state.resolve("backups"));
+            restoreOfficialGreatSageDefaults(server, state);
             System.out.println("[Tensura] Mods actualizados. Mundo y configuraciones conservados.");
         } catch (OverlappingFileLockException ex) {
             throw new IOException("Otro actualizador ya está ejecutándose", ex);
         }
+    }
+
+    private static void restoreOfficialGreatSageDefaults(Path server, Path state) throws Exception {
+        String official = "0858b617197f1c71d6abce85973a0240cf2745250a3dae33bf0369498bea7061";
+        Path mod = server.resolve("mods/greatsage-0.0.7.1.jar");
+        Path marker = state.resolve("greatsage-vanilla-rBHjJbyA-1.done");
+        if (Files.exists(marker) || !Files.isRegularFile(mod)
+                || !java.util.HexFormat.of().formatHex(digest(mod)).equals(official)) return;
+        Path backup = state.resolve("greatsage-vanilla-original-config-backup");
+        List<Path> saved = new ArrayList<>();
+        for (String name : List.of("greatsage-common.toml", "greatsage-client.toml")) {
+            Path file = server.resolve("config").resolve(name);
+            if (!Files.exists(file)) continue;
+            if (!file.toRealPath().startsWith(server.toRealPath())) throw new IOException("La configuración de Great Sage apunta fuera del servidor");
+            Files.createDirectories(backup);
+            Files.copy(file, backup.resolve(name), StandardCopyOption.REPLACE_EXISTING);
+            saved.add(file);
+        }
+        Path pending = marker.resolveSibling(marker.getFileName() + ".new");
+        try {
+            for (Path file : saved) Files.delete(file);
+            Files.writeString(pending, "Official Great Sage rBHjJbyA\nSHA256=" + official + "\n");
+            move(pending, marker);
+        } catch (IOException error) {
+            for (Path file : saved) Files.copy(backup.resolve(file.getFileName()), file, StandardCopyOption.REPLACE_EXISTING);
+            Files.deleteIfExists(pending);
+            throw error;
+        }
+        System.out.println("[Tensura] Great Sage original: ajustes anteriores respaldados; el mod generará sus valores originales al iniciar.");
     }
 
     private static String javaExecutable() {

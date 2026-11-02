@@ -1,0 +1,13 @@
+name = "Great Sage - Tensura Reincarnated Addon"
+filename = "greatsage-0.0.7.1.jar"
+side = "both"
+pin = true
+
+[download]
+url = "https://cdn.modrinth.com/data/roJlZcNx/versions/rBHjJbyA/greatsage-0.0.7.1.jar"
+hash-format = "sha512"
+hash = "11fcc3459c7c037e0b1381ccef64b77e56aa85addfc841f168cdb961fe9117a05a4edb5df237543552196cd5875d031dcf3a90130d48482d5ea2d890f39bd6a3"
+
+[update.modrinth]
+mod-id = "roJlZcNx"
+version = "rBHjJbyA"

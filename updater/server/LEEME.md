@@ -23,3 +23,5 @@ Este actualizador administra `mods`. Conserva el mundo, las configuraciones y la
 La selección para servidor excluye los mods marcados solo para cliente. Además se filtran Sodium y los antiguos vehículos; los vehículos se identifican por el ID declarado en el JAR.
 
 El código fuente está en `TensuraServerUpdater.java`. Se compila con `javac -encoding UTF-8` y se empaqueta con `TensuraServerUpdater` como clase principal. La revisión se comprobó con Packwiz real, un mundo de prueba, una segunda ejecución sin cambios y una caché alterada intencionalmente.
+
+Desde la revisión 2026.11.02.5, al instalar el Great Sage original de Modrinth se respaldan sus dos archivos de configuración anteriores una sola vez. El mod regenera sus valores originales en el siguiente inicio; los ajustes posteriores se conservan. La copia anterior queda en `.tensura-updater/greatsage-vanilla-original-config-backup`. El mundo y sus reglas no se modifican.

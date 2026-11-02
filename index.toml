@@ -6,15 +6,15 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "7500817baffed56f0423cd621a6b971e6a0443b509c58a16efecb2468c25d3bd"
+hash = "55c9dd31b8edeca662362f7a2905ec48aecf9e792d7d0e75ceeb8494bf2cae96"
 
 [[files]]
 file = "README.md"
-hash = "9d8283a2c27d1b0fc78e27ffaa12bc01650ab359536328ff81b2b8ad0b959a71"
+hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "84ff4b3c02c6ebd0591d78e8af55232ef00c326406f8d0c99e4f5e270aa4cba9"
+hash = "87a2bfc07bf3edd733f84f9edd42ddcab7b7035e5ae0f0889dd2b6e9610e7c19"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -223,14 +223,6 @@ hash = "29af1d3110dd9d9a7759747df01b02a925fe55c90550498c683a4163dcd04cbf"
 [[files]]
 file = "config/forgeconfigapiport.toml"
 hash = "647ad92f7bdc5e0ccef37d6e7386b08f2a19715b77742202f2f9048fb14e0dec"
-
-[[files]]
-file = "config/greatsage-client.toml"
-hash = "10e2bf2bae2eb8838fe26827f9805f4f8946ea42a97f8816d5bd8b9e7fbad054"
-
-[[files]]
-file = "config/greatsage-common.toml"
-hash = "fe782e6d508f4b3c0a1f01a2ddd5833a59f0043be4f9cd7f4ea176bf8ea15cef"
 
 [[files]]
 file = "config/immediatelyfast.json"
@@ -953,8 +945,9 @@ hash = "4cf7eb494f48576e28895ee5f362878f95c6bad65372666106140fdae82d0c4c"
 metafile = true
 
 [[files]]
-file = "mods/greatsage-0.0.7.1.jar"
-hash = "ef48b12c2882bf62f158f85ca6d5b94d85718b7d1a50d7174d08252868cec5ca"
+file = "mods/great-sage.pw.toml"
+hash = "104d98dd1ba5e8773920c48ea19eb4717a35f559aa5e38cf2aa71efc999b3d77"
+metafile = true
 
 [[files]]
 file = "mods/handcrafted.pw.toml"
@@ -1185,7 +1178,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "c89fe36b8a2e9151526df4fcd5788f861aa958ed36d1c7f0dd5f1ce286b10b55"
+hash = "9aba558e5168b1c6d980ca76b496b6f46a99870e9005a7ddc470944da663be04"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"

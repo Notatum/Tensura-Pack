@@ -55,7 +55,7 @@ Los siguientes valores están comprobados en el código y en `config/tensura/abi
 
 Tener la habilidad en la lista no equivale a tener su pasiva activada. Las bonificaciones de atributos de Analista, Cocinero y Gran Sabio se suman mientras estén activadas. Por ejemplo, Gran Sabio convierte una ganancia base de maestría de 1 en 10, antes de otros modificadores; en aprendizaje sigue existiendo la bonificación aleatoria configurada.
 
-**El acceso universal al panel de análisis de este pack no te concede automáticamente la habilidad Gran Sabio ni su bonificación de +9.** Para obtener esa bonificación debes tener y activar la habilidad.
+**Great Sage se distribuye en su versión oficial, sin el acceso universal del pack.** Su menú, análisis y comentarios espontáneos respetan los requisitos originales de Gran Sabio o su evolución reconocida. Para obtener la bonificación de +9 del mod base debes tener y activar la habilidad correspondiente.
 
 ## Copiar habilidades con Beelzebuth
 
@@ -87,8 +87,8 @@ Para el análisis, `analysisTicks = 1200` equivale a un minuto base a 20 TPS. Co
 - **Concentración** aumenta la capacidad total de análisis y permite completarlos más rápido.
 - **Hilos** permite más análisis simultáneos. Comparten esa capacidad: abrir más tareas no multiplica la velocidad total.
 - No puedes utilizar una habilidad mientras está siendo analizada.
-- Los rangos de análisis están habilitados para todos en esta revisión. Los nodos de rango no son necesarios para abrir ese acceso.
-- La probabilidad de fallo de análisis está fijada en **cero**. Por eso los nodos **Precisión** y **Segunda mirada** no aportan una ventaja con esta configuración. Eso no elimina el costo, los tiempos ni las demás restricciones del análisis.
+- Los rangos de análisis se desbloquean mediante los nodos originales del árbol; se retiró el parche que los habilitaba gratuitamente para todos.
+- La configuración original establece una probabilidad base de fallo del análisis del **25 %**. **Precisión** reduce esa posibilidad y **Segunda mirada** puede recuperar parte del coste. Se conservan las condiciones y los valores que establezca el autor.
 
 ## Si una habilidad parece no subir
 
@@ -98,4 +98,4 @@ Comprueba, en este orden: si la barra es de aprendizaje o maestría; si elegiste
 
 La mecánica general se contrastó con [Ability Usage, en la wiki de Tensura](https://tensura.wiki.gg/wiki/Mechanics/Ability_Usage) y [Great Sage, en la wiki](https://tensura.wiki.gg/wiki/Great_Sage). La consulta directa de la wiki devolvió HTTP 403; se pudo consultar su contenido indexado. Los números específicos de esta guía se comprobaron también en la configuración y en el código de los JAR instalados.
 
-La página de Gran Sabio describe la habilidad del mod base. El árbol, sus puntos, los hilos y la probabilidad de fallo de análisis configurada aquí pertenecen al complemento. Esta guía explica ambas cosas por separado para que sus requisitos no se mezclen.
+La página de Gran Sabio describe la habilidad del mod base. El árbol, sus puntos, los hilos y el análisis pertenecen al [complemento oficial Great Sage](https://modrinth.com/mod/great-sage), que se distribuye sin modificaciones. Los comentarios de compañía requieren la habilidad; los anuncios de adquisición y de la Voz del Mundo conservan el comportamiento original del complemento.

@@ -1,4 +1,4 @@
-# Cliente de Tensura — revisión 2026.11.02.4
+# Cliente de Tensura — revisión 2026.11.02.5
 
 Descargá [TensuraLauncher-Portable.zip](https://github.com/Notatum/Tensura-Pack/raw/refs/heads/main/updater/launcher/TensuraLauncher-Portable.zip), extraelo en una carpeta propia y abrí **TensuraLauncher.exe**. Elegí tu nombre de jugador, asigná memoria y pulsá **JUGAR**. El launcher comprueba la publicación de GitHub, sincroniza el pack y abre Minecraft directamente con Java.
 
@@ -22,6 +22,8 @@ Requiere Windows 10/11 de 64 bits, PowerShell 5.1 y .NET Framework 4.8. No hace 
 El EXE y el motor del launcher también reciben actualizaciones. Cada preparación usa una publicación concreta de GitHub para evitar mezclar versiones. Las descargas de motor, mods, shaders y recursos se verifican antes de usarse.
 
 El pack administra las carpetas mods, config, defaultconfigs, resourcepacks, shaderpacks, kubejs y scripts. Conserva las partidas, capturas, servidores y opciones personales ajenas a la política. Los reemplazos del pack tienen respaldo en **game\.tensura-backups**. Los recursos y shaders personales adicionales se conservan.
+
+**Great Sage usa el JAR original de Modrinth, sin parches ni traducciones externas.** La primera actualización a esta revisión respalda sus ajustes anteriores y deja que el mod regenere sus valores originales. En las siguientes actualizaciones se conservan los archivos de configuración que genere Great Sage. El acceso a sus funciones y comentarios vuelve a respetar los requisitos del autor.
 
 **Complementary Unbound es obligatorio.** El cliente mantiene ComplementaryUnbound_r5.3.zip seleccionado y activado. También mantiene Español (Argentina) y el paquete de traducciones de Tensura. El complemento administrado aplica la política al cargar, guardar o cambiar Iris.
 

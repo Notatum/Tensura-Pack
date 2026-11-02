@@ -35,9 +35,9 @@ public final class InsectEvolutionVerification {
             "divine_preying_mantis","divine_loxodrome_scorpion","divine_singularity_scorpion","divine_army_wasp","divine_queen_wasp","trorigins:insect_dragon");
         try {
             var probeAccess=FakePlayerFactory.get(server.overworld(),new GameProfile(UUID.randomUUID(),"VerifyAnalysis"));
-            if(!(Boolean)Class.forName("dev.dedek.greatsage.GreatSageGameRules").getMethod("access",net.minecraft.world.entity.LivingEntity.class).invoke(null,probeAccess)) throw new IllegalStateException("Universal analysis access was lost");
-            if(!(Boolean)Class.forName("dev.dedek.greatsage.server.SageProgress").getMethod("rankAllowed",net.minecraft.server.level.ServerPlayer.class,String.class).invoke(null,probeAccess,"ultimate")) throw new IllegalStateException("Universal analysis ranks were lost");
-            System.out.println("[INSECT-VERIFY] PASS retained Great Sage analysis access and ultimate rank");
+            if((Boolean)Class.forName("dev.dedek.greatsage.GreatSageGameRules").getMethod("access",net.minecraft.world.entity.LivingEntity.class).invoke(null,probeAccess)) throw new IllegalStateException("Original Great Sage skill requirement was bypassed");
+            if((Boolean)Class.forName("dev.dedek.greatsage.server.SageProgress").getMethod("rankAllowed",net.minecraft.server.level.ServerPlayer.class,String.class).invoke(null,probeAccess,"ultimate")) throw new IllegalStateException("Ultimate analysis rank was unlocked for free");
+            System.out.println("[INSECT-VERIFY] PASS original Great Sage skill requirement and locked ultimate rank");
             var sourceItem=Items.IRON_SWORD.getDefaultInstance();var destination=Items.DIAMOND_SWORD.getDefaultInstance();
             var sourceAttributes=sourceItem.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS,ItemAttributeModifiers.EMPTY);
             var destinationAttributes=destination.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS,ItemAttributeModifiers.EMPTY);

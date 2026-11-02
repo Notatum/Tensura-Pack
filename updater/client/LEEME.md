@@ -29,6 +29,8 @@ El modo incremental también restaura la política cuando el pack publicado no c
 
 Los respaldos quedan en `.tensura-backups` dentro del juego. Se conservan las partidas, capturas, lista de servidores y opciones ajenas a la política. La configuración del pack se sincroniza con el repositorio. Los recursos y shaders personales adicionales se conservan, aunque Iris mantiene seleccionado el shader obligatorio.
 
+Great Sage se descarga directamente de Modrinth y se verifica contra su hash oficial. La migración `greatSageVanillaRevision` respalda y retira una sola vez los ajustes del pack para regenerar los valores originales. Después, `greatsage-common.toml` y `greatsage-client.toml` se conservan también en modo estricto. El paquete de español excluye el namespace de Great Sage, que utiliza las traducciones originales incluidas por el autor.
+
 ## Comprobaciones realizadas
 
 El updater pasó instalación, repetición sin reemplazos, modo estricto, restauración tras un fallo provocado, reparación de cachés de mods y shaders, instalación de perfil y migración desde la versión publicada anterior. Un arranque directo con Java en un mundo aislado verificó el renderizado real de Unbound y el bloqueo de cambios mediante Iris y su API. El complemento de verificación usado en esa prueba no se distribuye a los jugadores.

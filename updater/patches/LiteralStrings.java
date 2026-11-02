@@ -15,7 +15,7 @@ public final class LiteralStrings {
             try(ZipFile zip=new ZipFile(path.toFile())){
                 var meta=zip.getEntry("META-INF/neoforge.mods.toml");if(meta==null)continue;
                 String text=new String(zip.getInputStream(meta).readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);
-                if(!text.matches("(?s).*modId\\s*=\\s*\"(?:tensura[^\"]*|trorigins|mysticism|ascension|greatsage|trnightmare|trstarlight|ancient_artifacts|nightmareutils|elitetensura|beelzebuth[^\"]*|devouring_orb|epdungeon)\".*"))continue;
+                if(!text.matches("(?s).*modId\\s*=\\s*\"(?:tensura[^\"]*|trorigins|mysticism|ascension|trnightmare|trstarlight|ancient_artifacts|nightmareutils|elitetensura|beelzebuth[^\"]*|devouring_orb|epdungeon)\".*"))continue;
                 var enumeration=zip.entries();while(enumeration.hasMoreElements()){
                     var e=enumeration.nextElement();byte[] data=zip.getInputStream(e).readAllBytes();
                     if(e.getName().endsWith(".class")){

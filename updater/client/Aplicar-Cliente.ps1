@@ -53,6 +53,12 @@ function Desired-Hashes([string]$Folder) {
             if (!$result.ContainsKey($key) -and $key -notlike 'Tensura-Espanol-*.zip') { $result[$key]=$local[$key] }
         }
     }
+    if ($Folder -eq 'config' -and $preserveGreatSageConfig) {
+        foreach ($name in @('greatsage-common.toml','greatsage-client.toml')) {
+            $file=Join-Path $gameRoot ('config\'+$name)
+            if (Test-Path -LiteralPath $file -PathType Leaf) { $result[$name]=(Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash }
+        }
+    }
     return $result
 }
 function Matches-Hashes([hashtable]$Expected, [string]$Path) {
@@ -197,6 +203,20 @@ try {
     # Packwiz checks the cache every run and downloads only missing or changed files.
     Run-Java @('-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-jar',$bootstrap,'--bootstrap-no-update','-g','-s','client',$PackUrl) $stage
     Check-ModCache $false
+    $engineRelease=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'release.json') -Raw -Encoding UTF8 | ConvertFrom-Json
+    $greatSageVanillaRevision=''
+    $preserveGreatSageConfig=$false
+    if ($engineRelease.vanillaGreatSage) {
+        $greatSageVanillaRevision=[string]$engineRelease.vanillaGreatSage.revision
+        $sageName=[string]$engineRelease.vanillaGreatSage.file
+        if (!$expectedMods.ContainsKey($sageName) -or $expectedMods[$sageName] -ne $engineRelease.vanillaGreatSage.sha256) { throw 'Great Sage no coincide con la publicación original requerida.' }
+        $previousState=Join-Path $gameRoot '.tensura-client-release.json'
+        if (Test-Path -LiteralPath $previousState) {
+            $previous=Get-Content -LiteralPath $previousState -Raw -Encoding UTF8 | ConvertFrom-Json
+            $preserveGreatSageConfig=$previous.greatSageVanillaRevision -eq $greatSageVanillaRevision
+        }
+        if (!$preserveGreatSageConfig) { Write-Host '[Tensura] Se respaldarán los ajustes anteriores de Great Sage para regenerar los valores originales del autor.' }
+    }
     $policy=Get-Content -LiteralPath (Join-Path $stage 'config\tensura-managed-client.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     $stageShader=Assert-Child (Join-Path $stage ('shaderpacks\'+$policy.shaderPack)) $stage
     if (!(Test-Path -LiteralPath $stageShader) -or (Get-FileHash -LiteralPath $stageShader -Algorithm SHA256).Hash -ne $policy.shaderSha256) {
@@ -220,7 +240,7 @@ try {
     foreach ($folder in $changes) {
         $source = Join-Path $stage $folder
         if (Test-Path -LiteralPath $source) { Copy-Item -LiteralPath $source -Destination (Join-Path $work $folder) -Recurse }
-        if ($folder -in @('resourcepacks','shaderpacks')) {
+        if (($folder -in @('resourcepacks','shaderpacks')) -or ($folder -eq 'config' -and $preserveGreatSageConfig)) {
             foreach ($key in $desired[$folder].Keys) {
                 $preparedFile = Assert-Child (Join-Path (Join-Path $work $folder) $key) $work
                 if (!(Test-Path -LiteralPath $preparedFile)) {
@@ -252,6 +272,7 @@ try {
     $managedPolicy=& (Join-Path $PSScriptRoot 'Preparar-Runtime.ps1') -GameDir $gameRoot -CacheDir $cacheRoot -Java $java -Template (Join-Path $PSScriptRoot 'perfil-tensura.json') -ReleaseManifest (Join-Path $PSScriptRoot 'release.json')
     $stateFile = Join-Path $gameRoot '.tensura-client-release.json'; Save-File $stateFile
     $state = @{ release=$release; modCount=@(Get-ChildItem -LiteralPath (Join-Path $gameRoot 'mods') -Filter '*.jar' -File).Count; backup=$backup; mode=$Mode; profile=$managedPolicy.profile; mandatoryShaders=$managedPolicy.mandatoryShaders; shaderPack=$managedPolicy.shaderPack; managedEngine=$true }
+    if ($greatSageVanillaRevision) { $state.greatSageVanillaRevision=$greatSageVanillaRevision }
     [IO.File]::WriteAllText($stateFile,($state | ConvertTo-Json),[Text.UTF8Encoding]::new($false))
     [IO.File]::WriteAllText((Join-Path $cacheRoot 'pack.commit'),$release,[Text.UTF8Encoding]::new($false))
     $synchronizing = $false
