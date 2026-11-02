@@ -14,5 +14,5 @@ for file,main in [(BASE/'RetiredContentMigration.jar','RetiredContentMigration')
             info=zipfile.ZipInfo(name,(2026,11,2,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;jar.writestr(info,data)
     print(file.name,hashlib.sha256(file.read_bytes()).hexdigest())
 release=PACK/'updater/client/release.json';manifest=json.loads(release.read_text(encoding='utf-8'))
-manifest['retiredContentMigration']={'revision':'nightmare-retired-v1','path':'updater/shared/RetiredContentMigration.jar','sha256':hashlib.sha256((BASE/'RetiredContentMigration.jar').read_bytes()).hexdigest()}
+manifest['retiredContentMigration']={'revision':'nightmare-retired-v2','path':'updater/shared/RetiredContentMigration.jar','sha256':hashlib.sha256((BASE/'RetiredContentMigration.jar').read_bytes()).hexdigest()}
 release.write_bytes((json.dumps(manifest,ensure_ascii=False,indent=2)+'\n').encode())

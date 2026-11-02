@@ -9,7 +9,7 @@ import java.util.zip.*;
 
 /** Offline, transactional removal of retired registry entries. No Minecraft classes required. */
 public final class RetiredContentMigration {
-    private static final String MARKER=".tensura-nightmare-retired-v1";
+    private static final String MARKER=".tensura-nightmare-retired-v2";
     private static final int LIMIT=64*1024*1024;
     private record Tag(int type,Object value) {}
     private record Tags(int type,List<Tag> values) {}
@@ -59,6 +59,8 @@ public final class RetiredContentMigration {
         if(tag.type==10) {
             Map<String,Tag> data=compound(tag);
             for(String field:List.of("id","Id","skill","ability","manascore_registry_storage_id"))
+                if(retired(string(data,field))) { replacements++;return null; }
+            for(String field:List.of("dimension","dimension_key","destination_dimension","target_dimension"))
                 if(retired(string(data,field))) { replacements++;return null; }
             Tag nested=data.get("item");
             if(nested!=null && nested.type==10 && retired(string(compound(nested),"id"))) { replacements++;return null; }
@@ -140,7 +142,7 @@ public final class RetiredContentMigration {
             int type=in.readUnsignedByte();name=in.readUTF();root=read(in,type,0);
             if(type!=10) throw new IOException("Raíz NBT inválida");
         }
-        clean(root,"",spawn);
+        if(clean(root,"",spawn)==null) return null;
         if(before==replacements) return bytes;
         ByteArrayOutputStream result=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(result);
         out.writeByte(root.type);out.writeUTF(name);write(out,root);out.flush();return compress(result.toByteArray(),compression);
@@ -160,6 +162,7 @@ public final class RetiredContentMigration {
             int compression=input[offset+4]&255;
             // External/LZ4 chunks are rejected before any original file changes.
             byte[] data=nbt(Arrays.copyOfRange(input,offset+5,offset+4+length),compression,spawn);
+            if(data==null) throw new IOException("La raíz del chunk no tiene el formato de una región");
             int sectors=(data.length+5+4095)/4096;
             if(sectors>255) throw new IOException("El chunk requiere almacenamiento externo");
             h.putInt(slot*4,((output.size()/4096)<<8)|sectors);
@@ -261,6 +264,7 @@ public final class RetiredContentMigration {
                     for(Path file:files.filter(Files::isRegularFile).toList()) {
                         Path relative=world.relativize(file);String name=file.getFileName().toString();
                         if(relative.toString().startsWith("dimensions"+File.separator+"trnightmare") || relative.toString().startsWith("dimensions"+File.separator+"nightmareutils") || relative.toString().contains(".tensura")) continue;
+                        if(retiredKey(name) && (name.endsWith(".dat") || name.endsWith(".dat_old"))) {stage(plan,file,null);continue;}
                         boolean json=name.endsWith(".json") && (relative.startsWith("advancements") || relative.startsWith("stats"));
                         if(!(name.endsWith(".mca") || name.endsWith(".dat") || name.endsWith(".dat_old") || json)) continue;
                         child(root,file);byte[] before=Files.readAllBytes(file),after;
@@ -269,7 +273,7 @@ public final class RetiredContentMigration {
                         if(!Arrays.equals(before,after)) stage(plan,file,after);
                     }
                 }
-                stage(plan,world.resolve(MARKER),("Nightmare retired v1\n"+LocalDateTime.now()+"\nBackup="+backup+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                stage(plan,world.resolve(MARKER),("Nightmare retired v2\n"+LocalDateTime.now()+"\nBackup="+backup+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
             } finally {if(lock!=null) lock.close();if(channel!=null) channel.close();}
         }
         for(String config:List.of("config/nightmare","config/nightmareutils","defaultconfigs/nightmare","defaultconfigs/nightmareutils")) retireTree(plan,root.resolve(config));

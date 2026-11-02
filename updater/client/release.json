@@ -40,8 +40,8 @@
     "sha256": "0858b617197f1c71d6abce85973a0240cf2745250a3dae33bf0369498bea7061"
   },
   "retiredContentMigration": {
-    "revision": "nightmare-retired-v1",
+    "revision": "nightmare-retired-v2",
     "path": "updater/shared/RetiredContentMigration.jar",
-    "sha256": "43aceb214b9139319705954c8242208dc234433b6f9f2b950724097d868f0d87"
+    "sha256": "f423061d1191213f0046a79d920d993cd6e934595cc9dbf1bf533514727f4ace"
   }
 }
