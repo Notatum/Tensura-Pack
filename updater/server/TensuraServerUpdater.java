@@ -158,7 +158,9 @@ public final class TensuraServerUpdater {
                 } catch (Exception restore) { error.addSuppressed(restore); }
                 throw error;
             }
-            System.out.println("[Tensura] Mods verificados. Progreso conservado; contenido de Nightmare retirado con respaldo.");
+            System.out.println(retireNightmare
+                ? "[Tensura] Mods verificados. Progreso conservado; contenido de Nightmare retirado con respaldo."
+                : "[Tensura] Mods verificados. Nightmare instalado; datos y progreso conservados.");
         } catch (OverlappingFileLockException ex) {
             throw new IOException("Otro actualizador ya está ejecutándose", ex);
         }

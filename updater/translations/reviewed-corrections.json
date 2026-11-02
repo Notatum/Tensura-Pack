@@ -1,4 +1,22 @@
 {
+  "trnightmare": {
+    "trnightmare.cosmetic.adjust.open": "Ajustar posición",
+    "trnightmare.cosmetic.adjust.close": "Terminar ajuste",
+    "trnightmare.cosmetic.adjust.reset": "Restablecer",
+    "trnightmare.cosmetic.adjust.hint": "Mayús: pasos más grandes",
+    "trnightmare.cosmetic.adjust.help": "Ajusta la posición y el tamaño para adaptarlos a tu skin. Mantén Mayús al hacer clic para usar pasos más grandes.",
+    "trnightmare.cosmetic.adjust.axis.x": "Posición horizontal",
+    "trnightmare.cosmetic.adjust.axis.yaw": "Giro horizontal",
+    "trnightmare.cosmetic.adjust.axis.roll": "Giro lateral",
+    "trnightmare.cosmetic.scales.face.title": "Ajuste de escamas faciales",
+    "trnightmare.cosmetic.scales.face.eye_y": "Posición vertical de los ojos",
+    "trnightmare.cosmetic.scales.face.mouth_y": "Posición vertical de la boca",
+    "trnightmare.cosmetic.scales.face.mouth_w": "Ancho de la boca",
+    "trnightmare.cosmetic.scales.face.right_x": "Posición horizontal de la mejilla derecha",
+    "trnightmare.cosmetic.scales.face.left_x": "Posición horizontal de la mejilla izquierda",
+    "trnightmare.cosmetic.scales.face.auto_failed": "No se pudieron detectar los ojos de tu skin. Ajusta su posición manualmente.",
+    "cosmetic.section.axolotl": "Ajolote"
+  },
   "tensura": {
     "gamerule.category.race": "Razas",
     "gamerule.hardcoreRace": "Raza en modo extremo",

@@ -128,6 +128,11 @@ function Check-ModCache([bool]$Repair) {
         }
     }
 }
+
+function Should-RetireNightmare([object]$EngineRelease, [hashtable]$ExpectedMods) {
+    # The release must explicitly request retirement and its verified mod set must omit Nightmare.
+    return [bool]$EngineRelease.retiredContentMigration -and @($ExpectedMods.Keys | Where-Object { $_ -like 'trnightmare-*.jar' }).Count -eq 0
+}
 function Find-Java21 {
     $candidates=@()
     $command=Get-Command java.exe -ErrorAction SilentlyContinue
@@ -241,7 +246,7 @@ try {
     $backup = Assert-Child (Join-Path $gameRoot ('.tensura-backups\'+$stamp)) $gameRoot
     $work = Assert-Child (Join-Path $gameRoot ('.tensura-update-work\'+$stamp)) $gameRoot
     New-Item -ItemType Directory -Path $backup,$work -Force | Out-Null
-    if ($engineRelease.retiredContentMigration) {
+    if (Should-RetireNightmare $engineRelease $expectedMods) {
         $migration=$engineRelease.retiredContentMigration
         if ($migration.path -ne 'updater/shared/RetiredContentMigration.jar' -or $migration.sha256 -notmatch '^[a-f0-9]{64}$') { throw 'La migración publicada no es válida.' }
         $retiredHelper=Join-Path $cacheRoot ('migration-'+$migration.sha256+'.jar')

@@ -173,6 +173,10 @@
       "sha256": "6116e6ee7202c95335fcb008f4df1c7ef6a315269555b1422353f8796a58ca2c"
     },
     {
+      "file": "nightmareutils-0.1.2.jar",
+      "sha256": "27601cb96871cd3bb93b10e5dbeb29aacce44b7588dc5c5f2f1b4f108a6e3907"
+    },
+    {
       "file": "NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar",
       "sha256": "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
     },
@@ -181,8 +185,8 @@
       "sha256": "87a207b5bc846bd72078d86824eae65360ce03c429bcc06e0760b94e6fdf7eca"
     },
     {
-      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.0.jar",
-      "sha256": "89edcf240baaadf4ab2870d2f7331240efb441feff8af17cef3bbbd50374162e"
+      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.1.jar",
+      "sha256": "9fff0064d34f2d590f27cbe5e7fd9d30ac31a7b1bff4e614b9044972f77dd979"
     },
     {
       "file": "Placebo-1.21.1-9.9.2.jar",
@@ -265,8 +269,16 @@
       "sha256": "edb34c388fe17ea88d0a7fd11174bbf8ae8f28a4c8ce886f1bf9a5cf0ebc36b8"
     },
     {
+      "file": "TextAnimator-1.21.1-NeoForge-3.2.3.jar",
+      "sha256": "fee59166ca0328d3acf9548beaa123ca096cbebbe88c0a50251cfa86ac18d7b0"
+    },
+    {
       "file": "tpa-neoforge-1.21.1-2.1.0.jar",
       "sha256": "c9b5dde44743cb52ee3387c57f77ff69342e02bfbb6991bf256133c54fae923b"
+    },
+    {
+      "file": "trnightmare-1.0.6.1-neoforge-1.21.1.jar",
+      "sha256": "7be16ab59637fe35052cedbeddcbff7142ffc769de10983868e560336a9ed212"
     },
     {
       "file": "trorigins-neoforge-2.0.5-ES-Completo.jar",

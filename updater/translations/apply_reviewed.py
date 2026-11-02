@@ -18,7 +18,7 @@ changes=[];translated={}
 tokens=lambda text:re.findall(r'%(?:\d+\$)?[sdifegcSbBoOxXhHaAtTn%]',text)
 for file in sorted(BASE.glob('*/es_es.json')):
     namespace=file.parent.name
-    if namespace in {'greatsage','trnightmare','nightmareutils','textanimator'}:continue
+    if namespace=='greatsage':continue
     values=json.loads(file.read_text(encoding='utf-8'));updated=dict(values)
     for key,new in reviewed.get(namespace,{}).items():
         if key not in values:raise ValueError(f'Unknown reviewed key: {namespace}/{key}')
@@ -29,7 +29,7 @@ for file in sorted(BASE.glob('*/es_es.json')):
         text=re.sub(r'\bmagiculas\b','magículas',text);text=re.sub(r'\bMagiculas\b','Magículas',text)
         if re.search(r'\brace[s]?\b',source,re.I):
             for a,b in [('carreras','razas'),('Carreras','Razas'),('carrera','raza'),('Carrera','Raza')]:text=re.sub(r'\b'+a+r'\b',b,text)
-        if namespace in {'tensura','openpartiesandclaims','xaeroworldmap'} and re.search(r'\bplayer\b',source,re.I):
+        if namespace in {'tensura','openpartiesandclaims','xaeroworldmap','trnightmare','nightmareutils'} and re.search(r'\bplayer\b',source,re.I):
             text=re.sub(r'\breproductor\b','jugador',text);text=re.sub(r'\bReproductor\b','Jugador',text)
         if re.search(r'\bslime\b',source,re.I):
             text=re.sub(r'\blimo\b','slime',text);text=re.sub(r'\bLimo\b','Slime',text)
@@ -43,7 +43,7 @@ for file in sorted(BASE.glob('*/es_es.json')):
     if updated!=values:file.write_bytes((json.dumps(updated,ensure_ascii=False,indent=2)+'\n').encode('utf-8'))
     translated[namespace]=updated
 
-retired={'trnightmare','nightmareutils','textanimator'}
+retired={n for n in {'trnightmare','nightmareutils','textanimator'} if n not in translated}
 def patch_archive(file,resource_pack=False):
     with zipfile.ZipFile(file) as source:
         entries=[];changed=False

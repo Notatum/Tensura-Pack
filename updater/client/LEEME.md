@@ -35,4 +35,6 @@ Desde 2026.11.02.6 se retiran TR: Nightmare, NightmareUtils y TextAnimator. El m
 
 ## Comprobaciones realizadas
 
+La publicación 2026.11.02.7 restaura Nightmare y sus dependencias, con 87 mods de cliente. Su política de retirada está desactivada y el motor tampoco la ejecuta si el manifiesto verificado incluye Nightmare, aunque quedase una política antigua. Se conservan los mundos en su estado actual. El orbe 1.3.1 admite nombres de audio de hasta 255 caracteres; la carpeta personal `orbe_audio` queda fuera de las carpetas reemplazadas por el updater.
+
 El updater pasó instalación, repetición sin reemplazos, modo estricto, restauración tras un fallo provocado, reparación de cachés de mods y shaders, instalación de perfil y migración desde la versión publicada anterior. Un arranque directo con Java en un mundo aislado verificó el renderizado real de Unbound y el bloqueo de cambios mediante Iris y su API. El complemento de verificación usado en esa prueba no se distribuye a los jugadores.

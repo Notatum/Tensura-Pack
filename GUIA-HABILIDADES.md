@@ -108,7 +108,9 @@ Empieza con 5 de daño base y cada evolución añade otros 5. La décima forma, 
 
 Las habilidades definitivas de Ascension usan sus propios límites; su códice indica 100 puntos de maestría, a diferencia de los valores generales de Tensura. Los niveles del Sistema y los puntos de maestría también son indicadores distintos. Lee el requisito específico de cada habilidad y el detalle del Altar del Despertar en el códice: además de dominar la habilidad única, exige poder y condiciones adicionales. La meditación del códice puede reducir el aura máxima de forma permanente; no es un gasto de energía que se regenere.
 
-TR: Nightmare, NightmareUtils y sus habilidades ya no forman parte del pack. La actualización migra sus datos con respaldo, conservando la progresión de los demás mods.
+TR: Nightmare y NightmareUtils vuelven al pack desde 2026.11.02.7. El menú de cosméticos se abre con K por defecto; las opciones disponibles dependen de la raza, el clan y las habilidades. Se conserva el estado actual de los personajes y se mantienen los respaldos anteriores.
+
+El Orbe 1.3.1 conserva la misma fórmula de daño. Su menú de audio permite nombres de archivo de hasta 255 caracteres: coloca la música en `orbe_audio/musica` de la instalación activa, entra en Parlante y pulsa Actualizar. Selecciona el archivo y pulsa Reproducir. El botón vuelve a leer la carpeta sin reiniciar el juego.
 
 ### Fuentes
 

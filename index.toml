@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "2811a17426a10c0b7fb66ddf4424f7490ca11f746eaba2adfe3b82ca771bf08b"
+hash = "56d5500d11f3da39734d5b93988b2864efa936e5fa7c79a9c105c6420f4befd4"
 
 [[files]]
 file = "README.md"
@@ -14,7 +14,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "aef9baab0dd5a94c4ca289868557bc51aa52dea9a1b3a6c3549c33e89daf2b19"
+hash = "daed68c64800c6391e2b40e4b970bac1fee8b0cbc29c3c367f66b6e312bf691e"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -810,8 +810,8 @@ file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
 
 [[files]]
-file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.0.jar"
-hash = "89edcf240baaadf4ab2870d2f7331240efb441feff8af17cef3bbbd50374162e"
+file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.1.jar"
+hash = "9fff0064d34f2d590f27cbe5e7fd9d30ac31a7b1bff4e614b9044972f77dd979"
 
 [[files]]
 file = "mods/Placebo-1.21.1-9.9.2.jar"
@@ -836,6 +836,10 @@ hash = "38a686ddf5f194cf2f6cf0447942555ff7e45d57d88714a611907cef5d3bc3f1"
 [[files]]
 file = "mods/TensuraSlimeBait-neoforge-1.21.1-1.4.0.jar"
 hash = "7da662b94820ee3b0843a3015a0072b5722d64d9e2c55f2e852d1873ee44c59e"
+
+[[files]]
+file = "mods/TextAnimator-1.21.1-NeoForge-3.2.3.jar"
+hash = "fee59166ca0328d3acf9548beaa123ca096cbebbe88c0a50251cfa86ac18d7b0"
 
 [[files]]
 file = "mods/VillagerDwarfFortress-neoforge-1.21.1-1.0.0.jar"
@@ -1017,6 +1021,10 @@ hash = "fe7676aaa4477604116c00c3a4d17f49c48fa853fbfab08fe743b6496dc834e9"
 metafile = true
 
 [[files]]
+file = "mods/nightmareutils-0.1.2.jar"
+hash = "27601cb96871cd3bb93b10e5dbeb29aacce44b7588dc5c5f2f1b4f108a6e3907"
+
+[[files]]
 file = "mods/open-parties-and-claims.pw.toml"
 hash = "365e4a170765f0db88454b1138652df66f51bd42b18b8eee1786ea48ed8b324e"
 metafile = true
@@ -1107,6 +1115,10 @@ file = "mods/tpa-neoforge-1.21.1-2.1.0.jar"
 hash = "c9b5dde44743cb52ee3387c57f77ff69342e02bfbb6991bf256133c54fae923b"
 
 [[files]]
+file = "mods/trnightmare-1.0.6.1-neoforge-1.21.1.jar"
+hash = "7be16ab59637fe35052cedbeddcbff7142ffc769de10983868e560336a9ed212"
+
+[[files]]
 file = "mods/trorigins-neoforge-2.0.5-ES-Completo.jar"
 hash = "ff201c1daa2208addf94e698c3902142244125f7d2bb73052739990d38e331df"
 
@@ -1166,7 +1178,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "591a015a747407e62d192790729a17b238c2557fa72d67c9147cdde646e7da72"
+hash = "8ee8260f9f6ee8b9293ce4497cb157a9619a9c78ea3d136feb88b5dbb7d678b8"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"
