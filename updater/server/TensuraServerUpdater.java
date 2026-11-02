@@ -49,6 +49,7 @@ public final class TensuraServerUpdater {
             }
         } catch (Exception ex) {
             System.err.println("[Tensura] ERROR: " + ex.getMessage());
+            if (ex.getCause() != null) System.err.println("[Tensura] Causa: " + ex.getCause());
             System.exit(1);
         }
     }
@@ -307,8 +308,25 @@ public final class TensuraServerUpdater {
     }
 
     private static void move(Path from, Path to) throws IOException {
-        try { Files.move(from, to, StandardCopyOption.ATOMIC_MOVE); }
-        catch (AtomicMoveNotSupportedException ex) { Files.move(from, to); }
+        // Windows scanners can briefly hold newly copied JARs open.
+        // Retry the same rename; never replace an existing destination.
+        IOException failure = null;
+        for (int attempt = 0; attempt < 10; attempt++) {
+            if (Files.exists(to, LinkOption.NOFOLLOW_LINKS)) throw new IOException("La ruta de destino ya existe: " + to);
+            try {
+                try { Files.move(from, to, StandardCopyOption.ATOMIC_MOVE); }
+                catch (AtomicMoveNotSupportedException ex) { Files.move(from, to); }
+                return;
+            } catch (java.nio.file.FileSystemException ex) {
+                failure = ex;
+                try { Thread.sleep(100L + attempt * 50L); }
+                catch (InterruptedException interrupted) {
+                    Thread.currentThread().interrupt();
+                    throw new IOException("Actualización interrumpida al mover " + from, interrupted);
+                }
+            }
+        }
+        throw failure;
     }
 
     private static void pruneBackups(Path backups) throws IOException {
