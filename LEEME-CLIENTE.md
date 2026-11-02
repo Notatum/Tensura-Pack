@@ -1,4 +1,4 @@
-# Cliente de Tensura — revisión 2026.11.02.3
+# Cliente de Tensura — revisión 2026.11.02.4
 
 Descargá [TensuraLauncher-Portable.zip](https://github.com/Notatum/Tensura-Pack/raw/refs/heads/main/updater/launcher/TensuraLauncher-Portable.zip), extraelo en una carpeta propia y abrí **TensuraLauncher.exe**. Elegí tu nombre de jugador, asigná memoria y pulsá **JUGAR**. El launcher comprueba la publicación de GitHub, sincroniza el pack y abre Minecraft directamente con Java.
 

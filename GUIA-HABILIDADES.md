@@ -57,6 +57,18 @@ Tener la habilidad en la lista no equivale a tener su pasiva activada. Las bonif
 
 **El acceso universal al panel de análisis de este pack no te concede automáticamente la habilidad Gran Sabio ni su bonificación de +9.** Para obtener esa bonificación debes tener y activar la habilidad.
 
+## Copiar habilidades con Beelzebuth
+
+Esta explicación corresponde a **Beelzebuth, Señor de la Gula**, la habilidad definitiva propia del pack con ID `beelzebuth:beelzebuth`.
+
+Seleccioná **Depredación Abisal** y mantené pulsada la tecla de la habilidad mientras el objetivo esté delante tuyo, dentro del cono de **25 bloques**. Las habilidades que el objetivo ya tiene adquiridas se incorporan en un único tick del servidor, junto con su maestría y el progreso de sus modos. Incluye resistencias, intrínsecas, comunes, extras, únicas y definitivas. Si tu maestría era mayor, se conserva.
+
+Podés volver a copiar al mismo objetivo cuando aprenda algo nuevo. Cada jugador recibe su propia copia, sin quitar habilidades al objetivo. Las habilidades nuevas tienen sus tiempos de reutilización limpios; las condiciones particulares para activar sus efectos siguen aplicándose. Los estómagos y los objetos guardados son personales y se conservan.
+
+Las adquisiciones nuevas generan los avisos de la **Voz del Mundo de Great Sage**. El cliente agrupa los avisos durante aproximadamente medio segundo y los presenta en secuencia; las habilidades ya están copiadas mientras se reproducen. Repetir la depredación sin novedades no repite los anuncios.
+
+La política actual copia las habilidades **ya aprendidas por el objetivo**. Si vos tenías una de ellas en gris, pasa a estar aprendida de inmediato. Las habilidades que el propio objetivo todavía tiene en aprendizaje quedan sujetas a la política publicada `config/beelzebuth-copy.json`; por defecto no se desbloquean mediante esta copia. Una habilidad temporal conserva la duración restante del objetivo.
+
 ## El árbol del complemento Great Sage
 
 El complemento tiene su propio nivel y sus propios puntos. Su código registra, antes de multiplicadores configurables, estas recompensas base:

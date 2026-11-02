@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.02.3",
+  "version": "2026.11.02.4",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",

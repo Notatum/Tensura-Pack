@@ -1,6 +1,6 @@
 # Tensura Pack
 
-Minecraft **1.21.1**, NeoForge **21.1.250** y Java **21**. Revisión **2026.11.02.3**.
+Minecraft **1.21.1**, NeoForge **21.1.250** y Java **21**. Revisión **2026.11.02.4**.
 
 ## Actualizar el cliente
 

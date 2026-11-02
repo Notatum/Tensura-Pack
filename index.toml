@@ -6,15 +6,15 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "d2388c081f3836c58b6b11a82d2dfc35d6d8be69586720884eb123616741fe88"
+hash = "7500817baffed56f0423cd621a6b971e6a0443b509c58a16efecb2468c25d3bd"
 
 [[files]]
 file = "README.md"
-hash = "c252165f433ff137fa004cd24c16b68a77f09ae80618d64c9314cac450de3cce"
+hash = "9d8283a2c27d1b0fc78e27ffaa12bc01650ab359536328ff81b2b8ad0b959a71"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "871f9c2c3e6c80e8d6ba2e0be62d590ef31ceedee4f79372615de4d8c72150f5"
+hash = "84ff4b3c02c6ebd0591d78e8af55232ef00c326406f8d0c99e4f5e270aa4cba9"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -135,6 +135,10 @@ hash = "684344646db2384c1d7c6ba38df990860f29d09e766be8c9908a9b8d8614c660"
 [[files]]
 file = "config/ancient_artifacts/main_config.toml"
 hash = "bb19ed64b3dbf5ee7454570269e9770fb5b83d273c4ad1e177405b380b76aa58"
+
+[[files]]
+file = "config/beelzebuth-copy.json"
+hash = "323a4c043891cd5886262fca792e9f37ccc0f0c7cd6f774c93bc3121341359be"
 
 [[files]]
 file = "config/betterdungeons-neoforge-1_21.toml"
@@ -798,8 +802,8 @@ file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.6.jar"
 hash = "d60b1405341a151f3f8a2a8259fe3f06f98cde2721835ba13d406d38feabfd1d"
 
 [[files]]
-file = "mods/Beelzebuth-1.21.1-1.3.7-PersistentStomach-FastBlocks5x-MistFix-ES.jar"
-hash = "28f47dac07d56ff0b3ba5153d628fcad7468d31168ef31c92ff539832f3653b8"
+file = "mods/Beelzebuth-1.21.1-1.3.8-InstantCopy-WorldVoice-ES.jar"
+hash = "1388667ede5a74c458bb6c2fb16e19cf3e33b33f7e1708cd6f26274a4638fde3"
 
 [[files]]
 file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
@@ -1181,7 +1185,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "e04a60500d3ee3427f3192d8d6aa0f70d88f8535c4b6d5d421733ef30ab1756d"
+hash = "c89fe36b8a2e9151526df4fcd5788f861aa958ed36d1c7f0dd5f1ce286b10b55"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"
