@@ -96,6 +96,22 @@ Comprueba, en este orden: si la barra es de aprendizaje o maestría; si elegiste
 
 ## Referencias y diferencias de este pack
 
+### Orbe de Beelzebuth: daño y EP propios
+
+Los EP guardados en el orbe pertenecen al arma y son distintos de los EP del personaje. En la versión 1.3.0 su daño por enemigo y pulso es:
+
+`daño = 5 × (1 + evoluciones alcanzadas) + EP del orbe × 0,00001`
+
+Empieza con 5 de daño base y cada evolución añade otros 5. La décima forma, tras nueve evoluciones, tiene 50 de base. Cada millón de EP aporta 10 de daño adicional, también después de la última evolución. Por ejemplo, la forma final con 10 millones de EP causa 150 de daño antes de las defensas del objetivo; al añadirle otros 10 millones pasa a 250. El tooltip distingue daño base, aporte de EP y daño total. No se ha cambiado el radio, la cadencia ni el porcentaje de EP recibido por bajas.
+
+### Requisitos de Ascension
+
+Las habilidades definitivas de Ascension usan sus propios límites; su códice indica 100 puntos de maestría, a diferencia de los valores generales de Tensura. Los niveles del Sistema y los puntos de maestría también son indicadores distintos. Lee el requisito específico de cada habilidad y el detalle del Altar del Despertar en el códice: además de dominar la habilidad única, exige poder y condiciones adicionales. La meditación del códice puede reducir el aura máxima de forma permanente; no es un gasto de energía que se regenere.
+
+TR: Nightmare, NightmareUtils y sus habilidades ya no forman parte del pack. La actualización migra sus datos con respaldo, conservando la progresión de los demás mods.
+
+### Fuentes
+
 La mecánica general se contrastó con [Ability Usage, en la wiki de Tensura](https://tensura.wiki.gg/wiki/Mechanics/Ability_Usage) y [Great Sage, en la wiki](https://tensura.wiki.gg/wiki/Great_Sage). La consulta directa de la wiki devolvió HTTP 403; se pudo consultar su contenido indexado. Los números específicos de esta guía se comprobaron también en la configuración y en el código de los JAR instalados.
 
 La página de Gran Sabio describe la habilidad del mod base. El árbol, sus puntos, los hilos y el análisis pertenecen al [complemento oficial Great Sage](https://modrinth.com/mod/great-sage), que se distribuye sin modificaciones. Los comentarios de compañía requieren la habilidad; los anuncios de adquisición y de la Voz del Mundo conservan el comportamiento original del complemento.

@@ -72,7 +72,25 @@ public final class CustomModsVerification {
             for(int i=0;i<ot.length;i++) {
                 points(orb,"DevouringOrb",BigDecimal.valueOf(ot[i]).toPlainString(),2);
                 check((Integer)call(op,"stage",new Class[]{ItemStack.class},orb)==i,"Orb evolution threshold "+i);
+                BigDecimal expected=BigDecimal.valueOf(5L*(i+1)).add(BigDecimal.valueOf(ot[i]).multiply(new BigDecimal("0.00001")));
+                check(expected.compareTo((BigDecimal)call("ar.juan.devouringorb.OrbDamage","exact",new Class[]{ItemStack.class},orb))==0,"Orb base increases by exactly five at evolution "+i);
             }
+            for(String ep:List.of("10000000","1000000000","1000000000000","1E900")) {
+                BigDecimal before=new BigDecimal(ep);
+                points(orb,"DevouringOrb",before.toPlainString(),2);
+                BigDecimal oldDamage=(BigDecimal)call("ar.juan.devouringorb.OrbDamage","exact",new Class[]{ItemStack.class},orb);
+                points(orb,"DevouringOrb",before.add(new BigDecimal("10000000")).toPlainString(),2);
+                BigDecimal newDamage=(BigDecimal)call("ar.juan.devouringorb.OrbDamage","exact",new Class[]{ItemStack.class},orb);
+                check(newDamage.subtract(oldDamage).compareTo(new BigDecimal("100"))==0,"Ten million new EP always adds 100 damage, including "+ep+" saved EP");
+            }
+            points(orb,"DevouringOrb","0",2);
+            check((Double)call("ar.juan.devouringorb.OrbDamage","damage",new Class[]{ItemStack.class},orb)==5.0,"Fresh orb deals five base damage");
+            CustomData.update(DataComponents.CUSTOM_DATA,orb,root->root.getCompound("DevouringOrb").putInt("legacy_stage",9));
+            check((Double)call("ar.juan.devouringorb.OrbDamage","damage",new Class[]{ItemStack.class},orb)==50.0,"Saved legacy evolution contributes its full base damage");
+            points(orb,"DevouringOrb","0.75",2);
+            check(((BigDecimal)call("ar.juan.devouringorb.OrbDamage","exact",new Class[]{ItemStack.class},orb)).compareTo(new BigDecimal("5.0000075"))==0,"Fractional food EP contributes proportionally without rounding stored damage");
+            check(!BuiltInRegistries.ITEM.keySet().stream().anyMatch(k->k.getNamespace().equals("trnightmare")),"Nightmare items are absent");
+            check(server.levelKeys().stream().noneMatch(k->k.location().getNamespace().equals("trnightmare")),"Nightmare dimensions are absent");
             points(orb,"DevouringOrb","123456.75",2);
             call(op,"ensureId",new Class[]{ItemStack.class},orb);
             ItemStack restored=ItemStack.parseOptional(server.registryAccess(),(CompoundTag)orb.save(server.registryAccess()));
@@ -172,6 +190,15 @@ public final class CustomModsVerification {
             var playerDrops=new net.neoforged.neoforge.event.entity.living.LivingDropsEvent(dungeonPlayer,dungeon.damageSources().generic(),new ArrayList<>(),false);
             NeoForge.EVENT_BUS.post(playerDrops);check(!playerDrops.isCanceled(),"Dungeon does not block player death belongings");
             check(DungeonConfig.CAP.get()==20&&DungeonConfig.GLOBAL_CAP.get()==100&&DungeonConfig.MAX_SPAWN_MSPT.get()==0.0,"Current population and performance keys load correctly");
+            String migrated=System.getProperty("tensura.migration.player","");
+            if(!migrated.isBlank()) {
+                var saved=net.minecraft.nbt.NbtIo.readCompressed(java.nio.file.Path.of(migrated),net.minecraft.nbt.NbtAccounter.unlimitedHeap());
+                var restoredPlayer=FakePlayerFactory.get(level,new GameProfile(UUID.randomUUID(),"MigratedPlayer"));
+                restoredPlayer.load(saved);
+                var race=io.github.manasmods.manascore.race.api.RaceAPI.getRaceFrom(restoredPlayer).getRace().orElseThrow();
+                check(race.getRace()==io.github.manasmods.manascore.race.api.RaceAPI.getRaceRegistry().get(id("tensura:slime")),"Migrated real player loads as the base Tensura slime");
+                check(io.github.manasmods.tensura.storage.TensuraStorages.getExistenceFrom(restoredPlayer).getMagicule()>0,"Migrated real player retains magicules");
+            }
             System.out.println("[CUSTOM-REVIEW] RESULT passed="+passed+" findings="+findings+" errors=0");
         } catch(Throwable error) {
             error.printStackTrace();System.out.println("[CUSTOM-REVIEW] RESULT errors=1");

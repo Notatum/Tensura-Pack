@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.02.5",
+  "version": "2026.11.02.6",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",
@@ -13,7 +13,7 @@
     {
       "name": "Aplicar-Cliente.ps1",
       "path": "updater/client/Aplicar-Cliente.ps1",
-      "sha256": "ee147a39ed32c8d974e848827168db26928b9b9a21db726ea6e6637e22d48c80"
+      "sha256": "ed1c263b29086e8f16b6a651a188c718b9fcac726f8f9cbb72822f6abbe67c4d"
     },
     {
       "name": "Preparar-Runtime.ps1",
@@ -38,5 +38,10 @@
     "revision": "rBHjJbyA-official-1",
     "file": "greatsage-0.0.7.1.jar",
     "sha256": "0858b617197f1c71d6abce85973a0240cf2745250a3dae33bf0369498bea7061"
+  },
+  "retiredContentMigration": {
+    "revision": "nightmare-retired-v1",
+    "path": "updater/shared/RetiredContentMigration.jar",
+    "sha256": "43aceb214b9139319705954c8242208dc234433b6f9f2b950724097d868f0d87"
   }
 }

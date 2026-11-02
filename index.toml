@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "55c9dd31b8edeca662362f7a2905ec48aecf9e792d7d0e75ceeb8494bf2cae96"
+hash = "2811a17426a10c0b7fb66ddf4424f7490ca11f746eaba2adfe3b82ca771bf08b"
 
 [[files]]
 file = "README.md"
@@ -14,7 +14,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "87a2bfc07bf3edd733f84f9edd42ddcab7b7035e5ae0f0889dd2b6e9610e7c19"
+hash = "aef9baab0dd5a94c4ca289868557bc51aa52dea9a1b3a6c3549c33e89daf2b19"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -787,15 +787,15 @@ hash = "a0d5336f6c198b92a4d1d0c1401123414f34fa543dbf43f8c374a788c5292c65"
 
 [[files]]
 file = "mods/ApothicAttributes-1.21.1-2.11.0.jar"
-hash = "17c42bb6dd5c0d820fe090e1bb5959578cd5ab7b70caf98a2a59b319fcc7e1ba"
+hash = "321115953b687728b835fcf44d24d3940f981332c6cf0d58bd94429e2650398f"
 
 [[files]]
 file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.6.jar"
-hash = "d60b1405341a151f3f8a2a8259fe3f06f98cde2721835ba13d406d38feabfd1d"
+hash = "9ac27d6713166e87a157b4e42f00753c12a0b127fd8d532ddc7b5520ac148c68"
 
 [[files]]
 file = "mods/Beelzebuth-1.21.1-1.3.8-InstantCopy-WorldVoice-ES.jar"
-hash = "1388667ede5a74c458bb6c2fb16e19cf3e33b33f7e1708cd6f26274a4638fde3"
+hash = "f1b240478b55482b02f4280861fcf538270ab79cd18e6e64d35c4fb19afb4bfc"
 
 [[files]]
 file = "mods/Dwarf24x7-neoforge-1.21.1-1.0.1.jar"
@@ -810,8 +810,8 @@ file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
 hash = "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
 
 [[files]]
-file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.2.1.jar"
-hash = "df5183981e1ee659595c811a9b54f062b0a35a29ae54dcd60af6d4f6eb9f91e4"
+file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.0.jar"
+hash = "89edcf240baaadf4ab2870d2f7331240efb441feff8af17cef3bbbd50374162e"
 
 [[files]]
 file = "mods/Placebo-1.21.1-9.9.2.jar"
@@ -838,10 +838,6 @@ file = "mods/TensuraSlimeBait-neoforge-1.21.1-1.4.0.jar"
 hash = "7da662b94820ee3b0843a3015a0072b5722d64d9e2c55f2e852d1873ee44c59e"
 
 [[files]]
-file = "mods/TextAnimator-1.21.1-NeoForge-3.2.3.jar"
-hash = "fee59166ca0328d3acf9548beaa123ca096cbebbe88c0a50251cfa86ac18d7b0"
-
-[[files]]
 file = "mods/VillagerDwarfFortress-neoforge-1.21.1-1.0.0.jar"
 hash = "03511dca023ad6e5dde99b7520d65d5a1dd1e6c131025e8a2d169fac40635974"
 
@@ -852,15 +848,15 @@ metafile = true
 
 [[files]]
 file = "mods/ars_elemental-1.21.1-0.7.10.3.jar"
-hash = "85dd29a711f2ae8b18ca33167e32136b3b1b608950f3dc5dd14f8d01aa20ec51"
+hash = "0a286bcecb14ee7de12d8faeb74985659ec69e6351744e69cbcd260bd134b38d"
 
 [[files]]
 file = "mods/ars_nouveau-1.21.1-5.13.2.jar"
-hash = "787b5e2ed6b0e5004285b27ab6c51f8b43edab6cb44c6eccf09452c4b3870dce"
+hash = "a7c6cb09f8440a86109f6007f20b5c108a4c7a10430b340ab7def56eb4799a6e"
 
 [[files]]
 file = "mods/ascension-3.0.1.jar"
-hash = "38fa1bc33135678d78db02098dfc5aed8f0a5605df5ee1822d64a83488327457"
+hash = "776089f951757af3b1882837f994d9ad0a23ff21ac4ad05e4faf7b4b0db8bf60"
 
 [[files]]
 file = "mods/badoptimizations.pw.toml"
@@ -879,7 +875,7 @@ metafile = true
 
 [[files]]
 file = "mods/chat_heads-0.15.7-neoforge-1.21.jar"
-hash = "02e10437ceeed34e14e0efe206204658e4b8aa8ee7df10f2a9e28ac20f1b0391"
+hash = "3f85b4fe5cfc5bb17fea81fbb1474e2b0a57ded468fef5dc6c68774e8047a045"
 
 [[files]]
 file = "mods/chunkreloader-3.0.0.jar"
@@ -912,7 +908,7 @@ metafile = true
 
 [[files]]
 file = "mods/elitetensura-1.0.2.1-V4-ES-sin-Beelzebuth-sin-Overlay.jar"
-hash = "a34ca09ddc745273e941a6b8d51f6bb93430b41d0abeba7cd5e6c5fd6b01f61c"
+hash = "964ba8f4760b29d18802597775c7eddefa331c84203072e5d85dd7b91043681d"
 
 [[files]]
 file = "mods/ferrite-core.pw.toml"
@@ -995,7 +991,7 @@ hash = "cc961af6a77391628378c1c838e521415fa895062b13def493d27234ca527f3e"
 
 [[files]]
 file = "mods/malum-1.21.1-1.8.2.jar"
-hash = "38f4fa53e8da9e3d67aa5f54f98fd7c83cb342f0463ce5c63a6864229c88efa8"
+hash = "382a897cf4193e8d41d2967f5dd989feb928f7fcb7dd546398f648bb1fb76d40"
 
 [[files]]
 file = "mods/manascore-neoforge-4.0.0.2.jar"
@@ -1013,16 +1009,12 @@ metafile = true
 
 [[files]]
 file = "mods/mysticism-neoforge-2.2.1-ES-Corregido-FixRaceInit.jar"
-hash = "4d75887f2f0a419f9892a42ab9a49c31116aef4de3f6fdee3edefb943613dcbe"
+hash = "9ce06a11f37ba30c85180f564d65bafc79304aa309df47e65255fd3784150e21"
 
 [[files]]
 file = "mods/neat.pw.toml"
 hash = "fe7676aaa4477604116c00c3a4d17f49c48fa853fbfab08fe743b6496dc834e9"
 metafile = true
-
-[[files]]
-file = "mods/nightmareutils-0.1.2.jar"
-hash = "f6930574e824909424aa950ea7b7042fa035d202c05610abde7f73a7ed020ec8"
 
 [[files]]
 file = "mods/open-parties-and-claims.pw.toml"
@@ -1095,7 +1087,7 @@ metafile = true
 
 [[files]]
 file = "mods/tensura-neoforge-2.0.1.4.jar"
-hash = "f8e59fa0be39677a8a4d23d050bb47dbbc083e7eefc284d85b752c5b2d4da769"
+hash = "92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79"
 
 [[files]]
 file = "mods/tensura_trepu-1.0.0.2.jar"
@@ -1115,12 +1107,8 @@ file = "mods/tpa-neoforge-1.21.1-2.1.0.jar"
 hash = "c9b5dde44743cb52ee3387c57f77ff69342e02bfbb6991bf256133c54fae923b"
 
 [[files]]
-file = "mods/trnightmare-1.0.6.1-neoforge-1.21.1.jar"
-hash = "0fae9b6f563406a12c0f9bf7f05450be8395ab594a73a739b7cced99c5ffcf55"
-
-[[files]]
 file = "mods/trorigins-neoforge-2.0.5-ES-Completo.jar"
-hash = "e11cc7b2f372f042cb9ba74b7c2926e6179953ab802fb40a8346fe92947ac06b"
+hash = "ff201c1daa2208addf94e698c3902142244125f7d2bb73052739990d38e331df"
 
 [[files]]
 file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Corregido-FixLogin.jar"
@@ -1178,7 +1166,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "9aba558e5168b1c6d980ca76b496b6f46a99870e9005a7ddc470944da663be04"
+hash = "591a015a747407e62d192790729a17b238c2557fa72d67c9147cdde646e7da72"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"

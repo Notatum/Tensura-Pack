@@ -44,6 +44,7 @@ with zipfile.ZipFile(original) as source,zipfile.ZipFile(output,'w',zipfile.ZIP_
             text=re.sub(r'(?m)^version="1\.3\.7"','version="1.3.8"',text,count=1)
             text=text.replace('- El robo evita los mensajes y requisitos de adquisición UNLOCK_SKILL de cada habilidad para que los conjuntos grandes de resistencias no se transfieran una por una.',
                 '- La copia conserva el tipo de instancia, la maestría y el progreso de modos, con disponibilidad en el mismo tick y sincronización por lote.\n- La copia admite a varios jugadores contra el mismo objetivo sin una espera compartida.\n- Las nuevas habilidades se anuncian mediante la Voz del Mundo de Great Sage, sin volver a cobrar costes de adquisición.\n- Los inventarios privados, los objetivos activos y los tiempos de reutilización del otro jugador no se transfieren.')
+            text=text.replace('- Se corrigió la compatibilidad de PredatorMist con el renderizado de TR: Nightmare/Azathoth; el parche de velocidad ×5 ya no reemplaza el método heredado getSkill().','- PredatorMist conserva el método getSkill() de su clase base; el parche de velocidad ×5 respeta la identidad de la habilidad.')
             data=text.encode()
         if entry.filename.startswith('assets/beelzebuth/lang/es_') and entry.filename.endswith('.json'):
             values=json.loads(data.decode('utf-8-sig'));values.update(translations)

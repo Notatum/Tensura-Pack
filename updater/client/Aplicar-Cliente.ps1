@@ -21,6 +21,9 @@ $installed = [Collections.Generic.List[string]]::new()
 $savedFiles = [Collections.Generic.List[object]]::new()
 $touchedFiles = [Collections.Generic.List[string]]::new()
 $synchronizing = $false
+$retiredApplied = $false
+$retiredBackup = $null
+$retiredHelper = $null
 
 function Assert-Child([string]$Path, [string]$Root) {
     $resolved = [IO.Path]::GetFullPath($Path).TrimEnd('\')
@@ -77,6 +80,7 @@ function Move-Directory([string]$Source, [string]$Destination) {
     }
 }
 function Run-Java([string[]]$Arguments, [string]$Directory) {
+    $Arguments=@('-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8')+$Arguments
     foreach ($argument in $Arguments) { if ($argument.Contains('"')) { throw 'Argumento Java no válido.' } }
     $info = [Diagnostics.ProcessStartInfo]::new()
     $info.FileName = $java
@@ -89,10 +93,10 @@ function Run-Java([string[]]$Arguments, [string]$Directory) {
     try {
         [void]$process.Start()
         $stdout = $process.StandardOutput.ReadToEndAsync(); $stderr = $process.StandardError.ReadToEndAsync()
-        if (!$process.WaitForExit(420000)) { $process.Kill(); throw 'Se agotó el tiempo de espera de Packwiz.' }
+        if (!$process.WaitForExit(420000)) { $process.Kill(); throw 'Se agotó el tiempo de espera de la herramienta de actualización.' }
         $output = $stdout.GetAwaiter().GetResult() + $stderr.GetAwaiter().GetResult()
         if ($output) { Write-Host $output.TrimEnd() }
-        if ($process.ExitCode -ne 0) { throw "Packwiz terminó con código $($process.ExitCode)." }
+        if ($process.ExitCode -ne 0) { throw "La herramienta de actualización terminó con código $($process.ExitCode)." }
     } finally { $process.Dispose() }
 }
 function Save-File([string]$Path) {
@@ -237,6 +241,18 @@ try {
     $backup = Assert-Child (Join-Path $gameRoot ('.tensura-backups\'+$stamp)) $gameRoot
     $work = Assert-Child (Join-Path $gameRoot ('.tensura-update-work\'+$stamp)) $gameRoot
     New-Item -ItemType Directory -Path $backup,$work -Force | Out-Null
+    if ($engineRelease.retiredContentMigration) {
+        $migration=$engineRelease.retiredContentMigration
+        if ($migration.path -ne 'updater/shared/RetiredContentMigration.jar' -or $migration.sha256 -notmatch '^[a-f0-9]{64}$') { throw 'La migración publicada no es válida.' }
+        $retiredHelper=Join-Path $cacheRoot ('migration-'+$migration.sha256+'.jar')
+        if (!(Test-Path -LiteralPath $retiredHelper) -or (Get-FileHash -LiteralPath $retiredHelper -Algorithm SHA256).Hash -ne $migration.sha256) {
+            Invoke-WebRequest -UseBasicParsing -Uri ([uri]::new([uri]$PackUrl,$migration.path)) -OutFile ($retiredHelper+'.download')
+            if ((Get-FileHash -LiteralPath ($retiredHelper+'.download') -Algorithm SHA256).Hash -ne $migration.sha256) { throw 'La descarga de la migración está alterada.' }
+            Move-Item -LiteralPath ($retiredHelper+'.download') -Destination $retiredHelper -Force
+        }
+        $retiredBackup=Join-Path $backup 'retired-content'
+        Run-Java @('-jar',$retiredHelper,'prepare-client',$gameRoot,$retiredBackup) $gameRoot
+    }
     foreach ($folder in $changes) {
         $source = Join-Path $stage $folder
         if (Test-Path -LiteralPath $source) { Copy-Item -LiteralPath $source -Destination (Join-Path $work $folder) -Recurse }
@@ -270,6 +286,7 @@ try {
     foreach ($folder in $folders) { if (!(Matches-Hashes $desired[$folder] (Join-Path $gameRoot $folder))) { throw "La verificación final no coincide para $folder" } }
     Save-File (Join-Path $gameRoot 'launcher_profiles.json')
     $managedPolicy=& (Join-Path $PSScriptRoot 'Preparar-Runtime.ps1') -GameDir $gameRoot -CacheDir $cacheRoot -Java $java -Template (Join-Path $PSScriptRoot 'perfil-tensura.json') -ReleaseManifest (Join-Path $PSScriptRoot 'release.json')
+    if ($retiredHelper) { Run-Java @('-jar',$retiredHelper,'apply',$gameRoot,$retiredBackup) $gameRoot; $retiredApplied=$true }
     $stateFile = Join-Path $gameRoot '.tensura-client-release.json'; Save-File $stateFile
     $state = @{ release=$release; modCount=@(Get-ChildItem -LiteralPath (Join-Path $gameRoot 'mods') -Filter '*.jar' -File).Count; backup=$backup; mode=$Mode; profile=$managedPolicy.profile; mandatoryShaders=$managedPolicy.mandatoryShaders; shaderPack=$managedPolicy.shaderPack; managedEngine=$true }
     if ($greatSageVanillaRevision) { $state.greatSageVanillaRevision=$greatSageVanillaRevision }
@@ -286,6 +303,7 @@ try {
     $failure = $_
     if ($synchronizing) {
         try {
+            if ($retiredApplied) { Run-Java @('-jar',$retiredHelper,'rollback',$gameRoot,$retiredBackup) $gameRoot }
             foreach ($path in $installed) { $safe=Assert-Child $path $gameRoot; if (Test-Path -LiteralPath $safe) { Remove-Item -LiteralPath $safe -Recurse -Force } }
             foreach ($entry in $moved) { Move-Directory $entry.Saved $entry.Original }
             foreach ($path in $touchedFiles) { $safe=Assert-Child $path $gameRoot; if (Test-Path -LiteralPath $safe -PathType Leaf) { Remove-Item -LiteralPath $safe -Force } }

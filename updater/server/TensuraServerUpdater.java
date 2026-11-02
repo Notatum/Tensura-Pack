@@ -139,15 +139,26 @@ public final class TensuraServerUpdater {
 
             Path live = server.resolve("mods");
             if (Files.isSymbolicLink(live)) throw new IOException("mods/ es un enlace simbólico; se canceló el cambio");
-            if (sameContents(live, candidate)) {
-                deleteTree(candidate);
-                restoreOfficialGreatSageDefaults(server, state);
-                System.out.println("[Tensura] Los mods ya están actualizados.");
-                return;
+            Path migration = state.resolve("backups/nightmare-" + STAMP.format(LocalDateTime.now()) + "-" + UUID.randomUUID().toString().substring(0,8));
+            boolean retireNightmare;
+            try (Stream<Path> jars=Files.list(candidate)) {
+                retireNightmare=jars.noneMatch(p->p.getFileName().toString().toLowerCase(Locale.ROOT).startsWith("trnightmare-"));
             }
-            swapWithBackup(live, candidate, state.resolve("backups"));
-            restoreOfficialGreatSageDefaults(server, state);
-            System.out.println("[Tensura] Mods actualizados. Mundo y configuraciones conservados.");
+            if (retireNightmare) RetiredContentMigration.prepare(server, migration, false);
+            Path previous=null;
+            try {
+                if (retireNightmare) RetiredContentMigration.apply(server, migration);
+                if (sameContents(live,candidate)) { deleteTree(candidate); System.out.println("[Tensura] Los mods ya están actualizados."); }
+                else previous=swapWithBackup(live, candidate, state.resolve("backups"));
+                restoreOfficialGreatSageDefaults(server, state);
+            } catch (Exception error) {
+                try {
+                    if (previous!=null) { move(live,state.resolve("failed-mods-"+UUID.randomUUID())); move(previous,live); }
+                    if (retireNightmare) RetiredContentMigration.rollback(server,migration);
+                } catch (Exception restore) { error.addSuppressed(restore); }
+                throw error;
+            }
+            System.out.println("[Tensura] Mods verificados. Progreso conservado; contenido de Nightmare retirado con respaldo.");
         } catch (OverlappingFileLockException ex) {
             throw new IOException("Otro actualizador ya está ejecutándose", ex);
         }
@@ -358,7 +369,7 @@ public final class TensuraServerUpdater {
         return sha.digest();
     }
 
-    private static void swapWithBackup(Path live, Path candidate, Path backups) throws IOException {
+    private static Path swapWithBackup(Path live, Path candidate, Path backups) throws IOException {
         Files.createDirectories(backups);
         Path backup = backups.resolve("mods-" + STAMP.format(LocalDateTime.now())
             + "-" + UUID.randomUUID().toString().substring(0, 8));
@@ -376,6 +387,7 @@ public final class TensuraServerUpdater {
         if (hadLive) System.out.println("[Tensura] Copia anterior: " + backup);
         try { pruneBackups(backups); }
         catch (IOException ex) { System.err.println("[Tensura] No se pudieron limpiar copias antiguas: " + ex); }
+        return hadLive?backup:null;
     }
 
     private static void move(Path from, Path to) throws IOException {

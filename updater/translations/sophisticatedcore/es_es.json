@@ -310,7 +310,7 @@
   "sophisticatedcore.configuration.common": "común",
   "sophisticatedcore.configuration.sortButtonsPosition": "Ordenar posición de los botones",
   "sophisticatedcore.configuration.playButtonSound": "Sonido del botón de reproducción",
-  "sophisticatedcore.configuration.mouseTweaksScrollEnabled": "Ajustes del mouse Control de desplazamiento",
+  "sophisticatedcore.configuration.mouseTweaksScrollEnabled": "Control de la rueda con Mouse Tweaks",
   "sophisticatedcore.configuration.enabledItems": "Elementos de modificación habilitados",
   "sophisticatedcore.configuration.enabledItems.tooltip": "Precargado con todos los elementos compatibles. Cambie |verdadero a |falso para desactivar uno.\nFormato: item_id|true_or_false\nEjemplo: sophisticatedbackpacks:smelting_upgrade|verdadero",
   "sophisticatedcore.configuration.sortButtonsPosition.title_line_right": "Línea de título derecha",

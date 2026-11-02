@@ -31,6 +31,8 @@ Los respaldos quedan en `.tensura-backups` dentro del juego. Se conservan las pa
 
 Great Sage se descarga directamente de Modrinth y se verifica contra su hash oficial. La migración `greatSageVanillaRevision` respalda y retira una sola vez los ajustes del pack para regenerar los valores originales. Después, `greatsage-common.toml` y `greatsage-client.toml` se conservan también en modo estricto. El paquete de español excluye el namespace de Great Sage, que utiliza las traducciones originales incluidas por el autor.
 
+Desde 2026.11.02.6 se retiran TR: Nightmare, NightmareUtils y TextAnimator. El motor descarga la herramienta de migración desde el mismo commit y verifica su SHA-256 antes de ejecutarla. Prepara los cambios de cada mundo con respaldo antes de reemplazar el pack; aplica los datos al finalizar y los restaura si falla la actualización. Los respaldos están en `.tensura-backups/<fecha>/retired-content/original`. Los slimes de Nightmare pasan al slime base de Tensura y sus demás razas a humano; se conservan los EP y el contenido de los demás mods. El cliente distribuido contiene 84 JAR, el orbe 1.3.0 y el paquete de español revisado.
+
 ## Comprobaciones realizadas
 
 El updater pasó instalación, repetición sin reemplazos, modo estricto, restauración tras un fallo provocado, reparación de cachés de mods y shaders, instalación de perfil y migración desde la versión publicada anterior. Un arranque directo con Java en un mundo aislado verificó el renderizado real de Unbound y el bloqueo de cambios mediante Iris y su API. El complemento de verificación usado en esa prueba no se distribuye a los jugadores.

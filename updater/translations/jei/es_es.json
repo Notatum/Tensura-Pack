@@ -117,7 +117,7 @@
   "jei.config.client.input.dragDelayInMilliseconds": "Retardo de Arrastre",
   "jei.config.client.input.dragDelayInMilliseconds.description": "Cantidad de milisegundos antes de que un clic largo se considere como arrastre.",
   "jei.config.client.input.smoothScrollRate": "Velocidad de Desplazamiento Suave",
-  "jei.config.client.input.smoothScrollRate.description": "Velocidad de desplazamiento del mouse en cajas con desplazamiento suave. Medido en píxeles.",
+  "jei.config.client.input.smoothScrollRate.description": "Distancia que recorre la lista con cada paso de la rueda del ratón cuando se usa el desplazamiento suave.",
   "jei.config.client.performance": "Rendimiento",
   "jei.config.client.performance.description": "Opciones relacionadas con la optimización del rendimiento en JEI.",
   "jei.config.client.advanced": "Avanzado",
