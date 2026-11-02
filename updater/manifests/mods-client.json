@@ -65,6 +65,10 @@
       "sha256": "b524ccdace2ef8fd19f5b2074f7de1103ac5065c52553f064c00e098346c293e"
     },
     {
+      "file": "Controlling-neoforge-1.21.1-19.0.5.jar",
+      "sha256": "cc525fb6b030d9e4d33176983f278919e17b33935e2ca568929bdfa98f2b44a0"
+    },
+    {
       "file": "curios-neoforge-9.5.1+1.21.1.jar",
       "sha256": "a45df2125c26219974aba7507ffc9afe7b83acc941a386af3faacb1cc0056fde"
     },
@@ -211,6 +215,10 @@
     {
       "file": "sauce-1.21.1-0.0.50.jar",
       "sha256": "f8236afcf6fc56764d4b92a739787315134dbfd77f741ae3eef4bedb368a1731"
+    },
+    {
+      "file": "Searchables-neoforge-1.21.1-1.0.2.jar",
+      "sha256": "ca193f0c69033d8f709f9e073a7c1ef4ea46714e5c2f94eb23ace12781c6aa68"
     },
     {
       "file": "servercore-neoforge-1.5.19+1.21.1.jar",

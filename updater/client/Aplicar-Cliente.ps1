@@ -13,7 +13,7 @@ $ErrorActionPreference = 'Stop'
 $OutputEncoding = [Text.UTF8Encoding]::new($false)
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $folders = @('mods','config','defaultconfigs','resourcepacks','shaderpacks','kubejs','scripts')
-$documents = @('GUIA-HABILIDADES.md','REVISION-2026-11-02.md')
+$documents = @('GUIA-HABILIDADES.md','GUIA-TECLAS.md','REVISION-2026-11-02.md')
 $lock = $null
 $backup = $null
 $moved = [Collections.Generic.List[object]]::new()
@@ -288,12 +288,14 @@ try {
     }
     Save-File (Join-Path $gameRoot 'options.txt')
     & (Join-Path $stage 'Configurar-Tensura-Idioma.ps1') -GameDir $gameRoot
+    $keyProfile=& (Join-Path $PSScriptRoot 'Preparar-Teclas.ps1') -GameDir $gameRoot -PolicyFile (Join-Path $gameRoot 'config\tensura-keybindings.json')
     foreach ($folder in $folders) { if (!(Matches-Hashes $desired[$folder] (Join-Path $gameRoot $folder))) { throw "La verificación final no coincide para $folder" } }
     Save-File (Join-Path $gameRoot 'launcher_profiles.json')
     $managedPolicy=& (Join-Path $PSScriptRoot 'Preparar-Runtime.ps1') -GameDir $gameRoot -CacheDir $cacheRoot -Java $java -Template (Join-Path $PSScriptRoot 'perfil-tensura.json') -ReleaseManifest (Join-Path $PSScriptRoot 'release.json')
     if ($retiredHelper) { Run-Java @('-jar',$retiredHelper,'apply',$gameRoot,$retiredBackup) $gameRoot; $retiredApplied=$true }
     $stateFile = Join-Path $gameRoot '.tensura-client-release.json'; Save-File $stateFile
     $state = @{ release=$release; modCount=@(Get-ChildItem -LiteralPath (Join-Path $gameRoot 'mods') -Filter '*.jar' -File).Count; backup=$backup; mode=$Mode; profile=$managedPolicy.profile; mandatoryShaders=$managedPolicy.mandatoryShaders; shaderPack=$managedPolicy.shaderPack; managedEngine=$true }
+    $state.keybindingsRevision=$keyProfile.revision
     if ($greatSageVanillaRevision) { $state.greatSageVanillaRevision=$greatSageVanillaRevision }
     [IO.File]::WriteAllText($stateFile,($state | ConvertTo-Json),[Text.UTF8Encoding]::new($false))
     [IO.File]::WriteAllText((Join-Path $cacheRoot 'pack.commit'),$release,[Text.UTF8Encoding]::new($false))

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.02.7",
+  "version": "2026.11.02.8",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",
@@ -13,7 +13,7 @@
     {
       "name": "Aplicar-Cliente.ps1",
       "path": "updater/client/Aplicar-Cliente.ps1",
-      "sha256": "c78a151d556da43dd8373a43dca53f7199162930b7fb0514330c29b85db2ab8b"
+      "sha256": "f08cc54662ca41d2f346ef493d5b6976884c9f90206b1c047242e5befb9cda35"
     },
     {
       "name": "Preparar-Runtime.ps1",
@@ -24,6 +24,11 @@
       "name": "perfil-tensura.json",
       "path": "updater/client/perfil-tensura.json",
       "sha256": "5d3ff4e9603c914e92f4041b63b5af7d1ce754153e43adccdaefc017809ac39b"
+    },
+    {
+      "name": "Preparar-Teclas.ps1",
+      "path": "updater/client/Preparar-Teclas.ps1",
+      "sha256": "af1ba79f9f1e5e19397f2b9ba67eec9ac9156c86acf978aedbed6d482cb7589a"
     }
   ],
   "installer": {

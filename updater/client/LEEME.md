@@ -35,6 +35,8 @@ Desde 2026.11.02.6 se retiran TR: Nightmare, NightmareUtils y TextAnimator. El m
 
 ## Comprobaciones realizadas
 
+Desde 2026.11.02.8 el cliente incluye Controlling y Searchables, con 89 JAR. `config/tensura-keybindings.json` distribuye las prioridades de Tensura. `Preparar-Teclas.ps1` modifica únicamente las asignaciones enumeradas, conserva los controles vanilla y marca la revisión en `.tensura-client-release.json` al finalizar correctamente. Repetir la actualización respeta los cambios personales posteriores. Para publicar una distribución nueva de teclas, cambia `revision` en la política, actualiza la guía y publica normalmente el pack. La sustitución de opciones participa del respaldo y restauración del updater.
+
 La publicación 2026.11.02.7 restaura Nightmare y sus dependencias, con 87 mods de cliente. Su política de retirada está desactivada y el motor tampoco la ejecuta si el manifiesto verificado incluye Nightmare, aunque quedase una política antigua. Se conservan los mundos en su estado actual. El orbe 1.3.1 admite nombres de audio de hasta 255 caracteres; la carpeta personal `orbe_audio` queda fuera de las carpetas reemplazadas por el updater.
 
 El updater pasó instalación, repetición sin reemplazos, modo estricto, restauración tras un fallo provocado, reparación de cachés de mods y shaders, instalación de perfil y migración desde la versión publicada anterior. Un arranque directo con Java en un mundo aislado verificó el renderizado real de Unbound y el bloqueo de cambios mediante Iris y su API. El complemento de verificación usado en esa prueba no se distribuye a los jugadores.

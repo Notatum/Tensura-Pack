@@ -2,7 +2,7 @@
 
 Descargá [TensuraLauncher-Portable.zip](https://github.com/Notatum/Tensura-Pack/raw/refs/heads/main/updater/launcher/TensuraLauncher-Portable.zip), extraelo en una carpeta propia y abrí **TensuraLauncher.exe**. Elegí tu nombre de jugador, asigná memoria y pulsá **JUGAR**. El launcher comprueba la publicación de GitHub, sincroniza el pack y abre Minecraft directamente con Java.
 
-La plataforma es **Minecraft 1.21.1 / NeoForge 21.1.250 / Java 21**, con **87 mods de cliente**. Usá siempre el mismo nombre para conservar la identidad de tu personaje en el servidor offline. Esta versión usa un perfil local y no incluye inicio de sesión Microsoft.
+La plataforma es **Minecraft 1.21.1 / NeoForge 21.1.250 / Java 21**, con **89 mods de cliente**. Usá siempre el mismo nombre para conservar la identidad de tu personaje en el servidor offline. Esta versión usa un perfil local y no incluye inicio de sesión Microsoft.
 
 ## Instalación independiente
 

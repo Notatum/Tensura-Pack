@@ -9,12 +9,16 @@ file = "GUIA-HABILIDADES.md"
 hash = "56d5500d11f3da39734d5b93988b2864efa936e5fa7c79a9c105c6420f4befd4"
 
 [[files]]
+file = "GUIA-TECLAS.md"
+hash = "b88b599aedc7603786c503bafc11537d50ff9187171ded22f608f1ad23877d84"
+
+[[files]]
 file = "README.md"
 hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "daed68c64800c6391e2b40e4b970bac1fee8b0cbc29c3c367f66b6e312bf691e"
+hash = "ab03acd2f073156d5c73cba0fcf2d89bb1efd5eb759ed28f872528fd6b150f6a"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -485,6 +489,10 @@ file = "config/supplementaries-common.toml"
 hash = "2711d86ed8a8e483f435d172427347ccebce7f41d1d4ff01e9dc0833e6b3e4a0"
 
 [[files]]
+file = "config/tensura-keybindings.json"
+hash = "ff52010987cd20a402369462629627c1ed5c400dd31aa43036200bfed21eca89"
+
+[[files]]
 file = "config/tensura-managed-client.json"
 hash = "6a3ab6758b1d349ee2e714283c0512738b5f9a3120b7f2ed4e89936884dac1c6"
 
@@ -896,6 +904,11 @@ hash = "2e6a2f8c477128a76ef059dfef7ca8a1befa2ae0ebe7ae2171e716f0c905cd00"
 metafile = true
 
 [[files]]
+file = "mods/controlling.pw.toml"
+hash = "324badf0fd6f1b3b7f662f8ad8635f9e83b9690fdcd465a0a72462fadb3e6507"
+metafile = true
+
+[[files]]
 file = "mods/curios.pw.toml"
 hash = "6b6683fd8ec53d10d4fbef3b3d53922a1aaa8ef4d2e4b52bb819dc451f5d6b3d"
 metafile = true
@@ -1044,6 +1057,11 @@ file = "mods/sauce-1.21.1-0.0.50.jar"
 hash = "f8236afcf6fc56764d4b92a739787315134dbfd77f741ae3eef4bedb368a1731"
 
 [[files]]
+file = "mods/searchables.pw.toml"
+hash = "faf9fb226a922cc2f8273d408a9330b7fa591be919dd55a648b1a21837d82ace"
+metafile = true
+
+[[files]]
 file = "mods/selene.pw.toml"
 hash = "c2b0d7ec55761b479f0d825516a37d66f95811a9c1d464c9e1c584efe9d561fe"
 metafile = true
@@ -1178,7 +1196,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "8ee8260f9f6ee8b9293ce4497cb157a9619a9c78ea3d136feb88b5dbb7d678b8"
+hash = "5b03a73ef4defc5da1c4d67ae85fc051826a237db39331e322f4b2a72c7eedc0"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"
