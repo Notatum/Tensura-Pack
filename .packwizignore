@@ -15,3 +15,4 @@ updater/
 .gitattributes
 Actualizar-Tensura-Cliente.ps1
 *.bak
+*.previous

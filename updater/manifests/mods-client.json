@@ -245,6 +245,10 @@
       "sha256": "d6876ad959d0da4bab0ba182839a0af0e38ef3571345e5e7aea0be572f958e05"
     },
     {
+      "file": "Tensura-Managed-Client-1.0.0.jar",
+      "sha256": "4f99e0a605834e7df7152d59ed84b22f2e589d29ab8218dcc9199019ead627b3"
+    },
+    {
       "file": "tensura-neoforge-2.0.1.4.jar",
       "sha256": "f8e59fa0be39677a8a4d23d050bb47dbbc083e7eefc284d85b752c5b2d4da769"
     },
@@ -349,5 +353,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.02.1"
+  "release": "2026.11.02.2"
 }

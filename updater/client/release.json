@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "version": "2026.11.02.2",
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.250",
+  "entry": "Aplicar-Cliente.ps1",
+  "files": [
+    {
+      "name": "Bootstrap.ps1",
+      "path": "updater/client/Bootstrap.ps1",
+      "sha256": "566fb9d5c0cebbd0d9cc56166f65e911e2110b148b78175e09ac44fd9248655e"
+    },
+    {
+      "name": "Aplicar-Cliente.ps1",
+      "path": "updater/client/Aplicar-Cliente.ps1",
+      "sha256": "d253d082c4747016a5c3bf810cd4bf08e8101b74ac42da16cc3943761ba38470"
+    },
+    {
+      "name": "Preparar-Runtime.ps1",
+      "path": "updater/client/Preparar-Runtime.ps1",
+      "sha256": "ffe9024816453468d9a90f49b65922066c384867f4ea6bb0dc7e3da8404988d5"
+    },
+    {
+      "name": "perfil-tensura.json",
+      "path": "updater/client/perfil-tensura.json",
+      "sha256": "5d3ff4e9603c914e92f4041b63b5af7d1ce754153e43adccdaefc017809ac39b"
+    }
+  ],
+  "installer": {
+    "url": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.250/neoforge-21.1.250-installer.jar",
+    "sha256": "0e47a91ba2139a8db4bf7627af081f7b5789b508bb039ee8dea1272b79693d60"
+  }
+}

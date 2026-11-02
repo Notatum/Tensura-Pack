@@ -2,7 +2,7 @@ hash-format = "sha256"
 
 [[files]]
 file = "Configurar-Tensura-Idioma.ps1"
-hash = "07b6c30f2c70bd891ffb6b626aa8eec93c3f4be9031d07c0a0d7fe29082b598f"
+hash = "e41802b638d8d406da10025fad69033ad1dcbdbf338d0c231cb8f005e7a31b13"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
@@ -14,7 +14,7 @@ hash = "13d3054912def2ea01335e2de3eee2eee5f0f85f01d89fc404c6315e9125c1d0"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "a62d1f987993e00053f22f2929dd72c2e7590cfb095ed10a970884a939bd2512"
+hash = "0bb78ffc56de45f70c445b8340589a6357382c342695d44c76ad3467e489d837"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -242,7 +242,7 @@ hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
 [[files]]
 file = "config/iris.properties"
-hash = "f32febb3cbebd659a324bb601f6e160409ae2a5c1f1050045eab316bbbb095cb"
+hash = "48bf7d505251c8ed95eed6a0bb837a04c96bcc3863c7993f59c61e5019fe9742"
 
 [[files]]
 file = "config/jei-server.toml"
@@ -487,6 +487,10 @@ hash = "e1a94a638e52b0f143c9bf456351de09a050a234cfcd29783461f0b81fa6d51c"
 [[files]]
 file = "config/supplementaries-common.toml"
 hash = "2711d86ed8a8e483f435d172427347ccebce7f41d1d4ff01e9dc0833e6b3e4a0"
+
+[[files]]
+file = "config/tensura-managed-client.json"
+hash = "6a3ab6758b1d349ee2e714283c0512738b5f9a3120b7f2ed4e89936884dac1c6"
 
 [[files]]
 file = "config/tensura/ability/ability_config.toml"
@@ -1088,6 +1092,11 @@ hash = "e432495ad6708dba577f1fad252dc2760a0352ad1cb3c121353f310841f5b28d"
 metafile = true
 
 [[files]]
+file = "mods/tensura-managed-client.pw.toml"
+hash = "a8dc65e0a1d5f40fbf7f2842cf4bc12f511feb057cb48517b15a3260c5fa290f"
+metafile = true
+
+[[files]]
 file = "mods/tensura-neoforge-2.0.1.4.jar"
 hash = "f8e59fa0be39677a8a4d23d050bb47dbbc083e7eefc284d85b752c5b2d4da769"
 
@@ -1176,5 +1185,5 @@ hash = "e04a60500d3ee3427f3192d8d6aa0f70d88f8535c4b6d5d421733ef30ab1756d"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"
-hash = "fdae82ae2a2900bf48a917c4309bcbf4aa9432861c0cce8cfa40223ed8b5875f"
+hash = "fcc6638e7f04d8967d837514c6d049112dd5c9e6832f3a687e87081e36b3f7e7"
 metafile = true

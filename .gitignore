@@ -3,3 +3,4 @@ packwiz.zip
 .git/
 /mods/Craftspeed*.jar
 .tensura-client-mods/
+*.previous

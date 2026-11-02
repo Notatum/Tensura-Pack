@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "minecraft": "1.21.1",
+  "neoforge": "21.1.250",
+  "profile": "Tensura-1.21.1-NeoForge-21.1.250",
+  "mandatoryShaders": true,
+  "shaderPack": "ComplementaryUnbound_r5.3.zip",
+  "shaderSha256": "66061b3c5b4843e31bc9a7562a7ac697a51bb77c73defc7071f996b783efacce",
+  "language": "es_ar",
+  "resourcePack": "Tensura-Espanol-2026.11.02.zip"
+}

@@ -1,0 +1,29 @@
+TENSURA — ENTRADA ADMINISTRADA
+
+1. Extrae todos los archivos del ZIP juntos en una carpeta tuya.
+2. Cierra Minecraft y Legacy Launcher.
+3. Ejecuta "Tensura Mods Updater - Incremental.bat".
+
+El updater obtiene la publicación de GitHub, comprueba sus archivos,
+prepara Minecraft 1.21.1 / NeoForge 21.1.250 y abre el perfil de Tensura.
+Complementary Unbound queda seleccionado y activado de forma obligatoria.
+Las siguientes publicaciones del pack y del motor llegan con el mismo BAT.
+
+Se necesita conexión a Internet y Java 21. Puede utilizar Java 21 del
+sistema o el runtime de Legacy Launcher. Cada jugador usa su cuenta local
+del launcher; este ZIP no contiene cuentas ni datos personales.
+
+Carpeta predeterminada:
+%APPDATA%\.tlauncher\legacy\Minecraft\game
+
+Para otra carpeta:
+"Tensura Mods Updater - Incremental.bat" -GameDir "C:\Minecraft\Tensura"
+
+Para actualizar sin abrir el juego:
+"Tensura Mods Updater - Incremental.bat" -NoLaunch
+
+La variante sin "Incremental" fuerza la sincronización de las carpetas.
+Los respaldos quedan en .tensura-backups dentro de la instalación.
+Las partidas, capturas y lista de servidores se conservan.
+
+Repositorio: https://github.com/Notatum/Tensura-Pack

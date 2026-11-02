@@ -1,0 +1,9 @@
+name = "Tensura - Cliente administrado"
+filename = "Tensura-Managed-Client-1.0.0.jar"
+side = "client"
+pin = true
+
+[download]
+url = "https://raw.githubusercontent.com/Notatum/Tensura-Pack/872f30624cc5edb9232122bae7bd1c8d40a97629/updater/client/assets/Tensura-Managed-Client-1.0.0.jar"
+hash-format = "sha256"
+hash = "4f99e0a605834e7df7152d59ed84b22f2e589d29ab8218dcc9199019ead627b3"
