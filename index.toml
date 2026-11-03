@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "ab03acd2f073156d5c73cba0fcf2d89bb1efd5eb759ed28f872528fd6b150f6a"
+hash = "858bdb4c61f05ccf42a67d95dfc5a9d4e32393ef84f26148b1305979d5c60684"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -242,7 +242,7 @@ hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
 [[files]]
 file = "config/iris.properties"
-hash = "48bf7d505251c8ed95eed6a0bb837a04c96bcc3863c7993f59c61e5019fe9742"
+hash = "23002e20d842f28ea7d8c0d87edee508dd89f0dba0e851e5d157075f8c2d486c"
 
 [[files]]
 file = "config/jei-server.toml"
@@ -494,7 +494,7 @@ hash = "ff52010987cd20a402369462629627c1ed5c400dd31aa43036200bfed21eca89"
 
 [[files]]
 file = "config/tensura-managed-client.json"
-hash = "6a3ab6758b1d349ee2e714283c0512738b5f9a3120b7f2ed4e89936884dac1c6"
+hash = "315069d7a470e8be85ebbda8f40a7b7cf50d954450b75b9bc77050fdca502350"
 
 [[files]]
 file = "config/tensura/ability/ability_config.toml"
@@ -1026,7 +1026,7 @@ metafile = true
 
 [[files]]
 file = "mods/mysticism-neoforge-2.2.1-ES-Corregido-FixRaceInit.jar"
-hash = "9ce06a11f37ba30c85180f564d65bafc79304aa309df47e65255fd3784150e21"
+hash = "fd1626e7b14a713cbeda7d8a2bafde2968fe6bee5e5460e5a40a3082a8386c09"
 
 [[files]]
 file = "mods/neat.pw.toml"
@@ -1142,7 +1142,7 @@ hash = "ff201c1daa2208addf94e698c3902142244125f7d2bb73052739990d38e331df"
 
 [[files]]
 file = "mods/trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Corregido-FixLogin.jar"
-hash = "da3d07215d6fbd68afcf8d51408f7766b68c5f8929873f43587a22a6dc55b1a9"
+hash = "a2965a22e8b6e62d20997f86ca79b9c54420b8e042ebb3e57604f87692054961"
 
 [[files]]
 file = "mods/veinminer-mod.pw.toml"

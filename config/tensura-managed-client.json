@@ -7,5 +7,12 @@
   "shaderPack": "ComplementaryUnbound_r5.3.zip",
   "shaderSha256": "66061b3c5b4843e31bc9a7562a7ac697a51bb77c73defc7071f996b783efacce",
   "language": "es_ar",
-  "resourcePack": "Tensura-Espanol-2026.11.02.zip"
+  "resourcePack": "Tensura-Espanol-2026.11.02.zip",
+  "performance": {
+    "revision": "2026.11.02-rendimiento-1",
+    "optionCaps": {
+      "entityDistanceScaling": 1.0,
+      "simulationDistance": 6
+    }
+  }
 }

@@ -166,7 +166,7 @@
     },
     {
       "file": "mysticism-neoforge-2.2.1-ES-Corregido-FixRaceInit.jar",
-      "sha256": "9ce06a11f37ba30c85180f564d65bafc79304aa309df47e65255fd3784150e21"
+      "sha256": "fd1626e7b14a713cbeda7d8a2bafde2968fe6bee5e5460e5a40a3082a8386c09"
     },
     {
       "file": "Neat-1.21-47-NEOFORGE.jar",
@@ -286,7 +286,7 @@
     },
     {
       "file": "trstarlight-0.1.2-BETA-SOURCEBLOOD-PART1-ES-Corregido-FixLogin.jar",
-      "sha256": "da3d07215d6fbd68afcf8d51408f7766b68c5f8929873f43587a22a6dc55b1a9"
+      "sha256": "a2965a22e8b6e62d20997f86ca79b9c54420b8e042ebb3e57604f87692054961"
     },
     {
       "file": "veinminer-neoforge-2.11.2+1.21.1.jar",
@@ -333,5 +333,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.02.2"
+  "release": "2026.11.02.9"
 }
