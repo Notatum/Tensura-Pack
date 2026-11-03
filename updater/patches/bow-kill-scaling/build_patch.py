@@ -39,7 +39,7 @@ def main():
     asm = [ROOT / f'libraries/org/ow2/asm/{name}/9.10.1/{name}-9.10.1.jar' for name in ['asm', 'asm-tree']]
     patch_cp = os.pathsep.join(map(str, [classes] + asm))
     replacement = {file.relative_to(classes).as_posix(): file.read_bytes() for file in (classes / 'ar').rglob('*.class')}
-    output = args.output_dir / 'Arco-de-Beelzebuth-neoforge-1.21.1-1.4.7.jar'
+    output = args.output_dir / 'Arco-de-Beelzebuth-neoforge-1.21.1-1.4.8.jar'
     with zipfile.ZipFile(args.original) as source:
         for name in ['ar/juan/beelzebuthbow/BowProgress.class', 'ar/juan/beelzebuthbow/DevouringBowItem.class']:
             file = classes / name
@@ -51,7 +51,7 @@ def main():
             for entry in source.infolist():
                 body = replacement.pop(entry.filename, source.read(entry))
                 if entry.filename == 'META-INF/neoforge.mods.toml':
-                    body = re.sub(r'(?m)^version\s*=\s*"1\.4\.6"', 'version="1.4.7"', body.decode('utf-8-sig'), count=1).encode('utf-8')
+                    body = re.sub(r'(?m)^version\s*=\s*"1\.4\.6"', 'version="1.4.8"', body.decode('utf-8-sig'), count=1).encode('utf-8')
                 if entry.filename.startswith('assets/beelzebuth_bow/lang/') and entry.filename.endswith('.json'):
                     body = languages(body)
                 target.writestr(entry, body)
@@ -74,7 +74,7 @@ def main():
             target.writestr(entry, body)
     report = {'file': output.name, 'sha256': hashlib.sha256(output.read_bytes()).hexdigest(),
               'previous': args.original.name, 'previousSHA256': INPUT_SHA256, 'changedEntries': different,
-              'basePerStage': 10, 'epDamageRate': '0.00001', 'killEpSource': 'actual shooter baseMaxEP gain',
+              'basePerStage': 10, 'epDamageRate': '0.00002', 'killEpSource': 'actual shooter baseMaxEP gain',
               'playerKeepsKillEp': True}
     (args.output_dir / 'build-manifest.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report, indent=2))

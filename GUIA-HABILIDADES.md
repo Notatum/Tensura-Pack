@@ -106,7 +106,7 @@ Empieza con 5 de daño base y cada evolución añade otros 5. La décima forma, 
 
 ### Arco de Beelzebuth: evolución y EP de bajas
 
-Desde el arco **1.4.7**, sus seis formas tienen **10, 20, 30, 40, 50 y 60 de daño plano**. Con carga completa y sin Poder, el daño principal es `10 × número de forma + EP del arco × 0,00001`. Cada millón de EP añade 10 de daño; la forma final con 10 millones tiene 160 antes de las defensas. Los rayos secundarios mantienen su porcentaje.
+Desde el arco **1.4.8**, sus seis formas tienen **10, 20, 30, 40, 50 y 60 de daño plano**. Con carga completa y sin Poder, el daño principal es `10 × número de forma + EP del arco × 0,00002`. Cada millón de EP añade 20 de daño, el doble del aporte del orbe; la forma final con 10 millones tiene 260 antes de las defensas. Los rayos secundarios mantienen su porcentaje.
 
 Cuando el arco mata una criatura y el personaje recibe EP por esa baja, el arco acumula también esa ganancia real. Los EP se guardan en el arma que disparó y siguen aumentando después de la última forma. Se conserva la ganancia del personaje y el progreso previo del arco. Los golpes sin muerte o las bajas sin recompensa no aportan EP al arco.
 

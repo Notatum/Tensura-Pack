@@ -5,7 +5,7 @@ import net.minecraft.world.item.ItemStack;
 
 /** Shared by the actual beam and its tooltip. Stored EP and legacy stages stay intact. */
 public final class BowBalance {
-    public static final BigDecimal EP_DAMAGE_RATE = new BigDecimal("0.00001");
+    public static final BigDecimal EP_DAMAGE_RATE = new BigDecimal("0.00002");
 
     private BowBalance() {}
 

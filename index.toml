@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "51cd591577bcf98d5fac09b955adec1e382c85564724faa8d110ed4b64ab4135"
+hash = "0b167bf8a07e3d24943f30851b05d7c73d4c6695710e13f6181dc446a0dc595d"
 
 [[files]]
 file = "GUIA-TECLAS.md"
@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "1143c7771ef9e985dafbd9b0fdb73b031757014d9062060f05f6a21bc5cefefa"
+hash = "7e07cfbba6b2412222174341aa9e9ea290ccfc7f1eb9d3868b1d3a7f4747b3b9"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -798,8 +798,8 @@ file = "mods/ApothicAttributes-1.21.1-2.11.0.jar"
 hash = "321115953b687728b835fcf44d24d3940f981332c6cf0d58bd94429e2650398f"
 
 [[files]]
-file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.7.jar"
-hash = "52f9925589ba4c8bac0d69755d1eb103a0542a8f48c746537beef681610e0e71"
+file = "mods/Arco-de-Beelzebuth-neoforge-1.21.1-1.4.8.jar"
+hash = "58ad2d7c2edb007b7679e2f5c23d8a6806408323de857021259c84103536d0c5"
 
 [[files]]
 file = "mods/Beelzebuth-1.21.1-1.3.8-InstantCopy-WorldVoice-ES.jar"
