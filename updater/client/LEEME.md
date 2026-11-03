@@ -1,10 +1,12 @@
 # Cliente administrado de Tensura
 
-La entrada habitual es **TensuraLauncher.exe**, distribuido en [el ZIP portátil](../launcher/TensuraLauncher-Portable.zip). Abre Minecraft directamente con Java, usa una carpeta propia y un nombre local para el servidor offline. Los BAT anteriores descargan el EXE verificado y le solicitan actualizar o reparar. `Actualizar-Tensura-Cliente.ps1 -NoLaunch` sigue siendo el protocolo que utiliza el motor del launcher para sincronizar el pack.
+La entrada habitual es **Tensura-Launcher.bat**, distribuida en [el ZIP de scripts](../launcher/Tensura-Launcher-Scripts.zip). Abre la interfaz verificada del launcher y Minecraft directamente con Java, usa una carpeta propia y un nombre local para el servidor offline. Los BAT anteriores reciben esa misma interfaz por el updater. `Actualizar-Tensura-Cliente.ps1 -NoLaunch` sigue siendo el protocolo que utiliza el motor del launcher para sincronizar el pack.
 
-El launcher consulta el commit de `main`, comprueba `updater/launcher/release.json`, renueva su EXE si corresponde y descarga el motor de esa publicación con sus SHA-256. Después sincroniza el pack con Packwiz, prepara NeoForge, comprueba bibliotecas y recursos y genera los argumentos para Java. La instalación inicial copia archivos útiles de TLauncher si existen; las cuentas y tokens quedan fuera. Los datos propios se guardan en `%LOCALAPPDATA%\TensuraLauncher`.
+El acceso consulta el commit de `main`, comprueba `updater/launcher/release.json` y descarga la interfaz de fuentes y el motor con sus SHA-256. No restaura ni actualiza el EXE histórico. Después sincroniza el pack con Packwiz, prepara NeoForge, comprueba bibliotecas y recursos y genera los argumentos para Java. La instalación inicial copia archivos útiles de TLauncher si existen; las cuentas y tokens quedan fuera. Los datos propios se guardan en `%LOCALAPPDATA%\TensuraLauncher`.
 
 ## Configuración central
+
+El launcher guarda `CpuCount=0` y `CpuPercent=80` como selección automática; un `CpuCount` positivo elige una cantidad manual. Los settings antiguos conservan nombre/memoria y toman el 80 % por defecto. El motor valida la afinidad disponible, pasa un único `-XX:ActiveProcessorCount=N` a Java y hace heredar la afinidad elegida solo al proceso nuevo del juego. Los modos Recipe/Update no cambian la afinidad de ningún juego abierto. En máquinas con más de 64 procesadores se usa el grupo disponible para este proceso.
 
 `config/tensura-managed-client.json` define Minecraft, NeoForge, el perfil, el idioma, el paquete de traducciones, el ZIP de Unbound y si los shaders son obligatorios. El nombre del ZIP debe coincidir con el distribuido por `shaderpacks/complementary-unbound.pw.toml`; `shaderSha256` debe corresponder a ese archivo.
 
@@ -15,7 +17,7 @@ La política actual usa Minecraft 1.21.1, NeoForge 21.1.250 y `ComplementaryUnbo
 ## Publicar cambios para las otras PC
 
 1. Edita las configuraciones, los mods o los paquetes del repositorio. Las carpetas administradas son `mods`, `config`, `defaultconfigs`, `resourcepacks`, `shaderpacks`, `kubejs` y `scripts`.
-2. Si editas el motor, el bootstrap o el perfil, ejecuta `python updater/client/build-release.py` para renovar sus hashes. Después ejecuta `python updater/launcher/build-launcher.py`, que compila el EXE, crea el ZIP portátil y actualiza el manifiesto del launcher y su referencia en el manifiesto de cliente. Este segundo paso también es obligatorio si cambias el código del launcher. Los cambios de versión de Minecraft o NeoForge requieren actualizar la política, `release.json`, el instalador y la plantilla de perfil.
+2. Si editas el motor, el bootstrap o el perfil, ejecuta `python updater/client/build-release.py` para renovar sus hashes. Después ejecuta `python updater/launcher/build-launcher.py`, que genera `Launcher-Ui.cs`, crea el ZIP de scripts y actualiza ambos manifiestos sin compilar ni leer un EXE. Este segundo paso también es obligatorio si cambias el código del launcher. Los cambios de versión de Minecraft o NeoForge requieren actualizar la política, `release.json`, el instalador y la plantilla de perfil.
 3. Si cambias mods, actualiza los manifiestos de cliente y servidor y comprueba la instalación con Packwiz. Los manifiestos SHA-256 deben describir todos los JAR que recibe cada lado.
 4. Ejecuta `packwiz refresh`, revisa y verifica el resultado, y publica el commit en `main`.
 

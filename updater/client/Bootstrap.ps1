@@ -4,7 +4,9 @@
     [string]$GameDir=(Join-Path $env:APPDATA '.tlauncher\legacy\Minecraft\game'),
     [string]$CacheDir=(Join-Path $env:LOCALAPPDATA 'TensuraUpdater'),
     [string]$PackUrl='',
-    [switch]$NoLaunch
+    [switch]$NoLaunch,
+    [string]$LauncherDataRoot=(Join-Path $env:LOCALAPPDATA 'TensuraLauncher'),
+    [switch]$PrepareLauncherOnly
 )
 $ErrorActionPreference='Stop'
 [Console]::OutputEncoding=[Text.UTF8Encoding]::new($false)
@@ -57,24 +59,40 @@ try {
     }
     # The native launcher owns its Java/runtime and installs into its own game
     # directory. -NoLaunch remains the noninteractive update protocol it uses.
-    if (!$NoLaunch -and $env:TENSURA_NO_LAUNCH -ne '1' -and $manifest.standaloneLauncher) {
-        $application=$manifest.standaloneLauncher
-        if ($application.path -ne 'updater/launcher/TensuraLauncher.exe' -or $application.sha256 -notmatch '^[a-f0-9]{64}$') { throw 'La publicación del launcher no es válida.' }
-        $appRoot=Join-Path $env:LOCALAPPDATA 'TensuraLauncher\app'
+    if (!$NoLaunch -and $env:TENSURA_NO_LAUNCH -ne '1' -and $manifest.scriptLauncher) {
+        $application=$manifest.scriptLauncher
+        if ($application.path -ne 'updater/launcher/TensuraLauncher.ps1' -or $application.sha256 -notmatch '^[a-f0-9]{64}$') { throw 'La publicación del launcher no es válida.' }
+        $launcherRoot=[IO.Path]::GetFullPath($LauncherDataRoot).TrimEnd('\')
+        if ($launcherRoot -eq [IO.Path]::GetPathRoot($launcherRoot).TrimEnd('\')) { throw 'La carpeta del launcher no puede ser la raíz de un disco.' }
+        $appRoot=Join-Path $launcherRoot ('app\scripts\'+$key)
         New-Item -ItemType Directory -Path $appRoot -Force | Out-Null
-        $executable=Join-Path $appRoot 'TensuraLauncher.exe'
-        if (!(Test-Path -LiteralPath $executable) -or (Get-FileHash -LiteralPath $executable -Algorithm SHA256).Hash -ne $application.sha256) {
-            $download=$executable+'.download'
-            Invoke-WebRequest -UseBasicParsing -Headers $headers -Uri ([uri]::new([uri]$PackUrl,$application.path)) -OutFile $download
-            if ((Get-FileHash -LiteralPath $download -Algorithm SHA256).Hash -ne $application.sha256) { throw 'El launcher descargado está alterado.' }
-            Copy-Item -LiteralPath $download -Destination $executable -Force
-            Remove-Item -LiteralPath $download -Force
+        if ((Get-Item -LiteralPath $launcherRoot -Force).Attributes -band [IO.FileAttributes]::ReparsePoint -or @(Get-ChildItem -LiteralPath (Join-Path $launcherRoot 'app') -Force -Recurse | Where-Object {$_.Attributes -band [IO.FileAttributes]::ReparsePoint}).Count) { throw 'La carpeta del launcher contiene enlaces.' }
+        $launcherManifest=Invoke-RestMethod -UseBasicParsing -Headers $headers -Uri ([uri]::new([uri]$PackUrl,'updater/launcher/release.json'))
+        if ($launcherManifest.schema -ne 1 -or !$launcherManifest.files.Count) { throw 'El manifiesto del launcher no es válido.' }
+        $launcherNames=@{}
+        foreach($file in $launcherManifest.files){
+            if ($file.name -notmatch '^[A-Za-z0-9_-][A-Za-z0-9_.-]*\.(ps1|cs|json)$' -or $file.path -notmatch '^updater/(launcher|client)/[A-Za-z0-9_-][A-Za-z0-9_.-]*\.(ps1|cs|json)$' -or $file.sha256 -notmatch '^[a-f0-9]{64}$' -or $launcherNames.ContainsKey($file.name)) { throw 'Componente del launcher inválido o repetido.' }
+            $launcherNames[$file.name]=$file.sha256
+            $target=Join-Path $appRoot $file.name
+            if (!(Test-Path -LiteralPath $target) -or (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -ne $file.sha256) {
+                $download=$target+'.download'
+                Invoke-WebRequest -UseBasicParsing -Headers $headers -Uri ([uri]::new([uri]$PackUrl,$file.path)) -OutFile $download
+                if ((Get-FileHash -LiteralPath $download -Algorithm SHA256).Hash -ne $file.sha256) { throw 'Un componente del launcher está alterado.' }
+                Move-Item -LiteralPath $download -Destination $target -Force
+            }
         }
-        $info=[Diagnostics.ProcessStartInfo]::new();$info.FileName=$executable;$info.Arguments=if($Mode -eq 'Strict' -or $Action -eq 'repair'){'--repair'}else{'--update'};$info.UseShellExecute=$false;$info.CreateNoWindow=$true
+        foreach($required in @('TensuraLauncher.ps1','Launcher-Ui.cs','Launcher-Engine.ps1','CpuBudget.ps1','AssetStore.cs','Actualizar-Tensura-Cliente.ps1')){if(!$launcherNames.ContainsKey($required)){throw "Falta un componente del launcher: $required"}}
+        if ($launcherNames['TensuraLauncher.ps1'] -ne $application.sha256) { throw 'La entrada del launcher no coincide con el manifiesto del cliente.' }
+        [IO.File]::WriteAllText((Join-Path $appRoot 'release.json'),($launcherManifest | ConvertTo-Json -Depth 30),[Text.UTF8Encoding]::new($false))
+        $launcherScript=Join-Path $appRoot 'TensuraLauncher.ps1'
+        if ($PrepareLauncherOnly) { Write-Host ('TENSURA_LAUNCHER_READY|'+$launcherScript); exit 0 }
+        $initialAction=if($Mode -eq 'Strict' -or $Action -eq 'repair'){'Repair'}else{'Update'}
+        $info=[Diagnostics.ProcessStartInfo]::new();$info.FileName='powershell.exe';$info.Arguments='-NoProfile -STA -ExecutionPolicy Bypass -File "'+$launcherScript+'" -DataRoot "'+$launcherRoot+'" -Action '+$initialAction;$info.UseShellExecute=$false;$info.CreateNoWindow=$true
         [void][Diagnostics.Process]::Start($info)
         Write-Host '[Tensura] Abriendo el launcher independiente para actualizar el cliente.'
         exit 0
     }
+    if ($PrepareLauncherOnly) { throw 'La publicación no ofrece un launcher de scripts.' }
     Write-Host "[Tensura] Motor administrado verificado: $release"
     $engineLock.Dispose();$engineLock=$null
     & (Join-Path $engine $manifest.entry) -Action $Action -Mode $Mode -GameDir $GameDir -CacheDir $CacheDir -PackUrl $PackUrl -ReleaseId $release -NoLaunch:$NoLaunch

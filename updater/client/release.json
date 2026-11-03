@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.02.9",
+  "version": "2026.11.03.1",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",
@@ -8,7 +8,7 @@
     {
       "name": "Bootstrap.ps1",
       "path": "updater/client/Bootstrap.ps1",
-      "sha256": "78653e737645daae04902d70d79032ec7f11b0bdc26edcc3f63471723abb4595"
+      "sha256": "0bd31dcbcf1fbcde311a0be7e1b5f3202096c4a8b928642ae23fac7be83d88ff"
     },
     {
       "name": "Aplicar-Cliente.ps1",
@@ -40,13 +40,13 @@
     "url": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.250/neoforge-21.1.250-installer.jar",
     "sha256": "0e47a91ba2139a8db4bf7627af081f7b5789b508bb039ee8dea1272b79693d60"
   },
-  "standaloneLauncher": {
-    "path": "updater/launcher/TensuraLauncher.exe",
-    "sha256": "33bd14861743ffaa2c3e5674f5b15c3da8bb488c488c675f4dd1de60bfbaf53e"
-  },
   "vanillaGreatSage": {
     "revision": "rBHjJbyA-official-1",
     "file": "greatsage-0.0.7.1.jar",
     "sha256": "0858b617197f1c71d6abce85973a0240cf2745250a3dae33bf0369498bea7061"
+  },
+  "scriptLauncher": {
+    "path": "updater/launcher/TensuraLauncher.ps1",
+    "sha256": "452fe0b0d59ae18a82e620519273940c97760a775ba1df7ecc1f32e015d3a80a"
   }
 }

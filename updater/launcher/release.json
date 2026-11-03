@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "application": {
     "path": "updater/launcher/TensuraLauncher.exe",
     "sha256": "33bd14861743ffaa2c3e5674f5b15c3da8bb488c488c675f4dd1de60bfbaf53e"
@@ -9,7 +9,7 @@
     {
       "name": "Launcher-Engine.ps1",
       "path": "updater/launcher/Launcher-Engine.ps1",
-      "sha256": "891ca8e7b06a398e5722edb61ea361cdfba9d9dbfbf7866d57c0045c9e911939"
+      "sha256": "e265a8111b2d57f3dba5e041e06b16f8f3ef631598dac03d40036760c3c18966"
     },
     {
       "name": "AssetStore.cs",
@@ -22,9 +22,24 @@
       "sha256": "222c354d87f4405501b5bcbb2529b61ba6dbd144ffa8316488a2e9fc68205a28"
     },
     {
+      "name": "CpuBudget.ps1",
+      "path": "updater/launcher/CpuBudget.ps1",
+      "sha256": "6adf79a93ebe323538ae4387f9ef131376915b369084ba270443d704093abc6f"
+    },
+    {
+      "name": "TensuraLauncher.ps1",
+      "path": "updater/launcher/TensuraLauncher.ps1",
+      "sha256": "452fe0b0d59ae18a82e620519273940c97760a775ba1df7ecc1f32e015d3a80a"
+    },
+    {
+      "name": "Launcher-Ui.cs",
+      "path": "updater/launcher/Launcher-Ui.cs",
+      "sha256": "0c832052cae44693cb6627383a417d09e21b70fce567c5506ea635532e865dcb"
+    },
+    {
       "name": "Actualizar-Tensura-Cliente.ps1",
       "path": "updater/client/Bootstrap.ps1",
-      "sha256": "78653e737645daae04902d70d79032ec7f11b0bdc26edcc3f63471723abb4595"
+      "sha256": "0bd31dcbcf1fbcde311a0be7e1b5f3202096c4a8b928642ae23fac7be83d88ff"
     }
   ],
   "runtime": {
@@ -32,5 +47,9 @@
     "vendor": "Eclipse Temurin",
     "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.13%2B9/OpenJDK21U-jre_x64_windows_hotspot_21.0.13_9.zip",
     "sha256": "2332c0b4cff6bed722da3567c91d5e47568bcba863fa4945d0a8d6fc76158628"
+  },
+  "scriptLauncher": {
+    "path": "updater/launcher/TensuraLauncher.ps1",
+    "sha256": "452fe0b0d59ae18a82e620519273940c97760a775ba1df7ecc1f32e015d3a80a"
   }
 }

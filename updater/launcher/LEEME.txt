@@ -1,13 +1,23 @@
 TENSURA LAUNCHER — Windows 10/11 de 64 bits
 
-Extraé el ZIP en una carpeta propia y abrí TensuraLauncher.exe.
-Escribí tu nombre de jugador y pulsá JUGAR. Usá siempre el mismo nombre
+Extraé el ZIP en una carpeta propia y abrí Tensura-Launcher.bat.
+Conservá el BAT y Actualizar-Tensura-Cliente.ps1 juntos.
+Escribí tu nombre de jugador, elegí memoria y procesadores y pulsá JUGAR.
+Usá siempre el mismo nombre
 para conservar la identidad de tu personaje en el servidor offline.
 
 JUGAR comprueba la publicación actual de Notatum/Tensura-Pack, sincroniza
 los mods y ajustes y abre Minecraft 1.21.1 con NeoForge 21.1.250 directamente.
 No abre TLauncher. El launcher y su motor también reciben actualizaciones.
 Necesitás conexión a Internet para comprobar y descargar la publicación.
+
+CPU: Automático (80 %) es el valor inicial. Se redondea hacia abajo:
+16 procesadores lógicos -> 12 seleccionados; 8 -> 6; mínimo 1.
+Desmarcá Automático para elegir una cantidad manual. Se guarda para el
+próximo arranque y combina grupos de hilos de Java con afinidad del juego.
+Esto no fija un porcentaje de uso ni paraleliza el hilo principal de MC.
+En equipos con más de 64 procesadores se usa el grupo disponible.
+La interfaz se carga desde fuentes verificadas; no se distribuye un EXE.
 
 En el primer uso puede copiar Java 21, bibliotecas, recursos, opciones,
 servidores, capturas y partidas de la instalación local de TLauncher.

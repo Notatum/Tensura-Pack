@@ -1,4 +1,15 @@
-# Verificación del launcher 1.0.0
+# Verificación del launcher 1.1.0 — 3 de noviembre de 2026
+
+- Interfaz renderizada y revisada con selector de CPU, automático 80 % y 12/16 procesadores lógicos. Sin solapamientos de texto o controles.
+- Migración de settings antiguos conserva nombre y memoria; selección manual y automática se guardan y se recuperan. El rango se valida contra la afinidad disponible.
+- Java real recibe la cantidad esperada; se comprobó afinidad heredada y restauración de la del worker. La receta completa entrega 12 procesadores en automático y 3 en el caso manual de prueba.
+- Bootstrap descarga todos los componentes con SHA-256, repara una fuente de UI alterada y prepara la interfaz sin solicitar ni restaurar un EXE. También se comprobó el host con autorrenovación solicitada: el modo scripts no intenta descargar un ejecutable.
+- La distribución de scripts contiene BAT, bootstrap y LEEME, sin EXE. Los BAT administrados conservan Incremental/Strict, datos personales, rollback, reparación de cachés y migración de la versión anterior.
+- No se midieron FPS ni se atribuyó un diagnóstico de Nightmare a estas pruebas. No se abrió una partida real ni se cambió la afinidad de procesos existentes. En sistemas con más de 64 procesadores se usa el grupo disponible para el launcher.
+
+Prueba reproducible con JDK 21: `powershell -NoProfile -ExecutionPolicy Bypass -File updater/tests/Test-LauncherCpu.ps1`. El script compila un probe temporal y verifica Java y afinidad; no inicia Minecraft.
+
+## Histórico: launcher 1.0.0
 
 Pruebas realizadas el 2 de noviembre de 2026 en Windows 11 de 64 bits con la revisión del pack 2026.11.02.3.
 

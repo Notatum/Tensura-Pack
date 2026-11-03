@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "858bdb4c61f05ccf42a67d95dfc5a9d4e32393ef84f26148b1305979d5c60684"
+hash = "572b686a5188397149634afa6bd72175c9a45aed70298c774b8b0abdf2990b05"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"

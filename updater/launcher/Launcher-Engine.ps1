@@ -2,6 +2,8 @@
     [Parameter(Mandatory=$true)][string]$DataRoot,
     [Parameter(Mandatory=$true)][string]$PlayerName,
     [ValidateRange(2048,16384)][int]$MemoryMb=6144,
+    [ValidateRange(0,64)][int]$CpuCount=0,
+    [ValidateRange(1,100)][int]$CpuPercent=80,
     [ValidateSet('Play','Update','Repair','Recipe')][string]$Action='Play',
     [Parameter(Mandatory=$true)][string]$PackUrl,
     [Parameter(Mandatory=$true)][string]$ClientBootstrap,
@@ -15,10 +17,18 @@ $OutputEncoding=[Text.UTF8Encoding]::new($false)
 [Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -Path (Join-Path $PSScriptRoot 'AssetStore.cs') -ReferencedAssemblies System.Web.Extensions,System.Core
+. (Join-Path $PSScriptRoot 'CpuBudget.ps1')
 if($PlayerName -notmatch '^[A-Za-z0-9_]{3,16}$'){throw 'El nombre debe tener entre 3 y 16 letras, números o guiones bajos.'}
 $root=[IO.Path]::GetFullPath($DataRoot).TrimEnd('\')
 if($root -eq [IO.Path]::GetPathRoot($root).TrimEnd('\')){throw 'La carpeta del launcher no puede ser la raíz de un disco.'}
 $game=Join-Path $root 'game';$cache=Join-Path $root 'cache';$logs=Join-Path $root 'logs'
+$settingsPath=Join-Path $root 'settings.json'
+if(Test-Path -LiteralPath $settingsPath){
+    $cpuSettings=Get-Content -LiteralPath $settingsPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if(!$PSBoundParameters.ContainsKey('CpuCount') -and $null -ne $cpuSettings.CpuCount){$CpuCount=[int]$cpuSettings.CpuCount}
+    if(!$PSBoundParameters.ContainsKey('CpuPercent') -and $cpuSettings.CpuPercent){$CpuPercent=[int]$cpuSettings.CpuPercent}
+}
+$cpuPlan=Get-TensuraCpuPlan -CpuCount $CpuCount -CpuPercent $CpuPercent
 New-Item -ItemType Directory -Path $root,$game,$cache,$logs -Force | Out-Null
 if((Get-Item -LiteralPath $root -Force).Attributes -band [IO.FileAttributes]::ReparsePoint){throw 'La carpeta de datos no puede ser un enlace.'}
 function Status([string]$Message){Write-Host ('TENSURA_STATUS|'+$Message)}
@@ -196,7 +206,7 @@ try{
     [TensuraAssetStore]::Assets($index,$assets,(Join-Path $ImportSource 'assets'))
     Check-Cancel
     $variables=@{auth_player_name=$PlayerName;version_name=$policy.profile;game_directory=$game;assets_root=$assets;assets_index_name=$profile.assetIndex.id;auth_uuid=(Offline-UUID $PlayerName);auth_access_token='0';clientid='';auth_xuid='';user_type='legacy';version_type='Tensura';resolution_width='1280';resolution_height='720';natives_directory=$nativeDir;launcher_name='TensuraLauncher';launcher_version='1.0.0';classpath=($classpath -join ';');library_directory=$libraryRoot;classpath_separator=';'}
-    $jvm=@('-Xms512m',('-Xmx'+$MemoryMb+'m'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8')+@(Expand-Arguments $profile.arguments.jvm $variables)
+    $jvm=@('-Xms512m',('-Xmx'+$MemoryMb+'m'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8')+@(Expand-Arguments $profile.arguments.jvm $variables | Where-Object {$_ -notmatch '^-XX:ActiveProcessorCount='})+@('-XX:ActiveProcessorCount='+$cpuPlan.count)
     if($profile.logging.client){
         $logging=$profile.logging.client.file;$file=Join-Path $assets ('log_configs\'+$logging.id)
         [TensuraAssetStore]::Ensure($logging.url,$file,$logging.sha1,(Join-Path $ImportSource ('assets\log_configs\'+$logging.id)))
@@ -207,12 +217,14 @@ try{
     $lines=@($arguments | ForEach-Object {'"'+([string]$_).Replace('\','\\').Replace('"','\"')+'"'})
     [IO.File]::WriteAllLines($argfile,$lines,[Text.UTF8Encoding]::new($false))
     $recipe=@{java=$java;argumentsFile=$argfile;gameDirectory=$game;player=$PlayerName;uuid=$variables.auth_uuid;profile=$policy.profile;release=$state.release;libraryCount=$classpath.Count;nativeCount=$natives.Count;mandatoryShaders=$policy.mandatoryShaders;shaderPack=$policy.shaderPack;usesThirdPartyLauncher=$false}
+    $recipe.cpuCount=$cpuPlan.count;$recipe.availableProcessors=$cpuPlan.available;$recipe.cpuMode=$cpuPlan.mode;$recipe.cpuPercent=$cpuPlan.percent;$recipe.cpuAffinityMask=$cpuPlan.maskHex
+    Status ('CPU: '+$cpuPlan.count+' de '+$cpuPlan.available+' procesadores lógicos ('+$cpuPlan.mode+').')
     [IO.File]::WriteAllText((Join-Path $root 'launch-recipe.json'),($recipe | ConvertTo-Json -Depth 8),[Text.UTF8Encoding]::new($false))
     if($Action -ne 'Play'){Status 'Cliente independiente actualizado y listo';Write-Host 'TENSURA_READY';exit 0}
     Check-Cancel
     Status 'Iniciando Minecraft directamente'
     $info=[Diagnostics.ProcessStartInfo]::new();$info.FileName=$java;$info.Arguments='"@'+$argfile+'"';$info.WorkingDirectory=$game;$info.UseShellExecute=$false;$info.CreateNoWindow=$true;$info.RedirectStandardOutput=$true;$info.RedirectStandardError=$true
-    $p=[Diagnostics.Process]::Start($info)
+    $p=Start-TensuraCpuProcess -StartInfo $info -Plan $cpuPlan
     $session=@{pid=$p.Id;started=$p.StartTime.ToUniversalTime().ToString('o');player=$PlayerName;profile=$policy.profile}
     [IO.File]::WriteAllText($pidFile,($session | ConvertTo-Json),[Text.UTF8Encoding]::new($false))
     $outputFile=[IO.File]::Create((Join-Path $logs 'minecraft-output.log'));$errorFile=[IO.File]::Create((Join-Path $logs 'minecraft-error.log'))

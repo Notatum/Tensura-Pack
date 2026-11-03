@@ -17,12 +17,14 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("Tensura Launcher")]
 [assembly: AssemblyProduct("Tensura Launcher")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
 
 namespace TensuraLauncher {
-    static class Program {
+    public static class Program {
         public static string DataRoot;
+        public static bool ScriptHost;
+        public static int RunScript(string[] args) { ScriptHost = true; return Main(args); }
         public static string ManifestOverride, PackOverride;
         public static readonly JavaScriptSerializer Json = new JavaScriptSerializer { MaxJsonLength = Int32.MaxValue };
         [STAThread] static int Main(string[] args) {
@@ -79,10 +81,12 @@ namespace TensuraLauncher {
     sealed class Settings {
         public string PlayerName { get; set; }
         public int MemoryMb { get; set; }
+        public int CpuCount { get; set; }
+        public int CpuPercent { get; set; }
         public static Settings Load() {
             string file = Path.Combine(Program.DataRoot, "settings.json");
             if (File.Exists(file)) {
-                try { var value = Program.Json.Deserialize<Settings>(File.ReadAllText(file)); if (value != null) { value.MemoryMb = Math.Max(2048, Math.Min(16384, value.MemoryMb)); return value; } } catch { }
+                try { var value = Program.Json.Deserialize<Settings>(File.ReadAllText(file)); if (value != null) { value.MemoryMb = Math.Max(2048, Math.Min(16384, value.MemoryMb)); value.CpuPercent = value.CpuPercent >= 1 && value.CpuPercent <= 100 ? value.CpuPercent : 80; value.CpuCount = Math.Max(0, Math.Min(CpuPolicy.Available, value.CpuCount)); return value; } } catch { }
             }
             string name = Regex.Replace(Environment.UserName, "[^A-Za-z0-9_]", "_");
             string profiles = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ".tlauncher", "legacy", "Minecraft", "game", "tlauncher_profiles.json");
@@ -92,13 +96,28 @@ namespace TensuraLauncher {
                 name = (string)selected["username"];
             } catch { }
             if (name.Length > 16) name = name.Substring(0, 16); if (name.Length < 3) name = "Jugador";
-            return new Settings { PlayerName = name, MemoryMb = 6144 };
+            return new Settings { PlayerName = name, MemoryMb = 6144, CpuCount = 0, CpuPercent = 80 };
         }
         public void Save() {
             if (!Regex.IsMatch(PlayerName ?? "", "^[A-Za-z0-9_]{3,16}$")) throw new InvalidOperationException("El nombre debe tener entre 3 y 16 letras, números o guiones bajos.");
+            CpuPolicy.Resolve(CpuCount, CpuPercent, CpuPolicy.Available);
             string target = Path.Combine(Program.DataRoot, "settings.json"); string temp = target + ".new";
             File.WriteAllText(temp, Program.Json.Serialize(this), new UTF8Encoding(false));
             File.Copy(temp, target, true); File.Delete(temp);
+        }
+    }
+
+    static class CpuPolicy {
+        public static int Available {
+            get {
+                ulong mask = unchecked((ulong)Process.GetCurrentProcess().ProcessorAffinity.ToInt64());
+                int count = 0; while (mask != 0) { count += (int)(mask & 1); mask >>= 1; }
+                return Math.Max(1, count);
+            }
+        }
+        public static int Resolve(int count, int percent, int available) {
+            if (available < 1 || count < 0 || count > available || percent < 1 || percent > 100) throw new InvalidOperationException("Elegí una cantidad válida de procesadores para Minecraft.");
+            return count == 0 ? Math.Max(1, (int)Math.Floor(available * percent / 100.0)) : count;
         }
     }
 
@@ -138,11 +157,11 @@ namespace TensuraLauncher {
             Engine = Path.Combine(Program.DataRoot, "cache", "launcher-engine", Commit); Directory.CreateDirectory(Engine);
             foreach (Dictionary<string, object> file in (System.Collections.IEnumerable)release["files"]) {
                 string name = (string)file["name"], path = (string)file["path"];
-                if (!Regex.IsMatch(name, "^[A-Za-z0-9_.-]+$") || path.Contains("..") || !Regex.IsMatch(path, "^updater/(launcher|client)/[A-Za-z0-9_.-]+$")) throw new IOException("Ruta inválida en la publicación del launcher.");
+                if (!Regex.IsMatch(name, "^[A-Za-z0-9_-][A-Za-z0-9_.-]*\\.(ps1|cs|json)$") || path.Contains("..") || !Regex.IsMatch(path, "^updater/(launcher|client)/[A-Za-z0-9_-][A-Za-z0-9_.-]*\\.(ps1|cs|json)$")) throw new IOException("Ruta inválida en la publicación del launcher.");
                 DownloadFile(new Uri(new Uri(PackUrl), path).ToString(), Path.Combine(Engine, name), (string)file["sha256"]);
             }
             File.WriteAllText(Path.Combine(Engine, "release.json"), Program.Json.Serialize(release), new UTF8Encoding(false));
-            if (allowSelfUpdate) {
+            if (allowSelfUpdate && !Program.ScriptHost) {
                 var app = (Dictionary<string, object>)release["application"];
                 string expected = (string)app["sha256"], current = Application.ExecutablePath;
                 if (HashFile(current) != expected) {
@@ -159,7 +178,7 @@ namespace TensuraLauncher {
         public int Run(Settings settings, string action) {
             settings.Save(); string cancel = Path.Combine(Program.DataRoot, "cache", "cancel.request"); if (File.Exists(cancel)) File.Delete(cancel);
             string logPath = Path.Combine(Program.DataRoot, "logs", "launcher.log");
-            var args = new[] { "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", Path.Combine(Engine, "Launcher-Engine.ps1"), "-DataRoot", Program.DataRoot, "-PlayerName", settings.PlayerName, "-MemoryMb", settings.MemoryMb.ToString(), "-Action", action, "-PackUrl", PackUrl, "-ClientBootstrap", Path.Combine(Engine, "Actualizar-Tensura-Cliente.ps1"), "-LauncherManifest", Path.Combine(Engine, "release.json") };
+            var args = new[] { "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", Path.Combine(Engine, "Launcher-Engine.ps1"), "-DataRoot", Program.DataRoot, "-PlayerName", settings.PlayerName, "-MemoryMb", settings.MemoryMb.ToString(), "-CpuCount", settings.CpuCount.ToString(), "-CpuPercent", settings.CpuPercent.ToString(), "-Action", action, "-PackUrl", PackUrl, "-ClientBootstrap", Path.Combine(Engine, "Actualizar-Tensura-Cliente.ps1"), "-LauncherManifest", Path.Combine(Engine, "release.json") };
             var info = new ProcessStartInfo("powershell.exe", String.Join(" ", args.Select(Quote))) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true, StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8 };
             using (var log = new StreamWriter(logPath, true, new UTF8Encoding(false))) using (var process = new Process()) {
                 process.StartInfo = info; object logLock = new object(); string lastError = null;
@@ -189,47 +208,74 @@ namespace TensuraLauncher {
         }
         public static void SelfTest() {
             if (Quote("abc") != "\"abc\"" || Quote("C:\\A B\\") != "\"C:\\A B\\\\\"") throw new Exception("Argument quoting failed");
-            var settings = new Settings { PlayerName = "Notatum", MemoryMb = 4096 }; settings.Save();
-            var restored = Settings.Load(); if (restored.PlayerName != "Notatum" || restored.MemoryMb != 4096) throw new Exception("Settings roundtrip failed");
-            Console.WriteLine("PASS: Windows quoting and player settings");
+            var settings = new Settings { PlayerName = "Notatum", MemoryMb = 4096, CpuCount = 1, CpuPercent = 80 }; settings.Save();
+            var restored = Settings.Load(); if (restored.PlayerName != "Notatum" || restored.MemoryMb != 4096 || restored.CpuCount != 1 || restored.CpuPercent != 80) throw new Exception("Settings roundtrip failed");
+            File.WriteAllText(Path.Combine(Program.DataRoot, "settings.json"), "{\"PlayerName\":\"Notatum\",\"MemoryMb\":10000}");
+            restored = Settings.Load(); if (restored.PlayerName != "Notatum" || restored.MemoryMb != 10000 || restored.CpuCount != 0 || restored.CpuPercent != 80) throw new Exception("Legacy settings migration failed");
+            if (CpuPolicy.Resolve(0, 80, 16) != 12 || CpuPolicy.Resolve(0,80,1) != 1 || CpuPolicy.Resolve(7,80,16) != 7 || CpuPolicy.Resolve(0,80,8) != 6) throw new Exception("CPU budget failed");
+            bool rejected = false; try { CpuPolicy.Resolve(17,80,16); } catch (InvalidOperationException) { rejected = true; } if (!rejected) throw new Exception("CPU range was not validated");
+            LauncherForm.TestCpuControls();
+            Console.WriteLine("PASS: Windows quoting, manual CPU settings, legacy identity/memory migration, automatic 80 percent and CPU bounds");
         }
     }
 
     sealed class LauncherForm : Form {
         readonly TextBox player = new TextBox(); readonly NumericUpDown memory = new NumericUpDown();
+        readonly NumericUpDown cpu = new NumericUpDown(); readonly CheckBox automaticCpu = new CheckBox(); readonly Label cpuDetail = new Label();
         readonly Label message = new Label(); readonly Button play = new Button(); readonly Button update = new Button(); readonly Button repair = new Button();
         readonly ProgressBar progress = new ProgressBar(); readonly Settings settings;
         Host host; bool busy, gameRunning, closeRequested, renderOnly;
         readonly Color background = Color.FromArgb(15, 18, 31), muted = Color.FromArgb(159, 173, 197), accent = Color.FromArgb(118, 225, 220);
         public LauncherForm(bool renderOnly, string initialAction) {
-            this.renderOnly = renderOnly; settings = Settings.Load(); Text = "Tensura Launcher"; ClientSize = new Size(960, 640); MinimumSize = new Size(976, 679); MaximumSize = new Size(976, 679); MaximizeBox = false;
+            this.renderOnly = renderOnly; settings = Settings.Load(); Text = "Tensura Launcher"; ClientSize = new Size(960, 720); MinimumSize = new Size(976, 759); MaximumSize = new Size(976, 759); MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; BackColor = background; ForeColor = Color.White; Font = new Font("Segoe UI", 10); DoubleBuffered = true;
             AddLabel("TENSURA", 44, 37, 600, 58, 32, Color.White, true);
             AddLabel("LAUNCHER INDEPENDIENTE", 48, 103, 610, 25, 10, accent, true);
             AddLabel("Tu cliente del servidor, siempre actualizado.", 48, 142, 680, 30, 13, muted, false);
-            var card = new Panel { Location = new Point(44, 203), Size = new Size(872, 240), BackColor = Color.FromArgb(26, 32, 49) }; Controls.Add(card);
+            var card = new Panel { Location = new Point(44, 203), Size = new Size(872, 312), BackColor = Color.FromArgb(26, 32, 49) }; Controls.Add(card);
             CardLabel(card, "Nombre de jugador", 24, 23, 300, 26, 11, muted);
             player.Text = settings.PlayerName; player.Location = new Point(24, 58); player.Size = new Size(440, 34); player.Font = new Font("Segoe UI", 15); player.BorderStyle = BorderStyle.FixedSingle; player.BackColor = Color.FromArgb(14, 20, 34); player.ForeColor = Color.White; player.MaxLength = 16; card.Controls.Add(player);
             CardLabel(card, "Perfil local para el servidor en modo offline", 24, 103, 510, 24, 10, muted);
             CardLabel(card, "Memoria para Minecraft", 554, 23, 280, 26, 11, muted);
             memory.Minimum = 2048; memory.Maximum = 16384; memory.Increment = 512; memory.Value = Math.Max(2048, settings.MemoryMb); memory.Location = new Point(554, 59); memory.Size = new Size(190, 34); memory.Font = new Font("Segoe UI", 14); memory.BackColor = Color.FromArgb(14, 20, 34); memory.ForeColor = Color.White; card.Controls.Add(memory);
             CardLabel(card, "MB", 756, 64, 50, 30, 12, muted);
-            CardLabel(card, "Minecraft 1.21.1   /   NeoForge 21.1.250", 24, 159, 650, 26, 12, Color.White);
-            CardLabel(card, "Unbound obligatorio  ·  Configuración administrada", 24, 194, 760, 24, 10, accent);
-            Style(play, "JUGAR", 44, 469, 334, 54, accent, Color.FromArgb(14, 28, 37)); play.Font = new Font("Segoe UI", 13, FontStyle.Bold);
-            Style(update, "Actualizar", 394, 469, 166, 54, Color.FromArgb(42, 52, 74), Color.White);
-            Style(repair, "Reparar", 574, 469, 148, 54, Color.FromArgb(42, 52, 74), Color.White);
-            var folder = new Button(); Style(folder, "Abrir carpeta", 736, 469, 180, 54, Color.FromArgb(42, 52, 74), Color.White);
+            CardLabel(card, "Procesadores para Minecraft", 24, 140, 440, 26, 11, muted);
+            automaticCpu.Text = "Automático (80 %)"; automaticCpu.Location = new Point(24, 174); automaticCpu.Size = new Size(330, 30); automaticCpu.ForeColor = Color.White; automaticCpu.Checked = settings.CpuCount == 0; card.Controls.Add(automaticCpu);
+            cpu.Minimum = 1; cpu.Maximum = CpuPolicy.Available; cpu.Value = CpuPolicy.Resolve(settings.CpuCount, settings.CpuPercent, CpuPolicy.Available); cpu.Location = new Point(554, 173); cpu.Size = new Size(190, 34); cpu.Font = new Font("Segoe UI", 14); cpu.BackColor = Color.FromArgb(14,20,34); cpu.ForeColor = Color.White; card.Controls.Add(cpu);
+            CardLabel(card, "/ " + CpuPolicy.Available, 756, 178, 80, 30, 12, muted);
+            cpuDetail.Location = new Point(24, 212); cpuDetail.Size = new Size(800, 24); cpuDetail.ForeColor = muted; cpuDetail.Font = new Font("Segoe UI", 10); card.Controls.Add(cpuDetail);
+            automaticCpu.CheckedChanged += (s,e) => UpdateCpu(); cpu.ValueChanged += (s,e) => UpdateCpu(); UpdateCpu();
+            CardLabel(card, "Minecraft 1.21.1   /   NeoForge 21.1.250", 24, 247, 650, 26, 12, Color.White);
+            CardLabel(card, "Unbound obligatorio  ·  Configuración administrada", 24, 279, 760, 24, 10, accent);
+            Style(play, "JUGAR", 44, 539, 334, 54, accent, Color.FromArgb(14, 28, 37)); play.Font = new Font("Segoe UI", 13, FontStyle.Bold);
+            Style(update, "Actualizar", 394, 539, 166, 54, Color.FromArgb(42, 52, 74), Color.White);
+            Style(repair, "Reparar", 574, 539, 148, 54, Color.FromArgb(42, 52, 74), Color.White);
+            var folder = new Button(); Style(folder, "Abrir carpeta", 736, 539, 180, 54, Color.FromArgb(42, 52, 74), Color.White);
             folder.Click += (s, e) => { string path = Path.Combine(Program.DataRoot, "game"); Directory.CreateDirectory(path); Process.Start("explorer.exe", Host.Quote(path)); };
-            message.Location = new Point(44, 546); message.Size = new Size(740, 35); message.ForeColor = muted; message.Text = "Verificando la publicación..."; Controls.Add(message);
-            var log = new LinkLabel { Text = "Ver registro", Location = new Point(814, 548), Size = new Size(104, 25), LinkColor = accent, ActiveLinkColor = Color.White }; log.LinkClicked += (s, e) => { string path = Path.Combine(Program.DataRoot, "logs", "launcher.log"); if (!File.Exists(path)) File.WriteAllText(path, "Tensura Launcher\r\n"); Process.Start("notepad.exe", Host.Quote(path)); }; Controls.Add(log);
-            progress.Location = new Point(44, 592); progress.Size = new Size(872, 6); progress.Style = ProgressBarStyle.Marquee; progress.MarqueeAnimationSpeed = 35; Controls.Add(progress);
+            message.Location = new Point(44, 616); message.Size = new Size(740, 35); message.ForeColor = muted; message.Text = "Verificando la publicación..."; Controls.Add(message);
+            var log = new LinkLabel { Text = "Ver registro", Location = new Point(814, 618), Size = new Size(104, 25), LinkColor = accent, ActiveLinkColor = Color.White }; log.LinkClicked += (s, e) => { string path = Path.Combine(Program.DataRoot, "logs", "launcher.log"); if (!File.Exists(path)) File.WriteAllText(path, "Tensura Launcher\r\n"); Process.Start("notepad.exe", Host.Quote(path)); }; Controls.Add(log);
+            progress.Location = new Point(44, 672); progress.Size = new Size(872, 6); progress.Style = ProgressBarStyle.Marquee; progress.MarqueeAnimationSpeed = 35; Controls.Add(progress);
             play.Enabled = update.Enabled = repair.Enabled = false;
             play.Click += async (s, e) => await Run("Play"); update.Click += async (s, e) => await Run("Update"); repair.Click += async (s, e) => await Run("Repair");
             Shown += async (s, e) => { if (this.renderOnly) { message.Text = "Listo para jugar · instalación independiente"; progress.Style = ProgressBarStyle.Continuous; progress.Value = 100; play.Enabled = update.Enabled = repair.Enabled = true; return; } await Initialize(); if (!IsDisposed && host != null && initialAction != null) await Run(initialAction); };
             FormClosing += (s, e) => { if (busy && !gameRunning) { e.Cancel = true; closeRequested = true; Directory.CreateDirectory(Path.Combine(Program.DataRoot, "cache")); File.WriteAllText(Path.Combine(Program.DataRoot, "cache", "cancel.request"), "cancel"); SetMessage("Terminando de forma segura antes de cerrar..."); } };
         }
         public void SetPlayer(string name) { player.Text = name; }
+        void SaveSettings() { settings.PlayerName = player.Text.Trim(); settings.MemoryMb = (int)memory.Value; settings.CpuCount = automaticCpu.Checked ? 0 : (int)cpu.Value; settings.CpuPercent = 80; settings.Save(); }
+        internal static void TestCpuControls() {
+            using(var form = new LauncherForm(true, null)) {
+                if (!form.automaticCpu.Checked || form.cpu.Enabled || form.cpu.Value != CpuPolicy.Resolve(0,80,CpuPolicy.Available)) throw new Exception("Automatic CPU control failed");
+                form.automaticCpu.Checked = false; form.cpu.Value = Math.Min(2,CpuPolicy.Available); form.SaveSettings();
+                var saved = Settings.Load(); if (!form.cpu.Enabled || saved.CpuCount != (int)form.cpu.Value || saved.PlayerName != "Notatum" || saved.MemoryMb != 10000) throw new Exception("Manual CPU UI persistence failed");
+                form.automaticCpu.Checked = true; form.SaveSettings(); saved = Settings.Load();
+                if(saved.CpuCount != 0 || saved.CpuPercent != 80 || form.cpu.Enabled) throw new Exception("Automatic CPU UI persistence failed");
+            }
+        }
+        void UpdateCpu() {
+            if (automaticCpu.Checked) cpu.Value = CpuPolicy.Resolve(0, 80, CpuPolicy.Available);
+            cpu.Enabled = !automaticCpu.Checked && !busy;
+            cpuDetail.Text = ((int)cpu.Value) + " de " + CpuPolicy.Available + " procesadores lógicos disponibles. Se aplica al próximo arranque.";
+        }
         async Task Initialize() {
             busy = true;
             host = new Host(SetMessage, () => { gameRunning = true; SetButtons(false); });
@@ -239,7 +285,7 @@ namespace TensuraLauncher {
         }
         async Task Run(string action) {
             if (host == null) { await Initialize(); return; }
-            try { settings.PlayerName = player.Text.Trim(); settings.MemoryMb = (int)memory.Value; settings.Save(); }
+            try { SaveSettings(); }
             catch (Exception error) { SetMessage(error.Message); return; }
             busy = true; gameRunning = false; SetButtons(false); progress.Style = ProgressBarStyle.Marquee;
             try {
@@ -251,7 +297,7 @@ namespace TensuraLauncher {
             catch (Exception error) { SetMessage(error.Message); }
             finally { busy = false; gameRunning = false; progress.Style = ProgressBarStyle.Continuous; progress.Value = 100; SetButtons(true); if (closeRequested) Close(); }
         }
-        void SetButtons(bool enabled) { if (IsDisposed) return; if (InvokeRequired) { BeginInvoke((Action)(() => SetButtons(enabled))); return; } play.Enabled = update.Enabled = repair.Enabled = player.Enabled = memory.Enabled = enabled; }
+        void SetButtons(bool enabled) { if (IsDisposed) return; if (InvokeRequired) { BeginInvoke((Action)(() => SetButtons(enabled))); return; } play.Enabled = update.Enabled = repair.Enabled = player.Enabled = memory.Enabled = automaticCpu.Enabled = enabled; cpu.Enabled = enabled && !automaticCpu.Checked; }
         void SetMessage(string text) { if (IsDisposed) return; if (InvokeRequired) { BeginInvoke((Action)(() => SetMessage(text))); return; } message.Text = text; }
         void AddLabel(string text, int x, int y, int width, int height, float size, Color color, bool bold) { var label = new Label { Text = text, Location = new Point(x,y), Size = new Size(width,height), ForeColor = color, BackColor = Color.Transparent, Font = new Font("Segoe UI", size, bold ? FontStyle.Bold : FontStyle.Regular) }; Controls.Add(label); }
         void CardLabel(Panel panel, string text, int x, int y, int width, int height, float size, Color color) { panel.Controls.Add(new Label { Text = text, Location = new Point(x,y), Size = new Size(width,height), ForeColor = color, Font = new Font("Segoe UI", size), BackColor = Color.Transparent }); }
