@@ -1,14 +1,18 @@
 TENSURA LAUNCHER — Windows 10/11 de 64 bits
 
-Extraé el ZIP en una carpeta propia y abrí Tensura-Launcher.bat.
-Conservá el BAT y Actualizar-Tensura-Cliente.ps1 juntos.
+Compartí Tensura-Launcher.exe. Ese archivo solo alcanza: puede estar en
+cualquier carpeta y no necesita el repositorio ni archivos a su lado.
+Si recibiste Tensura-Launcher-1.2.0.zip, extraelo y abrí Tensura-Launcher.exe.
+Abrilo normalmente, sin ejecutar como administrador.
 Escribí tu nombre de jugador, elegí memoria y procesadores y pulsá JUGAR.
 Usá siempre el mismo nombre
 para conservar la identidad de tu personaje en el servidor offline.
 
 JUGAR comprueba la publicación actual de Notatum/Tensura-Pack, sincroniza
 los mods y ajustes y abre Minecraft 1.21.1 con NeoForge 21.1.250 directamente.
-No abre TLauncher. El launcher y su motor también reciben actualizaciones.
+No abre TLauncher. El motor recibe actualizaciones verificadas al abrirlo.
+El ejecutable no se reemplaza a sí mismo; las nuevas versiones se descargan
+desde la publicación del proyecto.
 Necesitás conexión a Internet para comprobar y descargar la publicación.
 
 CPU: Automático (80 %) es el valor inicial. Se redondea hacia abajo:
@@ -17,7 +21,8 @@ Desmarcá Automático para elegir una cantidad manual. Se guarda para el
 próximo arranque y combina grupos de hilos de Java con afinidad del juego.
 Esto no fija un porcentaje de uso ni paraleliza el hilo principal de MC.
 En equipos con más de 64 procesadores se usa el grupo disponible.
-La interfaz se carga desde fuentes verificadas; no se distribuye un EXE.
+El EXE incluye la interfaz: aparece antes de descargar los componentes.
+Si falla la conexión, muestra REINTENTAR y guarda el detalle en Ver registro.
 
 En el primer uso puede copiar Java 21, bibliotecas, recursos, opciones,
 servidores, capturas y partidas de la instalación local de TLauncher.
@@ -43,3 +48,7 @@ las demás PC los reciban al usar JUGAR o ACTUALIZAR.
 
 No hace falta instalar Java, Git, Python ni herramientas de desarrollo.
 Requiere PowerShell 5.1 y .NET Framework 4.8, incluidos en Windows 10/11.
+
+Alternativa de scripts: Tensura-Launcher-Scripts.zip contiene el BAT y
+Actualizar-Tensura-Cliente.ps1; para esa alternativa conservá ambos juntos.
+El BAT suelto no es la distribución del launcher.

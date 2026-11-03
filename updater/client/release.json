@@ -48,5 +48,9 @@
   "scriptLauncher": {
     "path": "updater/launcher/TensuraLauncher.ps1",
     "sha256": "452fe0b0d59ae18a82e620519273940c97760a775ba1df7ecc1f32e015d3a80a"
+  },
+  "portableLauncher": {
+    "path": "updater/launcher/Tensura-Launcher.exe",
+    "sha256": "ba5c8943687132e66e0218830d1da07910986562838b55adaf53bac5eef74ee4"
   }
 }

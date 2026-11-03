@@ -1,10 +1,6 @@
 {
   "schema": 1,
-  "version": "1.1.0",
-  "application": {
-    "path": "updater/launcher/TensuraLauncher.exe",
-    "sha256": "33bd14861743ffaa2c3e5674f5b15c3da8bb488c488c675f4dd1de60bfbaf53e"
-  },
+  "version": "1.2.0",
   "files": [
     {
       "name": "Launcher-Engine.ps1",
@@ -15,11 +11,6 @@
       "name": "AssetStore.cs",
       "path": "updater/launcher/AssetStore.cs",
       "sha256": "9056af3201edbf5be38e9ee087d4b03d1152f4c999450e598d029cc55cea5fa1"
-    },
-    {
-      "name": "Apply-Launcher-Update.ps1",
-      "path": "updater/launcher/Apply-Launcher-Update.ps1",
-      "sha256": "222c354d87f4405501b5bcbb2529b61ba6dbd144ffa8316488a2e9fc68205a28"
     },
     {
       "name": "CpuBudget.ps1",
@@ -34,7 +25,7 @@
     {
       "name": "Launcher-Ui.cs",
       "path": "updater/launcher/Launcher-Ui.cs",
-      "sha256": "0c832052cae44693cb6627383a417d09e21b70fce567c5506ea635532e865dcb"
+      "sha256": "9a3ad23eb399d26789bca3c5bdfebb2076c1e0a9209880cfe5084cd94478b6ec"
     },
     {
       "name": "Actualizar-Tensura-Cliente.ps1",
@@ -51,5 +42,9 @@
   "scriptLauncher": {
     "path": "updater/launcher/TensuraLauncher.ps1",
     "sha256": "452fe0b0d59ae18a82e620519273940c97760a775ba1df7ecc1f32e015d3a80a"
+  },
+  "portableApplication": {
+    "path": "updater/launcher/Tensura-Launcher.exe",
+    "sha256": "ba5c8943687132e66e0218830d1da07910986562838b55adaf53bac5eef74ee4"
   }
 }

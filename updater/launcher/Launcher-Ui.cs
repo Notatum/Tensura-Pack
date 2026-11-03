@@ -17,8 +17,8 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("Tensura Launcher")]
 [assembly: AssemblyProduct("Tensura Launcher")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
 
 namespace TensuraLauncher {
     public static class Program {
@@ -28,6 +28,28 @@ namespace TensuraLauncher {
         public static string ManifestOverride, PackOverride;
         public static readonly JavaScriptSerializer Json = new JavaScriptSerializer { MaxJsonLength = Int32.MaxValue };
         [STAThread] static int Main(string[] args) {
+            try { return Run(args); }
+            catch (Exception error) { return ReportError(error, args.Contains("--headless-update") || args.Contains("--recipe")); }
+        }
+        static readonly object logLock = new object();
+        public static string WriteLog(string message) {
+            string path = Path.Combine(String.IsNullOrEmpty(DataRoot) ? Path.GetTempPath() : DataRoot, "logs", "launcher.log");
+            lock (logLock) {
+                try { Directory.CreateDirectory(Path.GetDirectoryName(path)); File.AppendAllText(path, DateTime.Now.ToString("s") + " " + message + Environment.NewLine, new UTF8Encoding(false)); return path; }
+                catch {
+                    path = Path.Combine(Path.GetTempPath(), "TensuraLauncher-startup.log");
+                    try { File.AppendAllText(path, DateTime.Now.ToString("s") + " " + message + Environment.NewLine); return path; } catch { return "No se pudo escribir el registro."; }
+                }
+            }
+        }
+        static int ReportError(Exception error, bool headless) {
+            string log = WriteLog(error.ToString());
+            string message = "No se pudo completar la operación.\n\n" + error.Message + "\n\nRegistro: " + log;
+            if (headless) Console.Error.WriteLine(message);
+            else MessageBox.Show(message, "Tensura Launcher", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return 1;
+        }
+        static int Run(string[] args) {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             DataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TensuraLauncher");
             string player = null, render = null, initialAction = null;
@@ -46,8 +68,9 @@ namespace TensuraLauncher {
                 else if (arg == "--render-ui" && i + 1 < args.Length) render = args[++i];
             }
             DataRoot = Path.GetFullPath(DataRoot).TrimEnd(Path.DirectorySeparatorChar);
-            if (DataRoot.Equals(Path.GetPathRoot(DataRoot).TrimEnd(Path.DirectorySeparatorChar), StringComparison.OrdinalIgnoreCase)) return 2;
+            if (DataRoot.Equals(Path.GetPathRoot(DataRoot).TrimEnd(Path.DirectorySeparatorChar), StringComparison.OrdinalIgnoreCase)) throw new IOException("La carpeta del launcher no puede ser la raíz de un disco.");
             Directory.CreateDirectory(DataRoot); Directory.CreateDirectory(Path.Combine(DataRoot, "logs"));
+            WriteLog("Tensura Launcher 1.2.0: inicio " + (ScriptHost ? "desde scripts" : "ejecutable independiente"));
             try {
                 if (selftest) { Host.SelfTest(); return 0; }
                 if (headless) {
@@ -56,6 +79,9 @@ namespace TensuraLauncher {
                     host.Prepare(false); return host.Run(settings, recipe ? "Recipe" : "Update");
                 }
                 Application.EnableVisualStyles(); Application.SetCompatibleTextRenderingDefault(false);
+                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+                Application.ThreadException += (s, e) => ReportError(e.Exception, false);
+                AppDomain.CurrentDomain.UnhandledException += (s, e) => WriteLog("Error no controlado: " + e.ExceptionObject);
                 bool created;
                 string mutexName = "Local\\TensuraLauncher-" + Host.HashBytes(Encoding.UTF8.GetBytes(DataRoot)).Substring(0, 24);
                 using (var mutex = new Mutex(true, mutexName, out created)) {
@@ -70,10 +96,7 @@ namespace TensuraLauncher {
                     Application.Run(form); return 0;
                 }
             } catch (Exception error) {
-                File.AppendAllText(Path.Combine(DataRoot, "logs", "launcher.log"), DateTime.Now + " " + error + Environment.NewLine);
-                if (headless) Console.Error.WriteLine(error);
-                else MessageBox.Show("No se pudo completar la operación.\n\n" + error.Message, "Tensura Launcher", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 1;
+                return ReportError(error, headless);
             }
         }
     }
@@ -161,18 +184,8 @@ namespace TensuraLauncher {
                 DownloadFile(new Uri(new Uri(PackUrl), path).ToString(), Path.Combine(Engine, name), (string)file["sha256"]);
             }
             File.WriteAllText(Path.Combine(Engine, "release.json"), Program.Json.Serialize(release), new UTF8Encoding(false));
-            if (allowSelfUpdate && !Program.ScriptHost) {
-                var app = (Dictionary<string, object>)release["application"];
-                string expected = (string)app["sha256"], current = Application.ExecutablePath;
-                if (HashFile(current) != expected) {
-                    status("Actualizando el launcher"); string replacement = Path.Combine(Engine, "TensuraLauncher.exe");
-                    DownloadFile(new Uri(new Uri(PackUrl), (string)app["path"]).ToString(), replacement, expected);
-                    string script = Path.Combine(Engine, "Apply-Launcher-Update.ps1");
-                    var args = new[] { "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", script, "-Target", current, "-Source", replacement, "-Expected", expected, "-WaitPid", Process.GetCurrentProcess().Id.ToString(), "-DataRoot", Program.DataRoot };
-                    Process.Start(new ProcessStartInfo("powershell.exe", String.Join(" ", args.Select(Quote))) { UseShellExecute = false, CreateNoWindow = true });
-                    return false;
-                }
-            }
+            // Engine updates use verified source files. Never download or replace
+            // the running executable, including the retired historical application.
             status("Listo para preparar el cliente"); return true;
         }
         public int Run(Settings settings, string action) {
@@ -227,7 +240,7 @@ namespace TensuraLauncher {
         Host host; bool busy, gameRunning, closeRequested, renderOnly;
         readonly Color background = Color.FromArgb(15, 18, 31), muted = Color.FromArgb(159, 173, 197), accent = Color.FromArgb(118, 225, 220);
         public LauncherForm(bool renderOnly, string initialAction) {
-            this.renderOnly = renderOnly; settings = Settings.Load(); Text = "Tensura Launcher"; ClientSize = new Size(960, 720); MinimumSize = new Size(976, 759); MaximumSize = new Size(976, 759); MaximizeBox = false;
+            this.renderOnly = renderOnly; settings = Settings.Load(); Text = "Tensura Launcher 1.2.0"; ClientSize = new Size(960, 720); MinimumSize = new Size(976, 759); MaximumSize = new Size(976, 759); MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; BackColor = background; ForeColor = Color.White; Font = new Font("Segoe UI", 10); DoubleBuffered = true;
             AddLabel("TENSURA", 44, 37, 600, 58, 32, Color.White, true);
             AddLabel("LAUNCHER INDEPENDIENTE", 48, 103, 610, 25, 10, accent, true);
@@ -280,7 +293,7 @@ namespace TensuraLauncher {
             busy = true;
             host = new Host(SetMessage, () => { gameRunning = true; SetButtons(false); });
             try { bool prepared = await Task.Run(() => host.Prepare(true)); if (!prepared) { busy = false; Close(); return; } play.Text = "JUGAR"; SetButtons(true); }
-            catch (Exception error) { SetMessage(error.Message); play.Text = "REINTENTAR"; play.Enabled = true; host = null; }
+            catch (Exception error) { Program.WriteLog(error.ToString()); SetMessage("No se pudo verificar la publicación. Abrí Ver registro y reintentá."); play.Text = "REINTENTAR"; play.Enabled = true; host = null; }
             finally { busy = false; progress.Style = ProgressBarStyle.Continuous; if (closeRequested) Close(); }
         }
         async Task Run(string action) {
@@ -294,7 +307,7 @@ namespace TensuraLauncher {
                 if (closeRequested) return;
                 await Task.Run(() => host.Run(settings, action)); SetMessage("Listo. Tu cliente está actualizado.");
             }
-            catch (Exception error) { SetMessage(error.Message); }
+            catch (Exception error) { Program.WriteLog(error.ToString()); SetMessage(error.Message); }
             finally { busy = false; gameRunning = false; progress.Style = ProgressBarStyle.Continuous; progress.Value = 100; SetButtons(true); if (closeRequested) Close(); }
         }
         void SetButtons(bool enabled) { if (IsDisposed) return; if (InvokeRequired) { BeginInvoke((Action)(() => SetButtons(enabled))); return; } play.Enabled = update.Enabled = repair.Enabled = player.Enabled = memory.Enabled = automaticCpu.Enabled = enabled; cpu.Enabled = enabled && !automaticCpu.Checked; }
