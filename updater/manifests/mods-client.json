@@ -30,7 +30,7 @@
     },
     {
       "file": "ascension-3.0.1.jar",
-      "sha256": "776089f951757af3b1882837f994d9ad0a23ff21ac4ad05e4faf7b4b0db8bf60"
+      "sha256": "67ef150bafc1de42c15b9f5fa477ffba4f5ae168ab15d4943117ffb88698548c"
     },
     {
       "file": "BadOptimizations-2.4.1-1.21.1.jar",
@@ -361,5 +361,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.03.1"
+  "release": "2026.11.03.2"
 }

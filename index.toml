@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "56d5500d11f3da39734d5b93988b2864efa936e5fa7c79a9c105c6420f4befd4"
+hash = "845bb35cdaf4368eb2bf29a2fd346920d286d4159898d4c42c052ce6726f043c"
 
 [[files]]
 file = "GUIA-TECLAS.md"
@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "572b686a5188397149634afa6bd72175c9a45aed70298c774b8b0abdf2990b05"
+hash = "d8982a99d98b5493643d3c49e3f4dd386874de34b2ef0a5656ad78a24580b976"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -868,7 +868,7 @@ hash = "a7c6cb09f8440a86109f6007f20b5c108a4c7a10430b340ab7def56eb4799a6e"
 
 [[files]]
 file = "mods/ascension-3.0.1.jar"
-hash = "776089f951757af3b1882837f994d9ad0a23ff21ac4ad05e4faf7b4b0db8bf60"
+hash = "67ef150bafc1de42c15b9f5fa477ffba4f5ae168ab15d4943117ffb88698548c"
 
 [[files]]
 file = "mods/badoptimizations.pw.toml"
@@ -1196,7 +1196,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "5b03a73ef4defc5da1c4d67ae85fc051826a237db39331e322f4b2a72c7eedc0"
+hash = "9e7f45fc79da034649d48b8188f3413e3cb25f599e3a6973be6b92fc249d870b"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"
