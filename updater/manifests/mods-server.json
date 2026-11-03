@@ -17,8 +17,8 @@
       "sha256": "9cc92f2c09533fc5482c60f993bd891c655a0e32b637037cdcb7c2b23adedeeb"
     },
     {
-      "file": "Arco-de-Beelzebuth-neoforge-1.21.1-1.4.6.jar",
-      "sha256": "9ac27d6713166e87a157b4e42f00753c12a0b127fd8d532ddc7b5520ac148c68"
+      "file": "Arco-de-Beelzebuth-neoforge-1.21.1-1.4.7.jar",
+      "sha256": "52f9925589ba4c8bac0d69755d1eb103a0542a8f48c746537beef681610e0e71"
     },
     {
       "file": "ars_elemental-1.21.1-0.7.10.3.jar",
@@ -333,5 +333,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.03.2"
+  "release": "2026.11.03.3"
 }

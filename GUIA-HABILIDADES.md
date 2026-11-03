@@ -104,6 +104,14 @@ Los EP guardados en el orbe pertenecen al arma y son distintos de los EP del per
 
 Empieza con 5 de daño base y cada evolución añade otros 5. La décima forma, tras nueve evoluciones, tiene 50 de base. Cada millón de EP aporta 10 de daño adicional, también después de la última evolución. Por ejemplo, la forma final con 10 millones de EP causa 150 de daño antes de las defensas del objetivo; al añadirle otros 10 millones pasa a 250. El tooltip distingue daño base, aporte de EP y daño total. No se ha cambiado el radio, la cadencia ni el porcentaje de EP recibido por bajas.
 
+### Arco de Beelzebuth: evolución y EP de bajas
+
+Desde el arco **1.4.7**, sus seis formas tienen **10, 20, 30, 40, 50 y 60 de daño plano**. Con carga completa y sin Poder, el daño principal es `10 × número de forma + EP del arco × 0,00001`. Cada millón de EP añade 10 de daño; la forma final con 10 millones tiene 160 antes de las defensas. Los rayos secundarios mantienen su porcentaje.
+
+Cuando el arco mata una criatura y el personaje recibe EP por esa baja, el arco acumula también esa ganancia real. Los EP se guardan en el arma que disparó y siguen aumentando después de la última forma. Se conserva la ganancia del personaje y el progreso previo del arco. Los golpes sin muerte o las bajas sin recompensa no aportan EP al arco.
+
+En el mundo del servidor se activaron `keepInventory=true` y `resetCounterBonusUnique=1`: se conserva el inventario al morir y cada punto del contador de reencarnaciones completas de Tensura añade una habilidad única al sorteo habitual. Los requisitos originales para incrementar ese contador se mantienen.
+
 ### Requisitos de Ascension
 
 Las habilidades definitivas de Ascension usan sus propios límites; su códice indica 100 puntos de maestría, a diferencia de los valores generales de Tensura. Los niveles del Sistema y los puntos de maestría también son indicadores distintos. Lee el requisito específico de cada habilidad y el detalle del Altar del Despertar en el códice: además de dominar la habilidad única, exige poder y condiciones adicionales. La meditación del códice puede reducir el aura máxima de forma permanente; no es un gasto de energía que se regenere.
