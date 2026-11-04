@@ -104,7 +104,7 @@ Los EP guardados en el orbe pertenecen al arma y son distintos de los EP del per
 
 `daño = 5 × (1 + evoluciones alcanzadas) + EP del orbe × 0,00001`
 
-Empieza con 5 de daño base y cada evolución añade otros 5. La décima forma, tras nueve evoluciones, tiene 50 de base. Cada millón de EP aporta 10 de daño adicional, también después de la última evolución. Por ejemplo, la forma final con 10 millones de EP causa 150 de daño antes de las defensas del objetivo; al añadirle otros 10 millones pasa a 250. El tooltip distingue daño base, aporte de EP y daño total. No se ha cambiado el radio, la cadencia ni el porcentaje de EP recibido por bajas.
+Empieza con 5 de daño base y cada evolución añade otros 5. La décima forma, tras nueve evoluciones, tiene 50 de base. Cada millón de EP aporta 10 de daño adicional, también después de la última evolución. Por ejemplo, la forma final con 10 millones de EP causa 150 de daño antes de las defensas del objetivo; al añadirle otros 10 millones pasa a 250. El tooltip distingue daño base, aporte de EP y daño total. Desde el orbe 1.3.2, solo la forma final gana 30 bloques de radio para pulso y absorción: pasa de 50 a 80 bloques desde el centro, con 160 de diámetro. Las primeras nueve formas conservan sus radios de 15, 18, 22, 25, 29, 32, 36, 39 y 43 bloques. La cadencia y el porcentaje de EP recibido por bajas se conservan.
 
 ### Arco de Beelzebuth: evolución y EP de bajas
 
