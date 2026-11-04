@@ -61,6 +61,8 @@ Tener la habilidad en la lista no equivale a tener su pasiva activada. Las bonif
 
 Esta explicación corresponde a **Beelzebuth, Señor de la Gula**, la habilidad definitiva propia del pack con ID `beelzebuth:beelzebuth`.
 
+Se obtiene automáticamente cuando tenés **2.000.000 de EP máximos base**, **Predator (Depredador)** y **Gula** aprendidos permanentemente. La comprobación se realiza al entrar y aproximadamente cada segundo: no exige dominarlas, despertar como Héroe/Señor Demonio ni usar un altar. No consume EP ni esas dos habilidades. La versión duplicada `trnightmare:beelzebuth` queda deshabilitada para jugadores; quien ya la tenga pasa a la propia con su maestría conservada y una copia de sus datos anteriores. La habilidad diferente Beelzebub de Nightmare conserva sus reglas.
+
 Seleccioná **Depredación Abisal** y mantené pulsada la tecla de la habilidad mientras el objetivo esté delante tuyo, dentro del cono de **25 bloques**. Las habilidades que el objetivo ya tiene adquiridas se incorporan en un único tick del servidor, junto con su maestría y el progreso de sus modos. Incluye resistencias, intrínsecas, comunes, extras, únicas y definitivas. Si tu maestría era mayor, se conserva.
 
 Podés volver a copiar al mismo objetivo cuando aprenda algo nuevo. Cada jugador recibe su propia copia, sin quitar habilidades al objetivo. Las habilidades nuevas tienen sus tiempos de reutilización limpios; las condiciones particulares para activar sus efectos siguen aplicándose. Los estómagos y los objetos guardados son personales y se conservan.

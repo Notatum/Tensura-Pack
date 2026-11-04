@@ -1,7 +1,7 @@
 {
   "beelzebuth.skill.beelzebuth": "Beelzebuth, Señor de la Gula",
   "beelzebuth.skill.beelzebuth.title": "Habilidad Definitiva",
-  "beelzebuth.skill.beelzebuth.description": "La autoridad definitiva de Gula. Depredación Abisal alcanza 25 bloques y copia en el mismo tick las habilidades adquiridas del objetivo, su maestría y el progreso de sus modos. Las habilidades nuevas se anuncian con la Voz del Mundo. Estómago espacial: 540 espacios y hasta 15.984 objetos por pila interna.",
+  "beelzebuth.skill.beelzebuth.description": "La autoridad definitiva de Gula. Depredación Abisal alcanza 25 bloques y copia en el mismo tick las habilidades adquiridas del objetivo, su maestría y el progreso de sus modos. Las habilidades nuevas se anuncian con la Voz del Mundo. Estómago espacial: 540 espacios y hasta 15.984 objetos por pila interna. Se obtiene automáticamente con 2.000.000 de EP máximos base, Predator y Gula aprendidos. No requiere maestría, despertar ni altar; conserva tus EP y ambas habilidades.",
   "beelzebuth.skill.mode.predator.predation": "Depredación Abisal",
   "beelzebuth.skill.mode.predator.stomach": "Estómago",
   "beelzebuth.skill.mode.predator.isolation": "Aislamiento",

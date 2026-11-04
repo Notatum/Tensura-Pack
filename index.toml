@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "0b167bf8a07e3d24943f30851b05d7c73d4c6695710e13f6181dc446a0dc595d"
+hash = "786f3b5b9b960f1ed72c39c79399a15af561a824ab6413a8d06e700dc0eb2c55"
 
 [[files]]
 file = "GUIA-TECLAS.md"
@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "803c7a48eaf5aa26ed838b0976f3e3b910fab39ffc89ef6a72a3aa8c8003626c"
+hash = "489903513b7c840acc5cd03bcb483592fe4f4181be85e2f68e479a00c1667a85"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -1139,7 +1139,7 @@ hash = "92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79"
 
 [[files]]
 file = "mods/tensura-progression-compat.pw.toml"
-hash = "c60d1c99aa9460900a55df6c1edf3c276802e0a7e096e2d2a633d2db9fd7ae87"
+hash = "fda13cc49977c315aa0a1683a63b2617df067fe5946ef0ce7e656690d89522f6"
 metafile = true
 
 [[files]]
@@ -1228,7 +1228,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "9f2117db1e90fca31bc1b0389973485a16969398842d08dea18b4cea1ae2474e"
+hash = "0f356a3ca061c7bf83e48fbeb93e7d6a035de1a8a4244526cd3de366c1bba4a3"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"

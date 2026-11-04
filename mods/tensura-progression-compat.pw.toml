@@ -1,9 +1,9 @@
-name = "Tensura - Compatibilidad del contador"
-filename = "tensura-progression-compat-1.0.0.jar"
+name = "Tensura - Compatibilidad de progresión"
+filename = "tensura-progression-compat-1.1.0.jar"
 side = "both"
 pin = true
 
 [download]
-url = "https://raw.githubusercontent.com/Notatum/Tensura-Pack/6f4eaadc0b1ec22ef2bdc6159bb8f6a8bc3cf0cc/updater/patches/progression-compat/assets/tensura-progression-compat-1.0.0.jar"
+url = "https://raw.githubusercontent.com/Notatum/Tensura-Pack/0439c6dc39e5a4147e0282d60fd11befb435477d/updater/patches/progression-compat/assets/tensura-progression-compat-1.1.0.jar"
 hash-format = "sha256"
-hash = "460e330d04f9102743576de2b347e628a4db50f9f5d32fd227b0d1785b231b22"
+hash = "6fa2cb71929b2d28c6ffedd797461f1fe2b755e0b3c0f4d8e0f8ce626602b46d"
