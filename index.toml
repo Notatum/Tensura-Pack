@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "c49f638a96f4344c3678011461c23b2e82d9a5d6672673e2f4ff7c3ef19947c6"
+hash = "803c7a48eaf5aa26ed838b0976f3e3b910fab39ffc89ef6a72a3aa8c8003626c"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -499,6 +499,10 @@ hash = "e1a94a638e52b0f143c9bf456351de09a050a234cfcd29783461f0b81fa6d51c"
 [[files]]
 file = "config/supplementaries-common.toml"
 hash = "2711d86ed8a8e483f435d172427347ccebce7f41d1d4ff01e9dc0833e6b3e4a0"
+
+[[files]]
+file = "config/tensura-cape-defaults.json"
+hash = "5f88d01fdcd9c673f25f4cfe23fa0f72f5be1031e895a0ae86589589ed565298"
 
 [[files]]
 file = "config/tensura-keybindings.json"
@@ -1134,6 +1138,11 @@ file = "mods/tensura-neoforge-2.0.1.4.jar"
 hash = "92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79"
 
 [[files]]
+file = "mods/tensura-progression-compat.pw.toml"
+hash = "c60d1c99aa9460900a55df6c1edf3c276802e0a7e096e2d2a633d2db9fd7ae87"
+metafile = true
+
+[[files]]
 file = "mods/tensura-worldgen-safety.pw.toml"
 hash = "1e989e228309905d10fd353478c5423000db52ddd708f231dac15981f2c48b06"
 metafile = true
@@ -1219,7 +1228,7 @@ metafile = true
 
 [[files]]
 file = "resourcepacks/Tensura-Espanol-2026.11.02.zip"
-hash = "fda638a4fb93e499798daed90a0b8597794f57b38ba38a3c125a62c5e24c96dd"
+hash = "9f2117db1e90fca31bc1b0389973485a16969398842d08dea18b4cea1ae2474e"
 
 [[files]]
 file = "shaderpacks/complementary-unbound.pw.toml"

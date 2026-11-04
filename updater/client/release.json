@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.04.2",
+  "version": "2026.11.04.3",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",
@@ -13,7 +13,7 @@
     {
       "name": "Aplicar-Cliente.ps1",
       "path": "updater/client/Aplicar-Cliente.ps1",
-      "sha256": "9eb3fa9041ca39fb148690b7cfd91bc2ba4d5bb4e0501950b1aabfd54bc65e78"
+      "sha256": "e9cfc456e07f1285b6dd775c1b84cf07686498f3096ca0fd2974422cce8bed16"
     },
     {
       "name": "Preparar-Runtime.ps1",

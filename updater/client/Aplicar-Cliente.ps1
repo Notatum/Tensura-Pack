@@ -139,6 +139,56 @@ function Check-ModCache([bool]$Repair) {
     }
 }
 
+function Test-LegacyCosmeticaCape([object]$Value) {
+    if ($Value -isnot [string]) { return $false }
+    $address=$null
+    return [Uri]::TryCreate($Value,[UriKind]::Absolute,[ref]$address) -and $address.Scheme -in @('http','https') -and $address.Host -eq 'api.cosmetica.cc' -and $address.AbsolutePath.TrimEnd('/') -eq '/get/cloak'
+}
+function Repair-LegacyCosmeticaCape {
+    $skinRoot=Assert-Child (Join-Path $gameRoot 'CustomSkinLoader') $gameRoot
+    $configFile=Join-Path $skinRoot 'CustomSkinLoader.json'
+    $config=$null; $providers=@(); $removed=0; $newConfig=$false
+    if (Test-Path -LiteralPath $configFile -PathType Leaf) {
+        $config=Get-Content -LiteralPath $configFile -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($config.loadlist -isnot [Array]) { throw 'La lista de proveedores de CustomSkinLoader no es válida.' }
+        $providers=@($config.loadlist | Where-Object { if (Test-LegacyCosmeticaCape $_.cape) { $removed++; $false } else { $true } })
+    } else {
+        $defaults=Join-Path $gameRoot 'config\tensura-cape-defaults.json'
+        $config=Get-Content -LiteralPath $defaults -Raw -Encoding UTF8 | ConvertFrom-Json
+        if ($config.loadlist -isnot [Array] -or @($config.loadlist | Where-Object { Test-LegacyCosmeticaCape $_.cape }).Count) { throw 'El perfil inicial de capas no es válido.' }
+        $providers=@($config.loadlist); $newConfig=$true
+    }
+    $stale=[Collections.Generic.List[string]]::new()
+    $cacheRootCsl=Join-Path $skinRoot 'caches'
+    if (Test-Path -LiteralPath $cacheRootCsl -PathType Container) {
+        foreach ($file in (Get-ChildItem -LiteralPath $cacheRootCsl -Filter '*.json' -File)) {
+            # CSL cache sidecars map an HTTP response to its SHA-shaped basename.
+            if ($file.BaseName -notmatch '^[a-fA-F0-9]{40,64}$') { continue }
+            try { $metadata=Get-Content -LiteralPath $file.FullName -Raw -Encoding UTF8 | ConvertFrom-Json } catch { continue }
+            if (Test-LegacyCosmeticaCape $metadata.url) {
+                $stale.Add($file.FullName)
+                $body=Join-Path $cacheRootCsl $file.BaseName
+                if (Test-Path -LiteralPath $body -PathType Leaf) { $stale.Add($body) }
+            }
+        }
+    }
+    $profileRoot=Join-Path $skinRoot 'ProfileCache'
+    if (Test-Path -LiteralPath $profileRoot -PathType Container) {
+        foreach ($file in (Get-ChildItem -LiteralPath $profileRoot -Filter '*.json' -File)) {
+            try { $profile=Get-Content -LiteralPath $file.FullName -Raw -Encoding UTF8 | ConvertFrom-Json } catch { continue }
+            if ((Test-LegacyCosmeticaCape $profile.capeUrl) -or (Test-LegacyCosmeticaCape $profile.cape)) { $stale.Add($file.FullName) }
+        }
+    }
+    if ($removed -or $newConfig) {
+        Save-File $configFile
+        New-Item -ItemType Directory -Path $skinRoot -Force | Out-Null
+        $config.loadlist=@($providers)
+        [IO.File]::WriteAllText($configFile,($config | ConvertTo-Json -Depth 100),[Text.UTF8Encoding]::new($false))
+    }
+    foreach ($path in $stale) { Save-File $path; Remove-Item -LiteralPath $path -Force }
+    if ($removed -or $stale.Count -or $newConfig) { Write-Host "[Tensura] Capas: perfil sin Cosmetica antiguo; $($stale.Count) archivos de caché obsoletos retirados con respaldo. Las demás capas y skins se conservan." }
+}
+
 function Should-RetireNightmare([object]$EngineRelease, [hashtable]$ExpectedMods) {
     # The release must explicitly request retirement and its verified mod set must omit Nightmare.
     return [bool]$EngineRelease.retiredContentMigration -and @($ExpectedMods.Keys | Where-Object { $_ -like 'trnightmare-*.jar' }).Count -eq 0
@@ -344,6 +394,7 @@ try {
     $managedPolicy=& (Join-Path $PSScriptRoot 'Preparar-Runtime.ps1') -GameDir $gameRoot -CacheDir $cacheRoot -Java $java -Template (Join-Path $PSScriptRoot 'perfil-tensura.json') -ReleaseManifest (Join-Path $PSScriptRoot 'release.json')
     Write-PhaseTime 'runtime' $phaseTimer
     if ($retiredHelper) { Run-Java @('-jar',$retiredHelper,'apply',$gameRoot,$retiredBackup) $gameRoot; $retiredApplied=$true }
+    Repair-LegacyCosmeticaCape
     $stateFile = Join-Path $gameRoot '.tensura-client-release.json'; Save-File $stateFile
     $state = @{ release=$release; modCount=@(Get-ChildItem -LiteralPath (Join-Path $gameRoot 'mods') -Filter '*.jar' -File).Count; backup=$backup; mode=$Mode; profile=$managedPolicy.profile; mandatoryShaders=$managedPolicy.mandatoryShaders; shaderPack=$managedPolicy.shaderPack; managedEngine=$true }
     $state.keybindingsRevision=$keyProfile.revision
