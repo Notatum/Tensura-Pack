@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "7e07cfbba6b2412222174341aa9e9ea290ccfc7f1eb9d3868b1d3a7f4747b3b9"
+hash = "8114c1a4b01deb23b123987d615c5c0d50fefc03100f7a2e1d5cd1868d084575"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -205,6 +205,10 @@ file = "config/curios-server.toml"
 hash = "3c34cf9f7918c6a9ec15b14a87aa4570a751c1688f8ac01cb2e9acfb9392a734"
 
 [[files]]
+file = "config/entityculling.json"
+hash = "b4a69acefce3ac77b02a102256ce880fdef5b95ae60e6c79f2ff35a6d1b3fc0c"
+
+[[files]]
 file = "config/ep-dungeon-server.toml"
 hash = "00b5aa1273aa368e23dc48037aa41687d1cef9b6174f92db807f2cec8ef4c726"
 
@@ -242,7 +246,7 @@ hash = "4d3264b58c502afaeca3f44e8d2db0843c54b8ba957afd21a2d450fe10dafefb"
 
 [[files]]
 file = "config/iris.properties"
-hash = "23002e20d842f28ea7d8c0d87edee508dd89f0dba0e851e5d157075f8c2d486c"
+hash = "3d41b87f57b22f0be67a49effaad3fbe58b8c4bd88e5ad10abb43c9a95bbb9c5"
 
 [[files]]
 file = "config/jei-server.toml"
@@ -298,7 +302,7 @@ hash = "dfb47da700edb54a6a4fc19806e67bc2730e6437989e5d210dfcd945fa2289f8"
 
 [[files]]
 file = "config/lambdynlights.toml"
-hash = "2de31c082c5862ffc2439c4e24fde240bd192aa96e5fe132f635cb542502a00c"
+hash = "31cc643c8b63d29fc630a6126b2bcd394d45dd05557a8577bf4b47f0cbdf1e01"
 
 [[files]]
 file = "config/lithium.properties"
@@ -437,6 +441,14 @@ file = "config/rrls.toml"
 hash = "88d9f88c8e370f113122770512c67e704a16c4ceed4f70755495c9ce5072cc92"
 
 [[files]]
+file = "config/servercore/config.yml"
+hash = "5f8f839b3648179023a4830ff237d0815db7c8aafd99825360126889e3215da5"
+
+[[files]]
+file = "config/servercore/optimizations.yml"
+hash = "63ba7034fdf1f45f1b40798d3212f8d838f7c299fbe5795075fbafe1e2265192"
+
+[[files]]
 file = "config/skinlayers.json"
 hash = "45162f45aa2db525a0edc483959f35b6d958ba2e54066a4f87e7f3c3f0f99166"
 
@@ -494,7 +506,7 @@ hash = "ff52010987cd20a402369462629627c1ed5c400dd31aa43036200bfed21eca89"
 
 [[files]]
 file = "config/tensura-managed-client.json"
-hash = "315069d7a470e8be85ebbda8f40a7b7cf50d954450b75b9bc77050fdca502350"
+hash = "6275b92d801c8da504e58a3c6f8e333f8c850c3e8a72190ae7a8abec7df3aeaa"
 
 [[files]]
 file = "config/tensura/ability/ability_config.toml"
@@ -726,7 +738,7 @@ hash = "d438aea41ca41e93697e059f523686935c0add482f6abe96b532bbf10c6ed80a"
 
 [[files]]
 file = "config/xaero/minimap/client.cfg"
-hash = "c0915eff5d1a7905cd1038d646eb9086fd1a29e2f637d53535e4da161de17b9f"
+hash = "80c77d2c2882d29b5ae19be7588b19fd6e9ef6ef1a9b66feda121bde76943263"
 
 [[files]]
 file = "config/xaero/minimap/common.cfg"
@@ -754,7 +766,7 @@ hash = "d438aea41ca41e93697e059f523686935c0add482f6abe96b532bbf10c6ed80a"
 
 [[files]]
 file = "config/xaero/world-map/client.cfg"
-hash = "d0f079a8df083f6f60a0e0c1316a25fc841755a91bdcb2f86c66ead8e7d4d13d"
+hash = "33bcf15d5706daf090323b03c16e357c44bdb8e5f29a2f65ef839316b6e94c5f"
 
 [[files]]
 file = "config/xaero/world-map/common.cfg"
@@ -926,6 +938,11 @@ metafile = true
 [[files]]
 file = "mods/elitetensura-1.0.2.1-V4-ES-sin-Beelzebuth-sin-Overlay.jar"
 hash = "964ba8f4760b29d18802597775c7eddefa331c84203072e5d85dd7b91043681d"
+
+[[files]]
+file = "mods/entityculling.pw.toml"
+hash = "426238488c9ffd843f661f8bc74aa8e585fa6b4d342c43c4ba4cb8451298b725"
+metafile = true
 
 [[files]]
 file = "mods/ferrite-core.pw.toml"

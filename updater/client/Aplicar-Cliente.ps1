@@ -259,6 +259,7 @@ try {
         Run-Java @('-jar',$retiredHelper,'prepare-client',$gameRoot,$retiredBackup) $gameRoot
     }
     foreach ($folder in $changes) {
+        if ($folder -eq 'mods') { continue }
         $source = Join-Path $stage $folder
         if (Test-Path -LiteralPath $source) { Copy-Item -LiteralPath $source -Destination (Join-Path $work $folder) -Recurse }
         if (($folder -in @('resourcepacks','shaderpacks')) -or ($folder -eq 'config' -and $preserveGreatSageConfig)) {
@@ -274,6 +275,33 @@ try {
     $synchronizing = $true
     foreach ($folder in $changes) {
         $destination = Join-Path $gameRoot $folder
+        if ($folder -eq 'mods') {
+            # Keep matching JARs in place, even during repair. Back up and touch
+            # only changed, missing or retired files; Save-File joins the same
+            # transaction/rollback used for options and state below.
+            New-Item -ItemType Directory -Path $destination -Force | Out-Null
+            $actualMods = Get-TreeHashes $destination
+            $written = 0; $retired = 0; $kept = 0
+            foreach ($key in $desired.mods.Keys) {
+                if ($actualMods.ContainsKey($key) -and $actualMods[$key] -eq $desired.mods[$key]) { $kept++; continue }
+                $target = Assert-Child (Join-Path $destination $key) $gameRoot
+                $sourceFile = Assert-Child (Join-Path (Join-Path $stage 'mods') $key) $stage
+                if ((Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash -ne $desired.mods[$key]) { throw "Mod de origen alterado: $key" }
+                Save-File $target
+                New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force | Out-Null
+                Copy-Item -LiteralPath $sourceFile -Destination $target -Force
+                $written++
+            }
+            foreach ($key in $actualMods.Keys) {
+                if ($desired.mods.ContainsKey($key)) { continue }
+                $target = Assert-Child (Join-Path $destination $key) $gameRoot
+                Save-File $target
+                Remove-Item -LiteralPath $target -Force
+                $retired++
+            }
+            Write-Host "[Tensura] Mods: $kept conservados; $written nuevos o reparados; $retired retirados con respaldo."
+            continue
+        }
         if (Test-Path -LiteralPath $destination) {
             $saved = Join-Path $backup $folder
             Move-Directory $destination $saved

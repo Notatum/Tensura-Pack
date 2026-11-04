@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "side": "client",
@@ -87,6 +87,10 @@
     {
       "file": "elitetensura-1.0.2.1-V4-ES-sin-Beelzebuth-sin-Overlay.jar",
       "sha256": "964ba8f4760b29d18802597775c7eddefa331c84203072e5d85dd7b91043681d"
+    },
+    {
+      "file": "entityculling-neoforge-1.11.3-mc1.21.1.jar",
+      "sha256": "fa73ac70a3766568203b730a1573b4b54d88fb48dff4a33d8c4a80be9b8d17d5"
     },
     {
       "file": "EP-Dungeon-neoforge-1.21.1-1.0.33.jar",
@@ -361,5 +365,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.03.4"
+  "release": "2026.11.04.1"
 }

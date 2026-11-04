@@ -33,6 +33,26 @@ New-Item -ItemType Directory -Path $root,$game,$cache,$logs -Force | Out-Null
 if((Get-Item -LiteralPath $root -Force).Attributes -band [IO.FileAttributes]::ReparsePoint){throw 'La carpeta de datos no puede ser un enlace.'}
 function Status([string]$Message){Write-Host ('TENSURA_STATUS|'+$Message)}
 function Check-Cancel {if(Test-Path -LiteralPath (Join-Path $cache 'cancel.request')){throw 'Operación cancelada. Los archivos preparados se conservaron.'}}
+function Prepare-LauncherUpgrade {
+    # Bridge for the already distributed 1.2 EXE: its verified engine can
+    # prepare the new version, which is applied after that launcher closes.
+    # A script-hosted UI and unrelated parent processes are never replaced.
+    try {
+        $worker=Get-CimInstance Win32_Process -Filter "ProcessId=$PID"
+        $parent=Get-Process -Id $worker.ParentProcessId -ErrorAction Stop
+        $target=$parent.Path
+        if(!$target -or [IO.Path]::GetExtension($target) -ne '.exe'){return}
+        $info=[Diagnostics.FileVersionInfo]::GetVersionInfo($target)
+        if($info.ProductName -ne 'Tensura Launcher'){return}
+        $release=Get-Content -LiteralPath $LauncherManifest -Raw -Encoding UTF8 | ConvertFrom-Json
+        if([version]$release.version -le [version]$info.FileVersion){return}
+        $arguments=@('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',(Join-Path $PSScriptRoot 'Launcher-Update.ps1'),'-Target',$target,'-DataRoot',$root,'-Manifest',$LauncherManifest,'-PackUrl',$PackUrl,'-WaitPid',[string]$parent.Id)
+        $result=& powershell.exe @arguments 2>&1
+        if($LASTEXITCODE -eq 0 -and ($result -join "`n") -match 'TENSURA_LAUNCHER_UPDATE_READY'){
+            Status 'Nueva versión del launcher preparada; se aplicará al cerrar esta ventana.'
+        } elseif($LASTEXITCODE -ne 0){Write-Host '[Tensura] No se pudo preparar la actualización del launcher. Revisá logs/launcher-update.log.'}
+    } catch { Write-Host ('[Tensura] La actualización del launcher se reintentará: '+$_.Exception.Message) }
+}
 function Safe-Child([string]$Base,[string]$Relative){
     $path=[IO.Path]::GetFullPath((Join-Path $Base $Relative))
     if(!$path.StartsWith($Base.TrimEnd('\')+'\',[StringComparison]::OrdinalIgnoreCase)){throw 'Se rechazó una ruta fuera de la instalación.'}
@@ -143,6 +163,7 @@ function Offline-UUID([string]$Name){
 $sessionLock=$null
 try{
     $sessionLock=[IO.File]::Open((Join-Path $root 'launcher-task.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
+    Prepare-LauncherUpgrade
     $pidFile=Join-Path $root 'game-session.json'
     if(Test-Path -LiteralPath $pidFile){
         $previous=Get-Content -LiteralPath $pidFile -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -163,14 +184,14 @@ try{
         }
         [IO.File]::WriteAllText((Join-Path $root 'import-complete.json'),'{"completed":true}',[Text.UTF8Encoding]::new($false))
     }
-    Status 'Sincronizando el cliente administrado'
+    Status 'Comprobando el cliente: actualización incremental por archivo'
     $updaterCache=Join-Path $cache 'updater'
     if(!(Test-Path -LiteralPath (Join-Path $updaterCache 'staging'))){
         $previousCache=Join-Path $env:LOCALAPPDATA 'TensuraUpdater\staging'
         if(Test-Path -LiteralPath $previousCache -PathType Container){Copy-NewTree $previousCache (Join-Path $updaterCache 'staging')}
     }
-    $updaterArgs=@('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',$ClientBootstrap,'-GameDir',$game,'-CacheDir',$updaterCache,'-PackUrl',$PackUrl,'-NoLaunch')
-    if($Action -eq 'Repair'){$updaterArgs+=@('-Mode','Strict')}
+    $updateMode=if($Action -eq 'Repair'){'Strict'}else{'Incremental'}
+    $updaterArgs=@('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',$ClientBootstrap,'-GameDir',$game,'-CacheDir',$updaterCache,'-PackUrl',$PackUrl,'-Mode',$updateMode,'-NoLaunch')
     & powershell.exe @updaterArgs
     if($LASTEXITCODE -ne 0){throw 'La actualización del cliente no se completó. Revisá el registro.'}
     Check-Cancel

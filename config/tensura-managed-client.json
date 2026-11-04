@@ -9,10 +9,11 @@
   "language": "es_ar",
   "resourcePack": "Tensura-Espanol-2026.11.02.zip",
   "performance": {
-    "revision": "2026.11.02-rendimiento-1",
+    "revision": "2026.11.04-rendimiento-2",
     "optionCaps": {
-      "entityDistanceScaling": 1.0,
-      "simulationDistance": 6
+      "entityDistanceScaling": 0.75,
+      "simulationDistance": 6,
+      "renderDistance": 8
     }
   }
 }

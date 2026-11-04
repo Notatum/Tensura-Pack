@@ -2,7 +2,7 @@ TENSURA LAUNCHER — Windows 10/11 de 64 bits
 
 Compartí Tensura-Launcher.exe. Ese archivo solo alcanza: puede estar en
 cualquier carpeta y no necesita el repositorio ni archivos a su lado.
-Si recibiste Tensura-Launcher-1.2.0.zip, extraelo y abrí Tensura-Launcher.exe.
+Si recibiste Tensura-Launcher-1.3.0.zip, extraelo y abrí Tensura-Launcher.exe.
 Abrilo normalmente, sin ejecutar como administrador.
 Escribí tu nombre de jugador, elegí memoria y procesadores y pulsá JUGAR.
 Usá siempre el mismo nombre
@@ -10,9 +10,13 @@ para conservar la identidad de tu personaje en el servidor offline.
 
 JUGAR comprueba la publicación actual de Notatum/Tensura-Pack, sincroniza
 los mods y ajustes y abre Minecraft 1.21.1 con NeoForge 21.1.250 directamente.
-No abre TLauncher. El motor recibe actualizaciones verificadas al abrirlo.
-El ejecutable no se reemplaza a sí mismo; las nuevas versiones se descargan
-desde la publicación del proyecto.
+No abre TLauncher. Al abrirlo comprueba si hay una versión nueva del propio
+launcher: la verifica, actualiza el mismo archivo y reinicia su ventana.
+Conserva el nombre del archivo, tu identidad, memoria, CPU y partidas.
+La versión anterior queda respaldada en un archivo .previous.
+Si todavía usás la versión1.2, pulsá ACTUALIZAR y cerrá su ventana cuando
+termine: esa primera migración instala1.3 en el mismo EXE. No hace falta
+descargar otro launcher. Desde1.3 las siguientes se aplican al abrirlo.
 Necesitás conexión a Internet para comprobar y descargar la publicación.
 
 CPU: Automático (80 %) es el valor inicial. Se redondea hacia abajo:
@@ -36,8 +40,11 @@ Registros:     %LOCALAPPDATA%\TensuraLauncher\logs
 La opción ABRIR CARPETA muestra la nueva instalación del juego.
 
 ACTUALIZAR prepara todo sin abrir Minecraft.
-REPARAR fuerza la sincronización estricta de los mods administrados y
-comprueba bibliotecas, recursos, idioma y Unbound.
+JUGAR y ACTUALIZAR usan el modo INCREMENTAL: comprueban los archivos y
+conservan en su lugar cada mod que ya coincide. Solo añaden, reparan o
+retiran los archivos necesarios, con respaldo de las diferencias.
+REPARAR comprueba estrictamente el conjunto administrado y sus bibliotecas,
+recursos, idioma y Unbound; también conserva los JAR que ya están correctos.
 
 El servidor usa perfiles locales en modo offline. Esta versión no incluye
 inicio de sesión Microsoft ni permite entrar a servidores que lo requieren.

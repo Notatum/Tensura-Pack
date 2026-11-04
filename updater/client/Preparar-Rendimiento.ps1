@@ -11,10 +11,10 @@ if ($policy.schema -ne 1 -or $performance.revision -notmatch '^[A-Za-z0-9_.-]+$'
 $caps=@{}
 foreach ($entry in $performance.optionCaps.PSObject.Properties) {
     $key=[string]$entry.Name
-    if ($key -notin @('entityDistanceScaling','simulationDistance')) { throw "Opción de rendimiento no permitida: $key" }
+    if ($key -notin @('entityDistanceScaling','simulationDistance','renderDistance')) { throw "Opción de rendimiento no permitida: $key" }
     $cap=0.0
     if (![double]::TryParse([string]$entry.Value,[Globalization.NumberStyles]::Float,[Globalization.CultureInfo]::InvariantCulture,[ref]$cap) -or [double]::IsNaN($cap) -or [double]::IsInfinity($cap)) { throw "Límite inválido: $key" }
-    if (($key -eq 'entityDistanceScaling' -and ($cap -lt 0.5 -or $cap -gt 1.0)) -or ($key -eq 'simulationDistance' -and ($cap -lt 5 -or $cap -gt 10 -or $cap -ne [math]::Floor($cap)))) { throw "Límite fuera de rango: $key" }
+    if (($key -eq 'entityDistanceScaling' -and ($cap -lt 0.5 -or $cap -gt 1.0)) -or ($key -eq 'simulationDistance' -and ($cap -lt 5 -or $cap -gt 10 -or $cap -ne [math]::Floor($cap))) -or ($key -eq 'renderDistance' -and ($cap -lt 6 -or $cap -gt 16 -or $cap -ne [math]::Floor($cap)))) { throw "Límite fuera de rango: $key" }
     $caps[$key]=$cap
 }
 $statePath=Join-Path $root '.tensura-client-release.json'
@@ -40,7 +40,7 @@ foreach ($key in $caps.Keys) {
         if ($current -le $caps[$key]) { continue }
     }
     $replacement=$key+':'+$caps[$key].ToString('0.0############',[Globalization.CultureInfo]::InvariantCulture)
-    if ($key -eq 'simulationDistance') { $replacement=$key+':'+[int]$caps[$key] }
+    if ($key -in @('simulationDistance','renderDistance')) { $replacement=$key+':'+[int]$caps[$key] }
     if ($match.Success) { $text=[regex]::Replace($text,$pattern,[Text.RegularExpressions.MatchEvaluator]{param($m) $replacement}) }
     else { $text=$text.TrimEnd()+"`n"+$replacement+"`n" }
     $updated++

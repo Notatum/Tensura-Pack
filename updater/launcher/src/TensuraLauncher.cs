@@ -17,8 +17,8 @@ using System.Reflection;
 
 [assembly: AssemblyTitle("Tensura Launcher")]
 [assembly: AssemblyProduct("Tensura Launcher")]
-[assembly: AssemblyVersion("1.2.0.0")]
-[assembly: AssemblyFileVersion("1.2.0.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyFileVersion("1.3.0.0")]
 
 namespace TensuraLauncher {
     public static class Program {
@@ -70,7 +70,7 @@ namespace TensuraLauncher {
             DataRoot = Path.GetFullPath(DataRoot).TrimEnd(Path.DirectorySeparatorChar);
             if (DataRoot.Equals(Path.GetPathRoot(DataRoot).TrimEnd(Path.DirectorySeparatorChar), StringComparison.OrdinalIgnoreCase)) throw new IOException("La carpeta del launcher no puede ser la raíz de un disco.");
             Directory.CreateDirectory(DataRoot); Directory.CreateDirectory(Path.Combine(DataRoot, "logs"));
-            WriteLog("Tensura Launcher 1.2.0: inicio " + (ScriptHost ? "desde scripts" : "ejecutable independiente"));
+            WriteLog("Tensura Launcher 1.3.0: inicio " + (ScriptHost ? "desde scripts" : "ejecutable independiente"));
             try {
                 if (selftest) { Host.SelfTest(); return 0; }
                 if (headless) {
@@ -149,6 +149,7 @@ namespace TensuraLauncher {
         readonly Action started;
         public string Commit, PackUrl, Engine;
         Dictionary<string, object> release;
+        DateTime lastResolved = DateTime.MinValue;
         public Host(Action<string> status, Action started) { this.status = status; this.started = started; }
         public static string HashBytes(byte[] data) { using (var sha = SHA256.Create()) return BitConverter.ToString(sha.ComputeHash(data)).Replace("-", "").ToLowerInvariant(); }
         static string HashFile(string path) { using (var sha = SHA256.Create()) using (var stream = File.OpenRead(path)) return BitConverter.ToString(sha.ComputeHash(stream)).Replace("-", "").ToLowerInvariant(); }
@@ -167,6 +168,7 @@ namespace TensuraLauncher {
         }
         public bool Prepare(bool allowSelfUpdate) {
             status("Comprobando la publicación de Tensura");
+            if (release == null || (DateTime.UtcNow - lastResolved).TotalSeconds >= 60) {
             if (!String.IsNullOrEmpty(Program.PackOverride)) { PackUrl = Program.PackOverride; Commit = HashBytes(Encoding.UTF8.GetBytes(PackUrl)); }
             else {
                 string refs = DownloadText("https://github.com/Notatum/Tensura-Pack.git/info/refs?service=git-upload-pack");
@@ -177,6 +179,8 @@ namespace TensuraLauncher {
             string manifestUrl = Program.ManifestOverride ?? new Uri(new Uri(PackUrl), "updater/launcher/release.json").ToString();
             release = Program.Json.Deserialize<Dictionary<string, object>>(DownloadText(manifestUrl));
             if (Convert.ToInt32(release["schema"]) != 1) throw new IOException("La publicación del launcher no es compatible.");
+            lastResolved = DateTime.UtcNow;
+            }
             Engine = Path.Combine(Program.DataRoot, "cache", "launcher-engine", Commit); Directory.CreateDirectory(Engine);
             foreach (Dictionary<string, object> file in (System.Collections.IEnumerable)release["files"]) {
                 string name = (string)file["name"], path = (string)file["path"];
@@ -184,8 +188,18 @@ namespace TensuraLauncher {
                 DownloadFile(new Uri(new Uri(PackUrl), path).ToString(), Path.Combine(Engine, name), (string)file["sha256"]);
             }
             File.WriteAllText(Path.Combine(Engine, "release.json"), Program.Json.Serialize(release), new UTF8Encoding(false));
-            // Engine updates use verified source files. Never download or replace
-            // the running executable, including the retired historical application.
+            if (allowSelfUpdate && !Program.ScriptHost && new Version((string)release["version"]) > Assembly.GetExecutingAssembly().GetName().Version) {
+                status("Preparando la nueva versión del launcher");
+                var args = new[] { "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", Path.Combine(Engine, "Launcher-Update.ps1"), "-Target", Application.ExecutablePath, "-DataRoot", Program.DataRoot, "-Manifest", Path.Combine(Engine, "release.json"), "-PackUrl", PackUrl, "-WaitPid", Process.GetCurrentProcess().Id.ToString(), "-Restart" };
+                var info = new ProcessStartInfo("powershell.exe", String.Join(" ", args.Select(Quote))) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
+                using (var process = Process.Start(info)) {
+                    var output = process.StandardOutput.ReadToEndAsync(); var errors = process.StandardError.ReadToEndAsync(); process.WaitForExit();
+                    string text = output.Result; string error = errors.Result;
+                    if (process.ExitCode != 0 || !text.Contains("TENSURA_LAUNCHER_UPDATE_READY")) throw new IOException("No se pudo actualizar el launcher. " + error);
+                }
+                Program.WriteLog("Actualización verificada preparada; reiniciando el launcher en el mismo archivo.");
+                return false;
+            }
             status("Listo para preparar el cliente"); return true;
         }
         public int Run(Settings settings, string action) {
@@ -240,7 +254,7 @@ namespace TensuraLauncher {
         Host host; bool busy, gameRunning, closeRequested, renderOnly;
         readonly Color background = Color.FromArgb(15, 18, 31), muted = Color.FromArgb(159, 173, 197), accent = Color.FromArgb(118, 225, 220);
         public LauncherForm(bool renderOnly, string initialAction) {
-            this.renderOnly = renderOnly; settings = Settings.Load(); Text = "Tensura Launcher 1.2.0"; ClientSize = new Size(960, 720); MinimumSize = new Size(976, 759); MaximumSize = new Size(976, 759); MaximizeBox = false;
+            this.renderOnly = renderOnly; settings = Settings.Load(); Text = "Tensura Launcher 1.3.0"; ClientSize = new Size(960, 720); MinimumSize = new Size(976, 759); MaximumSize = new Size(976, 759); MaximizeBox = false;
             StartPosition = FormStartPosition.CenterScreen; BackColor = background; ForeColor = Color.White; Font = new Font("Segoe UI", 10); DoubleBuffered = true;
             AddLabel("TENSURA", 44, 37, 600, 58, 32, Color.White, true);
             AddLabel("LAUNCHER INDEPENDIENTE", 48, 103, 610, 25, 10, accent, true);

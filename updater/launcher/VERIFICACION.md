@@ -1,4 +1,23 @@
-# Verificación del launcher 1.2.0 — 3 de noviembre de 2026
+# Verificación del launcher 1.3.0 — 4 de noviembre de 2026
+
+La distribución vigente es `Tensura-Launcher.exe` y `Tensura-Launcher-1.3.0.zip`.
+El EXE incluye la interfaz, admite actualización de su mismo archivo y sigue
+usando CPU automático80 o selección manual. No usa el ejecutable histórico.
+
+- Diez comprobaciones de actualización: código actual con versión de fixture anterior actualiza al candidato, reemplazo atómico/.previous, settings exactos, proceso desacoplado sin bloqueo, SHAincorrecto rechazado, downgrade ignorado, puente desde el binario1.2 ya distribuido, identidad/datos conservados, receta90mods y ninguna petición del EXE retirado.
+- El primer ensayo detectó un bloqueo circular de pipes en Windows PowerShell5.1; se corrigió separando el worker mediante ShellExecute. La repetición completa pasó.
+- Veinte comprobaciones de distribución: ambos BAT, coincidencia exacta de90JAR, actualizaciones Incremental/Strict sin alterar IDs/fechas de los JAR correctos, reparación de archivos faltantes/dañados y retirada con respaldo, rollback exacto, datos personales, cachés de mods/shaders/motor y migración del bootstrap anterior.
+- Once comprobaciones del perfil: límites iniciales de renderizado/entidades/simulación, ajustes menores, personalizaciones posteriores, FPS y teclas, valores inválidos y ausencia de escrituras parciales.
+- Servidor NeoForge privado con82mods: cinco comprobaciones funcionales; ServerCore interpreta objetivo40MSPT y un único ajuste de vista6..8, IA por rango desactivada y Nightmare/Gran Sabio conservados. Mundo privado y puerto25587; nunca se cargó la partida real.
+- Auditoría del cliente completo90JAR:472dependencias y470rangos válidos; sin archivos dañados, dependencias faltantes ni errores de índice. Entity Culling1.11.3 procede de Modrinth oficial, solo cliente, con tickCulling desactivado y excepciones para entidades de mods.
+- Defender completó el escaneo del candidato con protección activa y ninguna detección nueva. El resultado local no establece un falso positivo histórico ni garantiza clasificación en otros equipos. El EXE sigue sin firma digital.
+
+No se midieron FPS comparativos. La prueba gráfica en un mundo con90mods está
+pendiente de disponibilidad: el cliente real seguía abierto y la memoria libre
+era6.3GB. No se cerraron el juego, launcher ni servidor del usuario para probar.
+La revisión está preparada para aplicarse cuando esas instalaciones estén cerradas.
+
+## Histórico: launcher 1.2.0
 
 La distribución vigente es `Tensura-Launcher.exe`, compilado desde
 `src/TensuraLauncher.cs` con el compilador de .NET Framework de Windows, x64,

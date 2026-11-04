@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026.11.03.4",
+  "version": "2026.11.04.1",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "entry": "Aplicar-Cliente.ps1",
@@ -13,7 +13,7 @@
     {
       "name": "Aplicar-Cliente.ps1",
       "path": "updater/client/Aplicar-Cliente.ps1",
-      "sha256": "1bbe4b44c63f1f6c0535b81507d6b18efa34eba14b052e2a256718abec5be3db"
+      "sha256": "fc46911d09ae5c7e027e87416bf52d77e00a2794d514d8099467d5b08b751386"
     },
     {
       "name": "Preparar-Runtime.ps1",
@@ -33,7 +33,7 @@
     {
       "name": "Preparar-Rendimiento.ps1",
       "path": "updater/client/Preparar-Rendimiento.ps1",
-      "sha256": "7417c960392e96e1be3416910fcc711256bca5a994d5ec3e8e87eeb37f6cbab3"
+      "sha256": "f058ed412a3a6b58bd8921141aa1a3fb37a049b76dbb8183e59873625061219a"
     }
   ],
   "installer": {
@@ -51,6 +51,6 @@
   },
   "portableLauncher": {
     "path": "updater/launcher/Tensura-Launcher.exe",
-    "sha256": "ba5c8943687132e66e0218830d1da07910986562838b55adaf53bac5eef74ee4"
+    "sha256": "3be29ce64d0b917a6deb90ac03e7545a58132a4dc1a67f5a4c76d15b4070452c"
   }
 }
