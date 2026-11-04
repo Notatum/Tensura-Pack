@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "e23ddfc5493de520025757bdbc29d896076c616ce97ba865acc7094ed61b21ce"
+hash = "e7d0da92f8a65faa646f8fc91b07d725411095d213ca055fdf6f87e5d474a06e"
 
 [[files]]
 file = "GUIA-TECLAS.md"
@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "2aeb6d2006fc7048642ae84ac266b3f3d508aa7169b15a65c75cc964e25737a9"
+hash = "ece80e38eee4a6cb32784f4f061555af790ebf6e79302664cb6a60d6ae2cd9d4"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -1139,7 +1139,7 @@ hash = "92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79"
 
 [[files]]
 file = "mods/tensura-progression-compat.pw.toml"
-hash = "fda13cc49977c315aa0a1683a63b2617df067fe5946ef0ce7e656690d89522f6"
+hash = "3b8b291cfe4639fc3800d343f237970d068ac36c93187d1661fd2f9ca01bb056"
 metafile = true
 
 [[files]]

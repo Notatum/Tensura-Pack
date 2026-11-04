@@ -114,6 +114,8 @@ Cuando el arco mata una criatura y el personaje recibe EP por esa baja, el arco 
 
 En el mundo del servidor se activaron `keepInventory=true` y `resetCounterBonusUnique=1`: se conserva el inventario al morir y cada punto del contador de reencarnaciones completas de Tensura añade una habilidad única al sorteo habitual. Los requisitos originales para incrementar ese contador se mantienen.
 
+Desde **2026.11.04.6**, los talentos de Ascension de **Ctrl+L** son permanentes entre reinicios de personaje: se conservan el árbol comprado, los puntos disponibles y su progreso. También persisten al morir y volver a entrar; sus efectos se reaplican sin acumularse. Esto incluye los pergaminos de reinicio completo, de raza y de habilidades. La redistribución voluntaria dentro del propio árbol sigue permitiendo reasignar los talentos.
+
 ### Requisitos de Ascension
 
 Las habilidades definitivas de Ascension usan sus propios límites; su códice indica 100 puntos de maestría, a diferencia de los valores generales de Tensura. Los niveles del Sistema y los puntos de maestría también son indicadores distintos. Lee el requisito específico de cada habilidad y el detalle del Altar del Despertar en el códice: además de dominar la habilidad única, exige poder y condiciones adicionales. La meditación del códice puede reducir el aura máxima de forma permanente; no es un gasto de energía que se regenere.
