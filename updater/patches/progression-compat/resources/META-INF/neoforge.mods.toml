@@ -4,9 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="tensura_progression_compat"
-version="1.0.0"
+version="1.1.0"
 displayName="Tensura - Compatibilidad de progresión"
-description="Recognizes terminal divine Nightmare dragons for reset-counter eligibility and its tooltip without granting hero/demon-lord flags or bypassing other requirements."
+description="Divine dragon reset compatibility and automatic custom Beelzebuth progression at 2M base EP with learned Predator and Gluttony; disables the duplicate Nightmare Beelzebuth for players."
 
 [[dependencies.tensura_progression_compat]]
 modId="neoforge"
@@ -38,3 +38,10 @@ side="BOTH"
 
 [[mixins]]
 config="tensura_progression_compat.mixins.json"
+
+[[dependencies.tensura_progression_compat]]
+modId="beelzebuth"
+type="required"
+versionRange="[1.3.8,1.3.9)"
+ordering="AFTER"
+side="BOTH"

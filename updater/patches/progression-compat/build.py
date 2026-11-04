@@ -22,6 +22,7 @@ java_home=args.java_home
 javac=str(java_home/'bin/javac.exe') if java_home else shutil.which('javac')
 assert javac,'Java21 JDK required'
 inputs={
+ 'Beelzebuth-1.21.1-1.3.8-InstantCopy-WorldVoice-ES.jar':'f1b240478b55482b02f4280861fcf538270ab79cd18e6e64d35c4fb19afb4bfc',
  'tensura-neoforge-2.0.1.4.jar':'92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79',
  'ascension-3.0.1.jar':'67ef150bafc1de42c15b9f5fa477ffba4f5ae168ab15d4943117ffb88698548c',
  'trnightmare-1.0.6.1-neoforge-1.21.1.jar':'7be16ab59637fe35052cedbeddcbff7142ffc769de10983868e560336a9ed212',
@@ -35,7 +36,7 @@ client_root=Path(os.environ['LOCALAPPDATA'])/'TensuraLauncher/game'
 jars+=sorted((client_root/'libraries').rglob('*.jar'))
 arguments=['-proc:none','--release','21','-g:none','-encoding','UTF-8','-cp',os.pathsep.join(map(str,jars)),'-d',str(classes)]+[str(p) for p in sorted((BASE/'src').rglob('*.java'))]
 argfile=work/'javac.args';argfile.write_text('\n'.join('"'+v.replace('\\','/')+'"' for v in arguments),encoding='utf-8')
-subprocess.run([javac,'@'+str(argfile)],check=True)
+subprocess.run([javac,'-J-Xmx256m','@'+str(argfile)],check=True)
 entries={p.relative_to(classes).as_posix():p.read_bytes() for p in classes.rglob('*.class')}
 entries.update({p.relative_to(BASE/'resources').as_posix():p.read_bytes() for p in (BASE/'resources').rglob('*') if p.is_file()})
 with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as jar:

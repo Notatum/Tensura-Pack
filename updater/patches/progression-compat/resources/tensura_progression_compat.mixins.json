@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "local.tensura.progression.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": ["ResetScrollMixin"],
+  "mixins": ["ResetScrollMixin", "NightmareBeelzebuthAcquireMixin", "DisabledSkillStorageMixin"],
   "client": ["ResetProgressScreenMixin"],
   "injectors": {"defaultRequire": 1}
 }
