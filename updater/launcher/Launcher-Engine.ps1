@@ -33,6 +33,11 @@ New-Item -ItemType Directory -Path $root,$game,$cache,$logs -Force | Out-Null
 if((Get-Item -LiteralPath $root -Force).Attributes -band [IO.FileAttributes]::ReparsePoint){throw 'La carpeta de datos no puede ser un enlace.'}
 function Status([string]$Message){Write-Host ('TENSURA_STATUS|'+$Message)}
 function Check-Cancel {if(Test-Path -LiteralPath (Join-Path $cache 'cancel.request')){throw 'Operación cancelada. Los archivos preparados se conservaron.'}}
+function Write-PhaseTime([string]$Name,[Diagnostics.Stopwatch]$Timer){
+    # Times are milliseconds; no launch arguments or personal data are logged.
+    Write-Host ('TENSURA_TIMING|launcher|'+$Name+'|'+$Timer.ElapsedMilliseconds)
+    $Timer.Restart()
+}
 function Prepare-LauncherUpgrade {
     # Bridge for the already distributed 1.2 EXE: its verified engine can
     # prepare the new version, which is applied after that launcher closes.
@@ -57,6 +62,35 @@ function Safe-Child([string]$Base,[string]$Relative){
     $path=[IO.Path]::GetFullPath((Join-Path $Base $Relative))
     if(!$path.StartsWith($Base.TrimEnd('\')+'\',[StringComparison]::OrdinalIgnoreCase)){throw 'Se rechazó una ruta fuera de la instalación.'}
     return $path
+}
+function Get-EntryHash($Entry){
+    $sha=[Security.Cryptography.SHA256]::Create();$stream=$null
+    try{$stream=$Entry.Open();return [BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-','')}
+    finally{if($stream){$stream.Dispose()};$sha.Dispose()}
+}
+function Sync-NativeLibraries([string[]]$Jars,[string]$Destination){
+    $kept=0;$written=0
+    foreach($jar in $Jars){
+        $zip=[IO.Compression.ZipFile]::OpenRead($jar)
+        try{
+            foreach($entry in $zip.Entries){
+                if($entry.FullName.StartsWith('META-INF/') -or !$entry.FullName.EndsWith('.dll')){continue}
+                Check-Cancel
+                $target=Safe-Child $Destination ([IO.Path]::GetFileName($entry.FullName))
+                # The containing JAR was verified above; compare bytes, not mtime.
+                $expected=Get-EntryHash $entry
+                if((Test-Path -LiteralPath $target -PathType Leaf) -and (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash -eq $expected){$kept++;continue}
+                $temp=$target+'.extract-'+[Guid]::NewGuid().ToString('N')
+                try{
+                    [IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$temp,$false)
+                    if((Get-FileHash -LiteralPath $temp -Algorithm SHA256).Hash -ne $expected){throw 'Una biblioteca nativa extraída no coincide con su origen verificado.'}
+                    if(Test-Path -LiteralPath $target){[IO.File]::Replace($temp,$target,[NullString]::Value)}else{[IO.File]::Move($temp,$target)}
+                    $written++
+                }finally{if(Test-Path -LiteralPath $temp){[IO.File]::Delete($temp)}}
+            }
+        }finally{$zip.Dispose()}
+    }
+    return @{kept=$kept;written=$written}
 }
 function Copy-NewTree([string]$Source,[string]$Destination){
     if(!(Test-Path -LiteralPath $Source -PathType Container)){return}
@@ -161,6 +195,8 @@ function Offline-UUID([string]$Name){
 }
 
 $sessionLock=$null
+$taskTimer=[Diagnostics.Stopwatch]::StartNew()
+$phaseTimer=[Diagnostics.Stopwatch]::StartNew()
 try{
     $sessionLock=[IO.File]::Open((Join-Path $root 'launcher-task.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
     Prepare-LauncherUpgrade
@@ -171,6 +207,7 @@ try{
         if($running -and $running.StartTime.ToUniversalTime().ToString('o') -eq $previous.started){throw 'Minecraft ya está abierto en esta instalación.'}
     }
     $java=Get-OwnedJava
+    Write-PhaseTime 'launcher-java' $phaseTimer
     Check-Cancel
     $env:JAVA_HOME=Split-Path -Parent (Split-Path -Parent $java)
     $env:PATH=(Split-Path -Parent $java)+';'+$env:PATH
@@ -192,8 +229,10 @@ try{
     }
     $updateMode=if($Action -eq 'Repair'){'Strict'}else{'Incremental'}
     $updaterArgs=@('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',$ClientBootstrap,'-GameDir',$game,'-CacheDir',$updaterCache,'-PackUrl',$PackUrl,'-Mode',$updateMode,'-NoLaunch')
+    Write-PhaseTime 'importacion' $phaseTimer
     & powershell.exe @updaterArgs
     if($LASTEXITCODE -ne 0){throw 'La actualización del cliente no se completó. Revisá el registro.'}
+    Write-PhaseTime 'updater' $phaseTimer
     Check-Cancel
     $state=Get-Content -LiteralPath (Join-Path $game '.tensura-client-release.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     $policy=Get-Content -LiteralPath (Join-Path $game 'config\tensura-managed-client.json') -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -217,14 +256,15 @@ try{
     $classpath.Add($profileJar)
     $nativeDir=Join-Path $game ('natives\'+$policy.profile+'-x64')
     New-Item -ItemType Directory -Path $nativeDir -Force | Out-Null
-    foreach($jar in $natives){
-        $zip=[IO.Compression.ZipFile]::OpenRead($jar)
-        try{foreach($entry in $zip.Entries){if($entry.FullName.StartsWith('META-INF/') -or !$entry.FullName.EndsWith('.dll')){continue};$target=Safe-Child $nativeDir ([IO.Path]::GetFileName($entry.FullName));[IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$target,$true)}}finally{$zip.Dispose()}
-    }
+    Write-PhaseTime 'bibliotecas' $phaseTimer
+    $nativeResult=Sync-NativeLibraries $natives.ToArray() $nativeDir
+    Status ('Bibliotecas nativas: '+$nativeResult.kept+' conservadas; '+$nativeResult.written+' nuevas o reparadas.')
+    Write-PhaseTime 'nativas' $phaseTimer
     Status 'Verificando los recursos del juego'
     $assets=Join-Path $game 'assets';$index=Join-Path $assets ('indexes\'+$profile.assetIndex.id+'.json')
     [TensuraAssetStore]::Ensure($profile.assetIndex.url,$index,$profile.assetIndex.sha1,(Join-Path $ImportSource ('assets\indexes\'+$profile.assetIndex.id+'.json')))
     [TensuraAssetStore]::Assets($index,$assets,(Join-Path $ImportSource 'assets'))
+    Write-PhaseTime 'recursos' $phaseTimer
     Check-Cancel
     $variables=@{auth_player_name=$PlayerName;version_name=$policy.profile;game_directory=$game;assets_root=$assets;assets_index_name=$profile.assetIndex.id;auth_uuid=(Offline-UUID $PlayerName);auth_access_token='0';clientid='';auth_xuid='';user_type='legacy';version_type='Tensura';resolution_width='1280';resolution_height='720';natives_directory=$nativeDir;launcher_name='TensuraLauncher';launcher_version='1.0.0';classpath=($classpath -join ';');library_directory=$libraryRoot;classpath_separator=';'}
     $jvm=@('-Xms512m',('-Xmx'+$MemoryMb+'m'),'-Dfile.encoding=UTF-8','-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8')+@(Expand-Arguments $profile.arguments.jvm $variables | Where-Object {$_ -notmatch '^-XX:ActiveProcessorCount='})+@('-XX:ActiveProcessorCount='+$cpuPlan.count)
@@ -241,11 +281,14 @@ try{
     $recipe.cpuCount=$cpuPlan.count;$recipe.availableProcessors=$cpuPlan.available;$recipe.cpuMode=$cpuPlan.mode;$recipe.cpuPercent=$cpuPlan.percent;$recipe.cpuAffinityMask=$cpuPlan.maskHex
     Status ('CPU: '+$cpuPlan.count+' de '+$cpuPlan.available+' procesadores lógicos ('+$cpuPlan.mode+').')
     [IO.File]::WriteAllText((Join-Path $root 'launch-recipe.json'),($recipe | ConvertTo-Json -Depth 8),[Text.UTF8Encoding]::new($false))
+    Write-PhaseTime 'receta' $phaseTimer
+    Write-Host ('TENSURA_TIMING|launcher|preparacion-total|'+$taskTimer.ElapsedMilliseconds)
     if($Action -ne 'Play'){Status 'Cliente independiente actualizado y listo';Write-Host 'TENSURA_READY';exit 0}
     Check-Cancel
     Status 'Iniciando Minecraft directamente'
     $info=[Diagnostics.ProcessStartInfo]::new();$info.FileName=$java;$info.Arguments='"@'+$argfile+'"';$info.WorkingDirectory=$game;$info.UseShellExecute=$false;$info.CreateNoWindow=$true;$info.RedirectStandardOutput=$true;$info.RedirectStandardError=$true
     $p=Start-TensuraCpuProcess -StartInfo $info -Plan $cpuPlan
+    Write-PhaseTime 'inicio-java' $phaseTimer
     $session=@{pid=$p.Id;started=$p.StartTime.ToUniversalTime().ToString('o');player=$PlayerName;profile=$policy.profile}
     [IO.File]::WriteAllText($pidFile,($session | ConvertTo-Json),[Text.UTF8Encoding]::new($false))
     $outputFile=[IO.File]::Create((Join-Path $logs 'minecraft-output.log'));$errorFile=[IO.File]::Create((Join-Path $logs 'minecraft-error.log'))

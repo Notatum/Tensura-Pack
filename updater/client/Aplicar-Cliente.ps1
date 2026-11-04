@@ -49,6 +49,8 @@ function Same-Tree([string]$First, [string]$Second) {
     return $true
 }
 function Desired-Hashes([string]$Folder) {
+    # Check-ModCache(false) has already verified this complete file set.
+    if ($Folder -eq 'mods') { return $expectedMods.Clone() }
     $result = Get-TreeHashes (Join-Path $stage $Folder)
     if ($Folder -in @('resourcepacks','shaderpacks')) {
         $local = Get-TreeHashes (Join-Path $gameRoot $Folder)
@@ -66,9 +68,17 @@ function Desired-Hashes([string]$Folder) {
 }
 function Matches-Hashes([hashtable]$Expected, [string]$Path) {
     $actual = Get-TreeHashes $Path
-    if ($Expected.Count -ne $actual.Count) { return $false }
-    foreach ($key in $Expected.Keys) { if (!$actual.ContainsKey($key) -or $actual[$key] -ne $Expected[$key]) { return $false } }
+    return Same-Hashes $Expected $actual
+}
+function Same-Hashes([hashtable]$Expected, [hashtable]$Actual) {
+    if ($Expected.Count -ne $Actual.Count) { return $false }
+    foreach ($key in $Expected.Keys) { if (!$Actual.ContainsKey($key) -or $Actual[$key] -ne $Expected[$key]) { return $false } }
     return $true
+}
+function Write-PhaseTime([string]$Name, [Diagnostics.Stopwatch]$Timer) {
+    # Times are milliseconds; never include launch arguments or credentials.
+    Write-Host ('TENSURA_TIMING|updater|'+$Name+'|'+$Timer.ElapsedMilliseconds)
+    $Timer.Restart()
 }
 function Move-Directory([string]$Source, [string]$Destination) {
     $null = Assert-Child $Source $gameRoot
@@ -146,6 +156,8 @@ function Find-Java21 {
     }
     throw 'Se necesita Java 21. TensuraLauncher.exe puede prepararlo automáticamente.'
 }
+$taskTimer = [Diagnostics.Stopwatch]::StartNew()
+$phaseTimer = [Diagnostics.Stopwatch]::StartNew()
 try {
     if (!(Test-Path -LiteralPath $GameDir -PathType Container)) {
         $requested=[IO.Path]::GetFullPath($GameDir).TrimEnd('\')
@@ -208,9 +220,12 @@ try {
         if ($entry.file -notmatch '^[^\\/]+\.jar$' -or $entry.sha256 -notmatch '^[a-f0-9]{64}$' -or $expectedMods.ContainsKey($entry.file)) { throw 'El manifiesto contiene un mod inválido o repetido.' }
         $expectedMods[$entry.file] = $entry.sha256
     }
+    Write-PhaseTime 'preparacion' $phaseTimer
     Check-ModCache $true
+    Write-PhaseTime 'cache-previa' $phaseTimer
     # Packwiz checks the cache every run and downloads only missing or changed files.
     Run-Java @('-Dstdout.encoding=UTF-8','-Dstderr.encoding=UTF-8','-jar',$bootstrap,'--bootstrap-no-update','-g','-s','client',$PackUrl) $stage
+    Write-PhaseTime 'packwiz' $phaseTimer
     Check-ModCache $false
     $engineRelease=Get-Content -LiteralPath (Join-Path $PSScriptRoot 'release.json') -Raw -Encoding UTF8 | ConvertFrom-Json
     $greatSageVanillaRevision=''
@@ -231,17 +246,22 @@ try {
     if (!(Test-Path -LiteralPath $stageShader) -or (Get-FileHash -LiteralPath $stageShader -Algorithm SHA256).Hash -ne $policy.shaderSha256) {
         if (Test-Path -LiteralPath $stageShader -PathType Leaf) { Remove-Item -LiteralPath $stageShader -Force }
         Run-Java @('-jar',$bootstrap,'--bootstrap-no-update','-g','-s','client',$PackUrl) $stage
+        Check-ModCache $false
         if (!(Test-Path -LiteralPath $stageShader) -or (Get-FileHash -LiteralPath $stageShader -Algorithm SHA256).Hash -ne $policy.shaderSha256) { throw 'No se pudo reparar el shader administrado.' }
     }
     if (!(Test-Path -LiteralPath (Join-Path $stage 'Configurar-Tensura-Idioma.ps1'))) { throw 'El pack no incluye el configurador de idioma.' }
     if (@(Get-ChildItem -LiteralPath (Join-Path $stage 'mods') -File -Filter '*.jar').Count -eq 0) { throw 'El pack no entregó mods de cliente.' }
+    Write-PhaseTime 'cache-validada' $phaseTimer
     $desired = @{}
+    $actualByFolder = @{}
     $changes = @(foreach ($folder in $folders) {
         $source = Assert-Child (Join-Path $stage $folder) $stage
         $destination = Join-Path $gameRoot $folder
         $desired[$folder] = Desired-Hashes $folder
-        if (!(Matches-Hashes $desired[$folder] $destination) -or ($Mode -eq 'Strict' -or $Action -eq 'repair') -and (Test-Path -LiteralPath $source)) { $folder }
+        $actualByFolder[$folder] = Get-TreeHashes $destination
+        if (!(Same-Hashes $desired[$folder] $actualByFolder[$folder]) -or ($Mode -eq 'Strict' -or $Action -eq 'repair') -and (Test-Path -LiteralPath $source)) { $folder }
     })
+    Write-PhaseTime 'planificacion' $phaseTimer
     $stamp = Get-Date -Format 'yyyyMMdd-HHmmss-fff'
     $backup = Assert-Child (Join-Path $gameRoot ('.tensura-backups\'+$stamp)) $gameRoot
     $work = Assert-Child (Join-Path $gameRoot ('.tensura-update-work\'+$stamp)) $gameRoot
@@ -280,7 +300,7 @@ try {
             # only changed, missing or retired files; Save-File joins the same
             # transaction/rollback used for options and state below.
             New-Item -ItemType Directory -Path $destination -Force | Out-Null
-            $actualMods = Get-TreeHashes $destination
+            $actualMods = $actualByFolder.mods
             $written = 0; $retired = 0; $kept = 0
             foreach ($key in $desired.mods.Keys) {
                 if ($actualMods.ContainsKey($key) -and $actualMods[$key] -eq $desired.mods[$key]) { $kept++; continue }
@@ -319,8 +339,10 @@ try {
     $keyProfile=& (Join-Path $PSScriptRoot 'Preparar-Teclas.ps1') -GameDir $gameRoot -PolicyFile (Join-Path $gameRoot 'config\tensura-keybindings.json')
     $performanceProfile=& (Join-Path $PSScriptRoot 'Preparar-Rendimiento.ps1') -GameDir $gameRoot -PolicyFile (Join-Path $gameRoot 'config\tensura-managed-client.json')
     foreach ($folder in $folders) { if (!(Matches-Hashes $desired[$folder] (Join-Path $gameRoot $folder))) { throw "La verificación final no coincide para $folder" } }
+    Write-PhaseTime 'sincronizacion-verificada' $phaseTimer
     Save-File (Join-Path $gameRoot 'launcher_profiles.json')
     $managedPolicy=& (Join-Path $PSScriptRoot 'Preparar-Runtime.ps1') -GameDir $gameRoot -CacheDir $cacheRoot -Java $java -Template (Join-Path $PSScriptRoot 'perfil-tensura.json') -ReleaseManifest (Join-Path $PSScriptRoot 'release.json')
+    Write-PhaseTime 'runtime' $phaseTimer
     if ($retiredHelper) { Run-Java @('-jar',$retiredHelper,'apply',$gameRoot,$retiredBackup) $gameRoot; $retiredApplied=$true }
     $stateFile = Join-Path $gameRoot '.tensura-client-release.json'; Save-File $stateFile
     $state = @{ release=$release; modCount=@(Get-ChildItem -LiteralPath (Join-Path $gameRoot 'mods') -Filter '*.jar' -File).Count; backup=$backup; mode=$Mode; profile=$managedPolicy.profile; mandatoryShaders=$managedPolicy.mandatoryShaders; shaderPack=$managedPolicy.shaderPack; managedEngine=$true }
@@ -350,4 +372,7 @@ try {
     }
     Write-Host "[Tensura] ERROR: $($failure.Exception.Message)"
     exit 1
-} finally { if ($lock) { $lock.Dispose() } }
+} finally {
+    Write-Host ('TENSURA_TIMING|updater|total|'+$taskTimer.ElapsedMilliseconds)
+    if ($lock) { $lock.Dispose() }
+}

@@ -1,5 +1,22 @@
 # Verificación del launcher 1.3.0 — 4 de noviembre de 2026
 
+## Revisión del pack 2026.11.04.2
+
+El EXE 1.3.0 conserva exactamente los bytes de la publicación anterior. Se actualizan el motor y los componentes del pack mediante sus hashes; no hace falta descargar otro launcher.
+
+- Veintiuna comprobaciones privadas del updater/motor: mapas de hashes ya verificados, comprobación final conservada, corrupción del mismo tamaño/fecha detectada, DLL coincidentes bloqueadas sin reescritura, sustitución atómica y limpieza ante fallos.
+- Siete comprobaciones de `build-launcher.py --metadata-only`: discrepancias de versión, fuentes o EXE rechazadas sin mutación, componentes y ZIP coherentes, ejecutable conservado. La versión se deriva de la fuente revisada.
+- Tres pares alternados de preparación en una instalación privada con caché: medianas 15,737 segundos antes y 13,811 después. No es un benchmark del arranque completo, caché fría ni FPS.
+- Managed Client 1.0.1: dos compilaciones idénticas, quince comprobaciones de construcción/metadata/guardia de tecla, diez de caché de shaders y tres de geometría original. La versión interna completa de Nightmare se valida al construir.
+- Cliente NeoForge real con Unbound: comparación de nueve vistas dentro del mundo y nueve en vuelo por fase. El baseline reproduce slime invisible, cuernos ausentes y varillas de alas sin membranas. El candidato muestra las tres superficies; mantiene los mods de culling y el shader. La última ejecución carga los 91 JAR del cliente más un helper privado, termina sin fallos en siete comprobaciones y verifica diez mil consultas de tecla desasignada sin error GLFW. El helper y sus mundos no se distribuyen.
+- No Death EP Loss 1.1.0: veintiséis comprobaciones pareadas en cada fase, sin fallos. Incluyen penalidad100, muerte/respawn reales de un jugador de prueba, descuentos de Ascension pendientes, puntos antiguos de Witches/Time Traveler, Dreamer y ambas variantes de Phoenix, restauraciones hacia arriba y costes voluntarios. El contexto de Dreamer se limpia incluso ante excepción y se aísla por jugador/hilo. El multiplicador temporal del cuerpo dragón se retira normalmente.
+- Worldgen Safety 1.0.0: 165.636 casos puros de límites y quince comprobaciones en NeoForge; comparación de 42.250 posiciones contra los límites reales de generación y seis ejecuciones del feature. No hubo escrituras rechazadas ni errores de far-chunk en la prueba final. Se preserva el comportamiento fuera de WorldGenRegion y se comprueban alturas de upgrading.
+- Regresión completa del updater: veinte comprobaciones aprobadas con los 91 JAR actuales, ambos BAT, Incremental/Strict, reparación selectiva, cachés, migración, datos personales y rollback exacto. Auditoría de los 91 JAR: 475 dependencias requeridas, 473 rangos y 292 archivos indexados, sin errores.
+
+Estas pruebas verifican la compatibilidad y las incidencias concretas descritas. No certifican cada combinación cosmética ni establecen FPS comparativos. Las pruebas se ejecutan en datos privados de mantenimiento, con los JAR originales de Gran Sabio y los mods instalados preservados.
+
+## Histórico: publicación inicial 2026.11.04.1
+
 La distribución vigente es `Tensura-Launcher.exe` y `Tensura-Launcher-1.3.0.zip`.
 El EXE incluye la interfaz, admite actualización de su mismo archivo y sigue
 usando CPU automático80 o selección manual. No usa el ejecutable histórico.
@@ -12,10 +29,10 @@ usando CPU automático80 o selección manual. No usa el ejecutable histórico.
 - Auditoría del cliente completo90JAR:472dependencias y470rangos válidos; sin archivos dañados, dependencias faltantes ni errores de índice. Entity Culling1.11.3 procede de Modrinth oficial, solo cliente, con tickCulling desactivado y excepciones para entidades de mods.
 - Defender completó el escaneo del candidato con protección activa y ninguna detección nueva. El resultado local no establece un falso positivo histórico ni garantiza clasificación en otros equipos. El EXE sigue sin firma digital.
 
-No se midieron FPS comparativos. La prueba gráfica en un mundo con90mods está
-pendiente de disponibilidad: el cliente real seguía abierto y la memoria libre
-era6.3GB. No se cerraron el juego, launcher ni servidor del usuario para probar.
-La revisión está preparada para aplicarse cuando esas instalaciones estén cerradas.
+En la publicación04.1 no se midieron FPS comparativos y la prueba gráfica quedó
+pendiente porque el cliente real seguía abierto y había6.3GB libres. La revisión
+04.2 descrita arriba añadió las pruebas visuales privadas tras su cierre; no se
+cerraron el juego, launcher ni servidor del usuario por cuenta del mantenimiento.
 
 ## Histórico: launcher 1.2.0
 

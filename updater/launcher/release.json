@@ -5,7 +5,7 @@
     {
       "name": "Launcher-Engine.ps1",
       "path": "updater/launcher/Launcher-Engine.ps1",
-      "sha256": "8e056633c7f1c7bd65640f0f721d50c68c7afa6c2a7db49a11e616619c8b1282"
+      "sha256": "e7ae0647609975c9224c8953adfe5300824c684f4eac2c5979c2f6793244f285"
     },
     {
       "name": "Launcher-Update.ps1",

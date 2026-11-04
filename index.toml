@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "8114c1a4b01deb23b123987d615c5c0d50fefc03100f7a2e1d5cd1868d084575"
+hash = "c49f638a96f4344c3678011461c23b2e82d9a5d6672673e2f4ff7c3ef19947c6"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -826,10 +826,6 @@ file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.33.jar"
 hash = "07aeb627c9ffe7c505c2c8654fe9dc4ef1d2804f06fd72fd44811c0c0f23158c"
 
 [[files]]
-file = "mods/NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar"
-hash = "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
-
-[[files]]
 file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.1.jar"
 hash = "9fff0064d34f2d590f27cbe5e7fd9d30ac31a7b1bff4e614b9044972f77dd979"
 
@@ -1055,6 +1051,11 @@ file = "mods/nightmareutils-0.1.2.jar"
 hash = "27601cb96871cd3bb93b10e5dbeb29aacce44b7588dc5c5f2f1b4f108a6e3907"
 
 [[files]]
+file = "mods/no-death-ep.pw.toml"
+hash = "fc1f1c3e8163d4ff1596aae4c6b5a2d79603f9312a351861e9d12aaa5c16a3cc"
+metafile = true
+
+[[files]]
 file = "mods/open-parties-and-claims.pw.toml"
 hash = "365e4a170765f0db88454b1138652df66f51bd42b18b8eee1786ea48ed8b324e"
 metafile = true
@@ -1125,12 +1126,17 @@ metafile = true
 
 [[files]]
 file = "mods/tensura-managed-client.pw.toml"
-hash = "a8dc65e0a1d5f40fbf7f2842cf4bc12f511feb057cb48517b15a3260c5fa290f"
+hash = "85ab5e5e90bb5e40341c14c7c4a7255478777e27f3ce36dafdbee411b076590f"
 metafile = true
 
 [[files]]
 file = "mods/tensura-neoforge-2.0.1.4.jar"
 hash = "92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79"
+
+[[files]]
+file = "mods/tensura-worldgen-safety.pw.toml"
+hash = "1e989e228309905d10fd353478c5423000db52ddd708f231dac15981f2c48b06"
+metafile = true
 
 [[files]]
 file = "mods/tensura_trepu-1.0.0.2.jar"

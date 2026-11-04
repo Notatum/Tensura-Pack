@@ -177,8 +177,8 @@
       "sha256": "27601cb96871cd3bb93b10e5dbeb29aacce44b7588dc5c5f2f1b4f108a6e3907"
     },
     {
-      "file": "NoDeathEPLoss-neoforge-1.21.1-1.0.0.jar",
-      "sha256": "852806a9350c72bbf7535c9861647615054d903214cf926e6d2113358637559a"
+      "file": "NoDeathEPLoss-neoforge-1.21.1-1.1.0.jar",
+      "sha256": "86cfbb352d19ae7fdee21ab778a52650871c6673f4ccbeca58a658406feccc67"
     },
     {
       "file": "open-parties-and-claims-neoforge-1.21.1-0.31.6.jar",
@@ -239,6 +239,10 @@
     {
       "file": "Tensura-Toggle-All-neoforge-1.21.1-1.0.4.jar",
       "sha256": "f3aa450629ef115546518bda1ce2a9415a58bcc27b11d392a990d5598203a566"
+    },
+    {
+      "file": "tensura-worldgen-safety-1.0.0.jar",
+      "sha256": "9a94a235fed91f72513b6b78f0265f22343edc402022434c7abcdbec32f97e05"
     },
     {
       "file": "tensura_opac-neoforge-2.0.0.0.jar",
@@ -333,5 +337,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.04.1"
+  "release": "2026.11.04.2"
 }

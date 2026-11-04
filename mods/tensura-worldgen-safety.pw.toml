@@ -1,0 +1,9 @@
+name = "Tensura - Generación dentro de límites"
+filename = "tensura-worldgen-safety-1.0.0.jar"
+side = "both"
+pin = true
+
+[download]
+url = "https://raw.githubusercontent.com/Notatum/Tensura-Pack/5404bbc782312612d6af18502e5f8e7825f67ad3/updater/patches/worldgen-write-bounds/assets/tensura-worldgen-safety-1.0.0.jar"
+hash-format = "sha256"
+hash = "9a94a235fed91f72513b6b78f0265f22343edc402022434c7abcdbec32f97e05"

@@ -1,0 +1,9 @@
+name = "Tensura - Sin pérdida de EP por muerte"
+filename = "NoDeathEPLoss-neoforge-1.21.1-1.1.0.jar"
+side = "both"
+pin = true
+
+[download]
+url = "https://raw.githubusercontent.com/Notatum/Tensura-Pack/5404bbc782312612d6af18502e5f8e7825f67ad3/updater/patches/no-death-ep/assets/NoDeathEPLoss-neoforge-1.21.1-1.1.0.jar"
+hash-format = "sha256"
+hash = "86cfbb352d19ae7fdee21ab778a52650871c6673f4ccbeca58a658406feccc67"
