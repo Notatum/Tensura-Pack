@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="tensura_worldgen_safety"
+version="1.0.0"
+displayName="Tensura Worldgen Safety"
+description="Keeps Ars Elemental blackstone formation writes within the active world generation region."
+
+[[dependencies.tensura_worldgen_safety]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.250,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.tensura_worldgen_safety]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.tensura_worldgen_safety]]
+modId="ars_elemental"
+type="required"
+versionRange="[0.7.10.3,0.7.10.4)"
+ordering="AFTER"
+side="BOTH"
+
+[[mixins]]
+config="tensura_worldgen_safety.mixins.json"

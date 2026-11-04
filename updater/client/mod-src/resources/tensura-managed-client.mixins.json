@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ar.juan.tensuramanaged.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "IrisManagedConfigMixin",
+    "InputConstantsGuardMixin",
+    "NightmareShaderCacheMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

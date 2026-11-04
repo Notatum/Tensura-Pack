@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "local.tensura.nodeathep.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExistenceDeathPenaltyMixin",
+    "AscensionDeathPenaltyMixin",
+    "WitchesEnvyDeathPenaltyMixin",
+    "TimeTravelerDeathPenaltyMixin",
+    "DreamerDeathResourceMixin",
+    "PhoenixDeathResourceMixin",
+    "PhoenixNextDeathResourceMixin"
+  ],
+  "injectors": {"defaultRequire": 1}
+}

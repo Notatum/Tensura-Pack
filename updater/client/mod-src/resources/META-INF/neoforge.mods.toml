@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+[[mods]]
+modId="tensura_managed_client"
+version="1.0.1"
+displayName="Tensura - Cliente administrado"
+description="Aplica la política de shaders, protege teclas desasignadas y corrige la detección inicial de shaders en Nightmare."
+[[dependencies.tensura_managed_client]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+side="CLIENT"
+[[dependencies.tensura_managed_client]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.250,)"
+side="CLIENT"
+[[dependencies.tensura_managed_client]]
+modId="iris"
+type="required"
+versionRange="[1.8.14-beta.1,1.8.15)"
+side="CLIENT"
+[[dependencies.tensura_managed_client]]
+modId="trnightmare"
+type="optional"
+versionRange="[1.0.6.1-neoforge-1.21.1]"
+side="CLIENT"
+[[mixins]]
+config="tensura-managed-client.mixins.json"
