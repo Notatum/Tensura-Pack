@@ -1,4 +1,21 @@
-# Compatibilidad de progresión 1.1.0
+# Compatibilidad de progresión 1.2.0
+
+## Talentos permanentes de Ascension
+
+Los reinicios completo, de raza y de habilidades de Tensura conservan el
+árbol de talentos de Ctrl+L: niveles comprados, XP, puntos disponibles,
+crecimiento acumulado y marca de EP. Se restaura únicamente la rama
+`PlayerPersisted["ascension:talents"]`, sin recuperar habilidades, raza ni
+otros datos que el reinicio debe cambiar. Al seleccionar la nueva raza,
+reaparecer o entrar al servidor se vuelven a aplicar los efectos y se
+sincroniza el árbol. La clonación del jugador conserva una copia independiente.
+
+Se utiliza la aplicación original de Ascension, que reemplaza los modificadores
+por identificador y evita acumular bonos en reinicios sucesivos. La redistribución
+voluntaria del propio árbol conserva su funcionamiento: no existe una copia
+antigua que vuelva a imponer talentos que el jugador decidió redistribuir.
+
+No se cambia el JAR de Ascension ni se conceden puntos o talentos retroactivos.
 
 ## Beelzebuth personalizado
 
@@ -35,4 +52,4 @@ inventarios ni razas del jugador. No modifica otros rituales o requisitos.
 
 Construcción con Java 21 y las dependencias del servidor auditadas:
 
-`python build.py --server-root "C:\Servidor Tensura" --work-dir "C:\Servidor Tensura\maintenance\beelzebuth-progression-2026-11-04\build" --output "C:\Servidor Tensura\maintenance\beelzebuth-progression-2026-11-04\candidate\tensura-progression-compat-1.1.0.jar" --java-home "C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot"`
+`python build.py --server-root "C:\Servidor Tensura" --work-dir "C:\Servidor Tensura\maintenance\ascension-talents-2026-11-04\build" --output "C:\Servidor Tensura\maintenance\ascension-talents-2026-11-04\candidate\tensura-progression-compat-1.2.0.jar" --java-home "C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot"`

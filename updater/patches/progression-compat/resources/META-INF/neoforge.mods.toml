@@ -4,15 +4,22 @@ license="MIT"
 
 [[mods]]
 modId="tensura_progression_compat"
-version="1.1.0"
+version="1.2.0"
 displayName="Tensura - Compatibilidad de progresión"
-description="Divine dragon reset compatibility and automatic custom Beelzebuth progression at 2M base EP with learned Predator and Gluttony; disables the duplicate Nightmare Beelzebuth for players."
+description="Permanent Ascension talents across character resets, divine dragon reset compatibility and automatic custom Beelzebuth progression at 2M base EP with learned Predator and Gluttony."
 
 [[dependencies.tensura_progression_compat]]
 modId="neoforge"
 type="required"
 versionRange="[21.1.250,22)"
 ordering="NONE"
+side="BOTH"
+
+[[dependencies.tensura_progression_compat]]
+modId="ascension"
+type="required"
+versionRange="[1.0.0,1.0.1)"
+ordering="AFTER"
 side="BOTH"
 
 [[dependencies.tensura_progression_compat]]
