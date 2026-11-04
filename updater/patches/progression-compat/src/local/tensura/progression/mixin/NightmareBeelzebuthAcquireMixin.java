@@ -2,15 +2,22 @@ package local.tensura.progression.mixin;
 
 import com.github.hvnbael.trnightmare.ability.skill.ultimate.BeelzebuthSkill;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import io.github.manasmods.manascore.skill.api.ManasSkillInstance;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BeelzebuthSkill.class)
 public abstract class NightmareBeelzebuthAcquireMixin {
     @Inject(method="checkAcquiringRequirement", at=@At("HEAD"), cancellable=true, require=1)
     private void tensura$disableDuplicate(Player player, double ep, CallbackInfoReturnable<Boolean> callback) {
         callback.setReturnValue(false);
+    }
+    @Inject(method="onLearnSkill", at=@At("HEAD"), cancellable=true, require=1)
+    private void tensura$preventDisabledLearnSideEffects(ManasSkillInstance instance, LivingEntity entity, CallbackInfo callback) {
+        if (entity instanceof Player) callback.cancel();
     }
 }
