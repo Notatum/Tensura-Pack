@@ -130,6 +130,8 @@ El Orbe 1.3.1 conserva la misma fórmula de daño. Su menú de audio permite nom
 
 Desde **2026.11.05.1**, el pulso del Orbe de Beelzebuth recoge también la **experiencia verde del suelo** dentro de su alcance actual. La recibe el jugador y sirve para Reparación como una recogida normal; Clumps conserva todas las unidades agrupadas. No se convierte en EP del orbe. La forma final conserva 80 bloques de radio y las otras formas su alcance anterior.
 
+Desde **2026.11.05.2**, el efecto del pulso sale al lanzarlo y los impactos se reparten entre varios ticks para reducir el tirón al matar muchos enemigos juntos. Conserva alcance, daño y ganancias. Con grupos grandes, algunas bajas terminan después de la onda inicial. Se admiten dos pulsos pendientes; si aparece el aviso de cola llena, esperá a que terminen los anteriores. Morir, desconectarte, cambiar de dimensión o dejar de tener el orbe cancela los impactos pendientes.
+
 **FallingTree:** rompé el tronco inferior de un árbol con un hacha para talar los troncos conectados. **Agachate para cortar un solo tronco.** Se aplica el desgaste oficial según la cantidad talada. El árbol debe tener hojas naturales; las hojas siguen su caída normal. El límite es 100 troncos totales por tala y la exploración se limita a 500 bloques. Clumps ya estaba incluido en el pack.
 
 ### Fuentes
