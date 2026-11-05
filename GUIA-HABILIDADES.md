@@ -126,6 +126,12 @@ TR: Nightmare y NightmareUtils vuelven al pack desde 2026.11.02.7. El menú de c
 
 El Orbe 1.3.1 conserva la misma fórmula de daño. Su menú de audio permite nombres de archivo de hasta 255 caracteres: coloca la música en `orbe_audio/musica` de la instalación activa, entra en Parlante y pulsa Actualizar. Selecciona el archivo y pulsa Reproducir. El botón vuelve a leer la carpeta sin reiniciar el juego.
 
+### Experiencia del orbe y tala de árboles
+
+Desde **2026.11.05.1**, el pulso del Orbe de Beelzebuth recoge también la **experiencia verde del suelo** dentro de su alcance actual. La recibe el jugador y sirve para Reparación como una recogida normal; Clumps conserva todas las unidades agrupadas. No se convierte en EP del orbe. La forma final conserva 80 bloques de radio y las otras formas su alcance anterior.
+
+**FallingTree:** rompé el tronco inferior de un árbol con un hacha para talar los troncos conectados. **Agachate para cortar un solo tronco.** Se aplica el desgaste oficial según la cantidad talada. El árbol debe tener hojas naturales; las hojas siguen su caída normal. El límite es 100 troncos totales por tala y la exploración se limita a 500 bloques. Clumps ya estaba incluido en el pack.
+
 ### Fuentes
 
 La mecánica general se contrastó con [Ability Usage, en la wiki de Tensura](https://tensura.wiki.gg/wiki/Mechanics/Ability_Usage) y [Great Sage, en la wiki](https://tensura.wiki.gg/wiki/Great_Sage). La consulta directa de la wiki devolvió HTTP 403; se pudo consultar su contenido indexado. Los números específicos de esta guía se comprobaron también en la configuración y en el código de los JAR instalados.

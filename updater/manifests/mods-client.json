@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "minecraft": "1.21.1",
   "neoforge": "21.1.250",
   "side": "client",
@@ -95,6 +95,10 @@
     {
       "file": "EP-Dungeon-neoforge-1.21.1-1.0.33.jar",
       "sha256": "07aeb627c9ffe7c505c2c8654fe9dc4ef1d2804f06fd72fd44811c0c0f23158c"
+    },
+    {
+      "file": "FallingTree-1.21.1-1.21.1.11.jar",
+      "sha256": "b07cb3fe67d1f3bb66daf8836373614153790cfaa8c64fadbf53479d1b33cc54"
     },
     {
       "file": "ferritecore-7.0.3-neoforge.jar",
@@ -201,8 +205,8 @@
       "sha256": "87a207b5bc846bd72078d86824eae65360ce03c429bcc06e0760b94e6fdf7eca"
     },
     {
-      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.2.jar",
-      "sha256": "402c7b52e8d5cbad24a9e84f9f567a86adc15d9cbf710c603ba24ea44a3ac9c0"
+      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.3.jar",
+      "sha256": "93bccee3a4f0751474e6d80daad6f07c92cf60b157f76efc5edda2d7ee73850b"
     },
     {
       "file": "Placebo-1.21.1-9.9.2.jar",
@@ -373,5 +377,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.04.6"
+  "release": "2026.11.05.1"
 }

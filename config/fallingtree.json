@@ -1,0 +1,25 @@
+{
+  "trees": {
+    "breakMode": "INSTANTANEOUS",
+    "detectionMode": "WHOLE_TREE",
+    "maxScanSize": 500,
+    "maxSize": 99,
+    "maxSizeAction": "ABORT",
+    "minimumLeavesAroundRequired": 1,
+    "includePersistentLeavesInRequiredCount": false,
+    "treeBreaking": true,
+    "leavesBreaking": false,
+    "allowMixedLogs": false,
+    "trunkLootPercentage": 1.0
+  },
+  "tools": {
+    "ignoreTools": false,
+    "durabilityMode": "NORMAL",
+    "damageMultiplicand": 1.0,
+    "speedMultiplicand": 0.0,
+    "forceToolUsage": false
+  },
+  "sneakMode": "SNEAK_DISABLE",
+  "breakInCreative": false,
+  "notificationMode": "ACTION_BAR"
+}
