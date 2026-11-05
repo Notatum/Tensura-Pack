@@ -1,12 +1,12 @@
 name = "Tensura Server"
 author = "Notatum"
-version = "2026.11.05.3"
+version = "2026.11.05.4"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "d79032b2377add6f4dd11ef9a25dbcc039c68e78ca14970067e3e473d1ec7db0"
+hash = "9d1b0d0d9285a5d2e5d413bc4351ec31fb7b2e4fd7198fe70c828e36d52e29e8"
 
 [versions]
 minecraft = "1.21.1"

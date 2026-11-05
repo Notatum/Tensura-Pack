@@ -134,6 +134,8 @@ Desde **2026.11.05.2**, el efecto del pulso sale al lanzarlo y los impactos se r
 
 Desde **2026.11.05.3**, la absorción de objetos y XP también se completa por tandas entre ticks. Conserva las cantidades, EP, Reparación y Clumps. La comida previa al combate sigue sumando al daño de ese pulso; si se cancela, los objetos ya consumidos conservan su crédito y los pendientes quedan en el suelo. El catálogo de evoluciones de Nightmare se reutiliza para evitar reconstrucciones repetidas, manteniendo todos los requisitos del jugador.
 
+Desde **2026.11.05.4**, los cristales y demás drops de mobs se reconocen como botín y el orbe puede absorberlos. Los cristales de baja/media/alta calidad aportan **12/32/90 EP por unidad**. Se mantienen las protecciones de objetos ajenos y armas personalizadas. Si algún cristal muy antiguo conserva un origen desconocido, recogelo normalmente y volvé a soltarlo con Q una vez para autorizar su absorción.
+
 **FallingTree:** rompé el tronco inferior de un árbol con un hacha para talar los troncos conectados. **Agachate para cortar un solo tronco.** Se aplica el desgaste oficial según la cantidad talada. El árbol debe tener hojas naturales; las hojas siguen su caída normal. El límite es 100 troncos totales por tala y la exploración se limita a 500 bloques. Clumps ya estaba incluido en el pack.
 
 ### Fuentes
