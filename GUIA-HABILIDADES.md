@@ -124,7 +124,9 @@ Desde la revisión **2026.11.03.2**, el Altar del Despertar funciona colocando s
 
 TR: Nightmare y NightmareUtils vuelven al pack desde 2026.11.02.7. El menú de cosméticos se abre con K por defecto; las opciones disponibles dependen de la raza, el clan y las habilidades. Se conserva el estado actual de los personajes y se mantienen los respaldos anteriores.
 
-El Orbe 1.3.1 conserva la misma fórmula de daño. Su menú de audio permite nombres de archivo de hasta 255 caracteres: coloca la música en `orbe_audio/musica` de la instalación activa, entra en Parlante y pulsa Actualizar. Selecciona el archivo y pulsa Reproducir. El botón vuelve a leer la carpeta sin reiniciar el juego.
+Desde **2026.11.05.5 / Orbe 1.4.0**, el servidor dedicado comparte una biblioteca para todos. Colocá las canciones en **`orbe_audio_servidor/musica` dentro de la carpeta del servidor**, abrí **O → Parlante → Actualizar**, elegí una y pulsá **Reproducir**. Los jugadores dentro del alcance de audio del orbe la reciben automáticamente, aunque no tengan el archivo. La primera escucha puede esperar la descarga completa; las siguientes usan la caché verificada. No requiere puertos adicionales y no se garantiza que todos empiecen en el mismo segundo si alguien todavía descarga.
+
+Admite **MP3, OGG Vorbis y WAV**, nombres de hasta 255 caracteres, 64 MiB por archivo y 256 canciones directamente en esa carpeta. El catálogo se revisa también cada diez segundos. Hay que actualizar servidor y clientes con el launcher porque cambió el protocolo. El EXE sigue siendo el mismo. La música personal de `orbe_audio/musica` y los efectos de `ataques` se conservan; en partidas locales siguen funcionando como antes. El botón **Carpeta local** abre esos archivos personales; las canciones compartidas se agregan en el servidor. La fórmula de daño del orbe no cambia.
 
 ### Experiencia del orbe y tala de árboles
 

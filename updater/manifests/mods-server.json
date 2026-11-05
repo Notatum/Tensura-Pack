@@ -189,8 +189,8 @@
       "sha256": "87a207b5bc846bd72078d86824eae65360ce03c429bcc06e0760b94e6fdf7eca"
     },
     {
-      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.6.jar",
-      "sha256": "850b905898c3ed96da7beacd7e0e1dc512fffc427be1e7a48539d0631cb0e043"
+      "file": "Orbe-de-Beelzebuth-neoforge-1.21.1-1.4.0.jar",
+      "sha256": "419aa87d6f5ac7416d4f7d4efe1de4a75f4a42c068f8c280fd8f834ad34d59aa"
     },
     {
       "file": "Placebo-1.21.1-9.9.2.jar",
@@ -345,5 +345,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.05.4"
+  "release": "2026.11.05.5"
 }

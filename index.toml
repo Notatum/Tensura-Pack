@@ -6,7 +6,7 @@ hash = "d30f00c95c0f4caaae77fd15349c7a166ef37d44de2d40df9441e4d590d819fb"
 
 [[files]]
 file = "GUIA-HABILIDADES.md"
-hash = "a2a60ad95a8f3722d11389a3eafdd2535eac772d1abb0dcf93b435da096dc325"
+hash = "26aff80a94830b49094b0715a489cbe366936603fb5e0cdd3a9cdbb38a409ac4"
 
 [[files]]
 file = "GUIA-TECLAS.md"
@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "a2e051b1f804d06525a8647239410ddf1344dd5e237d9b4605c44579f49bf856"
+hash = "f52e343afa0212f71abf830450be779a2cd61dca24b80079d9ef1c5a83a8a517"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -834,8 +834,8 @@ file = "mods/EP-Dungeon-neoforge-1.21.1-1.0.33.jar"
 hash = "07aeb627c9ffe7c505c2c8654fe9dc4ef1d2804f06fd72fd44811c0c0f23158c"
 
 [[files]]
-file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.3.6.jar"
-hash = "850b905898c3ed96da7beacd7e0e1dc512fffc427be1e7a48539d0631cb0e043"
+file = "mods/Orbe-de-Beelzebuth-neoforge-1.21.1-1.4.0.jar"
+hash = "419aa87d6f5ac7416d4f7d4efe1de4a75f4a42c068f8c280fd8f834ad34d59aa"
 
 [[files]]
 file = "mods/Placebo-1.21.1-9.9.2.jar"
