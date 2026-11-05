@@ -132,6 +132,8 @@ Desde **2026.11.05.1**, el pulso del Orbe de Beelzebuth recoge también la **exp
 
 Desde **2026.11.05.2**, el efecto del pulso sale al lanzarlo y los impactos se reparten entre varios ticks para reducir el tirón al matar muchos enemigos juntos. Conserva alcance, daño y ganancias. Con grupos grandes, algunas bajas terminan después de la onda inicial. Se admiten dos pulsos pendientes; si aparece el aviso de cola llena, esperá a que terminen los anteriores. Morir, desconectarte, cambiar de dimensión o dejar de tener el orbe cancela los impactos pendientes.
 
+Desde **2026.11.05.3**, la absorción de objetos y XP también se completa por tandas entre ticks. Conserva las cantidades, EP, Reparación y Clumps. La comida previa al combate sigue sumando al daño de ese pulso; si se cancela, los objetos ya consumidos conservan su crédito y los pendientes quedan en el suelo. El catálogo de evoluciones de Nightmare se reutiliza para evitar reconstrucciones repetidas, manteniendo todos los requisitos del jugador.
+
 **FallingTree:** rompé el tronco inferior de un árbol con un hacha para talar los troncos conectados. **Agachate para cortar un solo tronco.** Se aplica el desgaste oficial según la cantidad talada. El árbol debe tener hojas naturales; las hojas siguen su caída normal. El límite es 100 troncos totales por tala y la exploración se limita a 500 bloques. Clumps ya estaba incluido en el pack.
 
 ### Fuentes
