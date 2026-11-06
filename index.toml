@@ -18,7 +18,7 @@ hash = "cf9d13b67c8ccb489ccf14ab3e0c355c012dc390167dfddb272802308aafa623"
 
 [[files]]
 file = "REVISION-2026-11-02.md"
-hash = "f52e343afa0212f71abf830450be779a2cd61dca24b80079d9ef1c5a83a8a517"
+hash = "20e2c95bfdb7bcbc5a360c91bf96d72b2408661eebd80cb57e4f79d2c4b2fbb3"
 
 [[files]]
 file = "config/TPA/config/configuration.toml"
@@ -1150,6 +1150,10 @@ hash = "92c21507d1340de5d4565e54f88d4fb33179bc763af2a3f7e4e6262d0a352d79"
 file = "mods/tensura-progression-compat.pw.toml"
 hash = "3b8b291cfe4639fc3800d343f237970d068ac36c93187d1661fd2f9ca01bb056"
 metafile = true
+
+[[files]]
+file = "mods/tensura-registry-compat-1.0.0.jar"
+hash = "c84f89968f8a89d8da1ae6c2ed0582532dee7779af9409ca7794ccd83be3cd03"
 
 [[files]]
 file = "mods/tensura-worldgen-safety.pw.toml"

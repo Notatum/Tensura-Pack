@@ -273,6 +273,10 @@
       "sha256": "132a418d71a162d044766ef238c6a4899fb25e809a083bce0ff5b58b4fe2b286"
     },
     {
+      "file": "tensura-registry-compat-1.0.0.jar",
+      "sha256": "c84f89968f8a89d8da1ae6c2ed0582532dee7779af9409ca7794ccd83be3cd03"
+    },
+    {
       "file": "Tensura-Shared-Boss-Credit-neoforge-1.21.1-1.0.3.jar",
       "sha256": "13738be0976b230433dd76beac5d7d563d40d84dfe13c29772bc60cfc0f26f18"
     },
@@ -377,5 +381,5 @@
       "sha256": "0cd26474e514f5dc3114aaf5ec7e049bcd285f0c5db191bb45223193f35df70d"
     }
   ],
-  "release": "2026.11.05.5"
+  "release": "2026.11.05.6"
 }
